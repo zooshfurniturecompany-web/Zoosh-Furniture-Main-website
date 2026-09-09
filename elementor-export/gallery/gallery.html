@@ -1,0 +1,76 @@
+<div class="zoosh-wrapper">
+
+  <!-- SECTION 01 — GALLERY HEADER -->
+  <section class="zoosh-gallery-header">
+    <div class="zoosh-gallery-container">
+      <span class="zoosh-gallery-badge">Visual Portfolio</span>
+      <h1 class="zoosh-gallery-title">Design Portfolios</h1>
+      <p class="zoosh-gallery-desc">A visual showcase of ZOOSH custom layouts, material finishes, and interior styling projects.</p>
+    </div>
+  </section>
+
+  <!-- SECTION 02 — CATEGORY FILTER BUTTONS -->
+  <section class="zoosh-gallery-filters-section">
+    <div class="zoosh-gallery-container">
+      <div class="zoosh-gallery-filters-bar" id="zooshGalleryFilters">
+        <!-- Generated dynamically via JS -->
+      </div>
+    </div>
+  </section>
+
+  <!-- SECTION 03 — MASONRY LAYOUT GRID -->
+  <section class="zoosh-gallery-grid-section">
+    <div class="zoosh-gallery-container">
+      <div class="zoosh-gallery-masonry" id="zooshGalleryGrid">
+        <!-- Rendered dynamically via JS based on filters -->
+      </div>
+    </div>
+  </section>
+
+  <!-- SECTION 04 — FULLSCREEN LIGHTBOX PANEL -->
+  <div class="zoosh-lightbox" id="zooshLightbox">
+    <div class="zoosh-lightbox-backdrop" id="zooshLightboxBackdrop"></div>
+    
+    <!-- Left Navigation Arrow -->
+    <button type="button" class="zoosh-lightbox-arrow zoosh-larrow-left" id="zooshLightboxPrev" aria-label="Previous Image">
+      <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+        <polyline points="15 18 9 12 15 6"></polyline>
+      </svg>
+    </button>
+
+    <!-- Main Lightbox Image & Card -->
+    <div class="zoosh-lightbox-content">
+      
+      <!-- Close Button -->
+      <button type="button" class="zoosh-lightbox-close" id="zooshLightboxClose" aria-label="Close Lightbox">
+        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+          <line x1="18" y1="6" x2="6" y2="18"></line>
+          <line x1="6" y1="6" x2="18" y2="18"></line>
+        </svg>
+      </button>
+
+      <div class="zoosh-lightbox-image-wrapper">
+        <img src="" alt="Active View" class="zoosh-lightbox-img" id="zooshLightboxImg" />
+      </div>
+
+      <div class="zoosh-lightbox-details">
+        <div class="zoosh-lightbox-meta">
+          <span class="zoosh-lightbox-category" id="zooshLightboxCategory">Chairs</span>
+          <span class="zoosh-lightbox-index" id="zooshLightboxIndex">1 / 9</span>
+        </div>
+        <h3 class="zoosh-lightbox-title" id="zooshLightboxTitle">Arc Lounge Composition</h3>
+        <p class="zoosh-lightbox-description" id="zooshLightboxDesc">An editorial display of the Arc Lounge Chair nestled in a minimal light-flooded concrete interior.</p>
+        <a href="#" class="zoosh-lightbox-product-link" id="zooshLightboxLink">View Product Details &rarr;</a>
+      </div>
+
+    </div>
+
+    <!-- Right Navigation Arrow -->
+    <button type="button" class="zoosh-lightbox-arrow zoosh-larrow-right" id="zooshLightboxNext" aria-label="Next Image">
+      <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+        <polyline points="9 18 15 12 9 6"></polyline>
+      </svg>
+    </button>
+  </div>
+
+</div>

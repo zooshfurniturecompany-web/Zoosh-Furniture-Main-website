@@ -1,0 +1,536 @@
+/* Scoped Styling for the ZOOSH Header/Navigation System */
+
+.zoosh-header {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  z-index: 99;
+  background-color: #ffffff;
+  border-bottom: 1px solid var(--zoosh-accent-dark, #e5e5e5);
+}
+
+/* Row 1 Layout */
+.zoosh-header-row-1 {
+  height: 62px;
+  border-bottom: 1px solid #f5f5f5;
+  background-color: #ffffff;
+}
+
+.zoosh-row-1-container {
+  max-width: 100%;
+  padding: 0 5%;
+  height: 100%;
+  display: grid;
+  grid-template-columns: 1fr auto 1fr;
+  align-items: center;
+}
+
+@media (max-width: 768px) {
+  .zoosh-row-1-container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+}
+
+/* Logo */
+.zoosh-logo-wrapper {
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+}
+
+.zoosh-logo {
+  font-family: var(--zoosh-font-serif, "EB Garamond"), Georgia, serif;
+  font-size: 28px;
+  font-weight: 300;
+  letter-spacing: -0.02em;
+  color: #000000;
+  text-decoration: none;
+  line-height: 1;
+}
+
+/* Desktop Main Nav */
+.zoosh-desktop-nav {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100%;
+}
+
+@media (max-width: 768px) {
+  .zoosh-desktop-nav {
+    display: none;
+  }
+}
+
+.zoosh-nav-list {
+  display: flex;
+  align-items: center;
+  gap: 32px;
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+.zoosh-nav-link {
+  font-size: 11px;
+  font-family: var(--zoosh-font-sans), system-ui, sans-serif;
+  font-weight: 300;
+  text-transform: uppercase;
+  letter-spacing: 0.16em;
+  color: #737373;
+  text-decoration: none;
+  transition: color 0.2s ease;
+}
+
+.zoosh-nav-link:hover {
+  color: #000000;
+}
+
+.zoosh-search-btn {
+  background: none;
+  border: none;
+  padding: 0;
+  cursor: pointer;
+  color: #737373;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: color 0.2s ease;
+}
+
+.zoosh-search-btn:hover {
+  color: #000000;
+}
+
+/* Right Section CTA */
+.zoosh-whatsapp-wrapper {
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+}
+
+@media (max-width: 768px) {
+  .zoosh-whatsapp-wrapper {
+    display: none;
+  }
+}
+
+.zoosh-whatsapp-btn {
+  height: 38px;
+  padding: 0 20px;
+  border: 1px solid #737373;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 10px;
+  font-family: var(--zoosh-font-sans), system-ui, sans-serif;
+  text-transform: uppercase;
+  letter-spacing: 0.16em;
+  color: #404040;
+  text-decoration: none;
+  transition: all 0.2s ease;
+}
+
+.zoosh-whatsapp-btn:hover {
+  background-color: #000000;
+  color: #ffffff;
+  border-color: #000000;
+}
+
+/* Row 2 - Category Bar */
+.zoosh-header-row-2 {
+  height: 46px;
+  background-color: #ffffff;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+@media (max-width: 768px) {
+  .zoosh-header-row-2 {
+    display: none;
+  }
+}
+
+.zoosh-categories-list {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 38px;
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  height: 100%;
+}
+
+.zoosh-category-item {
+  height: 100%;
+  display: flex;
+  align-items: center;
+}
+
+.zoosh-category-link {
+  font-size: 11px;
+  font-family: var(--zoosh-font-sans), system-ui, sans-serif;
+  font-weight: 300;
+  text-transform: uppercase;
+  letter-spacing: 0.16em;
+  color: #737373;
+  text-decoration: none;
+  transition: color 0.2s ease;
+}
+
+.zoosh-category-link:hover {
+  color: #000000;
+}
+
+/* Search panel overlay */
+.zoosh-search-panel {
+  position: absolute;
+  left: 0;
+  right: 0;
+  top: 100%;
+  background-color: #ffffff;
+  border-bottom: 1px solid #e5e5e5;
+  padding: 16px 5%;
+  box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.05);
+  display: none;
+  z-index: 80;
+}
+
+.zoosh-search-panel.active {
+  display: block;
+  animation: zoosh-slide-down 0.3s ease-out forwards;
+}
+
+.zoosh-search-form {
+  max-width: 768px;
+  margin: 0 auto;
+  display: flex;
+  align-items: center;
+  gap: 16px;
+}
+
+.zoosh-search-input {
+  flex-grow: 1;
+  border: none;
+  border-bottom: 1px solid #d4d4d4;
+  padding: 8px 0;
+  font-size: 14px;
+  font-family: var(--zoosh-font-sans), system-ui, sans-serif;
+  font-weight: 300;
+  outline: none;
+}
+
+.zoosh-search-input:focus {
+  border-color: #000000;
+}
+
+.zoosh-search-submit {
+  font-size: 12px;
+  font-weight: 500;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  color: #737373;
+  background: none;
+  border: none;
+  cursor: pointer;
+  padding: 8px;
+}
+
+.zoosh-search-submit:hover {
+  color: #000000;
+}
+
+.zoosh-search-close {
+  background: none;
+  border: none;
+  color: #a3a3a3;
+  cursor: pointer;
+  padding: 4px;
+}
+
+.zoosh-search-close:hover {
+  color: #000000;
+}
+
+/* Desktop Mega menu dropdown panel */
+.zoosh-mega-menu {
+  position: absolute;
+  left: 0;
+  right: 0;
+  top: 100%;
+  background-color: #ffffff;
+  border-bottom: 1px solid #e5e5e5;
+  box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1);
+  display: none;
+  z-index: 90;
+}
+
+.zoosh-mega-menu.active {
+  display: block;
+  animation: zoosh-fade-in 0.2s ease-out forwards;
+}
+
+.zoosh-mega-menu-container {
+  max-width: 1280px;
+  margin: 0 auto;
+  padding: 32px;
+  display: grid;
+  grid-template-columns: 8fr 4fr;
+  gap: 32px;
+}
+
+.zoosh-mega-menu-cols {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 24px;
+}
+
+.zoosh-mega-menu-col-title {
+  font-size: 10px;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  color: #a3a3a3;
+  display: block;
+  margin-bottom: 16px;
+}
+
+.zoosh-mega-submenu-list {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.zoosh-mega-submenu-link {
+  font-size: 12px;
+  font-weight: 300;
+  color: #525252;
+  text-decoration: none;
+  transition: color 0.2s ease;
+}
+
+.zoosh-mega-submenu-link:hover {
+  color: #000000;
+}
+
+.zoosh-mega-menu-card {
+  border-left: 1px solid #f5f5f5;
+  padding-left: 32px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+.zoosh-mega-card-img-wrapper {
+  position: relative;
+  aspect-ratio: 16 / 9;
+  background-color: #f5f5f5;
+  overflow: hidden;
+}
+
+.zoosh-mega-card-img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform 0.6s ease;
+}
+
+.zoosh-mega-card-img-wrapper:hover .zoosh-mega-card-img {
+  transform: scale(1.05);
+}
+
+.zoosh-mega-card-details {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding-top: 12px;
+}
+
+.zoosh-mega-card-title {
+  font-family: var(--zoosh-font-serif, "EB Garamond"), Georgia, serif;
+  font-size: 12px;
+  color: #171717;
+}
+
+.zoosh-mega-card-link {
+  font-size: 10px;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  color: #000000;
+  text-decoration: none;
+  border-bottom: 1px solid #000000;
+  padding-bottom: 2px;
+}
+
+/* Mobile Toggle Hamburger */
+.zoosh-mobile-toggle {
+  background: none;
+  border: none;
+  width: 32px;
+  height: 32px;
+  cursor: pointer;
+  display: none;
+  flex-direction: column;
+  justify-content: center;
+  align-items: flex-end;
+  gap: 5px;
+}
+
+@media (max-width: 768px) {
+  .zoosh-mobile-toggle {
+    display: flex;
+  }
+}
+
+.zoosh-bar {
+  display: block;
+  width: 20px;
+  height: 1px;
+  background-color: #000000;
+}
+
+/* Mobile Drawer Overlay */
+.zoosh-mobile-drawer {
+  position: fixed;
+  inset: 0;
+  z-index: 999;
+  display: none;
+}
+
+.zoosh-mobile-drawer.active {
+  display: block;
+}
+
+.zoosh-drawer-backdrop {
+  position: absolute;
+  inset: 0;
+  background-color: rgba(0, 0, 0, 0.4);
+  backdrop-filter: blur(4px);
+}
+
+.zoosh-drawer-content {
+  position: absolute;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  width: 80%;
+  max-width: 360px;
+  background-color: #ffffff;
+  box-shadow: -10px 0 15px -3px rgba(0, 0, 0, 0.1);
+  padding: 24px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  transform: translateX(100%);
+  transition: transform 0.3s ease-out;
+}
+
+.zoosh-mobile-drawer.active .zoosh-drawer-content {
+  transform: translateX(0);
+}
+
+.zoosh-drawer-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  border-bottom: 1px solid #f5f5f5;
+  padding-bottom: 12px;
+}
+
+.zoosh-drawer-title {
+  font-family: var(--zoosh-font-serif, "EB Garamond"), Georgia, serif;
+  font-size: 10px;
+  text-transform: uppercase;
+  letter-spacing: 0.3em;
+  color: #a3a3a3;
+}
+
+.zoosh-drawer-close {
+  background: none;
+  border: none;
+  cursor: pointer;
+  color: #000000;
+  padding: 4px;
+}
+
+.zoosh-drawer-body {
+  flex-grow: 1;
+  padding-top: 32px;
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+}
+
+.zoosh-mobile-rooms-list,
+.zoosh-mobile-pages-list {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.zoosh-mobile-room-link {
+  font-family: var(--zoosh-font-serif, "EB Garamond"), Georgia, serif;
+  font-size: 18px;
+  font-weight: 300;
+  color: #404040;
+  text-decoration: none;
+}
+
+.zoosh-mobile-room-link:hover {
+  color: #000000;
+}
+
+.zoosh-drawer-divider {
+  height: 1px;
+  background-color: #f5f5f5;
+  margin: 8px 0;
+}
+
+.zoosh-mobile-pages-list a {
+  font-size: 13px;
+  font-family: var(--zoosh-font-sans), system-ui, sans-serif;
+  font-weight: 300;
+  color: #404040;
+  text-decoration: none;
+}
+
+.zoosh-mobile-pages-list a:hover {
+  color: #000000;
+}
+
+.zoosh-drawer-footer {
+  padding-top: 24px;
+}
+
+.zoosh-drawer-whatsapp-btn {
+  width: 100%;
+  background-color: #000000;
+  color: #ffffff;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  font-size: 12px;
+  font-family: var(--zoosh-font-sans), system-ui, sans-serif;
+  text-transform: uppercase;
+  letter-spacing: 0.2em;
+  padding: 16px;
+  text-decoration: none;
+  font-weight: 300;
+}
+
+.zoosh-drawer-whatsapp-btn:hover {
+  background-color: #262626;
+}

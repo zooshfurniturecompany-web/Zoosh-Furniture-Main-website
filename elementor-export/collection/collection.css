@@ -1,0 +1,220 @@
+/* Scoped Styling for the Collection/Catalog Page */
+
+.zoosh-collection-header {
+  padding: 64px 0;
+  text-align: center;
+  background-color: #f9f9f9;
+  border-bottom: 1px solid #f0f0f0;
+}
+
+@media (min-width: 768px) {
+  .zoosh-collection-header {
+    padding: 80px 0;
+  }
+}
+
+.zoosh-collection-container {
+  max-width: 1280px;
+  margin: 0 auto;
+  padding: 0 24px;
+}
+
+.zoosh-collection-badge {
+  font-size: 10px;
+  font-weight: 500;
+  text-transform: uppercase;
+  letter-spacing: 0.3em;
+  color: #a3a3a3;
+  display: block;
+  margin-bottom: 12px;
+}
+
+.zoosh-collection-title {
+  font-family: var(--zoosh-font-serif, "EB Garamond"), Georgia, serif;
+  font-size: clamp(28px, 4.5vw, 48px);
+  font-weight: 300;
+  color: #171717;
+  margin: 0;
+}
+
+.zoosh-collection-desc {
+  color: #737373;
+  font-size: 13px;
+  font-weight: 300;
+  margin-top: 12px;
+  line-height: 1.6;
+  max-width: 512px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+/* Controls Filter Bar */
+.zoosh-collection-controls {
+  padding: 32px 0;
+  border-bottom: 1px solid #f0f0f0;
+  background-color: #ffffff;
+}
+
+.zoosh-controls-flex {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+@media (min-width: 768px) {
+  .zoosh-controls-flex {
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+  }
+}
+
+.zoosh-catalog-categories-bar {
+  display: flex;
+  overflow-x: auto;
+  padding: 4px 0;
+  gap: 8px;
+}
+
+.zoosh-catalog-categories-bar::-webkit-scrollbar {
+  display: none;
+}
+.zoosh-catalog-categories-bar {
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+}
+
+.zoosh-cat-btn {
+  font-size: 10px;
+  font-family: var(--zoosh-font-sans), system-ui, sans-serif;
+  text-transform: uppercase;
+  letter-spacing: 0.16em;
+  padding: 8px 16px;
+  border: 1px solid #e5e5e5;
+  background-color: transparent;
+  color: #737373;
+  cursor: pointer;
+  white-space: nowrap;
+  font-weight: 300;
+  transition: all 0.3s ease;
+}
+
+.zoosh-cat-btn.active {
+  background-color: #000000;
+  color: #ffffff;
+  border-color: #000000;
+}
+
+.zoosh-cat-btn:not(.active):hover {
+  color: #000000;
+  border-color: #737373;
+}
+
+/* Search Box styling */
+.zoosh-catalog-search-box {
+  position: relative;
+  width: 100%;
+}
+
+@media (min-width: 768px) {
+  .zoosh-catalog-search-box {
+    max-width: 280px;
+  }
+}
+
+.zoosh-catalog-search-icon {
+  position: absolute;
+  left: 14px;
+  top: 50%;
+  transform: translateY(-50%);
+  color: #a3a3a3;
+  display: flex;
+}
+
+.zoosh-catalog-search-input {
+  width: 100%;
+  border: 1px solid #e5e5e5;
+  padding: 10px 14px 10px 38px;
+  font-size: 12px;
+  font-family: var(--zoosh-font-sans), system-ui, sans-serif;
+  font-weight: 300;
+  outline: none;
+  border-radius: 0;
+  box-sizing: border-box;
+  transition: border-color 0.2s ease;
+}
+
+.zoosh-catalog-search-input:focus {
+  border-color: #000000;
+}
+
+/* Catalog Grid list wrapper */
+.zoosh-collection-grid-section {
+  padding: 48px 0 80px 0;
+  min-height: 400px;
+}
+
+.zoosh-catalog-grid-wrapper {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 32px;
+}
+
+@media (min-width: 640px) {
+  .zoosh-catalog-grid-wrapper {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media (min-width: 1024px) {
+  .zoosh-catalog-grid-wrapper {
+    grid-template-columns: repeat(3, 1fr);
+  }
+}
+
+@media (min-width: 1200px) {
+  .zoosh-catalog-grid-wrapper {
+    grid-template-columns: repeat(4, 1fr);
+  }
+}
+
+/* No Results state */
+.zoosh-no-results-state {
+  display: none;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  padding: 64px 0;
+  gap: 16px;
+}
+
+.zoosh-no-results-state.active {
+  display: flex;
+}
+
+.zoosh-no-results-text {
+  font-size: 13px;
+  color: #737373;
+  font-weight: 300;
+}
+
+.zoosh-reset-filters-btn {
+  background: none;
+  border: none;
+  border-bottom: 1px solid #000000;
+  padding-bottom: 2px;
+  cursor: pointer;
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 10px;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  color: #000000;
+}
+
+.zoosh-reset-filters-btn:hover {
+  opacity: 0.7;
+}

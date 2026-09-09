@@ -1,0 +1,51 @@
+<div class="zoosh-wrapper">
+
+  <!-- SECTION 01 — SEARCH HEADER -->
+  <section class="zoosh-search-header">
+    <div class="zoosh-search-container">
+      <span class="zoosh-search-badge">Query Results</span>
+      <h1 class="zoosh-search-title" id="zooshSearchQueryTitle">Search Results</h1>
+      <p class="zoosh-search-desc" id="zooshSearchQueryDesc">Showing matching items from our solid wood catalog.</p>
+    </div>
+  </section>
+
+  <!-- SECTION 02 — RESULTS GRID -->
+  <section class="zoosh-search-results-section">
+    <div class="zoosh-search-container">
+      
+      <!-- Catalog Grid target -->
+      <div class="zoosh-catalog-grid-wrapper" id="zooshSearchGrid">
+        <!-- Rendered dynamically via JS -->
+      </div>
+
+      <!-- No Results State -->
+      <div class="zoosh-no-results-state" id="zooshSearchNoResults">
+        <p class="zoosh-no-results-text">No products found matching your search term.</p>
+        <a href="/collection/" class="zoosh-reset-filters-btn">
+          <span>Go to Catalog</span>
+        </a>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- QUICK VIEW OVERLAY MODAL -->
+  <div class="zoosh-modal" id="zooshQuickViewModal">
+    <div class="zoosh-modal-backdrop" id="zooshModalBackdrop"></div>
+    <div class="zoosh-modal-content">
+      
+      <button type="button" class="zoosh-modal-close" id="zooshModalClose">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+          <line x1="18" y1="6" x2="6" y2="18"></line>
+          <line x1="6" y1="6" x2="18" y2="18"></line>
+        </svg>
+      </button>
+
+      <div class="zoosh-modal-body" id="zooshModalBody">
+        <!-- Rendered dynamically via JS -->
+      </div>
+
+    </div>
+  </div>
+
+</div>

@@ -1,0 +1,421 @@
+/* Scoped Styling for the About/Story Page */
+
+.zoosh-about-hero {
+  position: relative;
+  height: 45vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  text-align: center;
+  overflow: hidden;
+}
+
+.zoosh-about-hero-overlay {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(to top, rgba(0,0,0,0.5) 0%, rgba(0,0,0,0.2) 100%);
+  background-color: rgba(23, 23, 23, 0.45);
+  z-index: 1;
+}
+
+.zoosh-about-hero-content {
+  position: relative;
+  z-index: 2;
+  color: #ffffff;
+  max-width: 768px;
+  padding: 0 24px;
+}
+
+.zoosh-about-hero-badge {
+  font-size: 10px;
+  font-family: var(--zoosh-font-sans), system-ui, sans-serif;
+  text-transform: uppercase;
+  letter-spacing: 0.4em;
+  color: #d4d4d4;
+  display: block;
+  margin-bottom: 16px;
+}
+
+.zoosh-about-hero-title {
+  font-family: var(--zoosh-font-serif, "EB Garamond"), Georgia, serif;
+  font-size: clamp(28px, 5vw, 56px);
+  font-weight: 300;
+  line-height: 1.2;
+  margin: 0;
+}
+
+.zoosh-about-hero-divider {
+  width: 48px;
+  height: 1px;
+  background-color: rgba(255, 255, 255, 0.35);
+  margin: 24px auto 0 auto;
+}
+
+/* SECTION 02 — EDITORIAL BRAND VISION */
+.zoosh-about-editorial {
+  padding: 64px 0;
+}
+
+@media (min-width: 768px) {
+  .zoosh-about-editorial {
+    padding: 80px 0;
+  }
+}
+
+.zoosh-about-editorial-container {
+  max-width: 1280px;
+  margin: 0 auto;
+  padding: 0 24px;
+}
+
+.zoosh-about-editorial-grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 48px;
+  align-items: center;
+}
+
+@media (min-width: 1024px) {
+  .zoosh-about-editorial-grid {
+    grid-template-columns: repeat(12, 1fr);
+  }
+  .zoosh-editorial-text-col {
+    grid-column: span 6;
+  }
+  .zoosh-editorial-img-col {
+    grid-column: span 6;
+  }
+}
+
+.zoosh-editorial-badge {
+  font-size: 10px;
+  font-weight: 500;
+  text-transform: uppercase;
+  letter-spacing: 0.3em;
+  color: #a3a3a3;
+  display: block;
+  margin-bottom: 12px;
+}
+
+.zoosh-editorial-title {
+  font-family: var(--zoosh-font-serif, "EB Garamond"), Georgia, serif;
+  font-size: clamp(24px, 3.5vw, 40px);
+  font-weight: 300;
+  line-height: 1.2;
+  color: #171717;
+  margin: 0 0 24px 0;
+}
+
+.zoosh-editorial-para {
+  color: #737373;
+  font-size: 14px;
+  font-weight: 300;
+  line-height: 1.7;
+  margin: 0 0 16px 0;
+}
+
+.zoosh-editorial-img-wrapper {
+  position: relative;
+  aspect-ratio: 4 / 5;
+  background-color: #f5f5f5;
+  overflow: hidden;
+  box-shadow: 0 1px 3px rgba(0,0,0,0.05);
+}
+
+.zoosh-editorial-img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+/* SECTION 03 — CORE PILLARS GRID */
+.zoosh-about-pillars {
+  padding: 64px 0;
+  background-color: #f5f5f5;
+}
+
+.zoosh-about-pillars-container {
+  max-width: 1280px;
+  margin: 0 auto;
+  padding: 0 24px;
+}
+
+.zoosh-pillars-header {
+  text-align: center;
+  max-width: 640px;
+  margin: 0 auto 48px auto;
+}
+
+.zoosh-pillars-badge {
+  font-size: 10px;
+  font-weight: 500;
+  text-transform: uppercase;
+  letter-spacing: 0.3em;
+  color: #a3a3a3;
+  display: block;
+  margin-bottom: 12px;
+}
+
+.zoosh-pillars-title {
+  font-family: var(--zoosh-font-serif, "EB Garamond"), Georgia, serif;
+  font-size: 28px;
+  font-weight: 300;
+  color: #171717;
+  margin: 0;
+}
+
+.zoosh-pillars-desc {
+  color: #737373;
+  font-size: 12px;
+  font-weight: 300;
+  margin-top: 12px;
+  line-height: 1.6;
+}
+
+.zoosh-pillars-grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 32px;
+}
+
+@media (min-width: 768px) {
+  .zoosh-pillars-grid {
+    grid-template-columns: repeat(3, 1fr);
+  }
+}
+
+.zoosh-pillar-card {
+  background-color: #ffffff;
+  padding: 40px;
+  border: 1px solid #e5e5e5;
+  box-shadow: 0 1px 3px rgba(0,0,0,0.02);
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.zoosh-pillar-icon {
+  width: 40px;
+  height: 40px;
+  background-color: #f5f5f5;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #000000;
+}
+
+.zoosh-pillar-card-title {
+  font-family: var(--zoosh-font-serif, "EB Garamond"), Georgia, serif;
+  font-size: 20px;
+  font-weight: 300;
+  color: #171717;
+  margin: 0;
+}
+
+.zoosh-pillar-card-desc {
+  color: #737373;
+  font-size: 13px;
+  font-weight: 300;
+  line-height: 1.65;
+  margin: 0;
+}
+
+/* SECTION 04 — TIMELINE SECTION */
+.zoosh-about-timeline {
+  padding: 64px 0;
+}
+
+.zoosh-timeline-container {
+  max-width: 896px;
+  margin: 0 auto;
+  padding: 0 24px;
+}
+
+.zoosh-timeline-header {
+  text-align: center;
+  margin-bottom: 48px;
+}
+
+.zoosh-timeline-badge {
+  font-size: 10px;
+  font-weight: 500;
+  text-transform: uppercase;
+  letter-spacing: 0.3em;
+  color: #a3a3a3;
+  display: block;
+  margin-bottom: 12px;
+}
+
+.zoosh-timeline-title {
+  font-family: var(--zoosh-font-serif, "EB Garamond"), Georgia, serif;
+  font-size: 28px;
+  font-weight: 300;
+  color: #171717;
+  margin: 0;
+}
+
+.zoosh-timeline-desc {
+  color: #737373;
+  font-size: 12px;
+  font-weight: 300;
+  margin-top: 8px;
+}
+
+/* Vertical Chronology Line */
+.zoosh-timeline-flow {
+  position: relative;
+  border-left: 1px solid #e5e5e5;
+  margin-left: 16px;
+}
+
+@media (min-width: 768px) {
+  .zoosh-timeline-flow {
+    margin-left: 128px;
+  }
+}
+
+.zoosh-timeline-node {
+  position: relative;
+  padding-left: 32px;
+  margin-bottom: 48px;
+}
+
+.zoosh-timeline-node:last-child {
+  margin-bottom: 0;
+}
+
+/* Year Columns (Desktop Only) */
+.zoosh-timeline-year-col {
+  position: absolute;
+  right: 100%;
+  margin-right: 32px;
+  top: 0;
+  display: none;
+  text-align: right;
+}
+
+@media (min-width: 768px) {
+  .zoosh-timeline-year-col {
+    display: block;
+  }
+}
+
+.zoosh-timeline-year {
+  font-family: var(--zoosh-font-serif, "EB Garamond"), Georgia, serif;
+  font-size: 24px;
+  font-weight: 300;
+  color: #000000;
+  letter-spacing: 0.1em;
+  display: block;
+}
+
+.zoosh-timeline-dash {
+  width: 32px;
+  height: 1px;
+  background-color: #e5e5e5;
+  display: inline-block;
+  margin-top: 8px;
+}
+
+/* Bullets */
+.zoosh-timeline-bullet {
+  position: absolute;
+  left: -5px;
+  top: 8px;
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  background-color: #000000;
+  box-shadow: 0 0 0 4px #f5f5f5;
+}
+
+/* Content */
+.zoosh-timeline-content-col {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.zoosh-mobile-year {
+  font-family: var(--zoosh-font-serif, "EB Garamond"), Georgia, serif;
+  font-size: 13px;
+  font-weight: 600;
+  color: #a3a3a3;
+  letter-spacing: 0.1em;
+  display: block;
+}
+
+@media (min-width: 768px) {
+  .zoosh-mobile-year {
+    display: none;
+  }
+}
+
+.zoosh-node-title {
+  font-family: var(--zoosh-font-serif, "EB Garamond"), Georgia, serif;
+  font-size: 18px;
+  font-weight: 300;
+  color: #171717;
+  margin: 0;
+}
+
+@media (min-width: 768px) {
+  .zoosh-node-title {
+    font-size: 20px;
+  }
+}
+
+.zoosh-node-desc {
+  color: #737373;
+  font-size: 13px;
+  font-weight: 300;
+  line-height: 1.6;
+  margin: 0;
+  max-width: 576px;
+}
+
+/* SECTION 05 — SHOWROOM CURATION */
+.zoosh-about-curation {
+  padding: 64px 0;
+  border-top: 1px solid #f5f5f5;
+}
+
+.zoosh-curation-container {
+  max-width: 1280px;
+  margin: 0 auto;
+  padding: 0 24px;
+}
+
+.zoosh-curation-header {
+  text-align: center;
+  max-width: 640px;
+  margin: 0 auto 48px auto;
+}
+
+.zoosh-curation-badge {
+  font-size: 10px;
+  font-weight: 500;
+  text-transform: uppercase;
+  letter-spacing: 0.3em;
+  color: #a3a3a3;
+  display: block;
+  margin-bottom: 12px;
+}
+
+.zoosh-curation-title {
+  font-family: var(--zoosh-font-serif, "EB Garamond"), Georgia, serif;
+  font-size: 28px;
+  font-weight: 300;
+  color: #171717;
+  margin: 0;
+}
+
+.zoosh-curation-desc {
+  color: #737373;
+  font-size: 12px;
+  font-weight: 300;
+  margin-top: 8px;
+}

@@ -1,0 +1,147 @@
+<div class="zoosh-wrapper">
+  <header class="zoosh-header">
+    
+    <!-- ROW 1 — LOGO + MAIN NAVIGATION -->
+    <div class="zoosh-header-row-1">
+      <div class="zoosh-row-1-container">
+        
+        <!-- LEFT: LOGO -->
+        <div class="zoosh-logo-wrapper">
+          <a href="/" class="zoosh-logo">ZOOSH</a>
+        </div>
+
+        <!-- CENTER: MAIN NAVIGATION -->
+        <nav class="zoosh-desktop-nav">
+          <ul class="zoosh-nav-list">
+            <li><a href="/gallery/" class="zoosh-nav-link">Projects</a></li>
+            <li><a href="/custom/" class="zoosh-nav-link">Custom Furniture</a></li>
+            <li><a href="/about/" class="zoosh-nav-link">Our Story</a></li>
+            <li><a href="/contact/" class="zoosh-nav-link">Contact</a></li>
+            <li>
+              <button type="button" class="zoosh-search-btn" id="zooshSearchBtn" aria-label="Toggle Search">
+                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+                  <circle cx="11" cy="11" r="7" />
+                  <path d="m20 20-3.5-3.5" />
+                </svg>
+              </button>
+            </li>
+          </ul>
+        </nav>
+
+        <!-- RIGHT: WHATSAPP -->
+        <div class="zoosh-whatsapp-wrapper">
+          <a href="#" target="_blank" rel="noopener noreferrer" class="zoosh-whatsapp-btn" id="zooshHeaderWhatsapp">
+            WhatsApp
+          </a>
+        </div>
+
+        <!-- MOBILE MENU BUTTON -->
+        <button type="button" class="zoosh-mobile-toggle" id="zooshMobileToggle" aria-label="Toggle Menu">
+          <span class="zoosh-bar"></span>
+          <span class="zoosh-bar"></span>
+        </button>
+
+      </div>
+    </div>
+
+    <!-- ROW 2 — FURNITURE CATEGORIES -->
+    <div class="zoosh-header-row-2">
+      <nav class="zoosh-categories-nav">
+        <ul class="zoosh-categories-list">
+          <li class="zoosh-category-item" data-room="living">
+            <a href="/living/" class="zoosh-category-link">Living</a>
+          </li>
+          <li class="zoosh-category-item" data-room="dining">
+            <a href="/dining/" class="zoosh-category-link">Dining</a>
+          </li>
+          <li class="zoosh-category-item" data-room="bedroom">
+            <a href="/bedroom/" class="zoosh-category-link">Bedroom</a>
+          </li>
+          <li class="zoosh-category-item" data-room="entryway">
+            <a href="/entryway/" class="zoosh-category-link">Entryway</a>
+          </li>
+        </ul>
+      </nav>
+    </div>
+
+    <!-- SEARCH PANEL OVERLAY -->
+    <div class="zoosh-search-panel" id="zooshSearchPanel">
+      <form action="/search/" method="GET" class="zoosh-search-form">
+        <input type="text" name="q" placeholder="Search catalog..." class="zoosh-search-input" id="zooshSearchInput" />
+        <button type="submit" class="zoosh-search-submit">Search</button>
+        <button type="button" class="zoosh-search-close" id="zooshSearchClose">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+            <line x1="18" y1="6" x2="6" y2="18"></line>
+            <line x1="6" y1="6" x2="18" y2="18"></line>
+          </svg>
+        </button>
+      </form>
+    </div>
+
+    <!-- DESKTOP MEGA-MENU PANEL -->
+    <div class="zoosh-mega-menu" id="zooshMegaMenu">
+      <div class="zoosh-mega-menu-container">
+        <!-- Subcategories List -->
+        <div class="zoosh-mega-menu-cols" id="zooshMegaMenuCols">
+          <!-- Populated dynamically via JS -->
+        </div>
+
+        <!-- Room Image Card -->
+        <div class="zoosh-mega-menu-card">
+          <div class="zoosh-mega-card-img-wrapper">
+            <img src="" alt="Room Collection" class="zoosh-mega-card-img" id="zooshMegaCardImg" />
+          </div>
+          <div class="zoosh-mega-card-details">
+            <span class="zoosh-mega-card-title" id="zooshMegaCardTitle">Living Room Collection</span>
+            <a href="#" class="zoosh-mega-card-link" id="zooshMegaCardLink">View All</a>
+          </div>
+        </div>
+      </div>
+    </div>
+
+  </header>
+
+  <!-- MOBILE MENU DRAWER -->
+  <div class="zoosh-mobile-drawer" id="zooshMobileDrawer">
+    <div class="zoosh-drawer-backdrop" id="zooshDrawerBackdrop"></div>
+    <div class="zoosh-drawer-content">
+      <div class="zoosh-drawer-header">
+        <span class="zoosh-drawer-title">Shop by Space</span>
+        <button type="button" class="zoosh-drawer-close" id="zooshDrawerClose">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+            <line x1="18" y1="6" x2="6" y2="18"></line>
+            <line x1="6" y1="6" x2="18" y2="18"></line>
+          </svg>
+        </button>
+      </div>
+
+      <div class="zoosh-drawer-body">
+        <ul class="zoosh-mobile-rooms-list">
+          <li><a href="/living/" class="zoosh-mobile-room-link">Living Room</a></li>
+          <li><a href="/dining/" class="zoosh-mobile-room-link">Dining Space</a></li>
+          <li><a href="/bedroom/" class="zoosh-mobile-room-link">Bedroom Retreat</a></li>
+          <li><a href="/entryway/" class="zoosh-mobile-room-link">Entryway & Mirrors</a></li>
+        </ul>
+
+        <div class="zoosh-drawer-divider"></div>
+
+        <ul class="zoosh-mobile-pages-list">
+          <li><a href="/gallery/">Completed Projects</a></li>
+          <li><a href="/custom/">Custom Furniture</a></li>
+          <li><a href="/about/">Our Story</a></li>
+          <li><a href="/contact/">Contact Us</a></li>
+        </ul>
+      </div>
+
+      <div class="zoosh-drawer-footer">
+        <a href="#" target="_blank" rel="noopener noreferrer" class="zoosh-drawer-whatsapp-btn" id="zooshDrawerWhatsapp">
+          <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+            <line x1="22" y1="2" x2="11" y2="13"></line>
+            <polygon points="22 2 15 22 11 13 2 9 22 2"></polygon>
+          </svg>
+          <span>WhatsApp Us</span>
+        </a>
+      </div>
+    </div>
+  </div>
+</div>

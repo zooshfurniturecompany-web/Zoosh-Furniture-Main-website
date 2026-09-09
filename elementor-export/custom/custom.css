@@ -1,0 +1,399 @@
+/* Scoped Styling for the Custom Services Page */
+
+.zoosh-custom-hero {
+  position: relative;
+  height: 50vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  text-align: center;
+  overflow: hidden;
+}
+
+.zoosh-custom-hero-overlay {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(to top, rgba(0,0,0,0.65) 0%, rgba(0,0,0,0.25) 50%, rgba(0,0,0,0.3) 100%);
+  background-color: rgba(23, 23, 23, 0.35);
+  z-index: 1;
+}
+
+.zoosh-custom-hero-content {
+  position: relative;
+  z-index: 2;
+  color: #ffffff;
+  max-width: 768px;
+  padding: 0 24px;
+}
+
+.zoosh-custom-hero-badge {
+  font-size: 10px;
+  font-family: var(--zoosh-font-sans), system-ui, sans-serif;
+  text-transform: uppercase;
+  letter-spacing: 0.4em;
+  color: #d4d4d4;
+  display: block;
+  margin-bottom: 16px;
+}
+
+.zoosh-custom-hero-title {
+  font-family: var(--zoosh-font-serif, "EB Garamond"), Georgia, serif;
+  font-size: clamp(28px, 5vw, 56px);
+  font-weight: 300;
+  line-height: 1.2;
+  margin: 0 0 16px 0;
+}
+
+.zoosh-custom-hero-desc {
+  font-size: clamp(12px, 1.5vw, 15px);
+  font-family: var(--zoosh-font-sans), system-ui, sans-serif;
+  font-weight: 300;
+  line-height: 1.6;
+  color: #d4d4d4;
+  margin: 0;
+}
+
+.zoosh-custom-hero-divider {
+  width: 48px;
+  height: 1px;
+  background-color: rgba(255, 255, 255, 0.35);
+  margin: 24px auto 0 auto;
+}
+
+/* SECTION 02 — EDITORIAL DESCRIPTION */
+.zoosh-custom-editorial {
+  padding: 64px 0;
+}
+
+@media (min-width: 768px) {
+  .zoosh-custom-editorial {
+    padding: 80px 0;
+  }
+}
+
+.zoosh-custom-editorial-container {
+  max-width: 1280px;
+  margin: 0 auto;
+  padding: 0 24px;
+}
+
+.zoosh-custom-editorial-grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 48px;
+  align-items: center;
+}
+
+@media (min-width: 1024px) {
+  .zoosh-custom-editorial-grid {
+    grid-template-columns: repeat(12, 1fr);
+    gap: 64px;
+  }
+  .zoosh-custom-img-col {
+    grid-column: span 5;
+  }
+  .zoosh-custom-text-col {
+    grid-column: span 7;
+  }
+}
+
+.zoosh-custom-img-wrapper {
+  position: relative;
+  aspect-ratio: 4 / 5;
+  background-color: #f5f5f5;
+  overflow: hidden;
+  box-shadow: 0 1px 3px rgba(0,0,0,0.05);
+}
+
+.zoosh-custom-img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.zoosh-custom-badge {
+  font-size: 10px;
+  font-weight: 500;
+  text-transform: uppercase;
+  letter-spacing: 0.3em;
+  color: #a3a3a3;
+  display: block;
+  margin-bottom: 12px;
+}
+
+.zoosh-custom-title {
+  font-family: var(--zoosh-font-serif, "EB Garamond"), Georgia, serif;
+  font-size: clamp(24px, 3.5vw, 40px);
+  font-weight: 300;
+  line-height: 1.2;
+  color: #171717;
+  margin: 0 0 24px 0;
+}
+
+.zoosh-custom-divider-line {
+  height: 1px;
+  background-color: #f5f5f5;
+  width: 100%;
+  margin-bottom: 24px;
+}
+
+.zoosh-custom-para {
+  color: #737373;
+  font-size: 14px;
+  font-weight: 300;
+  line-height: 1.7;
+  margin: 0 0 16px 0;
+}
+
+.zoosh-custom-cta-wrapper {
+  margin-top: 32px;
+}
+
+.zoosh-whatsapp-submit-btn {
+  height: 48px;
+  padding: 0 32px;
+  background-color: #000000;
+  color: #ffffff;
+  border: 1px solid #000000;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 12px;
+  font-size: 11px;
+  font-family: var(--zoosh-font-sans), system-ui, sans-serif;
+  text-transform: uppercase;
+  letter-spacing: 0.2em;
+  text-decoration: none;
+  font-weight: 300;
+  transition: background-color 0.3s ease;
+  box-shadow: 0 4px 6px -1px rgba(0,0,0,0.05);
+}
+
+.zoosh-whatsapp-submit-btn:hover {
+  background-color: #262626;
+  border-color: #262626;
+}
+
+/* SECTION 03 — DYNAMIC PROCESS FLOW */
+.zoosh-custom-process {
+  padding: 64px 0;
+  background-color: #f5f5f5;
+}
+
+.zoosh-process-container {
+  max-width: 1280px;
+  margin: 0 auto;
+  padding: 0 24px;
+}
+
+.zoosh-process-header {
+  text-align: center;
+  max-width: 640px;
+  margin: 0 auto 48px auto;
+}
+
+.zoosh-process-badge {
+  font-size: 10px;
+  font-weight: 500;
+  text-transform: uppercase;
+  letter-spacing: 0.3em;
+  color: #a3a3a3;
+  display: block;
+  margin-bottom: 12px;
+}
+
+.zoosh-process-title {
+  font-family: var(--zoosh-font-serif, "EB Garamond"), Georgia, serif;
+  font-size: 28px;
+  font-weight: 300;
+  color: #171717;
+  margin: 0;
+}
+
+.zoosh-process-desc {
+  color: #737373;
+  font-size: 12px;
+  font-weight: 300;
+  margin-top: 12px;
+  line-height: 1.6;
+}
+
+.zoosh-process-steps-grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 24px;
+}
+
+@media (min-width: 640px) {
+  .zoosh-process-steps-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media (min-width: 1024px) {
+  .zoosh-process-steps-grid {
+    grid-template-columns: repeat(5, 1fr);
+  }
+}
+
+.zoosh-process-card {
+  background-color: #ffffff;
+  padding: 32px;
+  border: 1px solid #e5e5e5;
+  box-shadow: 0 1px 3px rgba(0,0,0,0.02);
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+.zoosh-process-card-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  border-bottom: 1px solid #f5f5f5;
+  padding-bottom: 16px;
+  margin-bottom: 24px;
+}
+
+.zoosh-process-icon {
+  color: #000000;
+  display: flex;
+  align-items: center;
+}
+
+.zoosh-process-number {
+  font-family: var(--zoosh-font-serif, "EB Garamond"), Georgia, serif;
+  font-size: 20px;
+  font-weight: 700;
+  color: #e5e5e5;
+  letter-spacing: 0.1em;
+}
+
+.zoosh-process-card-title {
+  font-family: var(--zoosh-font-serif, "EB Garamond"), Georgia, serif;
+  font-size: 16px;
+  font-weight: 300;
+  color: #171717;
+  margin: 0 0 12px 0;
+  line-height: 1.2;
+}
+
+.zoosh-process-card-desc {
+  color: #737373;
+  font-size: 12px;
+  font-weight: 300;
+  line-height: 1.6;
+  margin: 0;
+}
+
+/* SECTION 04 — BLUE BLUE BANNER */
+.zoosh-custom-banner {
+  position: relative;
+  padding: 80px 24px;
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  text-align: center;
+  overflow: hidden;
+}
+
+.zoosh-banner-overlay {
+  position: absolute;
+  inset: 0;
+  background-color: rgba(23, 23, 23, 0.7);
+  z-index: 1;
+}
+
+.zoosh-banner-content {
+  position: relative;
+  z-index: 2;
+  color: #ffffff;
+  max-width: 640px;
+  margin: 0 auto;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 16px;
+}
+
+.zoosh-banner-badge {
+  font-size: 10px;
+  font-weight: 500;
+  text-transform: uppercase;
+  letter-spacing: 0.4em;
+  color: #d4d4d4;
+}
+
+.zoosh-banner-title {
+  font-family: var(--zoosh-font-serif, "EB Garamond"), Georgia, serif;
+  font-size: clamp(24px, 3.5vw, 36px);
+  font-weight: 300;
+  margin: 0;
+}
+
+.zoosh-banner-desc {
+  color: #d4d4d4;
+  font-size: 14px;
+  font-weight: 300;
+  line-height: 1.65;
+  margin: 0;
+}
+
+.zoosh-banner-cta {
+  margin-top: 16px;
+}
+
+.zoosh-banner-cta .zoosh-whatsapp-submit-btn {
+  background-color: #ffffff;
+  color: #000000;
+  border-color: #ffffff;
+}
+
+.zoosh-banner-cta .zoosh-whatsapp-submit-btn:hover {
+  background-color: #f5f5f5;
+}
+
+/* SECTION 05 — BESPOKE PORTFOLIO */
+.zoosh-custom-portfolio {
+  padding: 64px 0;
+}
+
+.zoosh-portfolio-container {
+  max-width: 1280px;
+  margin: 0 auto;
+  padding: 0 24px;
+}
+
+.zoosh-portfolio-header {
+  text-align: center;
+  max-width: 640px;
+  margin: 0 auto 48px auto;
+}
+
+.zoosh-portfolio-badge {
+  font-size: 10px;
+  font-weight: 500;
+  text-transform: uppercase;
+  letter-spacing: 0.3em;
+  color: #a3a3a3;
+  display: block;
+  margin-bottom: 12px;
+}
+
+.zoosh-portfolio-title {
+  font-family: var(--zoosh-font-serif, "EB Garamond"), Georgia, serif;
+  font-size: 28px;
+  font-weight: 300;
+  color: #171717;
+  margin: 0;
+}
+
+.zoosh-portfolio-desc {
+  color: #737373;
+  font-size: 12px;
+  font-weight: 300;
+  margin-top: 8px;
+}

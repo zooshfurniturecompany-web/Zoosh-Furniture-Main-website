@@ -1,0 +1,369 @@
+/* Scoped Styling for the Inspiration Gallery Page */
+
+.zoosh-gallery-header {
+  padding: 64px 0 32px 0;
+  text-align: center;
+  background-color: #ffffff;
+}
+
+@media (min-width: 768px) {
+  .zoosh-gallery-header {
+    padding: 80px 0 48px 0;
+  }
+}
+
+.zoosh-gallery-container {
+  max-width: 1280px;
+  margin: 0 auto;
+  padding: 0 24px;
+}
+
+.zoosh-gallery-badge {
+  font-size: 10px;
+  font-weight: 500;
+  text-transform: uppercase;
+  letter-spacing: 0.3em;
+  color: #a3a3a3;
+  display: block;
+  margin-bottom: 12px;
+}
+
+.zoosh-gallery-title {
+  font-family: var(--zoosh-font-serif, "EB Garamond"), Georgia, serif;
+  font-size: clamp(28px, 4vw, 48px);
+  font-weight: 300;
+  color: #171717;
+  margin: 0;
+}
+
+.zoosh-gallery-desc {
+  color: #737373;
+  font-size: 14px;
+  font-weight: 300;
+  margin-top: 12px;
+  line-height: 1.6;
+  max-width: 560px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+/* Category Filter Tags */
+.zoosh-gallery-filters-bar {
+  display: flex;
+  justify-content: center;
+  overflow-x: auto;
+  padding-bottom: 16px;
+  margin-bottom: 32px;
+  border-bottom: 1px solid #f5f5f5;
+  gap: 12px;
+}
+
+/* Hide scrollbars */
+.zoosh-gallery-filters-bar::-webkit-scrollbar {
+  display: none;
+}
+.zoosh-gallery-filters-bar {
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+}
+
+.zoosh-gtab-btn {
+  font-size: 10px;
+  font-family: var(--zoosh-font-sans), system-ui, sans-serif;
+  text-transform: uppercase;
+  letter-spacing: 0.16em;
+  padding: 10px 20px;
+  border: 1px solid #f5f5f5;
+  background-color: transparent;
+  color: #737373;
+  cursor: pointer;
+  white-space: nowrap;
+  font-weight: 300;
+  transition: all 0.3s ease;
+}
+
+.zoosh-gtab-btn.active {
+  background-color: #000000;
+  color: #ffffff;
+  border-color: #000000;
+}
+
+.zoosh-gtab-btn:not(.active):hover {
+  color: #000000;
+  border-color: #737373;
+}
+
+/* Masonry Columns */
+.zoosh-gallery-masonry {
+  column-count: 1;
+  column-gap: 24px;
+  width: 100%;
+}
+
+@media (min-width: 640px) {
+  .zoosh-gallery-masonry {
+    column-count: 2;
+  }
+}
+
+@media (min-width: 1024px) {
+  .zoosh-gallery-masonry {
+    column-count: 3;
+  }
+}
+
+.zoosh-gallery-item {
+  break-inside: avoid;
+  margin-bottom: 24px;
+  position: relative;
+  overflow: hidden;
+  background-color: #f5f5f5;
+  box-shadow: 0 1px 3px rgba(0,0,0,0.02);
+  display: flex;
+  flex-direction: column;
+}
+
+.zoosh-gitem-img-wrapper {
+  position: relative;
+  width: 100%;
+  overflow: hidden;
+}
+
+.zoosh-gitem-img {
+  width: 100%;
+  height: auto;
+  display: block;
+  transition: transform 0.8s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+}
+
+.zoosh-gallery-item:hover .zoosh-gitem-img {
+  transform: scale(1.03);
+}
+
+/* Hover Details Panel Overlay */
+.zoosh-gitem-overlay {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(to top, rgba(0,0,0,0.7) 0%, rgba(0,0,0,0.2) 60%, rgba(0,0,0,0) 100%);
+  opacity: 0;
+  z-index: 5;
+  transition: opacity 0.4s ease;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+  padding: 24px;
+  box-sizing: border-box;
+}
+
+.zoosh-gallery-item:hover .zoosh-gitem-overlay {
+  opacity: 1;
+}
+
+.zoosh-gitem-category {
+  font-size: 8px;
+  font-weight: 500;
+  text-transform: uppercase;
+  letter-spacing: 0.2em;
+  color: #d4d4d4;
+  margin-bottom: 6px;
+}
+
+.zoosh-gitem-title {
+  font-family: var(--zoosh-font-serif, "EB Garamond"), Georgia, serif;
+  font-size: 18px;
+  font-weight: 300;
+  color: #ffffff;
+  margin: 0;
+}
+
+/* Floating Zoom Icon on Card */
+.zoosh-gitem-zoom-icon {
+  position: absolute;
+  top: 20px;
+  right: 20px;
+  width: 36px;
+  height: 36px;
+  border-radius: 50%;
+  background-color: rgba(255, 255, 255, 0.15);
+  backdrop-filter: blur(4px);
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  color: #ffffff;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  opacity: 0;
+  transform: scale(0.9);
+  transition: all 0.3s ease;
+  z-index: 6;
+}
+
+.zoosh-gallery-item:hover .zoosh-gitem-zoom-icon {
+  opacity: 1;
+  transform: scale(1);
+}
+
+/* FULLSCREEN LIGHTBOX PANEL */
+.zoosh-lightbox {
+  position: fixed;
+  inset: 0;
+  z-index: 1000;
+  display: none;
+  align-items: center;
+  justify-content: center;
+  padding: 24px;
+}
+
+.zoosh-lightbox.active {
+  display: flex;
+}
+
+.zoosh-lightbox-backdrop {
+  position: absolute;
+  inset: 0;
+  background-color: rgba(0, 0, 0, 0.95);
+  backdrop-filter: blur(6px);
+}
+
+.zoosh-lightbox-content {
+  position: relative;
+  z-index: 1010;
+  max-width: 900px;
+  width: 100%;
+  background-color: #000000;
+  border: 1px solid #1a1a1a;
+  box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.5);
+  display: flex;
+  flex-direction: column;
+}
+
+.zoosh-lightbox-close {
+  position: absolute;
+  top: -48px;
+  right: 0;
+  background: none;
+  border: none;
+  cursor: pointer;
+  color: #a3a3a3;
+  padding: 8px;
+  transition: color 0.2s ease;
+}
+
+.zoosh-lightbox-close:hover {
+  color: #ffffff;
+}
+
+.zoosh-lightbox-image-wrapper {
+  width: 100%;
+  aspect-ratio: 16 / 10;
+  background-color: #0a0a0a;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+}
+
+.zoosh-lightbox-img {
+  max-width: 100%;
+  max-height: 100%;
+  object-fit: contain;
+}
+
+.zoosh-lightbox-details {
+  padding: 24px 32px 32px 32px;
+  background-color: #050505;
+  border-top: 1px solid #111111;
+  color: #ffffff;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.zoosh-lightbox-meta {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.zoosh-lightbox-category {
+  font-size: 10px;
+  font-weight: 500;
+  text-transform: uppercase;
+  letter-spacing: 0.2em;
+  color: #737373;
+}
+
+.zoosh-lightbox-index {
+  font-size: 10px;
+  color: #737373;
+}
+
+.zoosh-lightbox-title {
+  font-family: var(--zoosh-font-serif, "EB Garamond"), Georgia, serif;
+  font-size: 22px;
+  font-weight: 300;
+  margin: 0;
+}
+
+.zoosh-lightbox-description {
+  color: #a3a3a3;
+  font-size: 13px;
+  font-weight: 300;
+  line-height: 1.6;
+  margin: 0 0 16px 0;
+}
+
+.zoosh-lightbox-product-link {
+  font-size: 10px;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  color: #ffffff;
+  text-decoration: none;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.4);
+  align-self: flex-start;
+  padding-bottom: 2px;
+  transition: border-color 0.2s ease;
+}
+
+.zoosh-lightbox-product-link:hover {
+  border-color: #ffffff;
+}
+
+/* Lightbox Navigation Arrows */
+.zoosh-lightbox-arrow {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  z-index: 1010;
+  background-color: rgba(255, 255, 255, 0.05);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  color: #a3a3a3;
+  width: 48px;
+  height: 48px;
+  border-radius: 50%;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: all 0.2s ease;
+}
+
+.zoosh-lightbox-arrow:hover {
+  color: #ffffff;
+  background-color: rgba(255, 255, 255, 0.15);
+  border-color: rgba(255, 255, 255, 0.3);
+}
+
+.zoosh-larrow-left {
+  left: 24px;
+}
+
+.zoosh-larrow-right {
+  right: 24px;
+}
+
+@media (max-width: 1024px) {
+  .zoosh-lightbox-arrow {
+    display: none; /* Hide side arrows on tablet/mobile viewport */
+  }
+}

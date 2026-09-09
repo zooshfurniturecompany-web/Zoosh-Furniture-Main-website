@@ -1,0 +1,81 @@
+<div class="zoosh-wrapper">
+
+  <!-- SECTION 01 — CATALOG HEADER -->
+  <section class="zoosh-collection-header">
+    <div class="zoosh-collection-container">
+      <span class="zoosh-collection-badge">Pattambi Workshop</span>
+      <h1 class="zoosh-collection-title">Custom Solid Wood Catalog</h1>
+      <p class="zoosh-collection-desc">
+        Browse our solid wood designs. All pieces are made-to-order at our Pattambi factory to your exact dimensions and finish choices.
+      </p>
+    </div>
+  </section>
+
+  <!-- SECTION 02 — WORKSPACE FILTER BAR & CONTROLS -->
+  <section class="zoosh-collection-controls">
+    <div class="zoosh-collection-container">
+      <div class="zoosh-controls-flex">
+        
+        <!-- Left: Category Nav Horizontal -->
+        <div class="zoosh-catalog-categories-bar" id="zooshCatalogTabs">
+          <!-- Populated dynamically via JS -->
+        </div>
+
+        <!-- Right: Search Input Box -->
+        <div class="zoosh-catalog-search-box">
+          <span class="zoosh-catalog-search-icon">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+              <circle cx="11" cy="11" r="7" />
+              <path d="m20 20-3.5-3.5" />
+            </svg>
+          </span>
+          <input type="text" placeholder="Search products..." class="zoosh-catalog-search-input" id="zooshCatalogSearch" />
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- SECTION 03 — PRODUCTS LISTING GRID -->
+  <section class="zoosh-collection-grid-section">
+    <div class="zoosh-collection-container">
+      
+      <!-- Catalog Grid target -->
+      <div class="zoosh-catalog-grid-wrapper" id="zooshCatalogGrid">
+        <!-- Rendered dynamically via JS -->
+      </div>
+
+      <!-- No Results State -->
+      <div class="zoosh-no-results-state" id="zooshCatalogNoResults">
+        <p class="zoosh-no-results-text">No products found matching the criteria.</p>
+        <button type="button" class="zoosh-reset-filters-btn" id="zooshCatalogResetBtn">
+          <svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M21.5 2v6h-6M21.34 15.57a10 10 0 1 1-.57-8.38l5.67-5.67"></path>
+          </svg>
+          <span>Reset All Filters</span>
+        </button>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- QUICK VIEW OVERLAY MODAL -->
+  <div class="zoosh-modal" id="zooshQuickViewModal">
+    <div class="zoosh-modal-backdrop" id="zooshModalBackdrop"></div>
+    <div class="zoosh-modal-content">
+      
+      <button type="button" class="zoosh-modal-close" id="zooshModalClose">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+          <line x1="18" y1="6" x2="6" y2="18"></line>
+          <line x1="6" y1="6" x2="18" y2="18"></line>
+        </svg>
+      </button>
+
+      <div class="zoosh-modal-body" id="zooshModalBody">
+        <!-- Rendered dynamically via JS -->
+      </div>
+
+    </div>
+  </div>
+
+</div>

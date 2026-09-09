@@ -1,0 +1,3435 @@
+<!-- ========================================== -->
+<!-- 1. ZOOSH GLOBAL DATABASE & HELPERS -->
+<!-- ========================================== -->
+<script>
+window.ZOOSH_PRODUCTS = [
+  {
+    "id": "zsh-ch-001",
+    "sku": "CH001",
+    "name": "Mahogany Accent Chair",
+    "category": "Lounge Chair",
+    "material": "Mahogany",
+    "dimensions": "80cm W x 80cm D x 75cm H",
+    "price": 13800,
+    "images": [
+      "/images/Generated Image July 21, 2026 - 12_35PM (1).jpg"
+    ],
+    "description": "Premium mahogany arm chair, perfect as an accent chair."
+  },
+  {
+    "id": "zsh-ch-002",
+    "sku": "CH002",
+    "name": "Mahogany Dining Chair",
+    "category": "Dining Chair",
+    "material": "Mahogany",
+    "dimensions": "50cm W x 50cm D x 95cm H",
+    "price": 10800,
+    "images": [
+      "https://images.unsplash.com/photo-1592078615290-033ee584e267?q=80&w=800"
+    ],
+    "description": "Solid mahogany dining chair."
+  },
+  {
+    "id": "zsh-ch-003",
+    "sku": "CH003",
+    "name": "Teak Cane Dining Chair",
+    "category": "Dining Chair",
+    "material": "Teak",
+    "dimensions": "50cm W x 50cm D x 95cm H",
+    "price": 10700,
+    "images": [
+      "https://images.unsplash.com/photo-1586023492125-27b2c045efd7?q=80&w=800"
+    ],
+    "description": "Elegant teak wood chair with traditional cane backing work."
+  },
+  {
+    "id": "zsh-ch-004",
+    "sku": "CH004",
+    "name": "Teak Cane Dining Chair II",
+    "category": "Dining Chair",
+    "material": "Teak",
+    "dimensions": "50cm W x 55cm D x 95cm H",
+    "price": 12000,
+    "images": [
+      "https://images.unsplash.com/photo-1598300042247-d088f8ab3a91?q=80&w=800"
+    ],
+    "description": "Teak wood dining chair with premium cane work back."
+  },
+  {
+    "id": "zsh-ch-005",
+    "sku": "CH005",
+    "name": "Teak Upholstered Chair",
+    "category": "Chair",
+    "material": "Teak",
+    "dimensions": "60cm W x 60cm D x 85cm H",
+    "price": 12750,
+    "images": [
+      "https://images.unsplash.com/photo-1567538096630-e0c55bd6374c?q=80&w=800"
+    ],
+    "description": "Modern teak wood chair with premium seat upholstery."
+  },
+  {
+    "id": "zsh-ch-006",
+    "sku": "CH006",
+    "name": "Teak Simple Chair",
+    "category": "Chair",
+    "material": "Teak",
+    "dimensions": "60cm W x 60cm D x 85cm H",
+    "price": 7600,
+    "images": [
+      "https://images.unsplash.com/photo-1503602642458-232111445657?q=80&w=800"
+    ],
+    "description": "Sleek teak chair in natural finish."
+  },
+  {
+    "id": "zsh-ch-007",
+    "sku": "CH007",
+    "name": "Ashwood Premium Armchair",
+    "category": "Lounge Chair",
+    "material": "Ash Wood",
+    "dimensions": "80cm W x 80cm D x 75cm H",
+    "price": 15820,
+    "images": [
+      "https://images.unsplash.com/photo-1580481072645-022f9a6dbf27?q=80&w=800"
+    ],
+    "description": "Luxury ash wood chair featuring modern curved design."
+  },
+  {
+    "id": "zsh-ch-008",
+    "sku": "CH008",
+    "name": "Ashwood Simple Chair",
+    "category": "Chair",
+    "material": "Ash Wood",
+    "dimensions": "60cm W x 60cm D x 85cm H",
+    "price": 8820,
+    "images": [
+      "https://images.unsplash.com/photo-1592078615290-033ee584e267?q=80&w=800"
+    ],
+    "description": "Ash wood chair with natural matte finish."
+  },
+  {
+    "id": "zsh-ch-009",
+    "sku": "CH009",
+    "name": "Teak Dining Chair III",
+    "category": "Dining Chair",
+    "material": "Teak",
+    "dimensions": "50cm W x 50cm D x 95cm H",
+    "price": 8350,
+    "images": [
+      "https://images.unsplash.com/photo-1586023492125-27b2c045efd7?q=80&w=800"
+    ],
+    "description": "Standard teak dining chair."
+  },
+  {
+    "id": "zsh-ch-010",
+    "sku": "CH010",
+    "name": "Teak Dining Room Chair",
+    "category": "Dining Chair",
+    "material": "Teak",
+    "dimensions": "50cm W x 50cm D x 95cm H",
+    "price": 13800,
+    "images": [
+      "https://images.unsplash.com/photo-1580481072645-022f9a6dbf27?q=80&w=800"
+    ],
+    "description": "Solid teak wood dining chair with curved back."
+  },
+  {
+    "id": "zsh-ch-011",
+    "sku": "CH011",
+    "name": "Metal and Plywood Chair",
+    "category": "Chair",
+    "material": "Plywood",
+    "dimensions": "55cm W x 55cm D x 80cm H",
+    "price": 3850,
+    "images": [
+      "https://images.unsplash.com/photo-1592078615290-033ee584e267?q=80&w=800"
+    ],
+    "description": "Industrial style chair with metal frames and plywood seat."
+  },
+  {
+    "id": "zsh-ch-012",
+    "sku": "CH012",
+    "name": "Teak Accent Chair II",
+    "category": "Chair",
+    "material": "Teak",
+    "dimensions": "60cm W x 60cm D x 85cm H",
+    "price": 10900,
+    "images": [
+      "https://images.unsplash.com/photo-1586023492125-27b2c045efd7?q=80&w=800"
+    ],
+    "description": "Teak wood lounge accent chair."
+  },
+  {
+    "id": "zsh-ch-013",
+    "sku": "CH013",
+    "name": "Mahogany Desk Chair",
+    "category": "Chair",
+    "material": "Mahogany",
+    "dimensions": "60cm W x 60cm D x 85cm H",
+    "price": 7900,
+    "images": [
+      "https://images.unsplash.com/photo-1598300042247-d088f8ab3a91?q=80&w=800"
+    ],
+    "description": "Simple mahogany desk chair."
+  },
+  {
+    "id": "zsh-ch-014",
+    "sku": "CH014",
+    "name": "Teak Cane Chair III",
+    "category": "Chair",
+    "material": "Teak",
+    "dimensions": "60cm W x 60cm D x 85cm H",
+    "price": 9800,
+    "images": [
+      "https://images.unsplash.com/photo-1567538096630-e0c55bd6374c?q=80&w=800"
+    ],
+    "description": "Teak chair with custom cane backing."
+  },
+  {
+    "id": "zsh-ch-015",
+    "sku": "CH015",
+    "name": "Karivaka Studio Chair",
+    "category": "Chair",
+    "material": "Karivaka",
+    "dimensions": "60cm W x 60cm D x 85cm H",
+    "price": 11800,
+    "images": [
+      "https://images.unsplash.com/photo-1503602642458-232111445657?q=80&w=800"
+    ],
+    "description": "Karivaka solid wood accent chair."
+  },
+  {
+    "id": "zsh-ch-016",
+    "sku": "CH016",
+    "name": "Teak Simple Dining Chair",
+    "category": "Dining Chair",
+    "material": "Teak",
+    "dimensions": "50cm W x 50cm D x 95cm H",
+    "price": 7900,
+    "images": [
+      "https://images.unsplash.com/photo-1580481072645-022f9a6dbf27?q=80&w=800"
+    ],
+    "description": "Teak wood dining chair, natural polish."
+  },
+  {
+    "id": "zsh-ch-017",
+    "sku": "CH017",
+    "name": "Teak Luxury Lounge Chair",
+    "category": "Lounge Chair",
+    "material": "Teak",
+    "dimensions": "82cm W x 78cm D x 74cm H",
+    "price": 17780,
+    "images": [
+      "https://images.unsplash.com/photo-1592078615290-033ee584e267?q=80&w=800"
+    ],
+    "description": "Teak wood lounge chair featuring premium upholstery."
+  },
+  {
+    "id": "zsh-ch-018",
+    "sku": "CH018",
+    "name": "Teak Modern Armchair",
+    "category": "Lounge Chair",
+    "material": "Teak",
+    "dimensions": "80cm W x 80cm D x 78cm H",
+    "price": 18000,
+    "images": [
+      "https://images.unsplash.com/photo-1586023492125-27b2c045efd7?q=80&w=800"
+    ],
+    "description": "Scandinavian inspired teak wood lounge chair with white upholstery cushions."
+  },
+  {
+    "id": "zsh-ch-019",
+    "sku": "CH019",
+    "name": "Teak Premium Leather Chair",
+    "category": "Lounge Chair",
+    "material": "Teak",
+    "dimensions": "85cm W x 80cm D x 75cm H",
+    "price": 48500,
+    "images": [
+      "https://images.unsplash.com/photo-1598300042247-d088f8ab3a91?q=80&w=800"
+    ],
+    "description": "Ultra luxury teak lounge chair wrapped in premium brown leather upholstery."
+  },
+  {
+    "id": "zsh-ch-020",
+    "sku": "CH020",
+    "name": "Teak Accent Club Chair",
+    "category": "Lounge Chair",
+    "material": "Teak",
+    "dimensions": "80cm W x 80cm D x 75cm H",
+    "price": 25400,
+    "images": [
+      "https://images.unsplash.com/photo-1592078615290-033ee584e267?q=80&w=800"
+    ],
+    "description": "Solid teak club lounge chair."
+  },
+  {
+    "id": "zsh-ch-021",
+    "sku": "CH021",
+    "name": "Teak Bouclé Chair",
+    "category": "Lounge Chair",
+    "material": "Teak",
+    "dimensions": "80cm W x 80cm D x 75cm H",
+    "price": 22500,
+    "images": [
+      "https://images.unsplash.com/photo-1586023492125-27b2c045efd7?q=80&w=800"
+    ],
+    "description": "Lounge chair with curved teak frames and off-white bouclé upholstery."
+  },
+  {
+    "id": "zsh-ch-022",
+    "sku": "CH022",
+    "name": "Mahogany Cushioned Chair",
+    "category": "Chair",
+    "material": "Mahogany",
+    "dimensions": "60cm W x 60cm D x 85cm H",
+    "price": 9274,
+    "images": [
+      "https://images.unsplash.com/photo-1598300042247-d088f8ab3a91?q=80&w=800"
+    ],
+    "description": "Mahogany chair with green fabric upholstery."
+  },
+  {
+    "id": "zsh-ch-023",
+    "sku": "CH023",
+    "name": "Teak Cane Wrap Chair",
+    "category": "Lounge Chair",
+    "material": "Teak",
+    "dimensions": "80cm W x 78cm D x 74cm H",
+    "price": 28000,
+    "images": [
+      "https://images.unsplash.com/photo-1567538096630-e0c55bd6374c?q=80&w=800"
+    ],
+    "description": "Curved teak frame with cane wrap detailing and upholstery cushions."
+  },
+  {
+    "id": "zsh-ch-024",
+    "sku": "CH024",
+    "name": "Teak Round Base Lounge Chair",
+    "category": "Lounge Chair",
+    "material": "Teak",
+    "dimensions": "80cm W x 80cm D x 75cm H",
+    "price": 22400,
+    "images": [
+      "https://images.unsplash.com/photo-1503602642458-232111445657?q=80&w=800"
+    ],
+    "description": "Sculptural teak base with comfortable padded upholstery bucket seat."
+  },
+  {
+    "id": "zsh-ch-025",
+    "sku": "CH025",
+    "name": "Mahogany Living Room Chair",
+    "category": "Lounge Chair",
+    "material": "Mahogany",
+    "dimensions": "80cm W x 80cm D x 75cm H",
+    "price": 19200,
+    "images": [
+      "https://images.unsplash.com/photo-1580481072645-022f9a6dbf27?q=80&w=800"
+    ],
+    "description": "Classic mahogany lounge chair with plush green upholstery."
+  },
+  {
+    "id": "zsh-ch-026",
+    "sku": "CH026",
+    "name": "Ashwood Cushioned Lounge Chair",
+    "category": "Lounge Chair",
+    "material": "Ash Wood",
+    "dimensions": "80cm W x 80cm D x 75cm H",
+    "price": 28700,
+    "images": [
+      "https://images.unsplash.com/photo-1592078615290-033ee584e267?q=80&w=800"
+    ],
+    "description": "Ash wood accent lounge chair with grey fabric upholstery."
+  },
+  {
+    "id": "zsh-ch-027",
+    "sku": "CH027",
+    "name": "Teak Classic Lounge Chair",
+    "category": "Lounge Chair",
+    "material": "Teak",
+    "dimensions": "80cm W x 80cm D x 75cm H",
+    "price": 18750,
+    "images": [
+      "https://images.unsplash.com/photo-1586023492125-27b2c045efd7?q=80&w=800"
+    ],
+    "description": "Teak wood lounge chair in standard sales specifications."
+  },
+  {
+    "id": "zsh-ch-028",
+    "sku": "CH028",
+    "name": "Teak Minimalist Lounge Chair",
+    "category": "Lounge Chair",
+    "material": "Teak",
+    "dimensions": "80cm W x 80cm D x 75cm H",
+    "price": 19900,
+    "images": [
+      "https://images.unsplash.com/photo-1598300042247-d088f8ab3a91?q=80&w=800"
+    ],
+    "description": "Minimal teak wood lounge chair with white upholstery."
+  },
+  {
+    "id": "zsh-ch-029",
+    "sku": "CH029",
+    "name": "Teak Cane Lounge Armchair",
+    "category": "Lounge Chair",
+    "material": "Teak",
+    "dimensions": "82cm W x 78cm D x 74cm H",
+    "price": 18250,
+    "images": [
+      "https://images.unsplash.com/photo-1567538096630-e0c55bd6374c?q=80&w=800"
+    ],
+    "description": "Solid teak wood with cane backing and grey seat cushion upholstery."
+  },
+  {
+    "id": "zsh-ch-030",
+    "sku": "CH030",
+    "name": "Mahogany Luxury Armchair",
+    "category": "Lounge Chair",
+    "material": "Mahogany",
+    "dimensions": "85cm W x 82cm D x 78cm H",
+    "price": 26500,
+    "images": [
+      "https://images.unsplash.com/photo-1586023492125-27b2c045efd7?q=80&w=800"
+    ],
+    "description": "Premium mahogany frame with circular luxury velvet upholstery."
+  },
+  {
+    "id": "zsh-ch-031",
+    "sku": "CH031",
+    "name": "Mahogany Reception Sofa Chair",
+    "category": "Single Seater Sofa",
+    "material": "Mahogany",
+    "dimensions": "90cm W x 90cm D x 80cm H",
+    "price": 31200,
+    "images": [
+      "https://images.unsplash.com/photo-1555041469-a586c61ea9bc?q=80&w=800"
+    ],
+    "description": "Wide mahogany reception chair with luxury cushioning upholstery."
+  },
+  {
+    "id": "zsh-bd-001",
+    "sku": "BD001",
+    "name": "Teak Cane Bed Cot",
+    "category": "Bed Cot",
+    "material": "Teak",
+    "dimensions": "200cm W x 180cm D x 100cm H",
+    "price": 41500,
+    "images": [
+      "https://images.unsplash.com/photo-1540518614846-7eded433c457?q=80&w=800"
+    ],
+    "description": "Teak wood queen bed cot featuring modern headboard cane work."
+  },
+  {
+    "id": "zsh-bd-002",
+    "sku": "BD002",
+    "name": "Teak Cane Bed Cot II",
+    "category": "Bed Cot",
+    "material": "Teak",
+    "dimensions": "200cm W x 180cm D x 100cm H",
+    "price": 47400,
+    "images": [
+      "https://images.unsplash.com/photo-1522771739844-6a9f6d5f14af?q=80&w=800"
+    ],
+    "description": "Bespoke teak wood bed cot with detailed cane work panels."
+  },
+  {
+    "id": "zsh-bd-003",
+    "sku": "BD003",
+    "name": "Poster Cane Bed Cot",
+    "category": "Bed Cot",
+    "material": "Teak",
+    "dimensions": "200cm W x 180cm D x 210cm H",
+    "price": 58300,
+    "images": [
+      "https://images.unsplash.com/photo-1505693416388-ac5ce068fe85?q=80&w=800"
+    ],
+    "description": "Luxury four-poster bed cot in teak wood with premium headboard cane work."
+  },
+  {
+    "id": "zsh-bd-004",
+    "sku": "BD004",
+    "name": "Teak Normal Bed Cot",
+    "category": "Bed Cot",
+    "material": "Teak",
+    "dimensions": "200cm W x 180cm D x 90cm H",
+    "price": 38650,
+    "images": [
+      "https://images.unsplash.com/photo-1540518614846-7eded433c457?q=80&w=800"
+    ],
+    "description": "Simple and sturdy teak wood normal platform bed cot."
+  },
+  {
+    "id": "zsh-bd-005",
+    "sku": "BD005",
+    "name": "Teak Cane Bed Cot III",
+    "category": "Bed Cot",
+    "material": "Teak",
+    "dimensions": "200cm W x 180cm D x 105cm H",
+    "price": 48700,
+    "images": [
+      "https://images.unsplash.com/photo-1522771739844-6a9f6d5f14af?q=80&w=800"
+    ],
+    "description": "Premium teak wood bed cot with high headboard cane work."
+  },
+  {
+    "id": "zsh-bd-006",
+    "sku": "BD006",
+    "name": "Teak Spindle Bed Cot",
+    "category": "Bed Cot",
+    "material": "Teak",
+    "dimensions": "200cm W x 110cm D x 90cm H",
+    "price": 33600,
+    "images": [
+      "https://images.unsplash.com/photo-1505693416388-ac5ce068fe85?q=80&w=800"
+    ],
+    "description": "Twin single bed cot in teak wood with vertical spindle work headboard."
+  },
+  {
+    "id": "zsh-bd-007",
+    "sku": "BD007",
+    "name": "Teak Spindle Bed Cot II",
+    "category": "Bed Cot",
+    "material": "Teak",
+    "dimensions": "200cm W x 110cm D x 90cm H",
+    "price": 34900,
+    "images": [
+      "https://images.unsplash.com/photo-1540518614846-7eded433c457?q=80&w=800"
+    ],
+    "description": "Teak single bed cot with premium spindle work."
+  },
+  {
+    "id": "zsh-bd-008",
+    "sku": "BD008",
+    "name": "Mahogany Twin Spindle Bed Cot",
+    "category": "Bed Cot",
+    "material": "Mahogany",
+    "dimensions": "198cm W x 110cm D x 110cm H",
+    "price": 42210,
+    "images": [
+      "https://images.unsplash.com/photo-1522771739844-6a9f6d5f14af?q=80&w=800"
+    ],
+    "description": "Twin bed cot in mahogany featuring classic spindle work."
+  },
+  {
+    "id": "zsh-bd-009",
+    "sku": "BD009",
+    "name": "Mahogany Upholstery Bed Cot",
+    "category": "Bed Cot",
+    "material": "Mahogany",
+    "dimensions": "200cm W x 180cm D x 100cm H",
+    "price": 32450,
+    "images": [
+      "https://images.unsplash.com/photo-1505693416388-ac5ce068fe85?q=80&w=800"
+    ],
+    "description": "Mahogany bed cot with padded headboard fabric upholstery."
+  },
+  {
+    "id": "zsh-bd-010",
+    "sku": "BD010",
+    "name": "Teak Wood Bed Cot Standard",
+    "category": "Bed Cot",
+    "material": "Teak",
+    "dimensions": "200cm W x 180cm D x 90cm H",
+    "price": 46150,
+    "images": [
+      "https://images.unsplash.com/photo-1540518614846-7eded433c457?q=80&w=800"
+    ],
+    "description": "Polished teak wood bed cot."
+  },
+  {
+    "id": "zsh-bd-011",
+    "sku": "BD011",
+    "name": "Teak Wood Spindle Bed Cot III",
+    "category": "Bed Cot",
+    "material": "Teak",
+    "dimensions": "200cm W x 180cm D x 95cm H",
+    "price": 44750,
+    "images": [
+      "https://images.unsplash.com/photo-1522771739844-6a9f6d5f14af?q=80&w=800"
+    ],
+    "description": "Teak wood double bed cot with spindle work."
+  },
+  {
+    "id": "zsh-bd-012",
+    "sku": "BD012",
+    "name": "Mahogany Cane Bed Cot",
+    "category": "Bed Cot",
+    "material": "Mahogany",
+    "dimensions": "200cm W x 180cm D x 100cm H",
+    "price": 39500,
+    "images": [
+      "https://images.unsplash.com/photo-1505693416388-ac5ce068fe85?q=80&w=800"
+    ],
+    "description": "Mahogany double bed cot with neat headboard cane work."
+  },
+  {
+    "id": "zsh-bd-013",
+    "sku": "BD013",
+    "name": "Mahogany Luxury Upholstered Cot",
+    "category": "Bed Cot",
+    "material": "Mahogany",
+    "dimensions": "200cm W x 180cm D x 110cm H",
+    "price": 62000,
+    "images": [
+      "https://images.unsplash.com/photo-1540518614846-7eded433c457?q=80&w=800"
+    ],
+    "description": "Luxury mahogany bed cot with high-end fabric upholstery backing."
+  },
+  {
+    "id": "zsh-bd-014",
+    "sku": "BD014",
+    "name": "Mahogany Premium Upholstered Cot",
+    "category": "Bed Cot",
+    "material": "Mahogany",
+    "dimensions": "200cm W x 180cm D x 115cm H",
+    "price": 65000,
+    "images": [
+      "https://images.unsplash.com/photo-1522771739844-6a9f6d5f14af?q=80&w=800"
+    ],
+    "description": "Designer upholstered bed cot in solid mahogany."
+  },
+  {
+    "id": "zsh-bd-015",
+    "sku": "BD015",
+    "name": "Mahogany Cane Bed Cot Storage",
+    "category": "Bed Cot",
+    "material": "Mahogany",
+    "dimensions": "200cm W x 180cm D x 100cm H",
+    "price": 38600,
+    "images": [
+      "https://images.unsplash.com/photo-1505693416388-ac5ce068fe85?q=80&w=800"
+    ],
+    "description": "Mahogany bed cot with built-in drawer storage and cane work headboard."
+  },
+  {
+    "id": "zsh-bd-016",
+    "sku": "BD016",
+    "name": "Ashwood Bed Cot",
+    "category": "Bed Cot",
+    "material": "Ash Wood",
+    "dimensions": "200cm W x 180cm D x 95cm H",
+    "price": 58575,
+    "images": [
+      "https://images.unsplash.com/photo-1540518614846-7eded433c457?q=80&w=800"
+    ],
+    "description": "Premium ash wood double bed cot."
+  },
+  {
+    "id": "zsh-bd-017",
+    "sku": "BD017",
+    "name": "Ashwood Bed Cot II",
+    "category": "Bed Cot",
+    "material": "Ash Wood",
+    "dimensions": "200cm W x 180cm D x 95cm H",
+    "price": 58575,
+    "images": [
+      "https://images.unsplash.com/photo-1522771739844-6a9f6d5f14af?q=80&w=800"
+    ],
+    "description": "Ash wood bed cot in natural polish."
+  },
+  {
+    "id": "zsh-dn-001",
+    "sku": "DN001",
+    "name": "Teak Dining Table 6S",
+    "category": "Dining Table",
+    "material": "Teak",
+    "dimensions": "150cm W x 90cm D x 75cm H",
+    "price": 42500,
+    "images": [
+      "https://images.unsplash.com/photo-1581428982868-e410dd047a90?q=80&w=800"
+    ],
+    "description": "Sturdy teak wood dining table, 6 seater capacity."
+  },
+  {
+    "id": "zsh-dn-002",
+    "sku": "DN002",
+    "name": "Teak Dining Table Std",
+    "category": "Dining Table",
+    "material": "Teak",
+    "dimensions": "180cm W x 90cm D x 75cm H",
+    "price": 52100,
+    "images": [
+      "https://images.unsplash.com/photo-1604014237800-1c9102c219da?q=80&w=800"
+    ],
+    "description": "Standard solid teak dining table."
+  },
+  {
+    "id": "zsh-dn-003",
+    "sku": "DN003",
+    "name": "Teak Dining Table Large",
+    "category": "Dining Table",
+    "material": "Teak",
+    "dimensions": "210cm W x 105cm D x 75cm H",
+    "price": 41146,
+    "images": [
+      "https://images.unsplash.com/photo-1615066390971-03e4e1c36ddf?q=80&w=800"
+    ],
+    "description": "Extra large 210cm teak dining table."
+  },
+  {
+    "id": "zsh-dn-004",
+    "sku": "DN004",
+    "name": "Teak Dining Table 4S",
+    "category": "Dining Table",
+    "material": "Teak",
+    "dimensions": "120cm W x 90cm D x 75cm H",
+    "price": 31300,
+    "images": [
+      "https://images.unsplash.com/photo-1600585154340-be6161a56a0c?q=80&w=800"
+    ],
+    "description": "Four-seater teak wood dining table."
+  },
+  {
+    "id": "zsh-dn-005",
+    "sku": "DN005",
+    "name": "Ashwood Marble Dining Table",
+    "category": "Dining Table",
+    "material": "Ash Wood",
+    "dimensions": "210cm W x 105cm D x 75cm H",
+    "price": 68400,
+    "images": [
+      "https://images.unsplash.com/photo-1533090161767-e6ffed986c88?q=80&w=800"
+    ],
+    "description": "Ash wood dining table base with a premium, heavy marble top."
+  },
+  {
+    "id": "zsh-dn-006",
+    "sku": "DN006",
+    "name": "Teak Dining Table 4S II",
+    "category": "Dining Table",
+    "material": "Teak",
+    "dimensions": "120cm W x 90cm D x 75cm H",
+    "price": 25700,
+    "images": [
+      "https://images.unsplash.com/photo-1581428982868-e410dd047a90?q=80&w=800"
+    ],
+    "description": "Compact teak dining table."
+  },
+  {
+    "id": "zsh-dn-007",
+    "sku": "DN007",
+    "name": "Ashwood Dining Table",
+    "category": "Dining Table",
+    "material": "Ash Wood",
+    "dimensions": "180cm W x 90cm D x 75cm H",
+    "price": 45150,
+    "images": [
+      "https://images.unsplash.com/photo-1604014237800-1c9102c219da?q=80&w=800"
+    ],
+    "description": "Solid ash wood dining table with elegant legs."
+  },
+  {
+    "id": "zsh-dn-008",
+    "sku": "DN008",
+    "name": "Mahogany Dining Table Std",
+    "category": "Dining Table",
+    "material": "Mahogany",
+    "dimensions": "180cm W x 90cm D x 75cm H",
+    "price": 32500,
+    "images": [
+      "https://images.unsplash.com/photo-1615066390971-03e4e1c36ddf?q=80&w=800"
+    ],
+    "description": "Standard mahogany dining table in natural polish."
+  },
+  {
+    "id": "zsh-dn-009",
+    "sku": "DN009",
+    "name": "Ashwood Marble Table Oval",
+    "category": "Dining Table",
+    "material": "Ash Wood",
+    "dimensions": "180cm W x 90cm D x 75cm H",
+    "price": 40288,
+    "images": [
+      "https://images.unsplash.com/photo-1600585154340-be6161a56a0c?q=80&w=800"
+    ],
+    "description": "Ash wood frame with custom marble top."
+  },
+  {
+    "id": "zsh-dn-010",
+    "sku": "DN010",
+    "name": "Teak Dining Table Premium",
+    "category": "Dining Table",
+    "material": "Teak",
+    "dimensions": "180cm W x 90cm D x 75cm H",
+    "price": 58300,
+    "images": [
+      "https://images.unsplash.com/photo-1581428982868-e410dd047a90?q=80&w=800"
+    ],
+    "description": "Heavy timber teak wood dining table with architectural pillars."
+  },
+  {
+    "id": "zsh-cs-001",
+    "sku": "CST001",
+    "name": "Teak Console Table Cane",
+    "category": "Console Table",
+    "material": "Teak",
+    "dimensions": "228cm W x 40cm D x 55cm H",
+    "price": 26500,
+    "images": [
+      "https://images.unsplash.com/photo-1533090161767-e6ffed986c88?q=80&w=800"
+    ],
+    "description": "Extra long teak console table featuring drawer storage and cane panels."
+  },
+  {
+    "id": "zsh-cs-002",
+    "sku": "CST002",
+    "name": "Teak Console Table Storage",
+    "category": "Console Table",
+    "material": "Teak",
+    "dimensions": "95cm W x 40cm D x 75cm H",
+    "price": 30850,
+    "images": [
+      "https://images.unsplash.com/photo-1600585154340-be6161a56a0c?q=80&w=800"
+    ],
+    "description": "Teak console table with drawer and cabinet storage."
+  },
+  {
+    "id": "zsh-cs-003",
+    "sku": "CST003",
+    "name": "Karivaka Console Table",
+    "category": "Console Table",
+    "material": "Karivaka",
+    "dimensions": "150cm W x 45cm D x 75cm H",
+    "price": 30850,
+    "images": [
+      "https://images.unsplash.com/photo-1615066390971-03e4e1c36ddf?q=80&w=800"
+    ],
+    "description": "Karivaka wood console table with storage drawers."
+  },
+  {
+    "id": "zsh-cs-004",
+    "sku": "CST004",
+    "name": "Ashwood Console Table Cane",
+    "category": "Console Table",
+    "material": "Ash Wood",
+    "dimensions": "220cm W x 40cm D x 75cm H",
+    "price": 54500,
+    "images": [
+      "https://images.unsplash.com/photo-1604014237800-1c9102c219da?q=80&w=800"
+    ],
+    "description": "Ash wood console table with cane drawers and door storage."
+  },
+  {
+    "id": "zsh-cs-005",
+    "sku": "CST005",
+    "name": "Teak Console Table Small",
+    "category": "Console Table",
+    "material": "Teak",
+    "dimensions": "120cm W x 35cm D x 80cm H",
+    "price": 24500,
+    "images": [
+      "https://images.unsplash.com/photo-1581428982868-e410dd047a90?q=80&w=800"
+    ],
+    "description": "Slim teak console with drawer."
+  },
+  {
+    "id": "zsh-cs-006",
+    "sku": "CST006",
+    "name": "Mahogany Console Table",
+    "category": "Console Table",
+    "material": "Mahogany",
+    "dimensions": "150cm W x 45cm D x 75cm H",
+    "price": 86500,
+    "images": [
+      "https://images.unsplash.com/photo-1533090161767-e6ffed986c88?q=80&w=800"
+    ],
+    "description": "Bespoke luxury mahogany console table cabinet with drawer and door shutters."
+  },
+  {
+    "id": "zsh-cs-007",
+    "sku": "CST007",
+    "name": "Mahogany TV Unit Console",
+    "category": "TV Unit",
+    "material": "Mahogany",
+    "dimensions": "180cm W x 45cm D x 50cm H",
+    "price": 38700,
+    "images": [
+      "https://images.unsplash.com/photo-1586023492125-27b2c045efd7?q=80&w=800"
+    ],
+    "description": "Mahogany TV console with drawer storage."
+  },
+  {
+    "id": "zsh-cs-008",
+    "sku": "CST008",
+    "name": "Mahogany Entry Console",
+    "category": "Console Table",
+    "material": "Mahogany",
+    "dimensions": "120cm W x 40cm D x 75cm H",
+    "price": 28760,
+    "images": [
+      "https://images.unsplash.com/photo-1615066390971-03e4e1c36ddf?q=80&w=800"
+    ],
+    "description": "Mahogany entry table with drawer."
+  },
+  {
+    "id": "zsh-cs-009",
+    "sku": "CST009",
+    "name": "Mahogany Cane Console",
+    "category": "Console Table",
+    "material": "Mahogany",
+    "dimensions": "140cm W x 40cm D x 75cm H",
+    "price": 52100,
+    "images": [
+      "https://images.unsplash.com/photo-1604014237800-1c9102c219da?q=80&w=800"
+    ],
+    "description": "Mahogany cabinet console with cane shutters."
+  },
+  {
+    "id": "zsh-cs-010",
+    "sku": "CST010",
+    "name": "Ashwood Simple Console",
+    "category": "Console Table",
+    "material": "Ash Wood",
+    "dimensions": "120cm W x 40cm D x 75cm H",
+    "price": 28500,
+    "images": [
+      "https://images.unsplash.com/photo-1533090161767-e6ffed986c88?q=80&w=800"
+    ],
+    "description": "Ash wood minimalist entry console."
+  },
+  {
+    "id": "zsh-cs-011",
+    "sku": "CST011",
+    "name": "Teak TV Console Cane",
+    "category": "TV Unit",
+    "material": "Teak",
+    "dimensions": "180cm W x 45cm D x 50cm H",
+    "price": 52500,
+    "images": [
+      "https://images.unsplash.com/photo-1600585154340-be6161a56a0c?q=80&w=800"
+    ],
+    "description": "Teak wood TV console table with sliding cane doors."
+  },
+  {
+    "id": "zsh-cs-012",
+    "sku": "CST012",
+    "name": "Plywood Console Table",
+    "category": "Console Table",
+    "material": "Plywood",
+    "dimensions": "120cm W x 40cm D x 75cm H",
+    "price": 18600,
+    "images": [
+      "https://images.unsplash.com/photo-1615066390971-03e4e1c36ddf?q=80&w=800"
+    ],
+    "description": "Plywood console with veneer laminate."
+  },
+  {
+    "id": "zsh-sd-001",
+    "sku": "STD001",
+    "name": "Teak Side Table Drawer",
+    "category": "Side Table",
+    "material": "Teak",
+    "dimensions": "50cm W x 50cm D x 55cm H",
+    "price": 33600,
+    "images": [
+      "https://images.unsplash.com/photo-1615066390971-03e4e1c36ddf?q=80&w=800"
+    ],
+    "description": "Solid teak wood side table with drawer storage."
+  },
+  {
+    "id": "zsh-sd-002",
+    "sku": "STD002",
+    "name": "Teak Side Table Drawer II",
+    "category": "Side Table",
+    "material": "Teak",
+    "dimensions": "58cm W x 30cm D x 60cm H",
+    "price": 15200,
+    "images": [
+      "https://images.unsplash.com/photo-1600585154340-be6161a56a0c?q=80&w=800"
+    ],
+    "description": "Teak wood narrow side table with storage."
+  },
+  {
+    "id": "zsh-sd-003",
+    "sku": "STD003",
+    "name": "Teak Side Table Cane",
+    "category": "Side Table",
+    "material": "Teak",
+    "dimensions": "50cm W x 50cm D x 55cm H",
+    "price": 12150,
+    "images": [
+      "https://images.unsplash.com/photo-1533090161767-e6ffed986c88?q=80&w=800"
+    ],
+    "description": "Teak side table with cane panel drawer."
+  },
+  {
+    "id": "zsh-sd-004",
+    "sku": "STD004",
+    "name": "Mahogany Side Table",
+    "category": "Side Table",
+    "material": "Mahogany",
+    "dimensions": "35cm W x 65cm D x 30cm H",
+    "price": 12635,
+    "images": [
+      "https://images.unsplash.com/photo-1581428982868-e410dd047a90?q=80&w=800"
+    ],
+    "description": "Mahogany side cabinet with drawer."
+  },
+  {
+    "id": "zsh-sd-005",
+    "sku": "STD005",
+    "name": "Mahogany Side Table Cane",
+    "category": "Side Table",
+    "material": "Mahogany",
+    "dimensions": "35cm W x 65cm D x 30cm H",
+    "price": 13600,
+    "images": [
+      "https://images.unsplash.com/photo-1604014237800-1c9102c219da?q=80&w=800"
+    ],
+    "description": "Mahogany side table with cane drawer."
+  },
+  {
+    "id": "zsh-sd-006",
+    "sku": "STD006",
+    "name": "Teak Side Table Double Drawer",
+    "category": "Side Table",
+    "material": "Teak",
+    "dimensions": "50cm W x 50cm D x 55cm H",
+    "price": 14625,
+    "images": [
+      "https://images.unsplash.com/photo-1615066390971-03e4e1c36ddf?q=80&w=800"
+    ],
+    "description": "Double drawer teak bedside table."
+  },
+  {
+    "id": "zsh-sd-007",
+    "sku": "STD007",
+    "name": "Teak Side Table Cane Panel II",
+    "category": "Side Table",
+    "material": "Teak",
+    "dimensions": "50cm W x 50cm D x 55cm H",
+    "price": 10075,
+    "images": [
+      "https://images.unsplash.com/photo-1600585154340-be6161a56a0c?q=80&w=800"
+    ],
+    "description": "Teak side table with cane mesh door."
+  },
+  {
+    "id": "zsh-sd-008",
+    "sku": "STD008",
+    "name": "Teak Side Table Simple",
+    "category": "Side Table",
+    "material": "Teak",
+    "dimensions": "50cm W x 50cm D x 55cm H",
+    "price": 7875,
+    "images": [
+      "https://images.unsplash.com/photo-1533090161767-e6ffed986c88?q=80&w=800"
+    ],
+    "description": "Teak wood simple pedestal side table."
+  },
+  {
+    "id": "zsh-sd-009",
+    "sku": "STD009",
+    "name": "Teak Round Pedestal Side Table",
+    "category": "Side Table",
+    "material": "Teak",
+    "dimensions": "45cm W x 45cm D x 55cm H",
+    "price": 6295,
+    "images": [
+      "https://images.unsplash.com/photo-1581428982868-e410dd047a90?q=80&w=800"
+    ],
+    "description": "Teak minimal round top side table."
+  },
+  {
+    "id": "zsh-sd-010",
+    "sku": "STD010",
+    "name": "Teak Side Table Storage Drawer",
+    "category": "Side Table",
+    "material": "Teak",
+    "dimensions": "50cm W x 50cm D x 55cm H",
+    "price": 8050,
+    "images": [
+      "https://images.unsplash.com/photo-1615066390971-03e4e1c36ddf?q=80&w=800"
+    ],
+    "description": "Teak side table cabinet drawer."
+  },
+  {
+    "id": "zsh-sd-011",
+    "sku": "STD011",
+    "name": "Plywood Side Table Veneer",
+    "category": "Side Table",
+    "material": "Plywood",
+    "dimensions": "50cm W x 50cm D x 55cm H",
+    "price": 15750,
+    "images": [
+      "https://images.unsplash.com/photo-1600585154340-be6161a56a0c?q=80&w=800"
+    ],
+    "description": "Plywood side table with luxury wood veneer laminate."
+  },
+  {
+    "id": "zsh-sd-012",
+    "sku": "STD012",
+    "name": "Mahogany Round Side Table",
+    "category": "Side Table",
+    "material": "Mahogany",
+    "dimensions": "45cm W x 45cm D x 65cm H",
+    "price": 10500,
+    "images": [
+      "https://images.unsplash.com/photo-1533090161767-e6ffed986c88?q=80&w=800"
+    ],
+    "description": "Ornate mahogany round side table."
+  },
+  {
+    "id": "zsh-sd-013",
+    "sku": "STD013",
+    "name": "Mahogany Cane Bedside Table",
+    "category": "Side Table",
+    "material": "Mahogany",
+    "dimensions": "50cm W x 50cm D x 55cm H",
+    "price": 14400,
+    "images": [
+      "https://images.unsplash.com/photo-1581428982868-e410dd047a90?q=80&w=800"
+    ],
+    "description": "Mahogany bedside table with cane drawer."
+  },
+  {
+    "id": "zsh-sd-014",
+    "sku": "STD014",
+    "name": "Teak Bedside Side Table",
+    "category": "Side Table",
+    "material": "Teak",
+    "dimensions": "50cm W x 50cm D x 55cm H",
+    "price": 19400,
+    "images": [
+      "https://images.unsplash.com/photo-1604014237800-1c9102c219da?q=80&w=800"
+    ],
+    "description": "Solid teak wood bedside nightstand."
+  },
+  {
+    "id": "zsh-ct-001",
+    "sku": "CTD001",
+    "name": "Teak Centre Table Storage",
+    "category": "Centre Table",
+    "material": "Teak",
+    "dimensions": "90cm W x 90cm D x 45cm H",
+    "price": 26000,
+    "images": [
+      "https://images.unsplash.com/photo-1600585154340-be6161a56a0c?q=80&w=800"
+    ],
+    "description": "Teak round coffee table with built-in storage drawers and cane panels."
+  },
+  {
+    "id": "zsh-ct-002",
+    "sku": "CTD002",
+    "name": "Teak Centre Table Nesting",
+    "category": "Centre Table",
+    "material": "Teak",
+    "dimensions": "85cm W x 85cm D x 42cm H",
+    "price": 26500,
+    "images": [
+      "https://images.unsplash.com/photo-1615066390971-03e4e1c36ddf?q=80&w=800"
+    ],
+    "description": "Set of 2 nesting teak coffee tables."
+  },
+  {
+    "id": "zsh-ct-003",
+    "sku": "CTD003",
+    "name": "Teak Centre Table Oval",
+    "category": "Centre Table",
+    "material": "Teak",
+    "dimensions": "80cm W x 80cm D x 40cm H",
+    "price": 21300,
+    "images": [
+      "https://images.unsplash.com/photo-1604014237800-1c9102c219da?q=80&w=800"
+    ],
+    "description": "Oval teak wood coffee table."
+  },
+  {
+    "id": "zsh-ct-004",
+    "sku": "CTD004",
+    "name": "Teak Centre Table Slats",
+    "category": "Centre Table",
+    "material": "Teak",
+    "dimensions": "90cm W x 90cm D x 45cm H",
+    "price": 13400,
+    "images": [
+      "https://images.unsplash.com/photo-1581428982868-e410dd047a90?q=80&w=800"
+    ],
+    "description": "Teak centre table with slatted cylindrical base."
+  },
+  {
+    "id": "zsh-ct-005",
+    "sku": "CTD005",
+    "name": "Teak Centre Table Cushioned",
+    "category": "Centre Table",
+    "material": "Teak",
+    "dimensions": "90cm W x 90cm D x 45cm H",
+    "price": 16200,
+    "images": [
+      "https://images.unsplash.com/photo-1533090161767-e6ffed986c88?q=80&w=800"
+    ],
+    "description": "Teak coffee table with fabric upholstered top/ottoman."
+  },
+  {
+    "id": "zsh-ct-006",
+    "sku": "CTD006",
+    "name": "HDF Veneer Centre Table",
+    "category": "Centre Table",
+    "material": "Plywood",
+    "dimensions": "80cm W x 80cm D x 41cm H",
+    "price": 26880,
+    "images": [
+      "https://images.unsplash.com/photo-1600585154340-be6161a56a0c?q=80&w=800"
+    ],
+    "description": "Modern round center table made of HDF with paper veneer finish."
+  },
+  {
+    "id": "zsh-ct-007",
+    "sku": "CTD007",
+    "name": "Teak Block Centre Table",
+    "category": "Centre Table",
+    "material": "Teak",
+    "dimensions": "110cm W x 75cm D x 40cm H",
+    "price": 18200,
+    "images": [
+      "https://images.unsplash.com/photo-1615066390971-03e4e1c36ddf?q=80&w=800"
+    ],
+    "description": "Minimal block teak wood coffee table."
+  },
+  {
+    "id": "zsh-ct-008",
+    "sku": "CTD008",
+    "name": "Teak Double Slab Coffee Table",
+    "category": "Centre Table",
+    "material": "Teak",
+    "dimensions": "150cm W x 75cm D x 45cm H",
+    "price": 25000,
+    "images": [
+      "https://images.unsplash.com/photo-1604014237800-1c9102c219da?q=80&w=800"
+    ],
+    "description": "Sculptural double slab teak coffee table."
+  },
+  {
+    "id": "zsh-ct-009",
+    "sku": "CTD009",
+    "name": "Teak Teapoy Cane Work",
+    "category": "Centre Table",
+    "material": "Teak",
+    "dimensions": "50cm W x 25cm D x 55cm H",
+    "price": 9300,
+    "images": [
+      "https://images.unsplash.com/photo-1581428982868-e410dd047a90?q=80&w=800"
+    ],
+    "description": "Compact teak wood teapoy magazine rack with cane work."
+  },
+  {
+    "id": "zsh-ct-010",
+    "sku": "CTD010",
+    "name": "Karivaka Centre Table Drawer",
+    "category": "Centre Table",
+    "material": "Karivaka",
+    "dimensions": "100cm W x 55cm D x 40cm H",
+    "price": 18700,
+    "images": [
+      "https://images.unsplash.com/photo-1600585154340-be6161a56a0c?q=80&w=800"
+    ],
+    "description": "Karivaka coffee table with double drawers."
+  },
+  {
+    "id": "zsh-ct-011",
+    "sku": "CTD011",
+    "name": "Karivaka Centre Table Storage",
+    "category": "Centre Table",
+    "material": "Karivaka",
+    "dimensions": "100cm W x 55cm D x 40cm H",
+    "price": 20360,
+    "images": [
+      "https://images.unsplash.com/photo-1615066390971-03e4e1c36ddf?q=80&w=800"
+    ],
+    "description": "Karivaka coffee table with open shelf storage drawer."
+  },
+  {
+    "id": "zsh-ct-012",
+    "sku": "CTD012",
+    "name": "Teak Coffee Table Round Large",
+    "category": "Centre Table",
+    "material": "Teak",
+    "dimensions": "110cm W x 110cm D x 45cm H",
+    "price": 21840,
+    "images": [
+      "https://images.unsplash.com/photo-1604014237800-1c9102c219da?q=80&w=800"
+    ],
+    "description": "Large round teak coffee table."
+  },
+  {
+    "id": "zsh-ct-013",
+    "sku": "CTD013",
+    "name": "Mahogany Coffee Table Round",
+    "category": "Centre Table",
+    "material": "Mahogany",
+    "dimensions": "90cm W x 90cm D x 45cm H",
+    "price": 16590,
+    "images": [
+      "https://images.unsplash.com/photo-1581428982868-e410dd047a90?q=80&w=800"
+    ],
+    "description": "Mahogany round coffee table with shelf storage."
+  },
+  {
+    "id": "zsh-ct-014",
+    "sku": "CTD014",
+    "name": "Teak Centre Table Low Profile",
+    "category": "Centre Table",
+    "material": "Teak",
+    "dimensions": "90cm W x 50cm D x 42cm H",
+    "price": 18750,
+    "images": [
+      "https://images.unsplash.com/photo-1533090161767-e6ffed986c88?q=80&w=800"
+    ],
+    "description": "Low profile teak living room center table."
+  },
+  {
+    "id": "zsh-ct-015",
+    "sku": "CTD015",
+    "name": "Teak Centre Table Marble",
+    "category": "Centre Table",
+    "material": "Teak",
+    "dimensions": "90cm W x 90cm D x 45cm H",
+    "price": 11145,
+    "images": [
+      "https://images.unsplash.com/photo-1600585154340-be6161a56a0c?q=80&w=800"
+    ],
+    "description": "Teak wood base table with dark marble stone top."
+  },
+  {
+    "id": "zsh-ct-016",
+    "sku": "CTD016",
+    "name": "Teak Centre Table Small Round",
+    "category": "Centre Table",
+    "material": "Teak",
+    "dimensions": "70cm W x 70cm D x 45cm H",
+    "price": 13550,
+    "images": [
+      "https://images.unsplash.com/photo-1615066390971-03e4e1c36ddf?q=80&w=800"
+    ],
+    "description": "Small round teak wood coffee table."
+  },
+  {
+    "id": "zsh-ct-017",
+    "sku": "CTD017",
+    "name": "Mahogany Wood Teapoy Round",
+    "category": "Centre Table",
+    "material": "Mahogany",
+    "dimensions": "80cm W x 80cm D x 45cm H",
+    "price": 31350,
+    "images": [
+      "https://images.unsplash.com/photo-1604014237800-1c9102c219da?q=80&w=800"
+    ],
+    "description": "Large round mahogany teapoy table."
+  },
+  {
+    "id": "zsh-ct-018",
+    "sku": "CTD018",
+    "name": "Mahogany Coffee Table Simple",
+    "category": "Centre Table",
+    "material": "Mahogany",
+    "dimensions": "90cm W x 90cm D x 45cm H",
+    "price": 16600,
+    "images": [
+      "https://images.unsplash.com/photo-1581428982868-e410dd047a90?q=80&w=800"
+    ],
+    "description": "Standard mahogany wood center table."
+  },
+  {
+    "id": "zsh-ct-019",
+    "sku": "CTD019",
+    "name": "Coffee Table Simple",
+    "category": "Centre Table",
+    "material": "Teak",
+    "dimensions": "90cm W x 60cm D x 45cm H",
+    "price": 22500,
+    "images": [
+      "https://images.unsplash.com/photo-1533090161767-e6ffed986c88?q=80&w=800"
+    ],
+    "description": "Simple clean-line teak coffee table."
+  },
+  {
+    "id": "zsh-ct-020",
+    "sku": "CTD020",
+    "name": "Teak Coffee Table Round Legs",
+    "category": "Centre Table",
+    "material": "Teak",
+    "dimensions": "80cm W x 80cm D x 45cm H",
+    "price": 17200,
+    "images": [
+      "https://images.unsplash.com/photo-1615066390971-03e4e1c36ddf?q=80&w=800"
+    ],
+    "description": "Round top teak coffee table with crossed wood legs."
+  },
+  {
+    "id": "zsh-ct-021",
+    "sku": "CTD021",
+    "name": "Teak Coffee Table Cane Storage",
+    "category": "Centre Table",
+    "material": "Teak",
+    "dimensions": "80cm W x 80cm D x 45cm H",
+    "price": 24200,
+    "images": [
+      "https://images.unsplash.com/photo-1604014237800-1c9102c219da?q=80&w=800"
+    ],
+    "description": "Round teak coffee table with bottom cane magazine shelf."
+  },
+  {
+    "id": "zsh-bs-001",
+    "sku": "BRS001",
+    "name": "Teak Wood Bar Stool Simple",
+    "category": "Bar Stool",
+    "material": "Teak",
+    "dimensions": "45cm W x 45cm D x 90cm H",
+    "price": 14200,
+    "images": [
+      "https://images.unsplash.com/photo-1600585154340-be6161a56a0c?q=80&w=800"
+    ],
+    "description": "Sturdy tall bar stool in solid teak."
+  },
+  {
+    "id": "zsh-bs-002",
+    "sku": "BRS002",
+    "name": "Teak Wood Bar Stool Cushioned",
+    "category": "Bar Stool",
+    "material": "Teak",
+    "dimensions": "45cm W x 45cm D x 90cm H",
+    "price": 12600,
+    "images": [
+      "https://images.unsplash.com/photo-1586023492125-27b2c045efd7?q=80&w=800"
+    ],
+    "description": "Teak bar stool with cream fabric seat cushion upholstery."
+  },
+  {
+    "id": "zsh-bs-003",
+    "sku": "BRS003",
+    "name": "Teak Wood Bar Stool Backrest",
+    "category": "Bar Stool",
+    "material": "Teak",
+    "dimensions": "45cm W x 45cm D x 90cm H",
+    "price": 10500,
+    "images": [
+      "https://images.unsplash.com/photo-1600585154340-be6161a56a0c?q=80&w=800"
+    ],
+    "description": "Teak wood bar stool with curved backrest and cushion upholstery."
+  },
+  {
+    "id": "zsh-bs-004",
+    "sku": "BRS004",
+    "name": "Teak Wood Bar Stool Cane Back",
+    "category": "Bar Stool",
+    "material": "Teak",
+    "dimensions": "45cm W x 45cm D x 90cm H",
+    "price": 10200,
+    "images": [
+      "https://images.unsplash.com/photo-1586023492125-27b2c045efd7?q=80&w=800"
+    ],
+    "description": "Teak wood bar stool with woven cane backing work and leather upholstery seat."
+  },
+  {
+    "id": "zsh-bs-005",
+    "sku": "BRS005",
+    "name": "Teak Wood Bar Stool High Legs",
+    "category": "Bar Stool",
+    "material": "Teak",
+    "dimensions": "40cm W x 40cm D x 90cm H",
+    "price": 6700,
+    "images": [
+      "https://images.unsplash.com/photo-1600585154340-be6161a56a0c?q=80&w=800"
+    ],
+    "description": "Standard high legged round seat teak stool."
+  },
+  {
+    "id": "zsh-bs-006",
+    "sku": "BRS006",
+    "name": "Metal Bar Stool Upholstered",
+    "category": "Bar Stool",
+    "material": "Plywood",
+    "dimensions": "40cm W x 40cm D x 90cm H",
+    "price": 6000,
+    "images": [
+      "https://images.unsplash.com/photo-1586023492125-27b2c045efd7?q=80&w=800"
+    ],
+    "description": "Industrial style metal frame bar stool with red fabric upholstery cushion."
+  },
+  {
+    "id": "zsh-bs-007",
+    "sku": "BRS007",
+    "name": "Teak Wood Bar Stool Slat Seat",
+    "category": "Bar Stool",
+    "material": "Teak",
+    "dimensions": "45cm W x 45cm D x 90cm H",
+    "price": 8600,
+    "images": [
+      "https://images.unsplash.com/photo-1600585154340-be6161a56a0c?q=80&w=800"
+    ],
+    "description": "Teak wood counter bar stool."
+  },
+  {
+    "id": "zsh-sf-001",
+    "sku": "SF001",
+    "name": "Mahogany 3-Seater Sofa",
+    "category": "Three Seater Sofa",
+    "material": "Mahogany",
+    "dimensions": "220cm W x 90cm D x 80cm H",
+    "price": 57300,
+    "images": [
+      "/images/WhatsApp Image 2026-01-28 at 10.24.22 (1).jpeg"
+    ],
+    "description": "Solid mahogany wood frame 3-seater sofa with premium cushions."
+  },
+  {
+    "id": "zsh-sf-002",
+    "sku": "SF002",
+    "name": "Fully Upholstered 3-Seater Sofa",
+    "category": "Three Seater Sofa",
+    "material": "Plywood",
+    "dimensions": "220cm W x 90cm D x 80cm H",
+    "price": 37590,
+    "images": [
+      "https://images.unsplash.com/photo-1484101403633-562f891dc89a?q=80&w=800"
+    ],
+    "description": "Fully upholstered comfort lounge sofa with deep seating."
+  },
+  {
+    "id": "zsh-sf-003",
+    "sku": "SF003",
+    "name": "L-Shape Sectional Sofa",
+    "category": "Three Seater Sofa",
+    "material": "Teak",
+    "dimensions": "260cm W x 160cm D x 80cm H",
+    "price": 61500,
+    "images": [
+      "https://images.unsplash.com/photo-1555041469-a586c61ea9bc?q=80&w=800"
+    ],
+    "description": "Premium L-shape sectional sofa with corner chaise lounge."
+  },
+  {
+    "id": "zsh-sf-004",
+    "sku": "SF004",
+    "name": "Metal & Upholstery Sofa",
+    "category": "Three Seater Sofa",
+    "material": "Plywood",
+    "dimensions": "200cm W x 85cm D x 80cm H",
+    "price": 42500,
+    "images": [
+      "https://images.unsplash.com/photo-1524758631624-e2822e304c36?q=80&w=800"
+    ],
+    "description": "Modern industrial style sofa with powder-coated metal frame and fabric upholstery."
+  },
+  {
+    "id": "zsh-sf-005",
+    "sku": "SF005",
+    "name": "Teak Luxury 3-Seater Sofa",
+    "category": "Three Seater Sofa",
+    "material": "Teak",
+    "dimensions": "220cm W x 90cm D x 80cm H",
+    "price": 106000,
+    "images": [
+      "https://images.unsplash.com/photo-1484101403633-562f891dc89a?q=80&w=800"
+    ],
+    "description": "Ultra luxury solid teak wood three-seater sofa with ornate craft work."
+  },
+  {
+    "id": "zsh-sf-006",
+    "sku": "SF006",
+    "name": "Teak Minimalist 3-Seater Sofa",
+    "category": "Three Seater Sofa",
+    "material": "Teak",
+    "dimensions": "210cm W x 90cm D x 80cm H",
+    "price": 38000,
+    "images": [
+      "https://images.unsplash.com/photo-1555041469-a586c61ea9bc?q=80&w=800"
+    ],
+    "description": "Teak wood sofa with sleek minimal frame and light cream upholstery."
+  },
+  {
+    "id": "zsh-sf-007",
+    "sku": "SF007",
+    "name": "Teak Classic 3-Seater Sofa",
+    "category": "Three Seater Sofa",
+    "material": "Teak",
+    "dimensions": "210cm W x 90cm D x 80cm H",
+    "price": 44200,
+    "images": [
+      "https://images.unsplash.com/photo-1524758631624-e2822e304c36?q=80&w=800"
+    ],
+    "description": "Timeless teak wood sofa, natural lacquer finish."
+  },
+  {
+    "id": "zsh-sf-008",
+    "sku": "SF008",
+    "name": "Teak Panel 3-Seater Sofa",
+    "category": "Three Seater Sofa",
+    "material": "Teak",
+    "dimensions": "220cm W x 90cm D x 80cm H",
+    "price": 46200,
+    "images": [
+      "https://images.unsplash.com/photo-1484101403633-562f891dc89a?q=80&w=800"
+    ],
+    "description": "Teak sofa with side panel structures and thick cushioning."
+  },
+  {
+    "id": "zsh-sf-009",
+    "sku": "SF009",
+    "name": "Teak Daybed Sofa",
+    "category": "Single Seater Sofa",
+    "material": "Teak",
+    "dimensions": "180cm W x 85cm D x 75cm H",
+    "price": 41080,
+    "images": [
+      "https://images.unsplash.com/photo-1555041469-a586c61ea9bc?q=80&w=800"
+    ],
+    "description": "Teak wood sofa daybed with storage."
+  },
+  {
+    "id": "zsh-sf-010",
+    "sku": "SF010",
+    "name": "Teak Standard 3-Seater Sofa",
+    "category": "Three Seater Sofa",
+    "material": "Teak",
+    "dimensions": "210cm W x 90cm D x 80cm H",
+    "price": 34250,
+    "images": [
+      "https://images.unsplash.com/photo-1524758631624-e2822e304c36?q=80&w=800"
+    ],
+    "description": "Sturdy teak wood frame sofa, natural finish."
+  },
+  {
+    "id": "zsh-sf-011",
+    "sku": "SF011",
+    "name": "Teak Lounger Sofa",
+    "category": "Single Seater Sofa",
+    "material": "Teak",
+    "dimensions": "160cm W x 80cm D x 75cm H",
+    "price": 30000,
+    "images": [
+      "https://images.unsplash.com/photo-1484101403633-562f891dc89a?q=80&w=800"
+    ],
+    "description": "Teak Lounger daybed sofa with cane backing."
+  },
+  {
+    "id": "zsh-sf-012",
+    "sku": "SF012",
+    "name": "Mahogany 3-Piece Sofa Set",
+    "category": "Three Seater Sofa",
+    "material": "Mahogany",
+    "dimensions": "240cm W x 90cm D x 80cm H",
+    "price": 95310,
+    "images": [
+      "https://images.unsplash.com/photo-1555041469-a586c61ea9bc?q=80&w=800"
+    ],
+    "description": "Mahogany wood luxury sofa suite."
+  },
+  {
+    "id": "zsh-sf-013",
+    "sku": "SF013",
+    "name": "Ashwood Sectional Sofa",
+    "category": "Three Seater Sofa",
+    "material": "Ash Wood",
+    "dimensions": "280cm W x 160cm D x 80cm H",
+    "price": 135000,
+    "images": [
+      "https://images.unsplash.com/photo-1524758631624-e2822e304c36?q=80&w=800"
+    ],
+    "description": "Luxury ash wood sectional sofa in teal blue fabric upholstery."
+  },
+  {
+    "id": "zsh-sf-014",
+    "sku": "SF014",
+    "name": "Teak Contemporary 3S Sofa",
+    "category": "Three Seater Sofa",
+    "material": "Teak",
+    "dimensions": "220cm W x 90cm D x 80cm H",
+    "price": 69600,
+    "images": [
+      "https://images.unsplash.com/photo-1484101403633-562f891dc89a?q=80&w=800"
+    ],
+    "description": "Premium contemporary design teak wood sofa."
+  },
+  {
+    "id": "zsh-sf-015",
+    "sku": "SF015",
+    "name": "Teak Low Back Sofa",
+    "category": "Two Seater Sofa",
+    "material": "Teak",
+    "dimensions": "160cm W x 90cm D x 75cm H",
+    "price": 20800,
+    "images": [
+      "https://images.unsplash.com/photo-1555041469-a586c61ea9bc?q=80&w=800"
+    ],
+    "description": "Low back solid teak frame sofa."
+  },
+  {
+    "id": "zsh-sf-016",
+    "sku": "SF016",
+    "name": "Teak Budget 2-Seater Sofa",
+    "category": "Two Seater Sofa",
+    "material": "Teak",
+    "dimensions": "150cm W x 85cm D x 80cm H",
+    "price": 17800,
+    "images": [
+      "https://images.unsplash.com/photo-1524758631624-e2822e304c36?q=80&w=800"
+    ],
+    "description": "Simple teak wood frame sofa budget edition."
+  },
+  {
+    "id": "zsh-sf-017",
+    "sku": "SF017",
+    "name": "Teak Compact 3S Sofa",
+    "category": "Three Seater Sofa",
+    "material": "Teak",
+    "dimensions": "200cm W x 90cm D x 80cm H",
+    "price": 38000,
+    "images": [
+      "https://images.unsplash.com/photo-1484101403633-562f891dc89a?q=80&w=800"
+    ],
+    "description": "Compact solid teak wood three-seater sofa."
+  },
+  {
+    "id": "zsh-sf-018",
+    "sku": "SF018",
+    "name": "Teak Low Platform Lounger",
+    "category": "Single Seater Sofa",
+    "material": "Teak",
+    "dimensions": "90cm W x 90cm D x 75cm H",
+    "price": 20750,
+    "images": [
+      "https://images.unsplash.com/photo-1555041469-a586c61ea9bc?q=80&w=800"
+    ],
+    "description": "Teak wood single lounger."
+  },
+  {
+    "id": "zsh-sf-019",
+    "sku": "SF019",
+    "name": "Teak Casual 3-Seater Sofa",
+    "category": "Three Seater Sofa",
+    "material": "Teak",
+    "dimensions": "210cm W x 90cm D x 80cm H",
+    "price": 33100,
+    "images": [
+      "https://images.unsplash.com/photo-1524758631624-e2822e304c36?q=80&w=800"
+    ],
+    "description": "Solid teak casual family sofa."
+  },
+  {
+    "id": "zsh-sf-020",
+    "sku": "SF020",
+    "name": "Teak Industrial Piping Sofa",
+    "category": "Three Seater Sofa",
+    "material": "Teak",
+    "dimensions": "220cm W x 90cm D x 80cm H",
+    "price": 51800,
+    "images": [
+      "https://images.unsplash.com/photo-1484101403633-562f891dc89a?q=80&w=800"
+    ],
+    "description": "Teak wood structure with metal piping elements and Dacron fabric coverings."
+  },
+  {
+    "id": "zsh-sf-021",
+    "sku": "SF021",
+    "name": "Teak Industrial Sectional Sofa",
+    "category": "Three Seater Sofa",
+    "material": "Teak",
+    "dimensions": "240cm W x 90cm D x 80cm H",
+    "price": 68080,
+    "images": [
+      "https://images.unsplash.com/photo-1555041469-a586c61ea9bc?q=80&w=800"
+    ],
+    "description": "Sectional teak sofa with metal piping framing structure."
+  },
+  {
+    "id": "zsh-sf-022",
+    "sku": "SF022",
+    "name": "Teak Contemporary 3S Sofa II",
+    "category": "Three Seater Sofa",
+    "material": "Teak",
+    "dimensions": "220cm W x 90cm D x 80cm H",
+    "price": 57000,
+    "images": [
+      "https://images.unsplash.com/photo-1524758631624-e2822e304c36?q=80&w=800"
+    ],
+    "description": "Solid teak wood modern contemporary sofa."
+  },
+  {
+    "id": "zsh-sf-023",
+    "sku": "SF023",
+    "name": "Mahogany Chesterfield Sofa Chair",
+    "category": "Single Seater Sofa",
+    "material": "Mahogany",
+    "dimensions": "95cm W x 90cm D x 80cm H",
+    "price": 35200,
+    "images": [
+      "https://images.unsplash.com/photo-1484101403633-562f891dc89a?q=80&w=800"
+    ],
+    "description": "Single-seater mahogany sofa upholstered in brown leather."
+  },
+  {
+    "id": "zsh-sf-024",
+    "sku": "SF024",
+    "name": "Mahogany Luxury 3-Seater Sofa",
+    "category": "Three Seater Sofa",
+    "material": "Mahogany",
+    "dimensions": "230cm W x 90cm D x 80cm H",
+    "price": 85000,
+    "images": [
+      "https://images.unsplash.com/photo-1555041469-a586c61ea9bc?q=80&w=800"
+    ],
+    "description": "Ornate mahogany wood frame upholstered in velvet."
+  },
+  {
+    "id": "zsh-sf-025",
+    "sku": "SF025",
+    "name": "Teak Cushioned Sofa",
+    "category": "Three Seater Sofa",
+    "material": "Teak",
+    "dimensions": "220cm W x 90cm D x 80cm H",
+    "price": 69600,
+    "images": [
+      "https://images.unsplash.com/photo-1524758631624-e2822e304c36?q=80&w=800"
+    ],
+    "description": "Solid teak wood framing with thick cushions."
+  },
+  {
+    "id": "zsh-sf-026",
+    "sku": "SF026",
+    "name": "Wooden Reaper Sofa",
+    "category": "Three Seater Sofa",
+    "material": "Ash Wood",
+    "dimensions": "220cm W x 90cm D x 80cm H",
+    "price": 37950,
+    "images": [
+      "https://images.unsplash.com/photo-1484101403633-562f891dc89a?q=80&w=800"
+    ],
+    "description": "Ash wood reaper frame sofa."
+  },
+  {
+    "id": "zsh-sf-027",
+    "sku": "SF027",
+    "name": "Ashwood Corner Sofa",
+    "category": "Three Seater Sofa",
+    "material": "Ash Wood",
+    "dimensions": "240cm W x 160cm D x 80cm H",
+    "price": 77420,
+    "images": [
+      "https://images.unsplash.com/photo-1555041469-a586c61ea9bc?q=80&w=800"
+    ],
+    "description": "Ash wood L-shape sectional sofa."
+  },
+  {
+    "id": "zsh-sf-028",
+    "sku": "SF028",
+    "name": "Plywood Frame Fabric Sofa",
+    "category": "Three Seater Sofa",
+    "material": "Plywood",
+    "dimensions": "220cm W x 90cm D x 80cm H",
+    "price": 65000,
+    "images": [
+      "https://images.unsplash.com/photo-1524758631624-e2822e304c36?q=80&w=800"
+    ],
+    "description": "Plywood frame sofa wrapped in premium upholstery fabric."
+  },
+  {
+    "id": "zsh-sf-029",
+    "sku": "SF029",
+    "name": "Mahogany Luxury Sofa",
+    "category": "Three Seater Sofa",
+    "material": "Mahogany",
+    "dimensions": "230cm W x 90cm D x 80cm H",
+    "price": 115200,
+    "images": [
+      "https://images.unsplash.com/photo-1484101403633-562f891dc89a?q=80&w=800"
+    ],
+    "description": "High end mahogany wood framing sofa."
+  },
+  {
+    "id": "zsh-sf-030",
+    "sku": "SF030",
+    "name": "Teak Large Sectional Sofa",
+    "category": "Three Seater Sofa",
+    "material": "Teak",
+    "dimensions": "280cm W x 180cm D x 80cm H",
+    "price": 82000,
+    "images": [
+      "https://images.unsplash.com/photo-1555041469-a586c61ea9bc?q=80&w=800"
+    ],
+    "description": "Teak wood modular sectional L-shape sofa."
+  }
+];
+
+window.getGeneralWhatsAppLink = function(type) {
+  const phone = "919567193992";
+  let msg = "";
+  if (type === "custom") {
+    msg = "Hello ZOOSH,\n\nI am interested in designing custom furniture for my home. Can you guide me through the custom design and quotation process?";
+  } else {
+    msg = "Hello ZOOSH,\n\nI would like to make an enquiry regarding your catalog designs.";
+  }
+  return "https://wa.me/" + phone + "?text=" + encodeURIComponent(msg);
+};
+
+window.getWhatsAppLink = function(product, options = {}) {
+  const phone = "919567193992";
+  let msg = "Hello ZOOSH,\n\nI am interested in:\n• Product: " + product.name + " (SKU: " + product.sku + ")";
+  if (options.wood) msg += "\n• Wood: " + options.wood;
+  if (options.fabric) msg += "\n• Fabric: " + options.fabric;
+  if (options.dimensions) msg += "\n• Custom Dimensions: " + options.dimensions;
+  msg += "\n\nCould you please share pricing and lead time?";
+  return "https://wa.me/" + phone + "?text=" + encodeURIComponent(msg);
+};
+
+</script>
+
+<!-- ========================================== -->
+<!-- 2. ZOOSH STYLING & ANIMATIONS -->
+<!-- ========================================== -->
+<style>
+@import url('https://fonts.googleapis.com/css2?family=EB+Garamond:ital,wght@0,400..800;1,400..800&family=Plus+Jakarta+Sans:ital,wght@0,200..800;1,200..800&display=swap');
+
+/* Global Design Tokens Scoped under ZOOSH Namespace */
+.zoosh-wrapper,
+[class^="zoosh-"] {
+  --zoosh-bg: #ffffff;
+  --zoosh-fg: #111111;
+  --zoosh-accent: #f5f5f5;
+  --zoosh-accent-dark: #e5e5e5;
+  --zoosh-muted: #737373;
+  
+  --zoosh-font-serif: "EB Garamond", Georgia, serif;
+  --zoosh-font-sans: "Plus Jakarta Sans", system-ui, sans-serif;
+  
+  font-family: var(--zoosh-font-sans);
+  color: var(--zoosh-fg);
+  -webkit-font-smoothing: antialiased;
+  box-sizing: border-box;
+}
+
+.zoosh-wrapper h1,
+.zoosh-wrapper h2,
+.zoosh-wrapper h3,
+.zoosh-wrapper h4,
+.zoosh-wrapper h5,
+.zoosh-wrapper h6,
+.zoosh-font-serif {
+  font-family: var(--zoosh-font-serif) !important;
+  letter-spacing: -0.01em;
+}
+
+.zoosh-font-sans {
+  font-family: var(--zoosh-font-sans) !important;
+}
+
+/* Animations */
+@keyframes zoosh-fade-in {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+@keyframes zoosh-fade-in-up {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes zoosh-slide-down {
+  from { transform: translateY(-100%); }
+  to { transform: translateY(0); }
+}
+
+.zoosh-animate-fade-in {
+  animation: zoosh-fade-in 0.8s ease-out forwards;
+}
+
+.zoosh-animate-fade-in-up {
+  animation: zoosh-fade-in-up 0.8s ease-out forwards;
+}
+
+.zoosh-animate-slide-down {
+  animation: zoosh-slide-down 0.4s ease-out forwards;
+}
+
+/* Custom Scrollbar styling for Elementor embeds */
+.zoosh-wrapper ::-webkit-scrollbar {
+  width: 6px;
+  height: 6px;
+}
+.zoosh-wrapper ::-webkit-scrollbar-track {
+  background: var(--zoosh-bg);
+}
+.zoosh-wrapper ::-webkit-scrollbar-thumb {
+  background: var(--zoosh-accent-dark);
+  border-radius: 3px;
+}
+.zoosh-wrapper ::-webkit-scrollbar-thumb:hover {
+  background: var(--zoosh-muted);
+}
+
+/* Scoped Styling for the Homepage */
+
+.zoosh-hero-section {
+  position: relative;
+  min-height: calc(100svh - 62px);
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+  background-color: #171717;
+  overflow: hidden;
+  box-sizing: border-box;
+}
+
+@media (min-width: 768px) {
+  .zoosh-hero-section {
+    min-height: calc(100vh - 108px);
+  }
+}
+
+/* Slider Slides */
+.zoosh-slides-container {
+  position: absolute;
+  inset: 0;
+  z-index: 1;
+}
+
+.zoosh-slide {
+  position: absolute;
+  inset: 0;
+  background-size: cover;
+  background-position: center;
+  opacity: 0;
+  transition: opacity 1s ease-in-out;
+  pointer-events: none;
+}
+
+.zoosh-slide.active {
+  opacity: 0.65;
+  pointer-events: auto;
+}
+
+.zoosh-hero-overlay {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(to top, rgba(0,0,0,0.55) 0%, rgba(0,0,0,0.15) 50%, rgba(0,0,0,0.3) 100%);
+  z-index: 2;
+  pointer-events: none;
+}
+
+/* Hero Content Box */
+.zoosh-hero-content-wrapper {
+  position: relative;
+  z-index: 10;
+  max-width: 1280px;
+  margin: 0 auto;
+  padding: 0 5%;
+  width: 100%;
+}
+
+.zoosh-hero-content-box {
+  max-width: 620px;
+  text-align: left;
+}
+
+.zoosh-hero-badge {
+  font-size: 10px;
+  font-family: var(--zoosh-font-sans), system-ui, sans-serif;
+  text-transform: uppercase;
+  letter-spacing: 0.4em;
+  color: #d4d4d4;
+  display: block;
+  margin-bottom: 12px;
+  text-shadow: 0 1px 2px rgba(0,0,0,0.3);
+}
+
+.zoosh-hero-heading {
+  font-family: var(--zoosh-font-serif, "EB Garamond"), Georgia, serif;
+  font-size: clamp(28px, 4.5vw, 64px);
+  font-weight: 300;
+  line-height: 1.12;
+  color: #ffffff;
+  margin: 0 0 16px 0;
+  text-shadow: 0 1.5px 3px rgba(0,0,0,0.35);
+}
+
+.zoosh-hero-paragraph {
+  font-size: clamp(12px, 1.5vw, 16px);
+  font-family: var(--zoosh-font-sans), system-ui, sans-serif;
+  font-weight: 300;
+  line-height: 1.6;
+  color: #e5e5e5;
+  margin: 0 0 32px 0;
+  text-shadow: 0 1px 2px rgba(0,0,0,0.3);
+}
+
+.zoosh-hero-buttons-wrapper {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  width: 100%;
+}
+
+@media (min-width: 640px) {
+  .zoosh-hero-buttons-wrapper {
+    flex-direction: row;
+    width: auto;
+  }
+}
+
+/* Button styles */
+.zoosh-btn {
+  height: 48px;
+  padding: 0 32px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 11px;
+  font-family: var(--zoosh-font-sans), system-ui, sans-serif;
+  text-transform: uppercase;
+  letter-spacing: 0.16em;
+  text-decoration: none;
+  font-weight: 300;
+  transition: all 0.3s ease;
+  min-width: 170px;
+  box-sizing: border-box;
+}
+
+.zoosh-btn-white {
+  background-color: #ffffff;
+  color: #000000;
+  border: 1px solid #ffffff;
+}
+
+.zoosh-btn-white:hover {
+  background-color: #f5f5f5;
+  color: #000000;
+}
+
+.zoosh-btn-outline {
+  background-color: transparent;
+  color: #ffffff;
+  border: 1px solid #ffffff;
+}
+
+.zoosh-btn-outline:hover {
+  background-color: #ffffff;
+  color: #000000;
+}
+
+.zoosh-btn-dark {
+  background-color: #000000;
+  color: #ffffff;
+  border: 1px solid #000000;
+}
+
+.zoosh-btn-dark:hover {
+  background-color: #262626;
+  border-color: #262626;
+}
+
+/* Slider Controls */
+.zoosh-slider-arrow {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  z-index: 10;
+  background-color: rgba(0, 0, 0, 0.1);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  color: rgba(255, 255, 255, 0.4);
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  cursor: pointer;
+  display: none;
+  align-items: center;
+  justify-content: center;
+  backdrop-filter: blur(4px);
+  transition: all 0.3s ease;
+}
+
+@media (min-width: 768px) {
+  .zoosh-slider-arrow {
+    display: flex;
+  }
+}
+
+.zoosh-slider-arrow:hover {
+  color: #ffffff;
+  border-color: rgba(255, 255, 255, 0.3);
+  background-color: rgba(0, 0, 0, 0.3);
+}
+
+.zoosh-arrow-left {
+  left: 24px;
+}
+
+.zoosh-arrow-right {
+  right: 24px;
+}
+
+.zoosh-slider-dots {
+  position: absolute;
+  bottom: 48px;
+  left: 50%;
+  transform: translateX(-50%);
+  z-index: 10;
+  display: flex;
+  gap: 12px;
+}
+
+.zoosh-slider-dot {
+  background: none;
+  border: none;
+  padding: 0;
+  cursor: pointer;
+  height: 6px;
+  border-radius: 999px;
+  transition: all 0.5s ease;
+}
+
+.zoosh-slider-dot.active {
+  width: 32px;
+  background-color: #ffffff;
+}
+
+.zoosh-slider-dot:not(.active) {
+  width: 6px;
+  background-color: rgba(255, 255, 255, 0.3);
+}
+
+.zoosh-slider-dot:not(.active):hover {
+  background-color: rgba(255, 255, 255, 0.6);
+}
+
+/* Scroll indicator */
+.zoosh-scroll-helper {
+  position: absolute;
+  bottom: 16px;
+  left: 50%;
+  transform: translateX(-50%);
+  z-index: 10;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  color: rgba(255, 255, 255, 0.3);
+  animation: zoosh-bounce 2s infinite;
+}
+
+@keyframes zoosh-bounce {
+  0%, 20%, 50%, 80%, 100% { transform: translate(-50%, 0); }
+  40% { transform: translate(-50%, -8px); }
+  60% { transform: translate(-50%, -4px); }
+}
+
+.zoosh-scroll-text {
+  font-size: 7px;
+  text-transform: uppercase;
+  letter-spacing: 0.3em;
+  font-weight: 300;
+}
+
+/* Generic Section Styles */
+.zoosh-section {
+  padding: 64px 0;
+  background-color: #ffffff;
+}
+
+@media (min-width: 768px) {
+  .zoosh-section {
+    padding: 80px 0;
+  }
+}
+
+.zoosh-section-container {
+  max-width: 1280px;
+  margin: 0 auto;
+  padding: 0 24px;
+}
+
+.zoosh-section-header {
+  text-align: center;
+  max-width: 640px;
+  margin: 0 auto 48px auto;
+}
+
+.zoosh-section-badge {
+  font-size: 10px;
+  font-weight: 500;
+  text-transform: uppercase;
+  letter-spacing: 0.3em;
+  color: #a3a3a3;
+  display: block;
+  margin-bottom: 12px;
+}
+
+.zoosh-section-title {
+  font-family: var(--zoosh-font-serif, "EB Garamond"), Georgia, serif;
+  font-size: 28px;
+  font-weight: 300;
+  letter-spacing: -0.01em;
+  color: #171717;
+  margin: 0;
+}
+
+@media (min-width: 768px) {
+  .zoosh-section-title {
+    font-size: 36px;
+  }
+}
+
+.zoosh-section-desc {
+  color: #737373;
+  font-size: 13px;
+  font-weight: 300;
+  margin-top: 12px;
+  line-height: 1.6;
+}
+
+.zoosh-section-footer {
+  text-align: center;
+  margin-top: 48px;
+}
+
+/* SECTION 02 — SPACES CARDS */
+.zoosh-spaces-grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 24px;
+}
+
+@media (min-width: 640px) {
+  .zoosh-spaces-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media (min-width: 1024px) {
+  .zoosh-spaces-grid {
+    grid-template-columns: repeat(4, 1fr);
+  }
+}
+
+.zoosh-space-card {
+  position: relative;
+  aspect-ratio: 4 / 5;
+  background-color: #f5f5f5;
+  overflow: hidden;
+  display: flex;
+  align-items: flex-end;
+  text-decoration: none;
+  box-shadow: 0 1px 3px rgba(0,0,0,0.05);
+}
+
+.zoosh-space-card-img {
+  position: absolute;
+  inset: 0;
+  background-size: cover;
+  background-position: center;
+  transition: transform 0.8s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+}
+
+.zoosh-space-card:hover .zoosh-space-card-img {
+  transform: scale(1.03);
+}
+
+.zoosh-space-card-overlay {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(to top, rgba(0,0,0,0.7) 0%, rgba(0,0,0,0.2) 60%, rgba(0,0,0,0.1) 100%);
+  z-index: 1;
+}
+
+.zoosh-space-card-content {
+  position: relative;
+  z-index: 2;
+  padding: 24px;
+  color: #ffffff;
+}
+
+.zoosh-space-title {
+  font-family: var(--zoosh-font-serif, "EB Garamond"), Georgia, serif;
+  font-size: 20px;
+  font-weight: 300;
+  margin: 0 0 8px 0;
+}
+
+.zoosh-space-link {
+  font-size: 10px;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  border-bottom: 1px solid rgba(255,255,255,0.4);
+  padding-bottom: 2px;
+  transition: border-color 0.2s ease;
+}
+
+.zoosh-space-card:hover .zoosh-space-link {
+  border-color: #ffffff;
+}
+
+/* SECTION 03 — DYNAMIC PRODUCT TABS & GRID */
+.zoosh-products-section {
+  background-color: #f5f5f5;
+}
+
+.zoosh-tabs-bar {
+  display: flex;
+  justify-content: center;
+  overflow-x: auto;
+  padding: 8px 0;
+  margin-bottom: 48px;
+  border-bottom: 1px solid #e5e5e5;
+  gap: 12px;
+}
+
+/* Hide scrollbars */
+.zoosh-tabs-bar::-webkit-scrollbar {
+  display: none;
+}
+.zoosh-tabs-bar {
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+}
+
+.zoosh-tab-btn {
+  font-size: 10px;
+  font-family: var(--zoosh-font-sans), system-ui, sans-serif;
+  text-transform: uppercase;
+  letter-spacing: 0.16em;
+  padding: 10px 20px;
+  border: 1px solid #e5e5e5;
+  background-color: transparent;
+  color: #737373;
+  cursor: pointer;
+  white-space: nowrap;
+  font-weight: 300;
+  transition: all 0.3s ease;
+}
+
+.zoosh-tab-btn.active {
+  background-color: #000000;
+  color: #ffffff;
+  border-color: #000000;
+}
+
+.zoosh-tab-btn:not(.active):hover {
+  color: #000000;
+  border-color: #737373;
+}
+
+.zoosh-products-grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 32px;
+}
+
+@media (min-width: 640px) {
+  .zoosh-products-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media (min-width: 1024px) {
+  .zoosh-products-grid {
+    grid-template-columns: repeat(4, 1fr);
+  }
+}
+
+/* Product Card */
+.zoosh-product-card {
+  background-color: #ffffff;
+  border: 1px solid #f5f5f5;
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  cursor: pointer;
+  box-shadow: 0 1px 2px rgba(0,0,0,0.02);
+  transition: box-shadow 0.3s ease;
+}
+
+.zoosh-product-card:hover {
+  box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.05);
+}
+
+.zoosh-pcard-img-wrapper {
+  position: relative;
+  aspect-ratio: 4 / 5;
+  overflow: hidden;
+  background-color: #f5f5f5;
+}
+
+.zoosh-pcard-img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform 0.8s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+}
+
+.zoosh-product-card:hover .zoosh-pcard-img {
+  transform: scale(1.02);
+}
+
+.zoosh-pcard-info {
+  padding: 16px;
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.zoosh-pcard-meta {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  font-size: 9px;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  color: #a3a3a3;
+}
+
+.zoosh-pcard-title {
+  font-family: var(--zoosh-font-serif, "EB Garamond"), Georgia, serif;
+  font-size: 15px;
+  color: #171717;
+  margin: 4px 0;
+  font-weight: 300;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.zoosh-pcard-price {
+  font-family: var(--zoosh-font-serif, "EB Garamond"), Georgia, serif;
+  font-size: 13px;
+  color: #404040;
+  font-style: italic;
+  margin-top: 4px;
+}
+
+/* SECTION 04 — FEATURES */
+.zoosh-features-grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 40px;
+}
+
+@media (min-width: 640px) {
+  .zoosh-features-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media (min-width: 1024px) {
+  .zoosh-features-grid {
+    grid-template-columns: repeat(4, 1fr);
+  }
+}
+
+.zoosh-feature-card {
+  padding: 24px;
+  background-color: #ffffff;
+  border: 1px solid #f5f5f5;
+  box-shadow: 0 1px 3px rgba(0,0,0,0.02);
+}
+
+.zoosh-feature-icon {
+  width: 44px;
+  height: 44px;
+  background-color: #f5f5f5;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #000000;
+  margin-bottom: 24px;
+}
+
+.zoosh-feature-title {
+  font-family: var(--zoosh-font-serif, "EB Garamond"), Georgia, serif;
+  font-size: 18px;
+  font-weight: 300;
+  color: #171717;
+  margin: 0 0 12px 0;
+}
+
+.zoosh-feature-desc {
+  color: #737373;
+  font-size: 12px;
+  font-weight: 300;
+  line-height: 1.6;
+  margin: 0;
+}
+
+/* SECTION 05 — COMPLETED PROJECTS */
+.zoosh-projects-section .zoosh-projects-grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 32px;
+}
+
+@media (min-width: 768px) {
+  .zoosh-projects-section .zoosh-projects-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+.zoosh-projects-section .zoosh-project-card {
+  background-color: #ffffff;
+  box-shadow: none;
+  border: none;
+}
+
+.zoosh-projects-section .zoosh-pcard-img-wrapper {
+  aspect-ratio: 16 / 10;
+  box-shadow: 0 1px 3px rgba(0,0,0,0.05);
+}
+
+.zoosh-projects-section .zoosh-pcard-info {
+  padding: 20px 0;
+}
+
+.zoosh-projects-section .zoosh-pcard-title {
+  font-size: 20px;
+}
+
+.zoosh-projects-section .zoosh-pcard-desc {
+  font-size: 12px;
+  color: #737373;
+  font-weight: 300;
+  line-height: 1.6;
+  margin: 8px 0 0 0;
+}
+
+/* SECTION 06 — INSTAGRAM FEED */
+.zoosh-insta-section {
+  background-color: #f5f5f5;
+  border-top: 1px solid #e5e5e5;
+}
+
+.zoosh-insta-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 16px;
+}
+
+@media (min-width: 768px) {
+  .zoosh-insta-grid {
+    grid-template-columns: repeat(4, 1fr);
+  }
+}
+
+.zoosh-insta-card {
+  position: relative;
+  aspect-ratio: 1 / 1;
+  overflow: hidden;
+  background-color: #e5e5e5;
+  box-shadow: 0 1px 3px rgba(0,0,0,0.02);
+}
+
+.zoosh-insta-card img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform 0.6s ease;
+}
+
+.zoosh-insta-card:hover img {
+  transform: scale(1.04);
+}
+
+/* QUICK VIEW MODAL WINDOW */
+.zoosh-modal {
+  position: fixed;
+  inset: 0;
+  z-index: 1000;
+  display: none;
+  align-items: center;
+  justify-content: center;
+  padding: 16px;
+}
+
+.zoosh-modal.active {
+  display: flex;
+}
+
+.zoosh-modal-backdrop {
+  position: absolute;
+  inset: 0;
+  background-color: rgba(0, 0, 0, 0.6);
+  backdrop-filter: blur(4px);
+}
+
+.zoosh-modal-content {
+  position: relative;
+  background-color: #ffffff;
+  width: 100%;
+  max-width: 960px;
+  max-height: 90vh;
+  overflow-y: auto;
+  z-index: 1010;
+  padding: 32px;
+  box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.25);
+  box-sizing: border-box;
+}
+
+.zoosh-modal-close {
+  position: absolute;
+  top: 16px;
+  right: 16px;
+  background: none;
+  border: none;
+  cursor: pointer;
+  color: #737373;
+  padding: 4px;
+}
+
+.zoosh-modal-close:hover {
+  color: #000000;
+}
+
+/* Modal Body details */
+.zoosh-modal-grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 32px;
+}
+
+@media (min-width: 768px) {
+  .zoosh-modal-grid {
+    grid-template-columns: 1.1fr 0.9fr;
+  }
+}
+
+.zoosh-modal-gallery {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.zoosh-modal-main-img-wrapper {
+  position: relative;
+  aspect-ratio: 4 / 5;
+  background-color: #f5f5f5;
+}
+
+.zoosh-modal-main-img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.zoosh-modal-thumbs {
+  display: flex;
+  gap: 8px;
+  overflow-x: auto;
+  padding-bottom: 4px;
+}
+
+.zoosh-modal-thumb-btn {
+  width: 64px;
+  aspect-ratio: 1 / 1;
+  border: 1px solid #e5e5e5;
+  background: none;
+  padding: 0;
+  cursor: pointer;
+  overflow: hidden;
+}
+
+.zoosh-modal-thumb-btn.active {
+  border-color: #000000;
+}
+
+.zoosh-modal-thumb-btn img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+/* Details column */
+.zoosh-modal-details {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.zoosh-modal-category {
+  font-size: 10px;
+  font-weight: 500;
+  text-transform: uppercase;
+  letter-spacing: 0.16em;
+  color: #a3a3a3;
+}
+
+.zoosh-modal-name {
+  font-family: var(--zoosh-font-serif, "EB Garamond"), Georgia, serif;
+  font-size: 24px;
+  font-weight: 300;
+  color: #171717;
+  margin: 0;
+}
+
+.zoosh-modal-sku {
+  font-size: 10px;
+  color: #a3a3a3;
+  margin-top: -8px;
+}
+
+.zoosh-modal-desc {
+  font-size: 13px;
+  font-weight: 300;
+  color: #525252;
+  line-height: 1.6;
+}
+
+.zoosh-modal-specs-list {
+  border-top: 1px solid #f5f5f5;
+  border-bottom: 1px solid #f5f5f5;
+  padding: 16px 0;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.zoosh-modal-spec-line {
+  display: flex;
+  justify-content: space-between;
+  font-size: 12px;
+}
+
+.zoosh-modal-spec-label {
+  color: #737373;
+  font-weight: 300;
+}
+
+.zoosh-modal-spec-val {
+  color: #171717;
+  font-weight: 500;
+}
+
+.zoosh-modal-cta-btn {
+  width: 100%;
+  background-color: #000000;
+  color: #ffffff;
+  border: 1px solid #000000;
+  height: 48px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  font-size: 11px;
+  font-family: var(--zoosh-font-sans), system-ui, sans-serif;
+  text-transform: uppercase;
+  letter-spacing: 0.16em;
+  font-weight: 300;
+  text-decoration: none;
+  transition: background-color 0.3s ease;
+}
+
+.zoosh-modal-cta-btn:hover {
+  background-color: #262626;
+}
+
+.zoosh-modal-view-details-link {
+  font-size: 10px;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  color: #737373;
+  text-decoration: none;
+  align-self: center;
+  border-bottom: 1px solid transparent;
+  transition: all 0.2s ease;
+}
+
+.zoosh-modal-view-details-link:hover {
+  color: #000000;
+  border-color: #000000;
+}
+
+</style>
+
+<!-- ========================================== -->
+<!-- 3. HOMEPAGE HTML LAYOUT -->
+<!-- ========================================== -->
+<div class="zoosh-wrapper">
+
+  <!-- SECTION 01 — FULLSCREEN HERO SLIDESHOW -->
+  <section class="zoosh-hero-section" id="zooshHeroSection">
+    
+    <!-- Slides Container -->
+    <div class="zoosh-slides-container">
+      
+      <!-- Slide 1 -->
+      <div class="zoosh-slide active" style="background-image: url('/images/catalog/page_15_img_00.webp');"></div>
+      <!-- Slide 2 -->
+      <div class="zoosh-slide" style="background-image: url('/images/catalog/page_21_img_00.webp');"></div>
+      <!-- Slide 3 -->
+      <div class="zoosh-slide" style="background-image: url('/images/catalog/page_22_img_00.webp');"></div>
+      <!-- Slide 4 -->
+      <div class="zoosh-slide" style="background-image: url('/images/IMG_0339.jpg');"></div>
+      <!-- Slide 5 -->
+      <div class="zoosh-slide" style="background-image: url('/images/IMG_1167.jpg');"></div>
+      
+      <!-- Dark overlay for readability -->
+      <div class="zoosh-hero-overlay"></div>
+    </div>
+
+    <!-- Hero Content -->
+    <div class="zoosh-hero-content-wrapper">
+      <div class="zoosh-hero-content-box">
+        <span class="zoosh-hero-badge zoosh-animate-fade-in">Bespoke Wood Craftsmanship</span>
+        <h1 class="zoosh-hero-heading zoosh-animate-fade-in-up">Every Home Deserves Furniture Built Specifically For It.</h1>
+        <p class="zoosh-hero-paragraph zoosh-animate-fade-in-up">
+          Premium custom furniture manufactured using solid Teak, Ash, and Mahogany wood, natural cane, and carefully selected materials for modern homes.
+        </p>
+        <div class="zoosh-hero-buttons-wrapper zoosh-animate-fade-in-up">
+          <a href="/contact/" class="zoosh-btn zoosh-btn-white">Start Your Project</a>
+          <a href="/collection/" class="zoosh-btn zoosh-btn-outline">Explore Collections</a>
+        </div>
+      </div>
+    </div>
+
+    <!-- Navigation Arrows -->
+    <button type="button" class="zoosh-slider-arrow zoosh-arrow-left" id="zooshHeroPrev" aria-label="Previous Slide">
+      <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+        <polyline points="15 18 9 12 15 6"></polyline>
+      </svg>
+    </button>
+    <button type="button" class="zoosh-slider-arrow zoosh-arrow-right" id="zooshHeroNext" aria-label="Next Slide">
+      <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+        <polyline points="9 18 15 12 9 6"></polyline>
+      </svg>
+    </button>
+
+    <!-- Slider Dot Indicators -->
+    <div class="zoosh-slider-dots" id="zooshHeroDots">
+      <!-- Generated dynamically in JS -->
+    </div>
+
+    <!-- Scroll Indicator -->
+    <div class="zoosh-scroll-helper">
+      <span class="zoosh-scroll-text">Scroll</span>
+    </div>
+
+  </section>
+
+  <!-- SECTION 02 — SHOP BY SPACES (CATEGORIES) -->
+  <section class="zoosh-section zoosh-spaces-section">
+    <div class="zoosh-section-container">
+      
+      <div class="zoosh-section-header">
+        <span class="zoosh-section-badge">Bespoke Spaces</span>
+        <h2 class="zoosh-section-title">Shop by Space Categories</h2>
+      </div>
+
+      <div class="zoosh-spaces-grid">
+        
+        <!-- Living -->
+        <a href="/living/" class="zoosh-space-card">
+          <div class="zoosh-space-card-img" style="background-image: url('/images/catalog/page_14_img_00.webp');"></div>
+          <div class="zoosh-space-card-overlay"></div>
+          <div class="zoosh-space-card-content">
+            <h3 class="zoosh-space-title">Living Space</h3>
+            <span class="zoosh-space-link">View Collection &rarr;</span>
+          </div>
+        </a>
+
+        <!-- Dining -->
+        <a href="/dining/" class="zoosh-space-card">
+          <div class="zoosh-space-card-img" style="background-image: url('/images/catalog/page_21_img_00.webp');"></div>
+          <div class="zoosh-space-card-overlay"></div>
+          <div class="zoosh-space-card-content">
+            <h3 class="zoosh-space-title">Dining Space</h3>
+            <span class="zoosh-space-link">View Collection &rarr;</span>
+          </div>
+        </a>
+
+        <!-- Bedroom -->
+        <a href="/bedroom/" class="zoosh-space-card">
+          <div class="zoosh-space-card-img" style="background-image: url('/images/catalog/page_22_img_00.webp');"></div>
+          <div class="zoosh-space-card-overlay"></div>
+          <div class="zoosh-space-card-content">
+            <h3 class="zoosh-space-title">Bedroom Retreat</h3>
+            <span class="zoosh-space-link">View Collection &rarr;</span>
+          </div>
+        </a>
+
+        <!-- Entryway -->
+        <a href="/entryway/" class="zoosh-space-card">
+          <div class="zoosh-space-card-img" style="background-image: url('/images/catalog/page_27_img_00.webp');"></div>
+          <div class="zoosh-space-card-overlay"></div>
+          <div class="zoosh-space-card-content">
+            <h3 class="zoosh-space-title">Entryway & Mirrors</h3>
+            <span class="zoosh-space-link">View Collection &rarr;</span>
+          </div>
+        </a>
+
+      </div>
+
+    </div>
+  </section>
+
+  <!-- SECTION 03 — DYNAMIC CREATIONS GRID (PRODUCTS) -->
+  <section class="zoosh-section zoosh-products-section">
+    <div class="zoosh-section-container">
+      
+      <div class="zoosh-section-header">
+        <span class="zoosh-section-badge">Signature Creations</span>
+        <h2 class="zoosh-section-title">Explore Catalog Designs</h2>
+        <p class="zoosh-section-desc">
+          Handmade solid wood loose furniture units manufactured inside our Pattambi factory workshop.
+        </p>
+      </div>
+
+      <!-- Tab filtering header bar -->
+      <div class="zoosh-tabs-bar" id="zooshHomeTabs">
+        <!-- Rendered dynamically via JS based on categories -->
+      </div>
+
+      <!-- Dynamic Product List Grid -->
+      <div class="zoosh-products-grid" id="zooshHomeProductGrid">
+        <!-- Filled dynamically via products catalog search script -->
+      </div>
+
+    </div>
+  </section>
+
+  <!-- SECTION 04 — FEATURES/BENEFITS GRID -->
+  <section class="zoosh-section zoosh-features-section">
+    <div class="zoosh-section-container">
+      
+      <div class="zoosh-section-header">
+        <span class="zoosh-section-badge">Operational Excellence</span>
+        <h2 class="zoosh-section-title">The ZOOSH Advantage</h2>
+      </div>
+
+      <div class="zoosh-features-grid">
+        
+        <div class="zoosh-feature-card">
+          <div class="zoosh-feature-icon">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M12 3v18M3 12h18M12 3a9 9 0 0 1 0 18M12 3a9 9 0 0 0 0 18"></path>
+            </svg>
+          </div>
+          <h3 class="zoosh-feature-title">Made-to-Order & Custom Sizes</h3>
+          <p class="zoosh-feature-desc">Every furniture unit is manufactured to your exact requirements and custom dimensions—we do not mass produce.</p>
+        </div>
+
+        <div class="zoosh-feature-card">
+          <div class="zoosh-feature-icon">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"></path>
+            </svg>
+          </div>
+          <h3 class="zoosh-feature-title">Solid Wood & Rattan Cane</h3>
+          <p class="zoosh-feature-desc">Expert construction utilizing premium solid Teak, Ash, and Mahogany wood, combined with hand-woven natural rattan cane.</p>
+        </div>
+
+        <div class="zoosh-feature-card">
+          <div class="zoosh-feature-icon">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round">
+              <rect x="3" y="3" width="7" height="9"></rect>
+              <rect x="14" y="3" width="7" height="5"></rect>
+              <rect x="14" y="12" width="7" height="9"></rect>
+              <rect x="3" y="16" width="7" height="5"></rect>
+            </svg>
+          </div>
+          <h3 class="zoosh-feature-title">Factory-Direct & Detail Focus</h3>
+          <p class="zoosh-feature-desc">Handmade directly in our Pattambi workshop. Expert joineries, meticulous finishing, and zero retail middleman markups.</p>
+        </div>
+
+        <div class="zoosh-feature-card">
+          <div class="zoosh-feature-icon">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round">
+              <polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"></polygon>
+            </svg>
+          </div>
+          <h3 class="zoosh-feature-title">Complete Home Solutions</h3>
+          <p class="zoosh-feature-desc">A dedicated partner for complete custom residential furniture projects, from living rooms to bespoke wardrobes.</p>
+        </div>
+
+      </div>
+
+    </div>
+  </section>
+
+  <!-- SECTION 05 — COMPLETED PROJECTS -->
+  <section class="zoosh-section zoosh-projects-section">
+    <div class="zoosh-section-container">
+      
+      <div class="zoosh-section-header">
+        <span class="zoosh-section-badge">Completed Projects</span>
+        <h2 class="zoosh-section-title">Residential Showcases</h2>
+      </div>
+
+      <div class="zoosh-projects-grid">
+        
+        <div class="zoosh-project-card">
+          <div class="zoosh-pcard-img-wrapper">
+            <img src="https://images.unsplash.com/photo-1618221195710-dd6b41faaea6?q=80&w=1200" alt="Completed Minimal Living Room" class="zoosh-pcard-img" />
+          </div>
+          <div class="zoosh-pcard-info">
+            <h3 class="zoosh-pcard-title">Minimalist Living Space Curation</h3>
+            <p class="zoosh-pcard-desc">An editorial residential design in Bangalore incorporating bespoke low-profile oak sofas and custom travertine consoles.</p>
+          </div>
+        </div>
+
+        <div class="zoosh-project-card">
+          <div class="zoosh-pcard-img-wrapper">
+            <img src="https://images.unsplash.com/photo-1616486338812-3dadae4b4ace?q=80&w=1200" alt="Completed Dining Area" class="zoosh-pcard-img" />
+          </div>
+          <div class="zoosh-pcard-info">
+            <h3 class="zoosh-pcard-title">Contemporary Solid Wood Dining</h3>
+            <p class="zoosh-pcard-desc">Complete bespoke dining table setting with cane-woven dining chairs crafted directly for a luxury villa in Kochi.</p>
+          </div>
+        </div>
+
+      </div>
+
+      <div class="zoosh-section-footer">
+        <a href="/gallery/" class="zoosh-btn zoosh-btn-dark">View Entire Portfolio</a>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- SECTION 06 — INSTAGRAM GRID -->
+  <section class="zoosh-section zoosh-insta-section">
+    <div class="zoosh-section-container">
+      
+      <div class="zoosh-section-header">
+        <span class="zoosh-section-badge">Instagram</span>
+        <h2 class="zoosh-section-title">Follow @zooshfurniture</h2>
+        <p class="zoosh-section-desc">Real-time snapshots from our workshop crafting logs.</p>
+      </div>
+
+      <div class="zoosh-insta-grid">
+        <div class="zoosh-insta-card"><img src="/images/catalog/page_12_img_02.webp" alt="Workshop Snapshot" /></div>
+        <div class="zoosh-insta-card"><img src="/images/catalog/page_13_img_00.webp" alt="Wood Crafting Log" /></div>
+        <div class="zoosh-insta-card"><img src="/images/catalog/page_27_img_00.webp" alt="Bespoke Console" /></div>
+        <div class="zoosh-insta-card"><img src="/images/catalog/page_30_img_00.webp" alt="Selected Materials" /></div>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- QUICK VIEW OVERLAY MODAL -->
+  <div class="zoosh-modal" id="zooshQuickViewModal">
+    <div class="zoosh-modal-backdrop" id="zooshModalBackdrop"></div>
+    <div class="zoosh-modal-content">
+      
+      <button type="button" class="zoosh-modal-close" id="zooshModalClose">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+          <line x1="18" y1="6" x2="6" y2="18"></line>
+          <line x1="6" y1="6" x2="18" y2="18"></line>
+        </svg>
+      </button>
+
+      <div class="zoosh-modal-body" id="zooshModalBody">
+        <!-- Rendered dynamically via JS based on selected product -->
+      </div>
+
+    </div>
+  </div>
+
+</div>
+
+
+<!-- ========================================== -->
+<!-- 4. HOMEPAGE ROTATIONS & MODALS SCRIPT -->
+<!-- ========================================== -->
+<script>
+document.addEventListener("DOMContentLoaded", function() {
+  
+  // =====================================================
+  // 1. HERO SLIDESHOW LOGIC
+  // =====================================================
+  const heroSection = document.getElementById("zooshHeroSection");
+  const slides = document.querySelectorAll(".zoosh-slide");
+  const prevBtn = document.getElementById("zooshHeroPrev");
+  const nextBtn = document.getElementById("zooshHeroNext");
+  const dotsContainer = document.getElementById("zooshHeroDots");
+  
+  let currentSlide = 0;
+  let slideInterval = null;
+  let isHovered = false;
+
+  // Build dots indicators
+  if (dotsContainer) {
+    slides.forEach((_, idx) => {
+      const dot = document.createElement("button");
+      dot.type = "button";
+      dot.className = "zoosh-slider-dot" + (idx === 0 ? " active" : "");
+      dot.setAttribute("aria-label", "Go to slide " + (idx + 1));
+      dot.addEventListener("click", function(e) {
+        e.stopPropagation();
+        goToSlide(idx);
+      });
+      dotsContainer.appendChild(dot);
+    });
+  }
+
+  const dots = document.querySelectorAll(".zoosh-slider-dot");
+
+  function goToSlide(n) {
+    slides[currentSlide].classList.remove("active");
+    if (dots.length > currentSlide) dots[currentSlide].classList.remove("active");
+    
+    currentSlide = (n + slides.length) % slides.length;
+    
+    slides[currentSlide].classList.add("active");
+    if (dots.length > currentSlide) dots[currentSlide].classList.add("active");
+  }
+
+  function nextSlide() {
+    goToSlide(currentSlide + 1);
+  }
+
+  function prevSlide() {
+    goToSlide(currentSlide - 1);
+  }
+
+  function startAutoplay() {
+    stopAutoplay();
+    slideInterval = setInterval(function() {
+      if (!isHovered) {
+        nextSlide();
+      }
+    }, 5000);
+  }
+
+  function stopAutoplay() {
+    if (slideInterval) clearInterval(slideInterval);
+  }
+
+  if (prevBtn) {
+    prevBtn.addEventListener("click", function(e) {
+      e.stopPropagation();
+      prevSlide();
+    });
+  }
+
+  if (nextBtn) {
+    nextBtn.addEventListener("click", function(e) {
+      e.stopPropagation();
+      nextSlide();
+    });
+  }
+
+  if (heroSection) {
+    heroSection.addEventListener("mouseenter", function() {
+      isHovered = true;
+    });
+    heroSection.addEventListener("mouseleave", function() {
+      isHovered = false;
+    });
+  }
+
+  startAutoplay();
+
+
+  // =====================================================
+  // 2. PRODUCT TAB FILTERING LOGIC
+  // =====================================================
+  const tabContainer = document.getElementById("zooshHomeTabs");
+  const productGrid = document.getElementById("zooshHomeProductGrid");
+  
+  // Fallback if products database isn't loaded globally
+  const catalog = window.ZOOSH_PRODUCTS || [];
+  
+  // Extract categories dynamically
+  const categories = ["All"];
+  catalog.forEach(p => {
+    if (p.category && !categories.includes(p.category)) {
+      categories.push(p.category);
+    }
+  });
+
+  // Render tab buttons
+  let activeTab = "All";
+  
+  if (tabContainer) {
+    categories.forEach(cat => {
+      const btn = document.createElement("button");
+      btn.type = "button";
+      btn.className = "zoosh-tab-btn" + (cat === "All" ? " active" : "");
+      btn.textContent = cat;
+      btn.addEventListener("click", function() {
+        document.querySelectorAll(".zoosh-tab-btn").forEach(b => b.classList.remove("active"));
+        this.classList.add("active");
+        activeTab = cat;
+        renderProducts();
+      });
+      tabContainer.appendChild(btn);
+    });
+  }
+
+  // Render product cards
+  function renderProducts() {
+    if (!productGrid) return;
+    productGrid.innerHTML = "";
+
+    const filtered = catalog.filter(p => {
+      return activeTab === "All" || p.category === activeTab;
+    }).slice(0, 8); // Capped at 8 featured items on homepage
+
+    filtered.forEach(p => {
+      const card = document.createElement("div");
+      card.className = "zoosh-product-card";
+      card.setAttribute("data-id", p.id);
+      
+      const primaryImage = p.images && p.images.length > 0 ? p.images[0] : "/images/placeholder.jpg";
+      const formattedPrice = p.price ? "₹" + p.price.toLocaleString("en-IN") : "Price on Request";
+
+      card.innerHTML = `
+        <div class="zoosh-pcard-img-wrapper">
+          <img src="${primaryImage}" alt="${p.name}" class="zoosh-pcard-img" loading="lazy" />
+        </div>
+        <div class="zoosh-pcard-info">
+          <div class="zoosh-pcard-meta">
+            <span>${p.category}</span>
+            <span>${p.material || "Solid Wood"}</span>
+          </div>
+          <h3 class="zoosh-pcard-title">${p.name}</h3>
+          <span class="zoosh-pcard-price">${formattedPrice}</span>
+        </div>
+      `;
+
+      card.addEventListener("click", function() {
+        openQuickView(p.id);
+      });
+
+      productGrid.appendChild(card);
+    });
+  }
+
+  renderProducts();
+
+
+  // =====================================================
+  // 3. QUICK VIEW OVERLAY MODAL LOGIC
+  // =====================================================
+  const modal = document.getElementById("zooshQuickViewModal");
+  const modalBody = document.getElementById("zooshModalBody");
+  const modalClose = document.getElementById("zooshModalClose");
+  const modalBackdrop = document.getElementById("zooshModalBackdrop");
+
+  function openQuickView(productId) {
+    const product = catalog.find(p => p.id === productId);
+    if (!product || !modal || !modalBody) return;
+
+    const formattedPrice = product.price ? "₹" + product.price.toLocaleString("en-IN") : "Price on Request";
+    const primaryImage = product.images && product.images.length > 0 ? product.images[0] : "/images/placeholder.jpg";
+    
+    // Generate thumbnails list
+    let thumbsHtml = "";
+    if (product.images && product.images.length > 1) {
+      product.images.forEach((img, idx) => {
+        thumbsHtml += `
+          <button type="button" class="zoosh-modal-thumb-btn${idx === 0 ? " active" : ""}" data-idx="${idx}">
+            <img src="${img}" alt="Thumbnail ${idx + 1}" />
+          </button>
+        `;
+      });
+    }
+
+    // Build specs list
+    const specs = product.specs || { material: product.material || "Solid Wood", dimensions: product.dimensions || "N/A" };
+    let specsHtml = "";
+    if (specs.material) {
+      specsHtml += `
+        <div class="zoosh-modal-spec-line">
+          <span class="zoosh-modal-spec-label">Material Composition</span>
+          <span class="zoosh-modal-spec-val">${specs.material}</span>
+        </div>
+      `;
+    }
+    if (specs.dimensions) {
+      specsHtml += `
+        <div class="zoosh-modal-spec-line">
+          <span class="zoosh-modal-spec-label">Dimensions</span>
+          <span class="zoosh-modal-spec-val">${specs.dimensions}</span>
+        </div>
+      `;
+    }
+    if (specs.woodType && specs.woodType !== "N/A") {
+      specsHtml += `
+        <div class="zoosh-modal-spec-line">
+          <span class="zoosh-modal-spec-label">Wood Selection</span>
+          <span class="zoosh-modal-spec-val">${specs.woodType}</span>
+        </div>
+      `;
+    }
+
+    // Create enquiry link
+    const waLink = window.getWhatsAppLink ? window.getWhatsAppLink(product) : "#";
+
+    modalBody.innerHTML = `
+      <div class="zoosh-modal-grid">
+        <!-- Left: Image Gallery -->
+        <div class="zoosh-modal-gallery">
+          <div class="zoosh-modal-main-img-wrapper">
+            <img src="${primaryImage}" alt="${product.name}" class="zoosh-modal-main-img" id="zooshModalMainImg" />
+          </div>
+          <div class="zoosh-modal-thumbs">
+            ${thumbsHtml}
+          </div>
+        </div>
+
+        <!-- Right: Detail Panel -->
+        <div class="zoosh-modal-details">
+          <span class="zoosh-modal-category">${product.category}</span>
+          <h3 class="zoosh-modal-name">${product.name}</h3>
+          <span class="zoosh-modal-sku">SKU: ${product.sku}</span>
+          
+          <p class="zoosh-modal-desc">${product.description}</p>
+          
+          <div class="zoosh-modal-specs-list">
+            ${specsHtml}
+            <div class="zoosh-modal-spec-line">
+              <span class="zoosh-modal-spec-label">Pricing</span>
+              <span class="zoosh-modal-spec-val font-serif italic">${formattedPrice}</span>
+            </div>
+          </div>
+
+          <a href="${waLink}" target="_blank" rel="noopener noreferrer" class="zoosh-modal-cta-btn">
+            <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+              <line x1="22" y1="2" x2="11" y2="13"></line>
+              <polygon points="22 2 15 22 11 13 2 9 22 2"></polygon>
+            </svg>
+            <span>Enquire on WhatsApp</span>
+          </a>
+
+          <a href="/products/${product.slug}/" class="zoosh-modal-view-details-link">View Full Details &rarr;</a>
+        </div>
+      </div>
+    `;
+
+    // Bind thumbnails triggers
+    const thumbBtns = document.querySelectorAll(".zoosh-modal-thumb-btn");
+    const mainImg = document.getElementById("zooshModalMainImg");
+    
+    thumbBtns.forEach(btn => {
+      btn.addEventListener("click", function() {
+        thumbBtns.forEach(b => b.classList.remove("active"));
+        this.classList.add("active");
+        const idx = parseInt(this.getAttribute("data-idx"));
+        if (mainImg && product.images && product.images[idx]) {
+          mainImg.src = product.images[idx];
+        }
+      });
+    });
+
+    modal.classList.add("active");
+  }
+
+  function closeModal() {
+    if (modal) modal.classList.remove("active");
+  }
+
+  if (modalClose) modalClose.addEventListener("click", closeModal);
+  if (modalBackdrop) modalBackdrop.addEventListener("click", closeModal);
+
+  // Close modal on ESC key
+  document.addEventListener("keydown", function(e) {
+    if (e.key === "Escape") closeModal();
+  });
+
+});
+
+</script>

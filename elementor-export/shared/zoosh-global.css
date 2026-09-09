@@ -1,0 +1,84 @@
+@import url('https://fonts.googleapis.com/css2?family=EB+Garamond:ital,wght@0,400..800;1,400..800&family=Plus+Jakarta+Sans:ital,wght@0,200..800;1,200..800&display=swap');
+
+/* Global Design Tokens Scoped under ZOOSH Namespace */
+.zoosh-wrapper,
+[class^="zoosh-"] {
+  --zoosh-bg: #ffffff;
+  --zoosh-fg: #111111;
+  --zoosh-accent: #f5f5f5;
+  --zoosh-accent-dark: #e5e5e5;
+  --zoosh-muted: #737373;
+  
+  --zoosh-font-serif: "EB Garamond", Georgia, serif;
+  --zoosh-font-sans: "Plus Jakarta Sans", system-ui, sans-serif;
+  
+  font-family: var(--zoosh-font-sans);
+  color: var(--zoosh-fg);
+  -webkit-font-smoothing: antialiased;
+  box-sizing: border-box;
+}
+
+.zoosh-wrapper h1,
+.zoosh-wrapper h2,
+.zoosh-wrapper h3,
+.zoosh-wrapper h4,
+.zoosh-wrapper h5,
+.zoosh-wrapper h6,
+.zoosh-font-serif {
+  font-family: var(--zoosh-font-serif) !important;
+  letter-spacing: -0.01em;
+}
+
+.zoosh-font-sans {
+  font-family: var(--zoosh-font-sans) !important;
+}
+
+/* Animations */
+@keyframes zoosh-fade-in {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+@keyframes zoosh-fade-in-up {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes zoosh-slide-down {
+  from { transform: translateY(-100%); }
+  to { transform: translateY(0); }
+}
+
+.zoosh-animate-fade-in {
+  animation: zoosh-fade-in 0.8s ease-out forwards;
+}
+
+.zoosh-animate-fade-in-up {
+  animation: zoosh-fade-in-up 0.8s ease-out forwards;
+}
+
+.zoosh-animate-slide-down {
+  animation: zoosh-slide-down 0.4s ease-out forwards;
+}
+
+/* Custom Scrollbar styling for Elementor embeds */
+.zoosh-wrapper ::-webkit-scrollbar {
+  width: 6px;
+  height: 6px;
+}
+.zoosh-wrapper ::-webkit-scrollbar-track {
+  background: var(--zoosh-bg);
+}
+.zoosh-wrapper ::-webkit-scrollbar-thumb {
+  background: var(--zoosh-accent-dark);
+  border-radius: 3px;
+}
+.zoosh-wrapper ::-webkit-scrollbar-thumb:hover {
+  background: var(--zoosh-muted);
+}

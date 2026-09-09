@@ -1,0 +1,368 @@
+/* Scoped Styling for the Contact/Factory Enquiry Page */
+
+.zoosh-contact-header {
+  padding: 64px 0 32px 0;
+  text-align: center;
+  background-color: #f5f5f5;
+  border-bottom: 1px solid #e5e5e5;
+}
+
+@media (min-width: 768px) {
+  .zoosh-contact-header {
+    padding: 80px 0 48px 0;
+  }
+}
+
+.zoosh-contact-header-container {
+  max-width: 768px;
+  margin: 0 auto;
+  padding: 0 24px;
+}
+
+.zoosh-contact-badge {
+  font-size: 10px;
+  font-weight: 500;
+  text-transform: uppercase;
+  letter-spacing: 0.3em;
+  color: #a3a3a3;
+  display: block;
+  margin-bottom: 12px;
+}
+
+.zoosh-contact-title {
+  font-family: var(--zoosh-font-serif, "EB Garamond"), Georgia, serif;
+  font-size: clamp(24px, 4vw, 44px);
+  font-weight: 300;
+  color: #171717;
+  margin: 0;
+}
+
+.zoosh-contact-desc {
+  color: #737373;
+  font-size: 14px;
+  font-weight: 300;
+  margin-top: 12px;
+  line-height: 1.6;
+}
+
+/* SECTION 02 — SPLIT LAYOUT */
+.zoosh-contact-body {
+  padding: 64px 0;
+}
+
+@media (min-width: 768px) {
+  .zoosh-contact-body {
+    padding: 80px 0;
+  }
+}
+
+.zoosh-contact-body-container {
+  max-width: 1280px;
+  margin: 0 auto;
+  padding: 0 24px;
+}
+
+.zoosh-contact-grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 48px;
+}
+
+@media (min-width: 1024px) {
+  .zoosh-contact-grid {
+    grid-template-columns: 5fr 7fr;
+    gap: 64px;
+  }
+}
+
+/* Left Column Cards */
+.zoosh-contact-info-col {
+  display: flex;
+  flex-direction: column;
+  gap: 32px;
+}
+
+.zoosh-info-card {
+  border: 1px solid #e5e5e5;
+  padding: 32px;
+  background-color: #ffffff;
+  box-shadow: 0 1px 3px rgba(0,0,0,0.02);
+}
+
+.zoosh-info-card-sub {
+  font-size: 9px;
+  font-weight: 500;
+  text-transform: uppercase;
+  letter-spacing: 0.2em;
+  color: #a3a3a3;
+  display: block;
+  margin-bottom: 8px;
+}
+
+.zoosh-info-card-title {
+  font-family: var(--zoosh-font-serif, "EB Garamond"), Georgia, serif;
+  font-size: 20px;
+  font-weight: 300;
+  color: #171717;
+  margin: 0 0 24px 0;
+}
+
+.zoosh-info-lines {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.zoosh-info-line {
+  display: flex;
+  gap: 16px;
+  align-items: flex-start;
+}
+
+.zoosh-info-icon {
+  color: #000000;
+  display: flex;
+  margin-top: 2px;
+}
+
+.zoosh-info-text {
+  font-size: 13px;
+  font-weight: 300;
+  color: #525252;
+  margin: 0;
+  line-height: 1.6;
+}
+
+.zoosh-info-text a {
+  color: #525252;
+  text-decoration: none;
+  transition: color 0.2s ease;
+}
+
+.zoosh-info-text a:hover {
+  color: #000000;
+}
+
+.zoosh-whatsapp-card {
+  background-color: #f5f5f5;
+  border: 1px solid #e5e5e5;
+  padding: 32px;
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.zoosh-wa-card-badge {
+  font-size: 9px;
+  font-weight: 500;
+  text-transform: uppercase;
+  letter-spacing: 0.2em;
+  color: #737373;
+}
+
+.zoosh-wa-card-title {
+  font-family: var(--zoosh-font-serif, "EB Garamond"), Georgia, serif;
+  font-size: 18px;
+  font-weight: 300;
+  color: #171717;
+  margin: 0;
+  line-height: 1.35;
+}
+
+.zoosh-wa-card-btn {
+  height: 44px;
+  padding: 0 24px;
+  background-color: #000000;
+  color: #ffffff;
+  border: 1px solid #000000;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  font-size: 11px;
+  text-transform: uppercase;
+  letter-spacing: 0.16em;
+  text-decoration: none;
+  font-weight: 300;
+  transition: background-color 0.2s ease;
+}
+
+.zoosh-wa-card-btn:hover {
+  background-color: #262626;
+}
+
+/* Right Column Form Container */
+.zoosh-form-wrapper {
+  position: relative;
+  border: 1px solid #e5e5e5;
+  padding: 32px;
+  background-color: #ffffff;
+  box-shadow: 0 1px 3px rgba(0,0,0,0.02);
+  min-height: 480px;
+}
+
+.zoosh-form-title {
+  font-family: var(--zoosh-font-serif, "EB Garamond"), Georgia, serif;
+  font-size: 22px;
+  font-weight: 300;
+  color: #171717;
+  margin: 0 0 24px 0;
+}
+
+.zoosh-contact-form {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.zoosh-form-group {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.zoosh-form-label {
+  font-size: 10px;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  color: #737373;
+}
+
+.zoosh-form-input,
+.zoosh-form-textarea {
+  border: 1px solid #d4d4d4;
+  padding: 12px 16px;
+  font-size: 13px;
+  font-family: var(--zoosh-font-sans), system-ui, sans-serif;
+  font-weight: 300;
+  outline: none;
+  transition: border-color 0.3s ease;
+  border-radius: 0;
+}
+
+.zoosh-form-input:focus,
+.zoosh-form-textarea:focus {
+  border-color: #000000;
+}
+
+.zoosh-form-submit-btn {
+  height: 48px;
+  background-color: #000000;
+  color: #ffffff;
+  border: 1px solid #000000;
+  cursor: pointer;
+  font-size: 11px;
+  text-transform: uppercase;
+  letter-spacing: 0.16em;
+  font-weight: 300;
+  transition: all 0.3s ease;
+}
+
+.zoosh-form-submit-btn:hover {
+  background-color: #262626;
+  border-color: #262626;
+}
+
+/* Loading overlay */
+.zoosh-form-loading-state {
+  position: absolute;
+  inset: 0;
+  background-color: rgba(255, 255, 255, 0.95);
+  display: none;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 16px;
+  z-index: 10;
+}
+
+.zoosh-form-loading-state.active {
+  display: flex;
+}
+
+.zoosh-spinner {
+  width: 32px;
+  height: 32px;
+  border: 2px solid #f5f5f5;
+  border-top-color: #000000;
+  border-radius: 50%;
+  animation: zoosh-spin 0.8s linear infinite;
+}
+
+@keyframes zoosh-spin {
+  to { transform: rotate(360deg); }
+}
+
+.zoosh-loading-text {
+  font-size: 11px;
+  text-transform: uppercase;
+  letter-spacing: 0.2em;
+  color: #737373;
+}
+
+/* Success panel state */
+.zoosh-form-success-state {
+  position: absolute;
+  inset: 0;
+  background-color: #ffffff;
+  display: none;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 32px;
+  text-align: center;
+  z-index: 15;
+}
+
+.zoosh-form-success-state.active {
+  display: flex;
+  animation: zoosh-fade-in 0.4s ease-out forwards;
+}
+
+.zoosh-success-icon-wrapper {
+  width: 56px;
+  height: 56px;
+  background-color: #f0fdf4;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #15803d;
+  margin-bottom: 24px;
+}
+
+.zoosh-success-heading {
+  font-family: var(--zoosh-font-serif, "EB Garamond"), Georgia, serif;
+  font-size: 20px;
+  color: #171717;
+  margin: 0 0 12px 0;
+}
+
+.zoosh-success-text {
+  font-size: 13px;
+  color: #737373;
+  line-height: 1.6;
+  margin: 0 0 24px 0;
+  max-width: 280px;
+}
+
+.zoosh-reset-form-btn {
+  background: none;
+  border: none;
+  font-size: 10px;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  color: #000000;
+  border-bottom: 1px solid #000000;
+  padding-bottom: 2px;
+  cursor: pointer;
+}
+
+/* SECTION 03 — SHOWROOM CURATION */
+.zoosh-contact-curation {
+  padding: 64px 0;
+  border-top: 1px solid #f5f5f5;
+  background-color: #f5f5f5;
+}

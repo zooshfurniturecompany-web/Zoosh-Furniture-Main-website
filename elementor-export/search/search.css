@@ -1,0 +1,114 @@
+/* Scoped Styling for the Search Results Page */
+
+.zoosh-search-header {
+  padding: 64px 0;
+  text-align: center;
+  background-color: #f9f9f9;
+  border-bottom: 1px solid #f0f0f0;
+}
+
+@media (min-width: 768px) {
+  .zoosh-search-header {
+    padding: 80px 0;
+  }
+}
+
+.zoosh-search-container {
+  max-width: 1280px;
+  margin: 0 auto;
+  padding: 0 24px;
+}
+
+.zoosh-search-badge {
+  font-size: 10px;
+  font-weight: 500;
+  text-transform: uppercase;
+  letter-spacing: 0.3em;
+  color: #a3a3a3;
+  display: block;
+  margin-bottom: 12px;
+}
+
+.zoosh-search-title {
+  font-family: var(--zoosh-font-serif, "EB Garamond"), Georgia, serif;
+  font-size: clamp(28px, 4.5vw, 48px);
+  font-weight: 300;
+  color: #171717;
+  margin: 0;
+}
+
+.zoosh-search-desc {
+  color: #737373;
+  font-size: 13px;
+  font-weight: 300;
+  margin-top: 12px;
+  line-height: 1.6;
+}
+
+/* Results grid wrapper */
+.zoosh-search-results-section {
+  padding: 64px 0 80px 0;
+  min-height: 400px;
+}
+
+.zoosh-catalog-grid-wrapper {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 32px;
+}
+
+@media (min-width: 640px) {
+  .zoosh-catalog-grid-wrapper {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media (min-width: 1024px) {
+  .zoosh-catalog-grid-wrapper {
+    grid-template-columns: repeat(3, 1fr);
+  }
+}
+
+@media (min-width: 1200px) {
+  .zoosh-catalog-grid-wrapper {
+    grid-template-columns: repeat(4, 1fr);
+  }
+}
+
+/* No Results state */
+.zoosh-no-results-state {
+  display: none;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  padding: 64px 0;
+  gap: 16px;
+}
+
+.zoosh-no-results-state.active {
+  display: flex;
+}
+
+.zoosh-no-results-text {
+  font-size: 13px;
+  color: #737373;
+  font-weight: 300;
+}
+
+.zoosh-reset-filters-btn {
+  background-color: #000000;
+  color: #ffffff;
+  padding: 12px 24px;
+  font-size: 10px;
+  font-family: var(--zoosh-font-sans), system-ui, sans-serif;
+  text-transform: uppercase;
+  letter-spacing: 0.16em;
+  text-decoration: none;
+  font-weight: 300;
+  transition: background-color 0.2s ease;
+}
+
+.zoosh-reset-filters-btn:hover {
+  background-color: #262626;
+}

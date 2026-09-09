@@ -1,0 +1,1869 @@
+window.ZOOSH_PRODUCTS = [
+  {
+    "id": "zsh-ch-001",
+    "sku": "CH001",
+    "name": "Mahogany Accent Chair",
+    "category": "Lounge Chair",
+    "material": "Mahogany",
+    "dimensions": "80cm W x 80cm D x 75cm H",
+    "price": 13800,
+    "images": [
+      "/images/Generated Image July 21, 2026 - 12_35PM (1).jpg"
+    ],
+    "description": "Premium mahogany arm chair, perfect as an accent chair."
+  },
+  {
+    "id": "zsh-ch-002",
+    "sku": "CH002",
+    "name": "Mahogany Dining Chair",
+    "category": "Dining Chair",
+    "material": "Mahogany",
+    "dimensions": "50cm W x 50cm D x 95cm H",
+    "price": 10800,
+    "images": [
+      "https://images.unsplash.com/photo-1592078615290-033ee584e267?q=80&w=800"
+    ],
+    "description": "Solid mahogany dining chair."
+  },
+  {
+    "id": "zsh-ch-003",
+    "sku": "CH003",
+    "name": "Teak Cane Dining Chair",
+    "category": "Dining Chair",
+    "material": "Teak",
+    "dimensions": "50cm W x 50cm D x 95cm H",
+    "price": 10700,
+    "images": [
+      "https://images.unsplash.com/photo-1586023492125-27b2c045efd7?q=80&w=800"
+    ],
+    "description": "Elegant teak wood chair with traditional cane backing work."
+  },
+  {
+    "id": "zsh-ch-004",
+    "sku": "CH004",
+    "name": "Teak Cane Dining Chair II",
+    "category": "Dining Chair",
+    "material": "Teak",
+    "dimensions": "50cm W x 55cm D x 95cm H",
+    "price": 12000,
+    "images": [
+      "https://images.unsplash.com/photo-1598300042247-d088f8ab3a91?q=80&w=800"
+    ],
+    "description": "Teak wood dining chair with premium cane work back."
+  },
+  {
+    "id": "zsh-ch-005",
+    "sku": "CH005",
+    "name": "Teak Upholstered Chair",
+    "category": "Chair",
+    "material": "Teak",
+    "dimensions": "60cm W x 60cm D x 85cm H",
+    "price": 12750,
+    "images": [
+      "https://images.unsplash.com/photo-1567538096630-e0c55bd6374c?q=80&w=800"
+    ],
+    "description": "Modern teak wood chair with premium seat upholstery."
+  },
+  {
+    "id": "zsh-ch-006",
+    "sku": "CH006",
+    "name": "Teak Simple Chair",
+    "category": "Chair",
+    "material": "Teak",
+    "dimensions": "60cm W x 60cm D x 85cm H",
+    "price": 7600,
+    "images": [
+      "https://images.unsplash.com/photo-1503602642458-232111445657?q=80&w=800"
+    ],
+    "description": "Sleek teak chair in natural finish."
+  },
+  {
+    "id": "zsh-ch-007",
+    "sku": "CH007",
+    "name": "Ashwood Premium Armchair",
+    "category": "Lounge Chair",
+    "material": "Ash Wood",
+    "dimensions": "80cm W x 80cm D x 75cm H",
+    "price": 15820,
+    "images": [
+      "https://images.unsplash.com/photo-1580481072645-022f9a6dbf27?q=80&w=800"
+    ],
+    "description": "Luxury ash wood chair featuring modern curved design."
+  },
+  {
+    "id": "zsh-ch-008",
+    "sku": "CH008",
+    "name": "Ashwood Simple Chair",
+    "category": "Chair",
+    "material": "Ash Wood",
+    "dimensions": "60cm W x 60cm D x 85cm H",
+    "price": 8820,
+    "images": [
+      "https://images.unsplash.com/photo-1592078615290-033ee584e267?q=80&w=800"
+    ],
+    "description": "Ash wood chair with natural matte finish."
+  },
+  {
+    "id": "zsh-ch-009",
+    "sku": "CH009",
+    "name": "Teak Dining Chair III",
+    "category": "Dining Chair",
+    "material": "Teak",
+    "dimensions": "50cm W x 50cm D x 95cm H",
+    "price": 8350,
+    "images": [
+      "https://images.unsplash.com/photo-1586023492125-27b2c045efd7?q=80&w=800"
+    ],
+    "description": "Standard teak dining chair."
+  },
+  {
+    "id": "zsh-ch-010",
+    "sku": "CH010",
+    "name": "Teak Dining Room Chair",
+    "category": "Dining Chair",
+    "material": "Teak",
+    "dimensions": "50cm W x 50cm D x 95cm H",
+    "price": 13800,
+    "images": [
+      "https://images.unsplash.com/photo-1580481072645-022f9a6dbf27?q=80&w=800"
+    ],
+    "description": "Solid teak wood dining chair with curved back."
+  },
+  {
+    "id": "zsh-ch-011",
+    "sku": "CH011",
+    "name": "Metal and Plywood Chair",
+    "category": "Chair",
+    "material": "Plywood",
+    "dimensions": "55cm W x 55cm D x 80cm H",
+    "price": 3850,
+    "images": [
+      "https://images.unsplash.com/photo-1592078615290-033ee584e267?q=80&w=800"
+    ],
+    "description": "Industrial style chair with metal frames and plywood seat."
+  },
+  {
+    "id": "zsh-ch-012",
+    "sku": "CH012",
+    "name": "Teak Accent Chair II",
+    "category": "Chair",
+    "material": "Teak",
+    "dimensions": "60cm W x 60cm D x 85cm H",
+    "price": 10900,
+    "images": [
+      "https://images.unsplash.com/photo-1586023492125-27b2c045efd7?q=80&w=800"
+    ],
+    "description": "Teak wood lounge accent chair."
+  },
+  {
+    "id": "zsh-ch-013",
+    "sku": "CH013",
+    "name": "Mahogany Desk Chair",
+    "category": "Chair",
+    "material": "Mahogany",
+    "dimensions": "60cm W x 60cm D x 85cm H",
+    "price": 7900,
+    "images": [
+      "https://images.unsplash.com/photo-1598300042247-d088f8ab3a91?q=80&w=800"
+    ],
+    "description": "Simple mahogany desk chair."
+  },
+  {
+    "id": "zsh-ch-014",
+    "sku": "CH014",
+    "name": "Teak Cane Chair III",
+    "category": "Chair",
+    "material": "Teak",
+    "dimensions": "60cm W x 60cm D x 85cm H",
+    "price": 9800,
+    "images": [
+      "https://images.unsplash.com/photo-1567538096630-e0c55bd6374c?q=80&w=800"
+    ],
+    "description": "Teak chair with custom cane backing."
+  },
+  {
+    "id": "zsh-ch-015",
+    "sku": "CH015",
+    "name": "Karivaka Studio Chair",
+    "category": "Chair",
+    "material": "Karivaka",
+    "dimensions": "60cm W x 60cm D x 85cm H",
+    "price": 11800,
+    "images": [
+      "https://images.unsplash.com/photo-1503602642458-232111445657?q=80&w=800"
+    ],
+    "description": "Karivaka solid wood accent chair."
+  },
+  {
+    "id": "zsh-ch-016",
+    "sku": "CH016",
+    "name": "Teak Simple Dining Chair",
+    "category": "Dining Chair",
+    "material": "Teak",
+    "dimensions": "50cm W x 50cm D x 95cm H",
+    "price": 7900,
+    "images": [
+      "https://images.unsplash.com/photo-1580481072645-022f9a6dbf27?q=80&w=800"
+    ],
+    "description": "Teak wood dining chair, natural polish."
+  },
+  {
+    "id": "zsh-ch-017",
+    "sku": "CH017",
+    "name": "Teak Luxury Lounge Chair",
+    "category": "Lounge Chair",
+    "material": "Teak",
+    "dimensions": "82cm W x 78cm D x 74cm H",
+    "price": 17780,
+    "images": [
+      "https://images.unsplash.com/photo-1592078615290-033ee584e267?q=80&w=800"
+    ],
+    "description": "Teak wood lounge chair featuring premium upholstery."
+  },
+  {
+    "id": "zsh-ch-018",
+    "sku": "CH018",
+    "name": "Teak Modern Armchair",
+    "category": "Lounge Chair",
+    "material": "Teak",
+    "dimensions": "80cm W x 80cm D x 78cm H",
+    "price": 18000,
+    "images": [
+      "https://images.unsplash.com/photo-1586023492125-27b2c045efd7?q=80&w=800"
+    ],
+    "description": "Scandinavian inspired teak wood lounge chair with white upholstery cushions."
+  },
+  {
+    "id": "zsh-ch-019",
+    "sku": "CH019",
+    "name": "Teak Premium Leather Chair",
+    "category": "Lounge Chair",
+    "material": "Teak",
+    "dimensions": "85cm W x 80cm D x 75cm H",
+    "price": 48500,
+    "images": [
+      "https://images.unsplash.com/photo-1598300042247-d088f8ab3a91?q=80&w=800"
+    ],
+    "description": "Ultra luxury teak lounge chair wrapped in premium brown leather upholstery."
+  },
+  {
+    "id": "zsh-ch-020",
+    "sku": "CH020",
+    "name": "Teak Accent Club Chair",
+    "category": "Lounge Chair",
+    "material": "Teak",
+    "dimensions": "80cm W x 80cm D x 75cm H",
+    "price": 25400,
+    "images": [
+      "https://images.unsplash.com/photo-1592078615290-033ee584e267?q=80&w=800"
+    ],
+    "description": "Solid teak club lounge chair."
+  },
+  {
+    "id": "zsh-ch-021",
+    "sku": "CH021",
+    "name": "Teak Bouclé Chair",
+    "category": "Lounge Chair",
+    "material": "Teak",
+    "dimensions": "80cm W x 80cm D x 75cm H",
+    "price": 22500,
+    "images": [
+      "https://images.unsplash.com/photo-1586023492125-27b2c045efd7?q=80&w=800"
+    ],
+    "description": "Lounge chair with curved teak frames and off-white bouclé upholstery."
+  },
+  {
+    "id": "zsh-ch-022",
+    "sku": "CH022",
+    "name": "Mahogany Cushioned Chair",
+    "category": "Chair",
+    "material": "Mahogany",
+    "dimensions": "60cm W x 60cm D x 85cm H",
+    "price": 9274,
+    "images": [
+      "https://images.unsplash.com/photo-1598300042247-d088f8ab3a91?q=80&w=800"
+    ],
+    "description": "Mahogany chair with green fabric upholstery."
+  },
+  {
+    "id": "zsh-ch-023",
+    "sku": "CH023",
+    "name": "Teak Cane Wrap Chair",
+    "category": "Lounge Chair",
+    "material": "Teak",
+    "dimensions": "80cm W x 78cm D x 74cm H",
+    "price": 28000,
+    "images": [
+      "https://images.unsplash.com/photo-1567538096630-e0c55bd6374c?q=80&w=800"
+    ],
+    "description": "Curved teak frame with cane wrap detailing and upholstery cushions."
+  },
+  {
+    "id": "zsh-ch-024",
+    "sku": "CH024",
+    "name": "Teak Round Base Lounge Chair",
+    "category": "Lounge Chair",
+    "material": "Teak",
+    "dimensions": "80cm W x 80cm D x 75cm H",
+    "price": 22400,
+    "images": [
+      "https://images.unsplash.com/photo-1503602642458-232111445657?q=80&w=800"
+    ],
+    "description": "Sculptural teak base with comfortable padded upholstery bucket seat."
+  },
+  {
+    "id": "zsh-ch-025",
+    "sku": "CH025",
+    "name": "Mahogany Living Room Chair",
+    "category": "Lounge Chair",
+    "material": "Mahogany",
+    "dimensions": "80cm W x 80cm D x 75cm H",
+    "price": 19200,
+    "images": [
+      "https://images.unsplash.com/photo-1580481072645-022f9a6dbf27?q=80&w=800"
+    ],
+    "description": "Classic mahogany lounge chair with plush green upholstery."
+  },
+  {
+    "id": "zsh-ch-026",
+    "sku": "CH026",
+    "name": "Ashwood Cushioned Lounge Chair",
+    "category": "Lounge Chair",
+    "material": "Ash Wood",
+    "dimensions": "80cm W x 80cm D x 75cm H",
+    "price": 28700,
+    "images": [
+      "https://images.unsplash.com/photo-1592078615290-033ee584e267?q=80&w=800"
+    ],
+    "description": "Ash wood accent lounge chair with grey fabric upholstery."
+  },
+  {
+    "id": "zsh-ch-027",
+    "sku": "CH027",
+    "name": "Teak Classic Lounge Chair",
+    "category": "Lounge Chair",
+    "material": "Teak",
+    "dimensions": "80cm W x 80cm D x 75cm H",
+    "price": 18750,
+    "images": [
+      "https://images.unsplash.com/photo-1586023492125-27b2c045efd7?q=80&w=800"
+    ],
+    "description": "Teak wood lounge chair in standard sales specifications."
+  },
+  {
+    "id": "zsh-ch-028",
+    "sku": "CH028",
+    "name": "Teak Minimalist Lounge Chair",
+    "category": "Lounge Chair",
+    "material": "Teak",
+    "dimensions": "80cm W x 80cm D x 75cm H",
+    "price": 19900,
+    "images": [
+      "https://images.unsplash.com/photo-1598300042247-d088f8ab3a91?q=80&w=800"
+    ],
+    "description": "Minimal teak wood lounge chair with white upholstery."
+  },
+  {
+    "id": "zsh-ch-029",
+    "sku": "CH029",
+    "name": "Teak Cane Lounge Armchair",
+    "category": "Lounge Chair",
+    "material": "Teak",
+    "dimensions": "82cm W x 78cm D x 74cm H",
+    "price": 18250,
+    "images": [
+      "https://images.unsplash.com/photo-1567538096630-e0c55bd6374c?q=80&w=800"
+    ],
+    "description": "Solid teak wood with cane backing and grey seat cushion upholstery."
+  },
+  {
+    "id": "zsh-ch-030",
+    "sku": "CH030",
+    "name": "Mahogany Luxury Armchair",
+    "category": "Lounge Chair",
+    "material": "Mahogany",
+    "dimensions": "85cm W x 82cm D x 78cm H",
+    "price": 26500,
+    "images": [
+      "https://images.unsplash.com/photo-1586023492125-27b2c045efd7?q=80&w=800"
+    ],
+    "description": "Premium mahogany frame with circular luxury velvet upholstery."
+  },
+  {
+    "id": "zsh-ch-031",
+    "sku": "CH031",
+    "name": "Mahogany Reception Sofa Chair",
+    "category": "Single Seater Sofa",
+    "material": "Mahogany",
+    "dimensions": "90cm W x 90cm D x 80cm H",
+    "price": 31200,
+    "images": [
+      "https://images.unsplash.com/photo-1555041469-a586c61ea9bc?q=80&w=800"
+    ],
+    "description": "Wide mahogany reception chair with luxury cushioning upholstery."
+  },
+  {
+    "id": "zsh-bd-001",
+    "sku": "BD001",
+    "name": "Teak Cane Bed Cot",
+    "category": "Bed Cot",
+    "material": "Teak",
+    "dimensions": "200cm W x 180cm D x 100cm H",
+    "price": 41500,
+    "images": [
+      "https://images.unsplash.com/photo-1540518614846-7eded433c457?q=80&w=800"
+    ],
+    "description": "Teak wood queen bed cot featuring modern headboard cane work."
+  },
+  {
+    "id": "zsh-bd-002",
+    "sku": "BD002",
+    "name": "Teak Cane Bed Cot II",
+    "category": "Bed Cot",
+    "material": "Teak",
+    "dimensions": "200cm W x 180cm D x 100cm H",
+    "price": 47400,
+    "images": [
+      "https://images.unsplash.com/photo-1522771739844-6a9f6d5f14af?q=80&w=800"
+    ],
+    "description": "Bespoke teak wood bed cot with detailed cane work panels."
+  },
+  {
+    "id": "zsh-bd-003",
+    "sku": "BD003",
+    "name": "Poster Cane Bed Cot",
+    "category": "Bed Cot",
+    "material": "Teak",
+    "dimensions": "200cm W x 180cm D x 210cm H",
+    "price": 58300,
+    "images": [
+      "https://images.unsplash.com/photo-1505693416388-ac5ce068fe85?q=80&w=800"
+    ],
+    "description": "Luxury four-poster bed cot in teak wood with premium headboard cane work."
+  },
+  {
+    "id": "zsh-bd-004",
+    "sku": "BD004",
+    "name": "Teak Normal Bed Cot",
+    "category": "Bed Cot",
+    "material": "Teak",
+    "dimensions": "200cm W x 180cm D x 90cm H",
+    "price": 38650,
+    "images": [
+      "https://images.unsplash.com/photo-1540518614846-7eded433c457?q=80&w=800"
+    ],
+    "description": "Simple and sturdy teak wood normal platform bed cot."
+  },
+  {
+    "id": "zsh-bd-005",
+    "sku": "BD005",
+    "name": "Teak Cane Bed Cot III",
+    "category": "Bed Cot",
+    "material": "Teak",
+    "dimensions": "200cm W x 180cm D x 105cm H",
+    "price": 48700,
+    "images": [
+      "https://images.unsplash.com/photo-1522771739844-6a9f6d5f14af?q=80&w=800"
+    ],
+    "description": "Premium teak wood bed cot with high headboard cane work."
+  },
+  {
+    "id": "zsh-bd-006",
+    "sku": "BD006",
+    "name": "Teak Spindle Bed Cot",
+    "category": "Bed Cot",
+    "material": "Teak",
+    "dimensions": "200cm W x 110cm D x 90cm H",
+    "price": 33600,
+    "images": [
+      "https://images.unsplash.com/photo-1505693416388-ac5ce068fe85?q=80&w=800"
+    ],
+    "description": "Twin single bed cot in teak wood with vertical spindle work headboard."
+  },
+  {
+    "id": "zsh-bd-007",
+    "sku": "BD007",
+    "name": "Teak Spindle Bed Cot II",
+    "category": "Bed Cot",
+    "material": "Teak",
+    "dimensions": "200cm W x 110cm D x 90cm H",
+    "price": 34900,
+    "images": [
+      "https://images.unsplash.com/photo-1540518614846-7eded433c457?q=80&w=800"
+    ],
+    "description": "Teak single bed cot with premium spindle work."
+  },
+  {
+    "id": "zsh-bd-008",
+    "sku": "BD008",
+    "name": "Mahogany Twin Spindle Bed Cot",
+    "category": "Bed Cot",
+    "material": "Mahogany",
+    "dimensions": "198cm W x 110cm D x 110cm H",
+    "price": 42210,
+    "images": [
+      "https://images.unsplash.com/photo-1522771739844-6a9f6d5f14af?q=80&w=800"
+    ],
+    "description": "Twin bed cot in mahogany featuring classic spindle work."
+  },
+  {
+    "id": "zsh-bd-009",
+    "sku": "BD009",
+    "name": "Mahogany Upholstery Bed Cot",
+    "category": "Bed Cot",
+    "material": "Mahogany",
+    "dimensions": "200cm W x 180cm D x 100cm H",
+    "price": 32450,
+    "images": [
+      "https://images.unsplash.com/photo-1505693416388-ac5ce068fe85?q=80&w=800"
+    ],
+    "description": "Mahogany bed cot with padded headboard fabric upholstery."
+  },
+  {
+    "id": "zsh-bd-010",
+    "sku": "BD010",
+    "name": "Teak Wood Bed Cot Standard",
+    "category": "Bed Cot",
+    "material": "Teak",
+    "dimensions": "200cm W x 180cm D x 90cm H",
+    "price": 46150,
+    "images": [
+      "https://images.unsplash.com/photo-1540518614846-7eded433c457?q=80&w=800"
+    ],
+    "description": "Polished teak wood bed cot."
+  },
+  {
+    "id": "zsh-bd-011",
+    "sku": "BD011",
+    "name": "Teak Wood Spindle Bed Cot III",
+    "category": "Bed Cot",
+    "material": "Teak",
+    "dimensions": "200cm W x 180cm D x 95cm H",
+    "price": 44750,
+    "images": [
+      "https://images.unsplash.com/photo-1522771739844-6a9f6d5f14af?q=80&w=800"
+    ],
+    "description": "Teak wood double bed cot with spindle work."
+  },
+  {
+    "id": "zsh-bd-012",
+    "sku": "BD012",
+    "name": "Mahogany Cane Bed Cot",
+    "category": "Bed Cot",
+    "material": "Mahogany",
+    "dimensions": "200cm W x 180cm D x 100cm H",
+    "price": 39500,
+    "images": [
+      "https://images.unsplash.com/photo-1505693416388-ac5ce068fe85?q=80&w=800"
+    ],
+    "description": "Mahogany double bed cot with neat headboard cane work."
+  },
+  {
+    "id": "zsh-bd-013",
+    "sku": "BD013",
+    "name": "Mahogany Luxury Upholstered Cot",
+    "category": "Bed Cot",
+    "material": "Mahogany",
+    "dimensions": "200cm W x 180cm D x 110cm H",
+    "price": 62000,
+    "images": [
+      "https://images.unsplash.com/photo-1540518614846-7eded433c457?q=80&w=800"
+    ],
+    "description": "Luxury mahogany bed cot with high-end fabric upholstery backing."
+  },
+  {
+    "id": "zsh-bd-014",
+    "sku": "BD014",
+    "name": "Mahogany Premium Upholstered Cot",
+    "category": "Bed Cot",
+    "material": "Mahogany",
+    "dimensions": "200cm W x 180cm D x 115cm H",
+    "price": 65000,
+    "images": [
+      "https://images.unsplash.com/photo-1522771739844-6a9f6d5f14af?q=80&w=800"
+    ],
+    "description": "Designer upholstered bed cot in solid mahogany."
+  },
+  {
+    "id": "zsh-bd-015",
+    "sku": "BD015",
+    "name": "Mahogany Cane Bed Cot Storage",
+    "category": "Bed Cot",
+    "material": "Mahogany",
+    "dimensions": "200cm W x 180cm D x 100cm H",
+    "price": 38600,
+    "images": [
+      "https://images.unsplash.com/photo-1505693416388-ac5ce068fe85?q=80&w=800"
+    ],
+    "description": "Mahogany bed cot with built-in drawer storage and cane work headboard."
+  },
+  {
+    "id": "zsh-bd-016",
+    "sku": "BD016",
+    "name": "Ashwood Bed Cot",
+    "category": "Bed Cot",
+    "material": "Ash Wood",
+    "dimensions": "200cm W x 180cm D x 95cm H",
+    "price": 58575,
+    "images": [
+      "https://images.unsplash.com/photo-1540518614846-7eded433c457?q=80&w=800"
+    ],
+    "description": "Premium ash wood double bed cot."
+  },
+  {
+    "id": "zsh-bd-017",
+    "sku": "BD017",
+    "name": "Ashwood Bed Cot II",
+    "category": "Bed Cot",
+    "material": "Ash Wood",
+    "dimensions": "200cm W x 180cm D x 95cm H",
+    "price": 58575,
+    "images": [
+      "https://images.unsplash.com/photo-1522771739844-6a9f6d5f14af?q=80&w=800"
+    ],
+    "description": "Ash wood bed cot in natural polish."
+  },
+  {
+    "id": "zsh-dn-001",
+    "sku": "DN001",
+    "name": "Teak Dining Table 6S",
+    "category": "Dining Table",
+    "material": "Teak",
+    "dimensions": "150cm W x 90cm D x 75cm H",
+    "price": 42500,
+    "images": [
+      "https://images.unsplash.com/photo-1581428982868-e410dd047a90?q=80&w=800"
+    ],
+    "description": "Sturdy teak wood dining table, 6 seater capacity."
+  },
+  {
+    "id": "zsh-dn-002",
+    "sku": "DN002",
+    "name": "Teak Dining Table Std",
+    "category": "Dining Table",
+    "material": "Teak",
+    "dimensions": "180cm W x 90cm D x 75cm H",
+    "price": 52100,
+    "images": [
+      "https://images.unsplash.com/photo-1604014237800-1c9102c219da?q=80&w=800"
+    ],
+    "description": "Standard solid teak dining table."
+  },
+  {
+    "id": "zsh-dn-003",
+    "sku": "DN003",
+    "name": "Teak Dining Table Large",
+    "category": "Dining Table",
+    "material": "Teak",
+    "dimensions": "210cm W x 105cm D x 75cm H",
+    "price": 41146,
+    "images": [
+      "https://images.unsplash.com/photo-1615066390971-03e4e1c36ddf?q=80&w=800"
+    ],
+    "description": "Extra large 210cm teak dining table."
+  },
+  {
+    "id": "zsh-dn-004",
+    "sku": "DN004",
+    "name": "Teak Dining Table 4S",
+    "category": "Dining Table",
+    "material": "Teak",
+    "dimensions": "120cm W x 90cm D x 75cm H",
+    "price": 31300,
+    "images": [
+      "https://images.unsplash.com/photo-1600585154340-be6161a56a0c?q=80&w=800"
+    ],
+    "description": "Four-seater teak wood dining table."
+  },
+  {
+    "id": "zsh-dn-005",
+    "sku": "DN005",
+    "name": "Ashwood Marble Dining Table",
+    "category": "Dining Table",
+    "material": "Ash Wood",
+    "dimensions": "210cm W x 105cm D x 75cm H",
+    "price": 68400,
+    "images": [
+      "https://images.unsplash.com/photo-1533090161767-e6ffed986c88?q=80&w=800"
+    ],
+    "description": "Ash wood dining table base with a premium, heavy marble top."
+  },
+  {
+    "id": "zsh-dn-006",
+    "sku": "DN006",
+    "name": "Teak Dining Table 4S II",
+    "category": "Dining Table",
+    "material": "Teak",
+    "dimensions": "120cm W x 90cm D x 75cm H",
+    "price": 25700,
+    "images": [
+      "https://images.unsplash.com/photo-1581428982868-e410dd047a90?q=80&w=800"
+    ],
+    "description": "Compact teak dining table."
+  },
+  {
+    "id": "zsh-dn-007",
+    "sku": "DN007",
+    "name": "Ashwood Dining Table",
+    "category": "Dining Table",
+    "material": "Ash Wood",
+    "dimensions": "180cm W x 90cm D x 75cm H",
+    "price": 45150,
+    "images": [
+      "https://images.unsplash.com/photo-1604014237800-1c9102c219da?q=80&w=800"
+    ],
+    "description": "Solid ash wood dining table with elegant legs."
+  },
+  {
+    "id": "zsh-dn-008",
+    "sku": "DN008",
+    "name": "Mahogany Dining Table Std",
+    "category": "Dining Table",
+    "material": "Mahogany",
+    "dimensions": "180cm W x 90cm D x 75cm H",
+    "price": 32500,
+    "images": [
+      "https://images.unsplash.com/photo-1615066390971-03e4e1c36ddf?q=80&w=800"
+    ],
+    "description": "Standard mahogany dining table in natural polish."
+  },
+  {
+    "id": "zsh-dn-009",
+    "sku": "DN009",
+    "name": "Ashwood Marble Table Oval",
+    "category": "Dining Table",
+    "material": "Ash Wood",
+    "dimensions": "180cm W x 90cm D x 75cm H",
+    "price": 40288,
+    "images": [
+      "https://images.unsplash.com/photo-1600585154340-be6161a56a0c?q=80&w=800"
+    ],
+    "description": "Ash wood frame with custom marble top."
+  },
+  {
+    "id": "zsh-dn-010",
+    "sku": "DN010",
+    "name": "Teak Dining Table Premium",
+    "category": "Dining Table",
+    "material": "Teak",
+    "dimensions": "180cm W x 90cm D x 75cm H",
+    "price": 58300,
+    "images": [
+      "https://images.unsplash.com/photo-1581428982868-e410dd047a90?q=80&w=800"
+    ],
+    "description": "Heavy timber teak wood dining table with architectural pillars."
+  },
+  {
+    "id": "zsh-cs-001",
+    "sku": "CST001",
+    "name": "Teak Console Table Cane",
+    "category": "Console Table",
+    "material": "Teak",
+    "dimensions": "228cm W x 40cm D x 55cm H",
+    "price": 26500,
+    "images": [
+      "https://images.unsplash.com/photo-1533090161767-e6ffed986c88?q=80&w=800"
+    ],
+    "description": "Extra long teak console table featuring drawer storage and cane panels."
+  },
+  {
+    "id": "zsh-cs-002",
+    "sku": "CST002",
+    "name": "Teak Console Table Storage",
+    "category": "Console Table",
+    "material": "Teak",
+    "dimensions": "95cm W x 40cm D x 75cm H",
+    "price": 30850,
+    "images": [
+      "https://images.unsplash.com/photo-1600585154340-be6161a56a0c?q=80&w=800"
+    ],
+    "description": "Teak console table with drawer and cabinet storage."
+  },
+  {
+    "id": "zsh-cs-003",
+    "sku": "CST003",
+    "name": "Karivaka Console Table",
+    "category": "Console Table",
+    "material": "Karivaka",
+    "dimensions": "150cm W x 45cm D x 75cm H",
+    "price": 30850,
+    "images": [
+      "https://images.unsplash.com/photo-1615066390971-03e4e1c36ddf?q=80&w=800"
+    ],
+    "description": "Karivaka wood console table with storage drawers."
+  },
+  {
+    "id": "zsh-cs-004",
+    "sku": "CST004",
+    "name": "Ashwood Console Table Cane",
+    "category": "Console Table",
+    "material": "Ash Wood",
+    "dimensions": "220cm W x 40cm D x 75cm H",
+    "price": 54500,
+    "images": [
+      "https://images.unsplash.com/photo-1604014237800-1c9102c219da?q=80&w=800"
+    ],
+    "description": "Ash wood console table with cane drawers and door storage."
+  },
+  {
+    "id": "zsh-cs-005",
+    "sku": "CST005",
+    "name": "Teak Console Table Small",
+    "category": "Console Table",
+    "material": "Teak",
+    "dimensions": "120cm W x 35cm D x 80cm H",
+    "price": 24500,
+    "images": [
+      "https://images.unsplash.com/photo-1581428982868-e410dd047a90?q=80&w=800"
+    ],
+    "description": "Slim teak console with drawer."
+  },
+  {
+    "id": "zsh-cs-006",
+    "sku": "CST006",
+    "name": "Mahogany Console Table",
+    "category": "Console Table",
+    "material": "Mahogany",
+    "dimensions": "150cm W x 45cm D x 75cm H",
+    "price": 86500,
+    "images": [
+      "https://images.unsplash.com/photo-1533090161767-e6ffed986c88?q=80&w=800"
+    ],
+    "description": "Bespoke luxury mahogany console table cabinet with drawer and door shutters."
+  },
+  {
+    "id": "zsh-cs-007",
+    "sku": "CST007",
+    "name": "Mahogany TV Unit Console",
+    "category": "TV Unit",
+    "material": "Mahogany",
+    "dimensions": "180cm W x 45cm D x 50cm H",
+    "price": 38700,
+    "images": [
+      "https://images.unsplash.com/photo-1586023492125-27b2c045efd7?q=80&w=800"
+    ],
+    "description": "Mahogany TV console with drawer storage."
+  },
+  {
+    "id": "zsh-cs-008",
+    "sku": "CST008",
+    "name": "Mahogany Entry Console",
+    "category": "Console Table",
+    "material": "Mahogany",
+    "dimensions": "120cm W x 40cm D x 75cm H",
+    "price": 28760,
+    "images": [
+      "https://images.unsplash.com/photo-1615066390971-03e4e1c36ddf?q=80&w=800"
+    ],
+    "description": "Mahogany entry table with drawer."
+  },
+  {
+    "id": "zsh-cs-009",
+    "sku": "CST009",
+    "name": "Mahogany Cane Console",
+    "category": "Console Table",
+    "material": "Mahogany",
+    "dimensions": "140cm W x 40cm D x 75cm H",
+    "price": 52100,
+    "images": [
+      "https://images.unsplash.com/photo-1604014237800-1c9102c219da?q=80&w=800"
+    ],
+    "description": "Mahogany cabinet console with cane shutters."
+  },
+  {
+    "id": "zsh-cs-010",
+    "sku": "CST010",
+    "name": "Ashwood Simple Console",
+    "category": "Console Table",
+    "material": "Ash Wood",
+    "dimensions": "120cm W x 40cm D x 75cm H",
+    "price": 28500,
+    "images": [
+      "https://images.unsplash.com/photo-1533090161767-e6ffed986c88?q=80&w=800"
+    ],
+    "description": "Ash wood minimalist entry console."
+  },
+  {
+    "id": "zsh-cs-011",
+    "sku": "CST011",
+    "name": "Teak TV Console Cane",
+    "category": "TV Unit",
+    "material": "Teak",
+    "dimensions": "180cm W x 45cm D x 50cm H",
+    "price": 52500,
+    "images": [
+      "https://images.unsplash.com/photo-1600585154340-be6161a56a0c?q=80&w=800"
+    ],
+    "description": "Teak wood TV console table with sliding cane doors."
+  },
+  {
+    "id": "zsh-cs-012",
+    "sku": "CST012",
+    "name": "Plywood Console Table",
+    "category": "Console Table",
+    "material": "Plywood",
+    "dimensions": "120cm W x 40cm D x 75cm H",
+    "price": 18600,
+    "images": [
+      "https://images.unsplash.com/photo-1615066390971-03e4e1c36ddf?q=80&w=800"
+    ],
+    "description": "Plywood console with veneer laminate."
+  },
+  {
+    "id": "zsh-sd-001",
+    "sku": "STD001",
+    "name": "Teak Side Table Drawer",
+    "category": "Side Table",
+    "material": "Teak",
+    "dimensions": "50cm W x 50cm D x 55cm H",
+    "price": 33600,
+    "images": [
+      "https://images.unsplash.com/photo-1615066390971-03e4e1c36ddf?q=80&w=800"
+    ],
+    "description": "Solid teak wood side table with drawer storage."
+  },
+  {
+    "id": "zsh-sd-002",
+    "sku": "STD002",
+    "name": "Teak Side Table Drawer II",
+    "category": "Side Table",
+    "material": "Teak",
+    "dimensions": "58cm W x 30cm D x 60cm H",
+    "price": 15200,
+    "images": [
+      "https://images.unsplash.com/photo-1600585154340-be6161a56a0c?q=80&w=800"
+    ],
+    "description": "Teak wood narrow side table with storage."
+  },
+  {
+    "id": "zsh-sd-003",
+    "sku": "STD003",
+    "name": "Teak Side Table Cane",
+    "category": "Side Table",
+    "material": "Teak",
+    "dimensions": "50cm W x 50cm D x 55cm H",
+    "price": 12150,
+    "images": [
+      "https://images.unsplash.com/photo-1533090161767-e6ffed986c88?q=80&w=800"
+    ],
+    "description": "Teak side table with cane panel drawer."
+  },
+  {
+    "id": "zsh-sd-004",
+    "sku": "STD004",
+    "name": "Mahogany Side Table",
+    "category": "Side Table",
+    "material": "Mahogany",
+    "dimensions": "35cm W x 65cm D x 30cm H",
+    "price": 12635,
+    "images": [
+      "https://images.unsplash.com/photo-1581428982868-e410dd047a90?q=80&w=800"
+    ],
+    "description": "Mahogany side cabinet with drawer."
+  },
+  {
+    "id": "zsh-sd-005",
+    "sku": "STD005",
+    "name": "Mahogany Side Table Cane",
+    "category": "Side Table",
+    "material": "Mahogany",
+    "dimensions": "35cm W x 65cm D x 30cm H",
+    "price": 13600,
+    "images": [
+      "https://images.unsplash.com/photo-1604014237800-1c9102c219da?q=80&w=800"
+    ],
+    "description": "Mahogany side table with cane drawer."
+  },
+  {
+    "id": "zsh-sd-006",
+    "sku": "STD006",
+    "name": "Teak Side Table Double Drawer",
+    "category": "Side Table",
+    "material": "Teak",
+    "dimensions": "50cm W x 50cm D x 55cm H",
+    "price": 14625,
+    "images": [
+      "https://images.unsplash.com/photo-1615066390971-03e4e1c36ddf?q=80&w=800"
+    ],
+    "description": "Double drawer teak bedside table."
+  },
+  {
+    "id": "zsh-sd-007",
+    "sku": "STD007",
+    "name": "Teak Side Table Cane Panel II",
+    "category": "Side Table",
+    "material": "Teak",
+    "dimensions": "50cm W x 50cm D x 55cm H",
+    "price": 10075,
+    "images": [
+      "https://images.unsplash.com/photo-1600585154340-be6161a56a0c?q=80&w=800"
+    ],
+    "description": "Teak side table with cane mesh door."
+  },
+  {
+    "id": "zsh-sd-008",
+    "sku": "STD008",
+    "name": "Teak Side Table Simple",
+    "category": "Side Table",
+    "material": "Teak",
+    "dimensions": "50cm W x 50cm D x 55cm H",
+    "price": 7875,
+    "images": [
+      "https://images.unsplash.com/photo-1533090161767-e6ffed986c88?q=80&w=800"
+    ],
+    "description": "Teak wood simple pedestal side table."
+  },
+  {
+    "id": "zsh-sd-009",
+    "sku": "STD009",
+    "name": "Teak Round Pedestal Side Table",
+    "category": "Side Table",
+    "material": "Teak",
+    "dimensions": "45cm W x 45cm D x 55cm H",
+    "price": 6295,
+    "images": [
+      "https://images.unsplash.com/photo-1581428982868-e410dd047a90?q=80&w=800"
+    ],
+    "description": "Teak minimal round top side table."
+  },
+  {
+    "id": "zsh-sd-010",
+    "sku": "STD010",
+    "name": "Teak Side Table Storage Drawer",
+    "category": "Side Table",
+    "material": "Teak",
+    "dimensions": "50cm W x 50cm D x 55cm H",
+    "price": 8050,
+    "images": [
+      "https://images.unsplash.com/photo-1615066390971-03e4e1c36ddf?q=80&w=800"
+    ],
+    "description": "Teak side table cabinet drawer."
+  },
+  {
+    "id": "zsh-sd-011",
+    "sku": "STD011",
+    "name": "Plywood Side Table Veneer",
+    "category": "Side Table",
+    "material": "Plywood",
+    "dimensions": "50cm W x 50cm D x 55cm H",
+    "price": 15750,
+    "images": [
+      "https://images.unsplash.com/photo-1600585154340-be6161a56a0c?q=80&w=800"
+    ],
+    "description": "Plywood side table with luxury wood veneer laminate."
+  },
+  {
+    "id": "zsh-sd-012",
+    "sku": "STD012",
+    "name": "Mahogany Round Side Table",
+    "category": "Side Table",
+    "material": "Mahogany",
+    "dimensions": "45cm W x 45cm D x 65cm H",
+    "price": 10500,
+    "images": [
+      "https://images.unsplash.com/photo-1533090161767-e6ffed986c88?q=80&w=800"
+    ],
+    "description": "Ornate mahogany round side table."
+  },
+  {
+    "id": "zsh-sd-013",
+    "sku": "STD013",
+    "name": "Mahogany Cane Bedside Table",
+    "category": "Side Table",
+    "material": "Mahogany",
+    "dimensions": "50cm W x 50cm D x 55cm H",
+    "price": 14400,
+    "images": [
+      "https://images.unsplash.com/photo-1581428982868-e410dd047a90?q=80&w=800"
+    ],
+    "description": "Mahogany bedside table with cane drawer."
+  },
+  {
+    "id": "zsh-sd-014",
+    "sku": "STD014",
+    "name": "Teak Bedside Side Table",
+    "category": "Side Table",
+    "material": "Teak",
+    "dimensions": "50cm W x 50cm D x 55cm H",
+    "price": 19400,
+    "images": [
+      "https://images.unsplash.com/photo-1604014237800-1c9102c219da?q=80&w=800"
+    ],
+    "description": "Solid teak wood bedside nightstand."
+  },
+  {
+    "id": "zsh-ct-001",
+    "sku": "CTD001",
+    "name": "Teak Centre Table Storage",
+    "category": "Centre Table",
+    "material": "Teak",
+    "dimensions": "90cm W x 90cm D x 45cm H",
+    "price": 26000,
+    "images": [
+      "https://images.unsplash.com/photo-1600585154340-be6161a56a0c?q=80&w=800"
+    ],
+    "description": "Teak round coffee table with built-in storage drawers and cane panels."
+  },
+  {
+    "id": "zsh-ct-002",
+    "sku": "CTD002",
+    "name": "Teak Centre Table Nesting",
+    "category": "Centre Table",
+    "material": "Teak",
+    "dimensions": "85cm W x 85cm D x 42cm H",
+    "price": 26500,
+    "images": [
+      "https://images.unsplash.com/photo-1615066390971-03e4e1c36ddf?q=80&w=800"
+    ],
+    "description": "Set of 2 nesting teak coffee tables."
+  },
+  {
+    "id": "zsh-ct-003",
+    "sku": "CTD003",
+    "name": "Teak Centre Table Oval",
+    "category": "Centre Table",
+    "material": "Teak",
+    "dimensions": "80cm W x 80cm D x 40cm H",
+    "price": 21300,
+    "images": [
+      "https://images.unsplash.com/photo-1604014237800-1c9102c219da?q=80&w=800"
+    ],
+    "description": "Oval teak wood coffee table."
+  },
+  {
+    "id": "zsh-ct-004",
+    "sku": "CTD004",
+    "name": "Teak Centre Table Slats",
+    "category": "Centre Table",
+    "material": "Teak",
+    "dimensions": "90cm W x 90cm D x 45cm H",
+    "price": 13400,
+    "images": [
+      "https://images.unsplash.com/photo-1581428982868-e410dd047a90?q=80&w=800"
+    ],
+    "description": "Teak centre table with slatted cylindrical base."
+  },
+  {
+    "id": "zsh-ct-005",
+    "sku": "CTD005",
+    "name": "Teak Centre Table Cushioned",
+    "category": "Centre Table",
+    "material": "Teak",
+    "dimensions": "90cm W x 90cm D x 45cm H",
+    "price": 16200,
+    "images": [
+      "https://images.unsplash.com/photo-1533090161767-e6ffed986c88?q=80&w=800"
+    ],
+    "description": "Teak coffee table with fabric upholstered top/ottoman."
+  },
+  {
+    "id": "zsh-ct-006",
+    "sku": "CTD006",
+    "name": "HDF Veneer Centre Table",
+    "category": "Centre Table",
+    "material": "Plywood",
+    "dimensions": "80cm W x 80cm D x 41cm H",
+    "price": 26880,
+    "images": [
+      "https://images.unsplash.com/photo-1600585154340-be6161a56a0c?q=80&w=800"
+    ],
+    "description": "Modern round center table made of HDF with paper veneer finish."
+  },
+  {
+    "id": "zsh-ct-007",
+    "sku": "CTD007",
+    "name": "Teak Block Centre Table",
+    "category": "Centre Table",
+    "material": "Teak",
+    "dimensions": "110cm W x 75cm D x 40cm H",
+    "price": 18200,
+    "images": [
+      "https://images.unsplash.com/photo-1615066390971-03e4e1c36ddf?q=80&w=800"
+    ],
+    "description": "Minimal block teak wood coffee table."
+  },
+  {
+    "id": "zsh-ct-008",
+    "sku": "CTD008",
+    "name": "Teak Double Slab Coffee Table",
+    "category": "Centre Table",
+    "material": "Teak",
+    "dimensions": "150cm W x 75cm D x 45cm H",
+    "price": 25000,
+    "images": [
+      "https://images.unsplash.com/photo-1604014237800-1c9102c219da?q=80&w=800"
+    ],
+    "description": "Sculptural double slab teak coffee table."
+  },
+  {
+    "id": "zsh-ct-009",
+    "sku": "CTD009",
+    "name": "Teak Teapoy Cane Work",
+    "category": "Centre Table",
+    "material": "Teak",
+    "dimensions": "50cm W x 25cm D x 55cm H",
+    "price": 9300,
+    "images": [
+      "https://images.unsplash.com/photo-1581428982868-e410dd047a90?q=80&w=800"
+    ],
+    "description": "Compact teak wood teapoy magazine rack with cane work."
+  },
+  {
+    "id": "zsh-ct-010",
+    "sku": "CTD010",
+    "name": "Karivaka Centre Table Drawer",
+    "category": "Centre Table",
+    "material": "Karivaka",
+    "dimensions": "100cm W x 55cm D x 40cm H",
+    "price": 18700,
+    "images": [
+      "https://images.unsplash.com/photo-1600585154340-be6161a56a0c?q=80&w=800"
+    ],
+    "description": "Karivaka coffee table with double drawers."
+  },
+  {
+    "id": "zsh-ct-011",
+    "sku": "CTD011",
+    "name": "Karivaka Centre Table Storage",
+    "category": "Centre Table",
+    "material": "Karivaka",
+    "dimensions": "100cm W x 55cm D x 40cm H",
+    "price": 20360,
+    "images": [
+      "https://images.unsplash.com/photo-1615066390971-03e4e1c36ddf?q=80&w=800"
+    ],
+    "description": "Karivaka coffee table with open shelf storage drawer."
+  },
+  {
+    "id": "zsh-ct-012",
+    "sku": "CTD012",
+    "name": "Teak Coffee Table Round Large",
+    "category": "Centre Table",
+    "material": "Teak",
+    "dimensions": "110cm W x 110cm D x 45cm H",
+    "price": 21840,
+    "images": [
+      "https://images.unsplash.com/photo-1604014237800-1c9102c219da?q=80&w=800"
+    ],
+    "description": "Large round teak coffee table."
+  },
+  {
+    "id": "zsh-ct-013",
+    "sku": "CTD013",
+    "name": "Mahogany Coffee Table Round",
+    "category": "Centre Table",
+    "material": "Mahogany",
+    "dimensions": "90cm W x 90cm D x 45cm H",
+    "price": 16590,
+    "images": [
+      "https://images.unsplash.com/photo-1581428982868-e410dd047a90?q=80&w=800"
+    ],
+    "description": "Mahogany round coffee table with shelf storage."
+  },
+  {
+    "id": "zsh-ct-014",
+    "sku": "CTD014",
+    "name": "Teak Centre Table Low Profile",
+    "category": "Centre Table",
+    "material": "Teak",
+    "dimensions": "90cm W x 50cm D x 42cm H",
+    "price": 18750,
+    "images": [
+      "https://images.unsplash.com/photo-1533090161767-e6ffed986c88?q=80&w=800"
+    ],
+    "description": "Low profile teak living room center table."
+  },
+  {
+    "id": "zsh-ct-015",
+    "sku": "CTD015",
+    "name": "Teak Centre Table Marble",
+    "category": "Centre Table",
+    "material": "Teak",
+    "dimensions": "90cm W x 90cm D x 45cm H",
+    "price": 11145,
+    "images": [
+      "https://images.unsplash.com/photo-1600585154340-be6161a56a0c?q=80&w=800"
+    ],
+    "description": "Teak wood base table with dark marble stone top."
+  },
+  {
+    "id": "zsh-ct-016",
+    "sku": "CTD016",
+    "name": "Teak Centre Table Small Round",
+    "category": "Centre Table",
+    "material": "Teak",
+    "dimensions": "70cm W x 70cm D x 45cm H",
+    "price": 13550,
+    "images": [
+      "https://images.unsplash.com/photo-1615066390971-03e4e1c36ddf?q=80&w=800"
+    ],
+    "description": "Small round teak wood coffee table."
+  },
+  {
+    "id": "zsh-ct-017",
+    "sku": "CTD017",
+    "name": "Mahogany Wood Teapoy Round",
+    "category": "Centre Table",
+    "material": "Mahogany",
+    "dimensions": "80cm W x 80cm D x 45cm H",
+    "price": 31350,
+    "images": [
+      "https://images.unsplash.com/photo-1604014237800-1c9102c219da?q=80&w=800"
+    ],
+    "description": "Large round mahogany teapoy table."
+  },
+  {
+    "id": "zsh-ct-018",
+    "sku": "CTD018",
+    "name": "Mahogany Coffee Table Simple",
+    "category": "Centre Table",
+    "material": "Mahogany",
+    "dimensions": "90cm W x 90cm D x 45cm H",
+    "price": 16600,
+    "images": [
+      "https://images.unsplash.com/photo-1581428982868-e410dd047a90?q=80&w=800"
+    ],
+    "description": "Standard mahogany wood center table."
+  },
+  {
+    "id": "zsh-ct-019",
+    "sku": "CTD019",
+    "name": "Coffee Table Simple",
+    "category": "Centre Table",
+    "material": "Teak",
+    "dimensions": "90cm W x 60cm D x 45cm H",
+    "price": 22500,
+    "images": [
+      "https://images.unsplash.com/photo-1533090161767-e6ffed986c88?q=80&w=800"
+    ],
+    "description": "Simple clean-line teak coffee table."
+  },
+  {
+    "id": "zsh-ct-020",
+    "sku": "CTD020",
+    "name": "Teak Coffee Table Round Legs",
+    "category": "Centre Table",
+    "material": "Teak",
+    "dimensions": "80cm W x 80cm D x 45cm H",
+    "price": 17200,
+    "images": [
+      "https://images.unsplash.com/photo-1615066390971-03e4e1c36ddf?q=80&w=800"
+    ],
+    "description": "Round top teak coffee table with crossed wood legs."
+  },
+  {
+    "id": "zsh-ct-021",
+    "sku": "CTD021",
+    "name": "Teak Coffee Table Cane Storage",
+    "category": "Centre Table",
+    "material": "Teak",
+    "dimensions": "80cm W x 80cm D x 45cm H",
+    "price": 24200,
+    "images": [
+      "https://images.unsplash.com/photo-1604014237800-1c9102c219da?q=80&w=800"
+    ],
+    "description": "Round teak coffee table with bottom cane magazine shelf."
+  },
+  {
+    "id": "zsh-bs-001",
+    "sku": "BRS001",
+    "name": "Teak Wood Bar Stool Simple",
+    "category": "Bar Stool",
+    "material": "Teak",
+    "dimensions": "45cm W x 45cm D x 90cm H",
+    "price": 14200,
+    "images": [
+      "https://images.unsplash.com/photo-1600585154340-be6161a56a0c?q=80&w=800"
+    ],
+    "description": "Sturdy tall bar stool in solid teak."
+  },
+  {
+    "id": "zsh-bs-002",
+    "sku": "BRS002",
+    "name": "Teak Wood Bar Stool Cushioned",
+    "category": "Bar Stool",
+    "material": "Teak",
+    "dimensions": "45cm W x 45cm D x 90cm H",
+    "price": 12600,
+    "images": [
+      "https://images.unsplash.com/photo-1586023492125-27b2c045efd7?q=80&w=800"
+    ],
+    "description": "Teak bar stool with cream fabric seat cushion upholstery."
+  },
+  {
+    "id": "zsh-bs-003",
+    "sku": "BRS003",
+    "name": "Teak Wood Bar Stool Backrest",
+    "category": "Bar Stool",
+    "material": "Teak",
+    "dimensions": "45cm W x 45cm D x 90cm H",
+    "price": 10500,
+    "images": [
+      "https://images.unsplash.com/photo-1600585154340-be6161a56a0c?q=80&w=800"
+    ],
+    "description": "Teak wood bar stool with curved backrest and cushion upholstery."
+  },
+  {
+    "id": "zsh-bs-004",
+    "sku": "BRS004",
+    "name": "Teak Wood Bar Stool Cane Back",
+    "category": "Bar Stool",
+    "material": "Teak",
+    "dimensions": "45cm W x 45cm D x 90cm H",
+    "price": 10200,
+    "images": [
+      "https://images.unsplash.com/photo-1586023492125-27b2c045efd7?q=80&w=800"
+    ],
+    "description": "Teak wood bar stool with woven cane backing work and leather upholstery seat."
+  },
+  {
+    "id": "zsh-bs-005",
+    "sku": "BRS005",
+    "name": "Teak Wood Bar Stool High Legs",
+    "category": "Bar Stool",
+    "material": "Teak",
+    "dimensions": "40cm W x 40cm D x 90cm H",
+    "price": 6700,
+    "images": [
+      "https://images.unsplash.com/photo-1600585154340-be6161a56a0c?q=80&w=800"
+    ],
+    "description": "Standard high legged round seat teak stool."
+  },
+  {
+    "id": "zsh-bs-006",
+    "sku": "BRS006",
+    "name": "Metal Bar Stool Upholstered",
+    "category": "Bar Stool",
+    "material": "Plywood",
+    "dimensions": "40cm W x 40cm D x 90cm H",
+    "price": 6000,
+    "images": [
+      "https://images.unsplash.com/photo-1586023492125-27b2c045efd7?q=80&w=800"
+    ],
+    "description": "Industrial style metal frame bar stool with red fabric upholstery cushion."
+  },
+  {
+    "id": "zsh-bs-007",
+    "sku": "BRS007",
+    "name": "Teak Wood Bar Stool Slat Seat",
+    "category": "Bar Stool",
+    "material": "Teak",
+    "dimensions": "45cm W x 45cm D x 90cm H",
+    "price": 8600,
+    "images": [
+      "https://images.unsplash.com/photo-1600585154340-be6161a56a0c?q=80&w=800"
+    ],
+    "description": "Teak wood counter bar stool."
+  },
+  {
+    "id": "zsh-sf-001",
+    "sku": "SF001",
+    "name": "Mahogany 3-Seater Sofa",
+    "category": "Three Seater Sofa",
+    "material": "Mahogany",
+    "dimensions": "220cm W x 90cm D x 80cm H",
+    "price": 57300,
+    "images": [
+      "/images/WhatsApp Image 2026-01-28 at 10.24.22 (1).jpeg"
+    ],
+    "description": "Solid mahogany wood frame 3-seater sofa with premium cushions."
+  },
+  {
+    "id": "zsh-sf-002",
+    "sku": "SF002",
+    "name": "Fully Upholstered 3-Seater Sofa",
+    "category": "Three Seater Sofa",
+    "material": "Plywood",
+    "dimensions": "220cm W x 90cm D x 80cm H",
+    "price": 37590,
+    "images": [
+      "https://images.unsplash.com/photo-1484101403633-562f891dc89a?q=80&w=800"
+    ],
+    "description": "Fully upholstered comfort lounge sofa with deep seating."
+  },
+  {
+    "id": "zsh-sf-003",
+    "sku": "SF003",
+    "name": "L-Shape Sectional Sofa",
+    "category": "Three Seater Sofa",
+    "material": "Teak",
+    "dimensions": "260cm W x 160cm D x 80cm H",
+    "price": 61500,
+    "images": [
+      "https://images.unsplash.com/photo-1555041469-a586c61ea9bc?q=80&w=800"
+    ],
+    "description": "Premium L-shape sectional sofa with corner chaise lounge."
+  },
+  {
+    "id": "zsh-sf-004",
+    "sku": "SF004",
+    "name": "Metal & Upholstery Sofa",
+    "category": "Three Seater Sofa",
+    "material": "Plywood",
+    "dimensions": "200cm W x 85cm D x 80cm H",
+    "price": 42500,
+    "images": [
+      "https://images.unsplash.com/photo-1524758631624-e2822e304c36?q=80&w=800"
+    ],
+    "description": "Modern industrial style sofa with powder-coated metal frame and fabric upholstery."
+  },
+  {
+    "id": "zsh-sf-005",
+    "sku": "SF005",
+    "name": "Teak Luxury 3-Seater Sofa",
+    "category": "Three Seater Sofa",
+    "material": "Teak",
+    "dimensions": "220cm W x 90cm D x 80cm H",
+    "price": 106000,
+    "images": [
+      "https://images.unsplash.com/photo-1484101403633-562f891dc89a?q=80&w=800"
+    ],
+    "description": "Ultra luxury solid teak wood three-seater sofa with ornate craft work."
+  },
+  {
+    "id": "zsh-sf-006",
+    "sku": "SF006",
+    "name": "Teak Minimalist 3-Seater Sofa",
+    "category": "Three Seater Sofa",
+    "material": "Teak",
+    "dimensions": "210cm W x 90cm D x 80cm H",
+    "price": 38000,
+    "images": [
+      "https://images.unsplash.com/photo-1555041469-a586c61ea9bc?q=80&w=800"
+    ],
+    "description": "Teak wood sofa with sleek minimal frame and light cream upholstery."
+  },
+  {
+    "id": "zsh-sf-007",
+    "sku": "SF007",
+    "name": "Teak Classic 3-Seater Sofa",
+    "category": "Three Seater Sofa",
+    "material": "Teak",
+    "dimensions": "210cm W x 90cm D x 80cm H",
+    "price": 44200,
+    "images": [
+      "https://images.unsplash.com/photo-1524758631624-e2822e304c36?q=80&w=800"
+    ],
+    "description": "Timeless teak wood sofa, natural lacquer finish."
+  },
+  {
+    "id": "zsh-sf-008",
+    "sku": "SF008",
+    "name": "Teak Panel 3-Seater Sofa",
+    "category": "Three Seater Sofa",
+    "material": "Teak",
+    "dimensions": "220cm W x 90cm D x 80cm H",
+    "price": 46200,
+    "images": [
+      "https://images.unsplash.com/photo-1484101403633-562f891dc89a?q=80&w=800"
+    ],
+    "description": "Teak sofa with side panel structures and thick cushioning."
+  },
+  {
+    "id": "zsh-sf-009",
+    "sku": "SF009",
+    "name": "Teak Daybed Sofa",
+    "category": "Single Seater Sofa",
+    "material": "Teak",
+    "dimensions": "180cm W x 85cm D x 75cm H",
+    "price": 41080,
+    "images": [
+      "https://images.unsplash.com/photo-1555041469-a586c61ea9bc?q=80&w=800"
+    ],
+    "description": "Teak wood sofa daybed with storage."
+  },
+  {
+    "id": "zsh-sf-010",
+    "sku": "SF010",
+    "name": "Teak Standard 3-Seater Sofa",
+    "category": "Three Seater Sofa",
+    "material": "Teak",
+    "dimensions": "210cm W x 90cm D x 80cm H",
+    "price": 34250,
+    "images": [
+      "https://images.unsplash.com/photo-1524758631624-e2822e304c36?q=80&w=800"
+    ],
+    "description": "Sturdy teak wood frame sofa, natural finish."
+  },
+  {
+    "id": "zsh-sf-011",
+    "sku": "SF011",
+    "name": "Teak Lounger Sofa",
+    "category": "Single Seater Sofa",
+    "material": "Teak",
+    "dimensions": "160cm W x 80cm D x 75cm H",
+    "price": 30000,
+    "images": [
+      "https://images.unsplash.com/photo-1484101403633-562f891dc89a?q=80&w=800"
+    ],
+    "description": "Teak Lounger daybed sofa with cane backing."
+  },
+  {
+    "id": "zsh-sf-012",
+    "sku": "SF012",
+    "name": "Mahogany 3-Piece Sofa Set",
+    "category": "Three Seater Sofa",
+    "material": "Mahogany",
+    "dimensions": "240cm W x 90cm D x 80cm H",
+    "price": 95310,
+    "images": [
+      "https://images.unsplash.com/photo-1555041469-a586c61ea9bc?q=80&w=800"
+    ],
+    "description": "Mahogany wood luxury sofa suite."
+  },
+  {
+    "id": "zsh-sf-013",
+    "sku": "SF013",
+    "name": "Ashwood Sectional Sofa",
+    "category": "Three Seater Sofa",
+    "material": "Ash Wood",
+    "dimensions": "280cm W x 160cm D x 80cm H",
+    "price": 135000,
+    "images": [
+      "https://images.unsplash.com/photo-1524758631624-e2822e304c36?q=80&w=800"
+    ],
+    "description": "Luxury ash wood sectional sofa in teal blue fabric upholstery."
+  },
+  {
+    "id": "zsh-sf-014",
+    "sku": "SF014",
+    "name": "Teak Contemporary 3S Sofa",
+    "category": "Three Seater Sofa",
+    "material": "Teak",
+    "dimensions": "220cm W x 90cm D x 80cm H",
+    "price": 69600,
+    "images": [
+      "https://images.unsplash.com/photo-1484101403633-562f891dc89a?q=80&w=800"
+    ],
+    "description": "Premium contemporary design teak wood sofa."
+  },
+  {
+    "id": "zsh-sf-015",
+    "sku": "SF015",
+    "name": "Teak Low Back Sofa",
+    "category": "Two Seater Sofa",
+    "material": "Teak",
+    "dimensions": "160cm W x 90cm D x 75cm H",
+    "price": 20800,
+    "images": [
+      "https://images.unsplash.com/photo-1555041469-a586c61ea9bc?q=80&w=800"
+    ],
+    "description": "Low back solid teak frame sofa."
+  },
+  {
+    "id": "zsh-sf-016",
+    "sku": "SF016",
+    "name": "Teak Budget 2-Seater Sofa",
+    "category": "Two Seater Sofa",
+    "material": "Teak",
+    "dimensions": "150cm W x 85cm D x 80cm H",
+    "price": 17800,
+    "images": [
+      "https://images.unsplash.com/photo-1524758631624-e2822e304c36?q=80&w=800"
+    ],
+    "description": "Simple teak wood frame sofa budget edition."
+  },
+  {
+    "id": "zsh-sf-017",
+    "sku": "SF017",
+    "name": "Teak Compact 3S Sofa",
+    "category": "Three Seater Sofa",
+    "material": "Teak",
+    "dimensions": "200cm W x 90cm D x 80cm H",
+    "price": 38000,
+    "images": [
+      "https://images.unsplash.com/photo-1484101403633-562f891dc89a?q=80&w=800"
+    ],
+    "description": "Compact solid teak wood three-seater sofa."
+  },
+  {
+    "id": "zsh-sf-018",
+    "sku": "SF018",
+    "name": "Teak Low Platform Lounger",
+    "category": "Single Seater Sofa",
+    "material": "Teak",
+    "dimensions": "90cm W x 90cm D x 75cm H",
+    "price": 20750,
+    "images": [
+      "https://images.unsplash.com/photo-1555041469-a586c61ea9bc?q=80&w=800"
+    ],
+    "description": "Teak wood single lounger."
+  },
+  {
+    "id": "zsh-sf-019",
+    "sku": "SF019",
+    "name": "Teak Casual 3-Seater Sofa",
+    "category": "Three Seater Sofa",
+    "material": "Teak",
+    "dimensions": "210cm W x 90cm D x 80cm H",
+    "price": 33100,
+    "images": [
+      "https://images.unsplash.com/photo-1524758631624-e2822e304c36?q=80&w=800"
+    ],
+    "description": "Solid teak casual family sofa."
+  },
+  {
+    "id": "zsh-sf-020",
+    "sku": "SF020",
+    "name": "Teak Industrial Piping Sofa",
+    "category": "Three Seater Sofa",
+    "material": "Teak",
+    "dimensions": "220cm W x 90cm D x 80cm H",
+    "price": 51800,
+    "images": [
+      "https://images.unsplash.com/photo-1484101403633-562f891dc89a?q=80&w=800"
+    ],
+    "description": "Teak wood structure with metal piping elements and Dacron fabric coverings."
+  },
+  {
+    "id": "zsh-sf-021",
+    "sku": "SF021",
+    "name": "Teak Industrial Sectional Sofa",
+    "category": "Three Seater Sofa",
+    "material": "Teak",
+    "dimensions": "240cm W x 90cm D x 80cm H",
+    "price": 68080,
+    "images": [
+      "https://images.unsplash.com/photo-1555041469-a586c61ea9bc?q=80&w=800"
+    ],
+    "description": "Sectional teak sofa with metal piping framing structure."
+  },
+  {
+    "id": "zsh-sf-022",
+    "sku": "SF022",
+    "name": "Teak Contemporary 3S Sofa II",
+    "category": "Three Seater Sofa",
+    "material": "Teak",
+    "dimensions": "220cm W x 90cm D x 80cm H",
+    "price": 57000,
+    "images": [
+      "https://images.unsplash.com/photo-1524758631624-e2822e304c36?q=80&w=800"
+    ],
+    "description": "Solid teak wood modern contemporary sofa."
+  },
+  {
+    "id": "zsh-sf-023",
+    "sku": "SF023",
+    "name": "Mahogany Chesterfield Sofa Chair",
+    "category": "Single Seater Sofa",
+    "material": "Mahogany",
+    "dimensions": "95cm W x 90cm D x 80cm H",
+    "price": 35200,
+    "images": [
+      "https://images.unsplash.com/photo-1484101403633-562f891dc89a?q=80&w=800"
+    ],
+    "description": "Single-seater mahogany sofa upholstered in brown leather."
+  },
+  {
+    "id": "zsh-sf-024",
+    "sku": "SF024",
+    "name": "Mahogany Luxury 3-Seater Sofa",
+    "category": "Three Seater Sofa",
+    "material": "Mahogany",
+    "dimensions": "230cm W x 90cm D x 80cm H",
+    "price": 85000,
+    "images": [
+      "https://images.unsplash.com/photo-1555041469-a586c61ea9bc?q=80&w=800"
+    ],
+    "description": "Ornate mahogany wood frame upholstered in velvet."
+  },
+  {
+    "id": "zsh-sf-025",
+    "sku": "SF025",
+    "name": "Teak Cushioned Sofa",
+    "category": "Three Seater Sofa",
+    "material": "Teak",
+    "dimensions": "220cm W x 90cm D x 80cm H",
+    "price": 69600,
+    "images": [
+      "https://images.unsplash.com/photo-1524758631624-e2822e304c36?q=80&w=800"
+    ],
+    "description": "Solid teak wood framing with thick cushions."
+  },
+  {
+    "id": "zsh-sf-026",
+    "sku": "SF026",
+    "name": "Wooden Reaper Sofa",
+    "category": "Three Seater Sofa",
+    "material": "Ash Wood",
+    "dimensions": "220cm W x 90cm D x 80cm H",
+    "price": 37950,
+    "images": [
+      "https://images.unsplash.com/photo-1484101403633-562f891dc89a?q=80&w=800"
+    ],
+    "description": "Ash wood reaper frame sofa."
+  },
+  {
+    "id": "zsh-sf-027",
+    "sku": "SF027",
+    "name": "Ashwood Corner Sofa",
+    "category": "Three Seater Sofa",
+    "material": "Ash Wood",
+    "dimensions": "240cm W x 160cm D x 80cm H",
+    "price": 77420,
+    "images": [
+      "https://images.unsplash.com/photo-1555041469-a586c61ea9bc?q=80&w=800"
+    ],
+    "description": "Ash wood L-shape sectional sofa."
+  },
+  {
+    "id": "zsh-sf-028",
+    "sku": "SF028",
+    "name": "Plywood Frame Fabric Sofa",
+    "category": "Three Seater Sofa",
+    "material": "Plywood",
+    "dimensions": "220cm W x 90cm D x 80cm H",
+    "price": 65000,
+    "images": [
+      "https://images.unsplash.com/photo-1524758631624-e2822e304c36?q=80&w=800"
+    ],
+    "description": "Plywood frame sofa wrapped in premium upholstery fabric."
+  },
+  {
+    "id": "zsh-sf-029",
+    "sku": "SF029",
+    "name": "Mahogany Luxury Sofa",
+    "category": "Three Seater Sofa",
+    "material": "Mahogany",
+    "dimensions": "230cm W x 90cm D x 80cm H",
+    "price": 115200,
+    "images": [
+      "https://images.unsplash.com/photo-1484101403633-562f891dc89a?q=80&w=800"
+    ],
+    "description": "High end mahogany wood framing sofa."
+  },
+  {
+    "id": "zsh-sf-030",
+    "sku": "SF030",
+    "name": "Teak Large Sectional Sofa",
+    "category": "Three Seater Sofa",
+    "material": "Teak",
+    "dimensions": "280cm W x 180cm D x 80cm H",
+    "price": 82000,
+    "images": [
+      "https://images.unsplash.com/photo-1555041469-a586c61ea9bc?q=80&w=800"
+    ],
+    "description": "Teak wood modular sectional L-shape sofa."
+  }
+];
+
+window.getGeneralWhatsAppLink = function(type) {
+  const phone = "919567193992";
+  let msg = "";
+  if (type === "custom") {
+    msg = "Hello ZOOSH,\n\nI am interested in designing custom furniture for my home. Can you guide me through the custom design and quotation process?";
+  } else {
+    msg = "Hello ZOOSH,\n\nI would like to make an enquiry regarding your catalog designs.";
+  }
+  return "https://wa.me/" + phone + "?text=" + encodeURIComponent(msg);
+};
+
+window.getWhatsAppLink = function(product, options = {}) {
+  const phone = "919567193992";
+  let msg = "Hello ZOOSH,\n\nI am interested in:\n• Product: " + product.name + " (SKU: " + product.sku + ")";
+  if (options.wood) msg += "\n• Wood: " + options.wood;
+  if (options.fabric) msg += "\n• Fabric: " + options.fabric;
+  if (options.dimensions) msg += "\n• Custom Dimensions: " + options.dimensions;
+  msg += "\n\nCould you please share pricing and lead time?";
+  return "https://wa.me/" + phone + "?text=" + encodeURIComponent(msg);
+};

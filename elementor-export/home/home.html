@@ -1,0 +1,282 @@
+<div class="zoosh-wrapper">
+
+  <!-- SECTION 01 — FULLSCREEN HERO SLIDESHOW -->
+  <section class="zoosh-hero-section" id="zooshHeroSection">
+    
+    <!-- Slides Container -->
+    <div class="zoosh-slides-container">
+      
+      <!-- Slide 1 -->
+      <div class="zoosh-slide active" style="background-image: url('/images/catalog/page_15_img_00.webp');"></div>
+      <!-- Slide 2 -->
+      <div class="zoosh-slide" style="background-image: url('/images/catalog/page_21_img_00.webp');"></div>
+      <!-- Slide 3 -->
+      <div class="zoosh-slide" style="background-image: url('/images/catalog/page_22_img_00.webp');"></div>
+      <!-- Slide 4 -->
+      <div class="zoosh-slide" style="background-image: url('/images/IMG_0339.jpg');"></div>
+      <!-- Slide 5 -->
+      <div class="zoosh-slide" style="background-image: url('/images/IMG_1167.jpg');"></div>
+      
+      <!-- Dark overlay for readability -->
+      <div class="zoosh-hero-overlay"></div>
+    </div>
+
+    <!-- Hero Content -->
+    <div class="zoosh-hero-content-wrapper">
+      <div class="zoosh-hero-content-box">
+        <span class="zoosh-hero-badge zoosh-animate-fade-in">Bespoke Wood Craftsmanship</span>
+        <h1 class="zoosh-hero-heading zoosh-animate-fade-in-up">Every Home Deserves Furniture Built Specifically For It.</h1>
+        <p class="zoosh-hero-paragraph zoosh-animate-fade-in-up">
+          Premium custom furniture manufactured using solid Teak, Ash, and Mahogany wood, natural cane, and carefully selected materials for modern homes.
+        </p>
+        <div class="zoosh-hero-buttons-wrapper zoosh-animate-fade-in-up">
+          <a href="/contact/" class="zoosh-btn zoosh-btn-white">Start Your Project</a>
+          <a href="/collection/" class="zoosh-btn zoosh-btn-outline">Explore Collections</a>
+        </div>
+      </div>
+    </div>
+
+    <!-- Navigation Arrows -->
+    <button type="button" class="zoosh-slider-arrow zoosh-arrow-left" id="zooshHeroPrev" aria-label="Previous Slide">
+      <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+        <polyline points="15 18 9 12 15 6"></polyline>
+      </svg>
+    </button>
+    <button type="button" class="zoosh-slider-arrow zoosh-arrow-right" id="zooshHeroNext" aria-label="Next Slide">
+      <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+        <polyline points="9 18 15 12 9 6"></polyline>
+      </svg>
+    </button>
+
+    <!-- Slider Dot Indicators -->
+    <div class="zoosh-slider-dots" id="zooshHeroDots">
+      <!-- Generated dynamically in JS -->
+    </div>
+
+    <!-- Scroll Indicator -->
+    <div class="zoosh-scroll-helper">
+      <span class="zoosh-scroll-text">Scroll</span>
+    </div>
+
+  </section>
+
+  <!-- SECTION 02 — SHOP BY SPACES (CATEGORIES) -->
+  <section class="zoosh-section zoosh-spaces-section">
+    <div class="zoosh-section-container">
+      
+      <div class="zoosh-section-header">
+        <span class="zoosh-section-badge">Bespoke Spaces</span>
+        <h2 class="zoosh-section-title">Shop by Space Categories</h2>
+      </div>
+
+      <div class="zoosh-spaces-grid">
+        
+        <!-- Living -->
+        <a href="/living/" class="zoosh-space-card">
+          <div class="zoosh-space-card-img" style="background-image: url('/images/catalog/page_14_img_00.webp');"></div>
+          <div class="zoosh-space-card-overlay"></div>
+          <div class="zoosh-space-card-content">
+            <h3 class="zoosh-space-title">Living Space</h3>
+            <span class="zoosh-space-link">View Collection &rarr;</span>
+          </div>
+        </a>
+
+        <!-- Dining -->
+        <a href="/dining/" class="zoosh-space-card">
+          <div class="zoosh-space-card-img" style="background-image: url('/images/catalog/page_21_img_00.webp');"></div>
+          <div class="zoosh-space-card-overlay"></div>
+          <div class="zoosh-space-card-content">
+            <h3 class="zoosh-space-title">Dining Space</h3>
+            <span class="zoosh-space-link">View Collection &rarr;</span>
+          </div>
+        </a>
+
+        <!-- Bedroom -->
+        <a href="/bedroom/" class="zoosh-space-card">
+          <div class="zoosh-space-card-img" style="background-image: url('/images/catalog/page_22_img_00.webp');"></div>
+          <div class="zoosh-space-card-overlay"></div>
+          <div class="zoosh-space-card-content">
+            <h3 class="zoosh-space-title">Bedroom Retreat</h3>
+            <span class="zoosh-space-link">View Collection &rarr;</span>
+          </div>
+        </a>
+
+        <!-- Entryway -->
+        <a href="/entryway/" class="zoosh-space-card">
+          <div class="zoosh-space-card-img" style="background-image: url('/images/catalog/page_27_img_00.webp');"></div>
+          <div class="zoosh-space-card-overlay"></div>
+          <div class="zoosh-space-card-content">
+            <h3 class="zoosh-space-title">Entryway & Mirrors</h3>
+            <span class="zoosh-space-link">View Collection &rarr;</span>
+          </div>
+        </a>
+
+      </div>
+
+    </div>
+  </section>
+
+  <!-- SECTION 03 — DYNAMIC CREATIONS GRID (PRODUCTS) -->
+  <section class="zoosh-section zoosh-products-section">
+    <div class="zoosh-section-container">
+      
+      <div class="zoosh-section-header">
+        <span class="zoosh-section-badge">Signature Creations</span>
+        <h2 class="zoosh-section-title">Explore Catalog Designs</h2>
+        <p class="zoosh-section-desc">
+          Handmade solid wood loose furniture units manufactured inside our Pattambi factory workshop.
+        </p>
+      </div>
+
+      <!-- Tab filtering header bar -->
+      <div class="zoosh-tabs-bar" id="zooshHomeTabs">
+        <!-- Rendered dynamically via JS based on categories -->
+      </div>
+
+      <!-- Dynamic Product List Grid -->
+      <div class="zoosh-products-grid" id="zooshHomeProductGrid">
+        <!-- Filled dynamically via products catalog search script -->
+      </div>
+
+    </div>
+  </section>
+
+  <!-- SECTION 04 — FEATURES/BENEFITS GRID -->
+  <section class="zoosh-section zoosh-features-section">
+    <div class="zoosh-section-container">
+      
+      <div class="zoosh-section-header">
+        <span class="zoosh-section-badge">Operational Excellence</span>
+        <h2 class="zoosh-section-title">The ZOOSH Advantage</h2>
+      </div>
+
+      <div class="zoosh-features-grid">
+        
+        <div class="zoosh-feature-card">
+          <div class="zoosh-feature-icon">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M12 3v18M3 12h18M12 3a9 9 0 0 1 0 18M12 3a9 9 0 0 0 0 18"></path>
+            </svg>
+          </div>
+          <h3 class="zoosh-feature-title">Made-to-Order & Custom Sizes</h3>
+          <p class="zoosh-feature-desc">Every furniture unit is manufactured to your exact requirements and custom dimensions—we do not mass produce.</p>
+        </div>
+
+        <div class="zoosh-feature-card">
+          <div class="zoosh-feature-icon">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"></path>
+            </svg>
+          </div>
+          <h3 class="zoosh-feature-title">Solid Wood & Rattan Cane</h3>
+          <p class="zoosh-feature-desc">Expert construction utilizing premium solid Teak, Ash, and Mahogany wood, combined with hand-woven natural rattan cane.</p>
+        </div>
+
+        <div class="zoosh-feature-card">
+          <div class="zoosh-feature-icon">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round">
+              <rect x="3" y="3" width="7" height="9"></rect>
+              <rect x="14" y="3" width="7" height="5"></rect>
+              <rect x="14" y="12" width="7" height="9"></rect>
+              <rect x="3" y="16" width="7" height="5"></rect>
+            </svg>
+          </div>
+          <h3 class="zoosh-feature-title">Factory-Direct & Detail Focus</h3>
+          <p class="zoosh-feature-desc">Handmade directly in our Pattambi workshop. Expert joineries, meticulous finishing, and zero retail middleman markups.</p>
+        </div>
+
+        <div class="zoosh-feature-card">
+          <div class="zoosh-feature-icon">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round">
+              <polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"></polygon>
+            </svg>
+          </div>
+          <h3 class="zoosh-feature-title">Complete Home Solutions</h3>
+          <p class="zoosh-feature-desc">A dedicated partner for complete custom residential furniture projects, from living rooms to bespoke wardrobes.</p>
+        </div>
+
+      </div>
+
+    </div>
+  </section>
+
+  <!-- SECTION 05 — COMPLETED PROJECTS -->
+  <section class="zoosh-section zoosh-projects-section">
+    <div class="zoosh-section-container">
+      
+      <div class="zoosh-section-header">
+        <span class="zoosh-section-badge">Completed Projects</span>
+        <h2 class="zoosh-section-title">Residential Showcases</h2>
+      </div>
+
+      <div class="zoosh-projects-grid">
+        
+        <div class="zoosh-project-card">
+          <div class="zoosh-pcard-img-wrapper">
+            <img src="https://images.unsplash.com/photo-1618221195710-dd6b41faaea6?q=80&w=1200" alt="Completed Minimal Living Room" class="zoosh-pcard-img" />
+          </div>
+          <div class="zoosh-pcard-info">
+            <h3 class="zoosh-pcard-title">Minimalist Living Space Curation</h3>
+            <p class="zoosh-pcard-desc">An editorial residential design in Bangalore incorporating bespoke low-profile oak sofas and custom travertine consoles.</p>
+          </div>
+        </div>
+
+        <div class="zoosh-project-card">
+          <div class="zoosh-pcard-img-wrapper">
+            <img src="https://images.unsplash.com/photo-1616486338812-3dadae4b4ace?q=80&w=1200" alt="Completed Dining Area" class="zoosh-pcard-img" />
+          </div>
+          <div class="zoosh-pcard-info">
+            <h3 class="zoosh-pcard-title">Contemporary Solid Wood Dining</h3>
+            <p class="zoosh-pcard-desc">Complete bespoke dining table setting with cane-woven dining chairs crafted directly for a luxury villa in Kochi.</p>
+          </div>
+        </div>
+
+      </div>
+
+      <div class="zoosh-section-footer">
+        <a href="/gallery/" class="zoosh-btn zoosh-btn-dark">View Entire Portfolio</a>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- SECTION 06 — INSTAGRAM GRID -->
+  <section class="zoosh-section zoosh-insta-section">
+    <div class="zoosh-section-container">
+      
+      <div class="zoosh-section-header">
+        <span class="zoosh-section-badge">Instagram</span>
+        <h2 class="zoosh-section-title">Follow @zooshfurniture</h2>
+        <p class="zoosh-section-desc">Real-time snapshots from our workshop crafting logs.</p>
+      </div>
+
+      <div class="zoosh-insta-grid">
+        <div class="zoosh-insta-card"><img src="/images/catalog/page_12_img_02.webp" alt="Workshop Snapshot" /></div>
+        <div class="zoosh-insta-card"><img src="/images/catalog/page_13_img_00.webp" alt="Wood Crafting Log" /></div>
+        <div class="zoosh-insta-card"><img src="/images/catalog/page_27_img_00.webp" alt="Bespoke Console" /></div>
+        <div class="zoosh-insta-card"><img src="/images/catalog/page_30_img_00.webp" alt="Selected Materials" /></div>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- QUICK VIEW OVERLAY MODAL -->
+  <div class="zoosh-modal" id="zooshQuickViewModal">
+    <div class="zoosh-modal-backdrop" id="zooshModalBackdrop"></div>
+    <div class="zoosh-modal-content">
+      
+      <button type="button" class="zoosh-modal-close" id="zooshModalClose">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+          <line x1="18" y1="6" x2="6" y2="18"></line>
+          <line x1="6" y1="6" x2="18" y2="18"></line>
+        </svg>
+      </button>
+
+      <div class="zoosh-modal-body" id="zooshModalBody">
+        <!-- Rendered dynamically via JS based on selected product -->
+      </div>
+
+    </div>
+  </div>
+
+</div>
