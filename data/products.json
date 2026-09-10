@@ -398,5 +398,24 @@
     ],
     "description": "Handcrafted from solid teak wood with a refined matt polish finish, featuring vertical timber spindle railings on the armrest and chaise back, supported by a low-profile plinth base with tapered legs and upholstered in deep royal indigo fabric.",
     "featured": true
+  },
+  {
+    "id": "zsh-sf-020",
+    "sku": "SF020",
+    "name": "Sculpted Arm Mahogany 3-Seater Sofa",
+    "category": "Three Seater Sofa",
+    "material": "Solid Mahogany Wood",
+    "dimensions": "210cm W × 85cm D × 80cm H",
+    "price": 43200,
+    "finish": "Melamine Matt Polish",
+    "fabric": "Cream Textured Linen Blend Upholstery",
+    "dimensionBreakdown": [
+      { "label": "Three Seater (210 cm)", "size": "210 cm W × 85 cm D × 80 cm H (Seat H: 42 cm)" }
+    ],
+    "images": [
+      "/images/products/sf020-1.jpg"
+    ],
+    "description": "Handcrafted from solid mahogany wood with a refined matt polish, featuring sculpted, gently curved forward-tapering armrests, an exposed geometric A-line timber frame, and tailored cream linen blend cushions.",
+    "featured": true
   }
 ]
