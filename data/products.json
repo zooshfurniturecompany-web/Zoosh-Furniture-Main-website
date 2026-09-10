@@ -417,5 +417,24 @@
     ],
     "description": "Handcrafted from solid mahogany wood with a refined matt polish, featuring sculpted, gently curved forward-tapering armrests, an exposed geometric A-line timber frame, and tailored cream linen blend cushions.",
     "featured": true
+  },
+  {
+    "id": "zsh-sf-021",
+    "sku": "SF021",
+    "name": "Organic Serpentine Bouclé Curved Sofa",
+    "category": "Three Seater Sofa",
+    "material": "Molded Plywood & Hardwood Core",
+    "dimensions": "240cm W × 115cm D × 78cm H",
+    "price": 45700,
+    "finish": "Fabric Upholstery Finish",
+    "fabric": "Cream Textured Bouclé Fabric Upholstery",
+    "dimensionBreakdown": [
+      { "label": "Grand Serpentine Curved Sofa (240 cm)", "size": "240 cm W × 115 cm D × 78 cm H (Seat H: 42 cm)" }
+    ],
+    "images": [
+      "/images/products/sf021-1.jpg"
+    ],
+    "description": "A fluid architectural statement piece crafted with a high-strength molded plywood structure and high-resilience foam core. Features organic S-curved contours, an enveloping low-profile silhouette with vertical segmented backrest tailoring, and rich cream textured bouclé upholstery on seating and backrest.",
+    "featured": true
   }
 ]
