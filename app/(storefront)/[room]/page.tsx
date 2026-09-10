@@ -69,8 +69,8 @@ interface RoomPageProps {
 }
 
 export default function RoomPage({ params }: RoomPageProps) {
-  const resolvedParams = use(params);
-  const roomSlug = resolvedParams.room.toLowerCase();
+  const resolvedParams = params && typeof (params as any).then === "function" ? use(params) : (params as any);
+  const roomSlug = (resolvedParams?.room || "").toLowerCase();
   const roomData = roomMetadata[roomSlug];
 
   if (!roomData) {

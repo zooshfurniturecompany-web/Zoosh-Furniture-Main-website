@@ -40,9 +40,9 @@ interface SubcategoryPageProps {
 }
 
 export default function SubcategoryPage({ params }: SubcategoryPageProps) {
-  const resolvedParams = use(params);
-  const roomSlug = resolvedParams.room.toLowerCase();
-  const subcategorySlug = resolvedParams.subcategory.toLowerCase();
+  const resolvedParams = params && typeof (params as any).then === "function" ? use(params) : (params as any);
+  const roomSlug = (resolvedParams?.room || "").toLowerCase();
+  const subcategorySlug = (resolvedParams?.subcategory || "").toLowerCase();
 
   const roomName = roomLabels[roomSlug];
   const subcategoryName = subcategoryLabels[subcategorySlug];
