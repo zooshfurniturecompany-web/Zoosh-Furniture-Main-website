@@ -378,5 +378,25 @@
     ],
     "description": "A grand 230 cm architectural sofa embodying organic softness and refined joinery. Features voluptuous cloud-like contours, expansive twin bench seating, and an exposed solid teak wood base plinth with sculpted corner bracket feet finished in a smooth matt polish.",
     "featured": true
+  },
+  {
+    "id": "zsh-sf-019",
+    "sku": "SF019",
+    "name": "Indigo Spindle Teak L-Shaped Sectional Sofa",
+    "category": "Three Seater Sofa",
+    "material": "Solid Teak Wood",
+    "dimensions": "Main: 210 × 90 × 82 cm | Chaise: 165 × 90 × 82 cm",
+    "price": 52200,
+    "finish": "Melamine Matt Polish",
+    "fabric": "Royal Indigo Blue Fabric Upholstery",
+    "dimensionBreakdown": [
+      { "label": "Main Seating Section", "size": "210 cm × 90 cm × 82 cm" },
+      { "label": "Chaise Lounge Section", "size": "165 cm × 90 cm × 82 cm" }
+    ],
+    "images": [
+      "/images/products/sf019-1.jpg"
+    ],
+    "description": "Handcrafted from solid teak wood with a refined matt polish finish, featuring vertical timber spindle railings on the armrest and chaise back, supported by a low-profile plinth base with tapered legs and upholstered in deep royal indigo fabric.",
+    "featured": true
   }
 ]
