@@ -1,7 +1,6 @@
 -- ========================================================
 -- ZOOSH PRODUCT MANAGEMENT SYSTEM - DATABASE SCHEMA
--- Relational schema for products, categories, collections,
--- materials, product variants, images, and settings.
+-- Run this in your Supabase SQL Editor (supabase.com)
 -- ========================================================
 
 -- 1. Enable UUID Extension
@@ -73,13 +72,14 @@ create table if not exists other_materials (
 
 -- 7. Products Table (Master Product Catalog)
 create table if not exists products (
-  id uuid default gen_random_uuid() primary key,
+  id text primary key,
   sku text unique not null,
   name text not null,
   slug text unique not null,
-  category_id uuid references categories(id) on delete set null,
+  category_id text,
   category_name text not null default 'Three Seater Sofa',
-  collection_id uuid references collections(id) on delete set null,
+  collection_id text,
+  collection_name text,
   short_description text default '',
   full_description text default '',
   status text not null default 'published', -- 'published', 'draft', 'archived'
@@ -119,23 +119,41 @@ create table if not exists products (
   updated_at timestamp with time zone default timezone('utc'::text, now()) not null
 );
 
--- 8. Admin Users Table
-create table if not exists admin_users (
-  id uuid default gen_random_uuid() primary key,
-  email text unique not null,
-  name text not null,
-  role text not null default 'admin',
-  created_at timestamp with time zone default timezone('utc'::text, now()) not null
-);
-
--- 9. Website Settings Table
+-- 8. Website Settings Table
 create table if not exists website_settings (
   key text primary key,
   value jsonb not null,
   updated_at timestamp with time zone default timezone('utc'::text, now()) not null
 );
 
--- 10. Indexes
+-- 9. Enable Row Level Security (RLS) & Policies
+alter table categories enable row level security;
+alter table collections enable row level security;
+alter table wood_types enable row level security;
+alter table fabric_types enable row level security;
+alter table other_materials enable row level security;
+alter table products enable row level security;
+alter table website_settings enable row level security;
+
+-- Public read access for storefront
+create policy "Public read categories" on categories for select using (true);
+create policy "Public read collections" on collections for select using (true);
+create policy "Public read wood_types" on wood_types for select using (true);
+create policy "Public read fabric_types" on fabric_types for select using (true);
+create policy "Public read other_materials" on other_materials for select using (true);
+create policy "Public read products" on products for select using (true);
+create policy "Public read website_settings" on website_settings for select using (true);
+
+-- Full management access for admin backend
+create policy "Full access categories" on categories for all using (true) with check (true);
+create policy "Full access collections" on collections for all using (true) with check (true);
+create policy "Full access wood_types" on wood_types for all using (true) with check (true);
+create policy "Full access fabric_types" on fabric_types for all using (true) with check (true);
+create policy "Full access other_materials" on other_materials for all using (true) with check (true);
+create policy "Full access products" on products for all using (true) with check (true);
+create policy "Full access website_settings" on website_settings for all using (true) with check (true);
+
+-- 10. Performance Indexes
 create index if not exists idx_products_status on products (status);
 create index if not exists idx_products_featured on products (featured);
 create index if not exists idx_products_category on products (category_name);
