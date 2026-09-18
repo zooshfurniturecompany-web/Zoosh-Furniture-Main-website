@@ -25,7 +25,7 @@ import VariantSelector from "@/components/product/variant-selector";
 import RecentlyViewed from "@/components/product/recently-viewed";
 import CustomSizeForm from "@/components/product/custom-size-form";
 import ProductPricingBreakdown from "@/components/product/product-pricing-breakdown";
-import { getProductBySlug, getAllProducts, getWhatsAppLink, getRoomAndSubcategory, transformAdminProductToProduct, Product } from "@/hooks/use-products";
+import { getProductBySlug, getAllProducts, getWhatsAppLink, getRoomAndSubcategory, transformAdminProductToProduct, Product } from "@/lib/products-utils";
 import { adminDb } from "@/lib/admin-db";
 
 interface PageProps {
