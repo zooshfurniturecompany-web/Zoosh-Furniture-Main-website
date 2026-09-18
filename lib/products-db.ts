@@ -1,13 +1,25 @@
-import { adminDb, AdminProduct } from "./admin-db";
+import { adminDb, AdminProduct, Category, Collection } from "./admin-db";
 
-export type { AdminProduct };
+export type { AdminProduct, Category, Collection };
+
+export const dynamic = "force-dynamic";
 
 /**
  * Public storefront data access layer.
  * Only retrieves products that have status === 'published'.
+ * Draft and archived products are strictly excluded from public storefront.
  */
-export async function getPublicProducts(): Promise<AdminProduct[]> {
-  const products = await adminDb.getProducts({ status: "published" });
+export async function getPublicProducts(filters?: {
+  category?: string;
+  collection?: string;
+  search?: string;
+}): Promise<AdminProduct[]> {
+  const products = await adminDb.getProducts({
+    status: "published",
+    category: filters?.category,
+    collection: filters?.collection,
+    search: filters?.search,
+  });
   return products;
 }
 
@@ -24,12 +36,12 @@ export async function getPublicFeaturedProducts(): Promise<AdminProduct[]> {
   return products;
 }
 
-export async function getPublicCategories() {
+export async function getPublicCategories(): Promise<Category[]> {
   const categories = await adminDb.getCategories();
-  return categories.filter(c => c.status === "active");
+  return categories.filter((c) => c.status === "active");
 }
 
-export async function getPublicCollections() {
+export async function getPublicCollections(): Promise<Collection[]> {
   const collections = await adminDb.getCollections();
-  return collections.filter(c => c.status === "active");
+  return collections.filter((c) => c.status === "active");
 }

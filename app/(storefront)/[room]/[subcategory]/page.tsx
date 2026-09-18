@@ -7,7 +7,7 @@ import { ChevronRight, Filter, SlidersHorizontal, ArrowUpDown, X, Check } from "
 import ProductCard from "@/components/product/product-card";
 import QuickViewModal from "@/components/product/quick-view-modal";
 import Button from "@/components/ui/button";
-import { Product, getProductsBySubcategory } from "@/hooks/use-products";
+import { Product, useProducts, getRoomAndSubcategory } from "@/hooks/use-products";
 
 // Human-readable labels for slugs
 const roomLabels: Record<string, string> = {
@@ -57,8 +57,12 @@ export default function SubcategoryPage({ params }: SubcategoryPageProps) {
   const [sortModalOpen, setSortModalOpen] = useState(false);
   const [filterModalOpen, setFilterModalOpen] = useState(false);
 
-  // Get catalog products for this subcategory
-  const rawProducts = getProductsBySubcategory(roomSlug, subcategorySlug);
+  // Get live catalog products for this subcategory from CMS
+  const allProducts = useProducts();
+  const rawProducts = allProducts.filter((p) => {
+    const mapped = getRoomAndSubcategory(p.category);
+    return mapped.room === roomSlug && mapped.subcategory === subcategorySlug;
+  });
 
   const WOOD_FILTERS = ["Teak Wood", "Ash Wood", "Mahogany Wood"];
 

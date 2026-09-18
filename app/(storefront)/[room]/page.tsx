@@ -8,7 +8,7 @@ import { ArrowRight, Filter, SlidersHorizontal, ArrowUpDown, X, Check } from "lu
 import Button from "@/components/ui/button";
 import ProductCard from "@/components/product/product-card";
 import QuickViewModal from "@/components/product/quick-view-modal";
-import { Product, getProductsByRoom } from "@/hooks/use-products";
+import { Product, useProducts, getRoomAndSubcategory } from "@/hooks/use-products";
 
 // Metadata and details for each specific Space room
 const roomMetadata: Record<string, {
@@ -82,8 +82,8 @@ export default function RoomPage({ params }: RoomPageProps) {
   const [sortOption, setSortOption] = useState("Featured");
   const [sortModalOpen, setSortModalOpen] = useState(false);
   const [filterModalOpen, setFilterModalOpen] = useState(false);
-
-  const rawProducts = getProductsByRoom(roomSlug);
+  const allProducts = useProducts();
+  const rawProducts = allProducts.filter((p) => getRoomAndSubcategory(p.category).room === roomSlug);
 
   const WOOD_FILTERS = ["Teak Wood", "Ash Wood", "Mahogany Wood"];
 

@@ -6,7 +6,7 @@ import { motion, AnimatePresence } from "framer-motion";
 import { Search, SlidersHorizontal, RefreshCw } from "lucide-react";
 import ProductCard from "@/components/product/product-card";
 import QuickViewModal from "@/components/product/quick-view-modal";
-import { getAllProducts, getCategories, Product } from "@/hooks/use-products";
+import { useProducts, getCategories, Product } from "@/hooks/use-products";
 
 // Inner component to safely use search params inside Suspense
 function CollectionContent() {
@@ -14,7 +14,7 @@ function CollectionContent() {
   const searchParams = useSearchParams();
   const initialCategory = searchParams.get("category") || "All";
 
-  const products = getAllProducts();
+  const products = useProducts();
   const categories = ["All", ...getCategories()];
 
   const [activeCategory, setActiveCategory] = useState(initialCategory);

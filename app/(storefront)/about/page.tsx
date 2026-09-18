@@ -7,11 +7,11 @@ import { motion } from "framer-motion";
 import { Calendar, Compass, ShieldCheck, Factory, MapPin } from "lucide-react";
 import ProductCard from "@/components/product/product-card";
 import QuickViewModal from "@/components/product/quick-view-modal";
-import { getAllProducts, Product } from "@/hooks/use-products";
+import { useProducts, Product } from "@/hooks/use-products";
 
 export default function AboutPage() {
   const [selectedProduct, setSelectedProduct] = useState<Product | null>(null);
-  const products = getAllProducts().slice(0, 3);
+  const products = useProducts().slice(0, 3);
 
   const fadeInUp = {
     initial: { opacity: 0, y: 25 },

@@ -6,11 +6,11 @@ import { Send, MapPin, Phone, Mail, CheckCircle2, MessageSquare } from "lucide-r
 import Button from "@/components/ui/button";
 import ProductCard from "@/components/product/product-card";
 import QuickViewModal from "@/components/product/quick-view-modal";
-import { getAllProducts, Product, getGeneralWhatsAppLink } from "@/hooks/use-products";
+import { useProducts, Product, getGeneralWhatsAppLink } from "@/hooks/use-products";
 
 export default function ContactPage() {
   const [selectedProduct, setSelectedProduct] = useState<Product | null>(null);
-  const products = getAllProducts().slice(0, 3);
+  const products = useProducts().slice(0, 3);
 
   const [formState, setFormState] = useState({
     name: "",

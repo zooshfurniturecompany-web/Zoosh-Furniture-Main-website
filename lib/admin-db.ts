@@ -311,7 +311,21 @@ if (typeof window !== "undefined") {
 
 function persistStore() {
   if (typeof window !== "undefined") {
-    localStorage.setItem("zoosh_admin_store_v2", JSON.stringify(store));
+    try {
+      localStorage.setItem("zoosh_admin_store_v2", JSON.stringify(store));
+      window.dispatchEvent(new CustomEvent("zoosh_store_updated", { detail: { timestamp: Date.now() } }));
+    } catch (e) {
+      console.error("Failed to persist store to localStorage", e);
+    }
+
+    // Also sync to server in background
+    try {
+      fetch("/api/admin/sync", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ store }),
+      }).catch(() => {});
+    } catch (e) {}
   }
 }
 
@@ -320,6 +334,26 @@ function persistStore() {
 // ==========================================
 
 export const adminDb = {
+  getStore() {
+    if (typeof window !== "undefined") {
+      const saved = localStorage.getItem("zoosh_admin_store_v2");
+      if (saved) {
+        try {
+          const parsed = JSON.parse(saved);
+          if (parsed.products && parsed.products.length > 0) {
+            store = { ...store, ...parsed };
+          }
+        } catch (e) {}
+      }
+    }
+    return store;
+  },
+
+  syncStore(partialStore: Partial<typeof store>) {
+    store = { ...store, ...partialStore };
+    persistStore();
+    return store;
+  },
   // PRODUCTS
   async getProducts(filters?: {
     search?: string;

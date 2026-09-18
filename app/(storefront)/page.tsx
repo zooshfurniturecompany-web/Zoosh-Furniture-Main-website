@@ -21,7 +21,7 @@ import {
 import Button from "@/components/ui/button";
 import ProductCard from "@/components/product/product-card";
 import QuickViewModal from "@/components/product/quick-view-modal";
-import { getAllProducts, getCategories, Product, getGeneralWhatsAppLink } from "@/hooks/use-products";
+import { useProducts, getCategories, Product, getGeneralWhatsAppLink } from "@/hooks/use-products";
 
 // Static primary category spaces
 const spaces = [
@@ -83,7 +83,7 @@ const instagramFeed = [
 
 export default function HomePage() {
   const [selectedProduct, setSelectedProduct] = useState<Product | null>(null);
-  const allProducts = getAllProducts();
+  const allProducts = useProducts();
   const categories = ["All", ...getCategories()];
   const [activeTab, setActiveTab] = useState("All");
 

@@ -1,4 +1,7 @@
-import productsData from "@/data/products.json";
+"use client";
+
+import { useState, useEffect } from "react";
+import { adminDb, AdminProduct } from "@/lib/admin-db";
 
 export interface PriceOption {
   label: string;
@@ -54,18 +57,17 @@ export interface Product {
   };
   features: string[];
   lifestyleImages: string[];
+  status?: string;
 }
 
-function getDynamicProductDetails(p: any) {
-  const cat = (p.category || "").toLowerCase();
-  const name = p.name || "";
-  const id = p.id || "";
+function getDynamicProductDetails(p: Partial<AdminProduct>) {
+  const cat = (p.category_name || "").toLowerCase();
+  const id = p.id || p.sku || "zsh-01";
   
   // Deterministic seed based on product ID
   let hash = 0;
-  const str = id;
-  for (let i = 0; i < str.length; i++) {
-    hash = (hash << 5) - hash + str.charCodeAt(i);
+  for (let i = 0; i < id.length; i++) {
+    hash = (hash << 5) - hash + id.charCodeAt(i);
     hash |= 0;
   }
   const seed = Math.abs(hash);
@@ -96,37 +98,38 @@ function getDynamicProductDetails(p: any) {
     fabricVal = seed % 2 === 0 ? "Premium Linen-Cotton Blend" : "Cream Italian Bouclé";
   }
 
-  let woodTypeVal = "N/A";
-  if (p.material?.toLowerCase().includes("ash") || p.material?.toLowerCase().includes("oak")) woodTypeVal = "Premium Ash Wood";
-  else if (p.material?.toLowerCase().includes("teak")) woodTypeVal = "Kerala Teak Wood";
-  else if (p.material?.toLowerCase().includes("mahogany")) woodTypeVal = "Selected Mahogany";
-  else if (p.material?.toLowerCase().includes("rattan") || p.material?.toLowerCase().includes("cane")) woodTypeVal = "Natural Rattan Cane & Teak";
-  else woodTypeVal = "Kerala Teak Wood";
+  let woodTypeVal = "Kerala Teak Wood";
+  const matLower = (p.material || "").toLowerCase();
+  if (matLower.includes("ash") || matLower.includes("oak")) woodTypeVal = "Premium Ash Wood";
+  else if (matLower.includes("teak")) woodTypeVal = "Kerala Teak Wood";
+  else if (matLower.includes("mahogany")) woodTypeVal = "Selected Mahogany";
+  else if (matLower.includes("rattan") || matLower.includes("cane")) woodTypeVal = "Natural Rattan Cane & Teak";
 
   const specs = {
     material: p.material || "Solid Wood",
-    woodType: woodTypeVal,
-    fabric: fabricVal,
+    woodType: p.wood_options?.[0] || woodTypeVal,
+    fabric: p.fabric_options?.[0] || fabricVal,
     dimensions: p.dimensions || "90cm W x 90cm D x 75cm H",
     weight: `${25 + (seed % 35)} kg`,
     finish: p.finish || "Matte Organic Oil / Natural Honed",
     assembly: seed % 3 === 0 ? "None - Delivered fully assembled" : "Minimal assembly required (legs attachment)",
     warranty: "5-Year Structural Frame Warranty",
-    customizable: true
+    customizable: p.customisation_available ?? true
   };
 
   // 3. Variants
-  const woods = ["Natural Teak", "Aged Mahogany", "Natural Ash", "Charcoal Ash"];
+  const woods = ["Solid Teak Wood", "Premium Ash Wood", "Selected Mahogany Wood"];
   const colors = ["Ivory", "Oatmeal", "Charcoal", "Olive"];
   const fabrics = ["Textured Bouclé", "Raw Linen", "Premium Wool"];
   const sizes = ["Standard", "Grand", "Bespoke / Custom"];
 
   const variants = {
-    woods: cat.includes("stone") || cat.includes("travertine") ? ["Travertine Stone", "Calacatta Marble"] : woods.slice(0, 2 + (seed % 3)),
+    woods: p.wood_options && p.wood_options.length > 0 ? p.wood_options : woods,
     colors: colors.slice(0, 2 + (seed % 3)),
-    fabrics: cat.includes("chair") || cat.includes("sofa") ? fabrics.slice(0, 2 + (seed % 2)) : undefined,
-    sizes: sizes.slice(0, 2 + (seed % 2))
+    fabrics: p.fabric_options && p.fabric_options.length > 0 ? p.fabric_options : (cat.includes("chair") || cat.includes("sofa") ? fabrics.slice(0, 2 + (seed % 2)) : undefined),
+    sizes: p.size_options && p.size_options.length > 0 ? p.size_options.map(s => s.name) : sizes.slice(0, 2 + (seed % 2))
   };
+
   const featuresList = [
     "Premium Craftsmanship",
     "Solid Wood Structure",
@@ -138,7 +141,6 @@ function getDynamicProductDetails(p: any) {
   }
   featuresList.push("Customizable", "Made to Order");
 
-  // 5. Lifestyle Images (from Unsplash portfolio)
   const lifestyleImages = [
     "https://images.unsplash.com/photo-1618221195710-dd6b41faaea6?q=80&w=1200",
     "https://images.unsplash.com/photo-1616486338812-3dadae4b4ace?q=80&w=1200",
@@ -154,114 +156,67 @@ function getDynamicProductDetails(p: any) {
   };
 }
 
-function getDynamicProductImages(category: string, id: string, primaryImage: string): string[] {
-  const cat = (category || "").toLowerCase();
-  
-  // Deterministic seed based on product ID
-  let hash = 0;
-  for (let i = 0; i < id.length; i++) {
-    hash = (hash << 5) - hash + id.charCodeAt(i);
-    hash |= 0;
-  }
-  const seed = Math.abs(hash);
+export function transformAdminProductToProduct(p: AdminProduct): Product {
+  const dynamic = getDynamicProductDetails(p);
+  const primaryImg = p.images && p.images.length > 0 ? p.images[0] : "/images/products/sf001-1.jpg";
+  const allImgs = p.images && p.images.length > 0 ? p.images : [primaryImg];
 
-  // Set of premium Unsplash images per category
-  let secondaryPool: string[] = [];
-
-  if (cat.includes("chair")) {
-    secondaryPool = [
-      "https://images.unsplash.com/photo-1598300042247-d088f8ab3a91?q=80&w=800",
-      "https://images.unsplash.com/photo-1567538096630-e0c55bd6374c?q=80&w=800",
-      "https://images.unsplash.com/photo-1503602642458-232111445657?q=80&w=800",
-      "https://images.unsplash.com/photo-1580481072645-022f9a6dbf27?q=80&w=800",
-      "https://images.unsplash.com/photo-1592078615290-033ee584e267?q=80&w=800",
-      "https://images.unsplash.com/photo-1586023492125-27b2c045efd7?q=80&w=800"
-    ];
-  } else if (cat.includes("table") || cat.includes("dining") || cat.includes("bench")) {
-    secondaryPool = [
-      "https://images.unsplash.com/photo-1615066390971-03e4e1c36ddf?q=80&w=800",
-      "https://images.unsplash.com/photo-1604014237800-1c9102c219da?q=80&w=800",
-      "https://images.unsplash.com/photo-1581428982868-e410dd047a90?q=80&w=800",
-      "https://images.unsplash.com/photo-1533090161767-e6ffed986c88?q=80&w=800",
-      "https://images.unsplash.com/photo-1600585154340-be6161a56a0c?q=80&w=800"
-    ];
-  } else if (cat.includes("bed") || cat.includes("bedroom")) {
-    secondaryPool = [
-      "https://images.unsplash.com/photo-1505693416388-ac5ce068fe85?q=80&w=800",
-      "https://images.unsplash.com/photo-1540518614846-7eded433c457?q=80&w=800",
-      "https://images.unsplash.com/photo-1522771739844-6a9f6d5f14af?q=80&w=800"
-    ];
-  } else if (cat.includes("console") || cat.includes("credenza") || cat.includes("cabinet") || cat.includes("storage") || cat.includes("living")) {
-    secondaryPool = [
-      "https://images.unsplash.com/photo-1600121848594-d8644e57abab?q=80&w=800",
-      "https://images.unsplash.com/photo-1616486338812-3dadae4b4ace?q=80&w=800",
-      "https://images.unsplash.com/photo-1595428774223-ef52624120d2?q=80&w=800"
-    ];
-  } else if (cat.includes("sofa")) {
-    secondaryPool = [
-      "https://images.unsplash.com/photo-1555041469-a586c61ea9bc?q=80&w=800",
-      "https://images.unsplash.com/photo-1484101403633-562f891dc89a?q=80&w=800",
-      "https://images.unsplash.com/photo-1524758631624-e2822e304c36?q=80&w=800"
-    ];
-  } else {
-    secondaryPool = [
-      "https://images.unsplash.com/photo-1586023492125-27b2c045efd7?q=80&w=800",
-      "https://images.unsplash.com/photo-1600585154340-be6161a56a0c?q=80&w=800",
-      "https://images.unsplash.com/photo-1533090161767-e6ffed986c88?q=80&w=800"
-    ];
-  }
-
-  const filteredPool = secondaryPool.filter(img => img !== primaryImage);
-  const secondaryImages: string[] = [];
-  const poolLen = filteredPool.length;
-  
-  if (poolLen > 0) {
-    for (let i = 0; i < Math.min(3, poolLen); i++) {
-      const targetIdx = (seed + i) % poolLen;
-      const img = filteredPool[targetIdx];
-      if (!secondaryImages.includes(img)) {
-        secondaryImages.push(img);
-      }
-    }
-  }
-
-  return [primaryImage, ...secondaryImages];
+  return {
+    id: p.id,
+    name: p.name,
+    slug: p.slug || p.sku.toLowerCase(),
+    category: p.category_name || "Living",
+    description: p.full_description || p.short_description || "",
+    images: allImgs,
+    dimensions: p.dimensions || "",
+    material: p.material || "Solid Wood",
+    finish: p.finish || "Melamine Matt Polish",
+    sku: p.sku,
+    featured: p.featured ?? false,
+    price: p.price,
+    fabric: p.fabric_options?.[0] || "",
+    rattan: (p.specs?.["Rattan"] as string) || "",
+    priceBreakdown: p.price_breakdown as any,
+    dimensionBreakdown: p.dimension_breakdown as any,
+    story: {
+      ...dynamic.story,
+      ...(p.specs?.story ? (p.specs.story as any) : {})
+    },
+    specs: {
+      material: p.material || "Solid Wood",
+      woodType: p.wood_options?.[0] || dynamic.specs.woodType,
+      fabric: p.fabric_options?.[0] || dynamic.specs.fabric,
+      dimensions: p.dimensions || dynamic.specs.dimensions,
+      weight: (p.specs?.weight as string) || dynamic.specs.weight,
+      finish: p.finish || dynamic.specs.finish,
+      assembly: (p.specs?.assembly as string) || dynamic.specs.assembly,
+      warranty: (p.specs?.warranty as string) || dynamic.specs.warranty,
+      customizable: p.customisation_available ?? true
+    },
+    variants: {
+      woods: p.wood_options && p.wood_options.length > 0 ? p.wood_options : dynamic.variants.woods,
+      colors: dynamic.variants.colors,
+      fabrics: p.fabric_options && p.fabric_options.length > 0 ? p.fabric_options : dynamic.variants.fabrics,
+      sizes: p.size_options && p.size_options.length > 0 ? p.size_options.map(s => s.name) : dynamic.variants.sizes
+    },
+    features: dynamic.features,
+    lifestyleImages: allImgs.slice(1).length > 0 ? allImgs.slice(1) : dynamic.lifestyleImages,
+    status: p.status
+  };
 }
 
-const PRODUCTS: Product[] = (productsData as any[]).map((p) => {
-  const id = p.id || `zsh-${p.sku?.toLowerCase()}`;
-  const category = p.category || "General";
-  const primaryImage = p.images?.[0] || "https://images.unsplash.com/photo-1586023492125-27b2c045efd7?q=80&w=800";
-  const resolvedImages = (p.images && p.images.length > 0) ? p.images : [primaryImage];
-  const dynamicDetails = getDynamicProductDetails(p);
-  
-  return {
-    id,
-    name: p.name,
-    slug: p.slug || p.sku?.toLowerCase() || p.name.toLowerCase().replace(/[^a-z0-9]+/g, "-"),
-    category,
-    description: p.description || "",
-    images: resolvedImages,
-    dimensions: p.dimensions || "",
-    material: p.material || p.wood_type || "",
-    finish: p.finish || "Natural Polish",
-    sku: p.sku || p.product_code || "",
-    featured: p.featured || false,
-    price: p.price,
-    fabric: p.fabric || (dynamicDetails as any).specs?.fabric || "",
-    rattan: p.rattan || "",
-    priceBreakdown: p.priceBreakdown || null,
-    dimensionBreakdown: p.dimensionBreakdown || null,
-    ...dynamicDetails
-  };
-});
-
+/**
+ * Returns ALL published products from the dynamic CMS database.
+ * Draft and archived products are automatically excluded.
+ */
 export function getAllProducts(): Product[] {
-  return PRODUCTS;
+  const store = adminDb.getStore();
+  const published = store.products.filter(p => p.status === "published");
+  return published.map(transformAdminProductToProduct);
 }
 
 export function getFeaturedProducts(): Product[] {
-  return PRODUCTS.filter((product) => product.featured);
+  return getAllProducts().filter((product) => product.featured);
 }
 
 export function getProductBySlug(slug: string): Product | undefined {
@@ -282,17 +237,69 @@ export function getProductBySlug(slug: string): Product | undefined {
   };
 
   const resolvedSlug = aliases[cleanSlug] || cleanSlug;
+  const store = adminDb.getStore();
 
-  return PRODUCTS.find(
+  const found = store.products.find(
     (product) => 
-      product.slug.toLowerCase() === resolvedSlug || 
-      product.sku.toLowerCase() === resolvedSlug ||
-      product.id.toLowerCase() === resolvedSlug
+      product.status === "published" && (
+        product.slug.toLowerCase() === resolvedSlug || 
+        product.sku.toLowerCase() === resolvedSlug ||
+        product.id.toLowerCase() === resolvedSlug ||
+        product.name.toLowerCase().replace(/[^a-z0-9]+/g, "-") === resolvedSlug
+      )
   );
+
+  return found ? transformAdminProductToProduct(found) : undefined;
 }
 
 export function getCategories(): string[] {
-  return Array.from(new Set(PRODUCTS.map((product) => product.category)));
+  const all = getAllProducts();
+  return Array.from(new Set(all.map((product) => product.category)));
+}
+
+/**
+ * React hook that subscribes to real-time CMS changes.
+ * Whenever an admin adds, edits, deletes, publishes, or unpublishes a product,
+ * all active storefront components re-render immediately.
+ */
+export function useProducts(): Product[] {
+  const [products, setProducts] = useState<Product[]>(() => getAllProducts());
+
+  useEffect(() => {
+    const handleUpdate = () => {
+      setProducts(getAllProducts());
+    };
+
+    window.addEventListener("zoosh_store_updated", handleUpdate);
+    window.addEventListener("storage", handleUpdate);
+
+    // Initial server fetch to synchronize any changes from server/Supabase
+    fetch("/api/products", { cache: "no-store" })
+      .then((res) => res.json())
+      .then((data) => {
+        if (Array.isArray(data) && data.length > 0) {
+          adminDb.syncStore({ products: data });
+          setProducts(getAllProducts());
+        }
+      })
+      .catch(() => {});
+
+    return () => {
+      window.removeEventListener("zoosh_store_updated", handleUpdate);
+      window.removeEventListener("storage", handleUpdate);
+    };
+  }, []);
+
+  return products;
+}
+
+export function useProductBySlug(slug: string): Product | undefined {
+  const products = useProducts();
+  if (!slug) return undefined;
+  const cleanSlug = slug.toLowerCase().replace(/_/g, "-");
+  return products.find(
+    p => p.slug.toLowerCase() === cleanSlug || p.sku.toLowerCase() === cleanSlug || p.id.toLowerCase() === cleanSlug
+  );
 }
 
 export function getWhatsAppLink(productName: string, productSku?: string): string {
@@ -316,9 +323,6 @@ Thank you.`;
   return `https://wa.me/${phoneNumber}?text=${encodeURIComponent(message)}`;
 }
 
-/**
- * Generates a general custom enquiry WhatsApp link
- */
 export function getGeneralWhatsAppLink(type: "general" | "custom" = "general"): string {
   const phoneNumber = "919567193992";
 
@@ -428,4 +432,3 @@ export function getProductsBySubcategory(roomSlug: string, subcategorySlug: stri
     return mapped.room === roomSlug && mapped.subcategory === subcategorySlug;
   });
 }
-

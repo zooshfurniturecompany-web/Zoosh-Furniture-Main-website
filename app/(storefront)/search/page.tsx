@@ -7,7 +7,7 @@ import Link from "next/link";
 import ProductCard from "@/components/product/product-card";
 import QuickViewModal from "@/components/product/quick-view-modal";
 import Button from "@/components/ui/button";
-import { Product, getAllProducts } from "@/hooks/use-products";
+import { Product, useProducts } from "@/hooks/use-products";
 
 function SearchResultsContent() {
   const searchParams = useSearchParams();
@@ -15,7 +15,7 @@ function SearchResultsContent() {
 
   const [selectedProduct, setSelectedProduct] = useState<Product | null>(null);
 
-  const allProducts = getAllProducts();
+  const allProducts = useProducts();
 
   // Simple, robust search matching logic
   const filteredProducts = allProducts.filter((product) => {
