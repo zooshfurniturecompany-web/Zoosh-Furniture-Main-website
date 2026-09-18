@@ -3,17 +3,18 @@
 import { useEffect, useState } from "react";
 import {
   Settings,
-  Users,
   ShieldCheck,
   Save,
   CheckCircle2,
-  Plus,
-  Trash2,
+  Lock,
+  Key,
+  Server,
   Phone,
   Mail,
-  MapPin
+  MapPin,
+  Info
 } from "lucide-react";
-import { adminDb, WebsiteSettings, AdminUser } from "@/lib/admin-db";
+import { adminDb, WebsiteSettings } from "@/lib/admin-db";
 
 export default function SettingsAdminPage() {
   const [settings, setSettings] = useState<WebsiteSettings>({
@@ -26,25 +27,26 @@ export default function SettingsAdminPage() {
     default_seo_description: "ZOOSH is a premium factory-direct custom furniture manufacturer based in Pattambi, Palakkad, Kerala."
   });
 
-  const [users, setUsers] = useState<AdminUser[]>([]);
   const [savedMsg, setSavedMsg] = useState(false);
-
-  // New User Form
-  const [newUserEmail, setNewUserEmail] = useState("");
-  const [newUserName, setNewUserName] = useState("");
-  const [newUserRole, setNewUserRole] = useState<"admin" | "editor">("editor");
+  const [currentAdminEmail, setCurrentAdminEmail] = useState("admin@zoosh.in");
 
   useEffect(() => {
     load();
   }, []);
 
   const load = async () => {
-    const [s, u] = await Promise.all([
+    const [s, sessionRes] = await Promise.all([
       adminDb.getSettings(),
-      adminDb.getUsers()
+      fetch("/api/auth/session").catch(() => null)
     ]);
     setSettings(s);
-    setUsers(u);
+
+    if (sessionRes && sessionRes.ok) {
+      const data = await sessionRes.json();
+      if (data?.user?.email) {
+        setCurrentAdminEmail(data.user.email);
+      }
+    }
   };
 
   const handleSaveSettings = async (e: React.FormEvent) => {
@@ -54,27 +56,6 @@ export default function SettingsAdminPage() {
     setTimeout(() => setSavedMsg(false), 3000);
   };
 
-  const handleAddUser = async (e: React.FormEvent) => {
-    e.preventDefault();
-    if (newUserEmail.trim()) {
-      await adminDb.saveUser({
-        email: newUserEmail.trim(),
-        name: newUserName.trim() || "Team Member",
-        role: newUserRole
-      });
-      setNewUserEmail("");
-      setNewUserName("");
-      load();
-    }
-  };
-
-  const handleDeleteUser = async (id: string) => {
-    if (confirm("Remove user access?")) {
-      await adminDb.deleteUser(id);
-      load();
-    }
-  };
-
   return (
     <div className="space-y-8 max-w-4xl">
       <div>
@@ -82,7 +63,7 @@ export default function SettingsAdminPage() {
           Settings & Access Controls
         </h1>
         <p className="text-xs md:text-sm text-neutral-500 mt-1">
-          Manage storefront contact info, WhatsApp dispatch numbers, and authorized admin team users.
+          Manage storefront contact info, WhatsApp dispatch numbers, and private administrator credentials.
         </p>
       </div>
 
@@ -101,45 +82,69 @@ export default function SettingsAdminPage() {
 
         <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
           <div>
-            <label className="block text-neutral-700 font-semibold mb-1">WhatsApp Order & Inquiry Number</label>
-            <input
-              type="text"
-              value={settings.whatsapp_number}
-              onChange={(e) => setSettings({ ...settings, whatsapp_number: e.target.value })}
-              className="w-full px-3 py-2 bg-neutral-50 border border-neutral-200 rounded-lg text-neutral-900"
-            />
-            <p className="text-[10px] text-neutral-400 mt-1">Direct format without + (e.g. 919567193992)</p>
+            <label className="block text-neutral-700 font-semibold mb-1">WhatsApp Direct Number</label>
+            <div className="relative">
+              <Phone className="w-3.5 h-3.5 absolute left-3 top-1/2 -translate-y-1/2 text-neutral-400" />
+              <input
+                type="text"
+                value={settings.whatsapp_number}
+                onChange={(e) => setSettings({ ...settings, whatsapp_number: e.target.value })}
+                placeholder="919567193992"
+                className="w-full pl-9 pr-3 py-2 bg-neutral-50 border border-neutral-200 rounded-lg text-neutral-900"
+              />
+            </div>
           </div>
 
           <div>
-            <label className="block text-neutral-700 font-semibold mb-1">Display Contact Phone</label>
-            <input
-              type="text"
-              value={settings.contact_phone}
-              onChange={(e) => setSettings({ ...settings, contact_phone: e.target.value })}
-              className="w-full px-3 py-2 bg-neutral-50 border border-neutral-200 rounded-lg text-neutral-900"
-            />
+            <label className="block text-neutral-700 font-semibold mb-1">Display Phone Number</label>
+            <div className="relative">
+              <Phone className="w-3.5 h-3.5 absolute left-3 top-1/2 -translate-y-1/2 text-neutral-400" />
+              <input
+                type="text"
+                value={settings.contact_phone}
+                onChange={(e) => setSettings({ ...settings, contact_phone: e.target.value })}
+                placeholder="+91 95671 93992"
+                className="w-full pl-9 pr-3 py-2 bg-neutral-50 border border-neutral-200 rounded-lg text-neutral-900"
+              />
+            </div>
           </div>
         </div>
 
         <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
           <div>
-            <label className="block text-neutral-700 font-semibold mb-1">Official Company Email</label>
-            <input
-              type="email"
-              value={settings.email}
-              onChange={(e) => setSettings({ ...settings, email: e.target.value })}
-              className="w-full px-3 py-2 bg-neutral-50 border border-neutral-200 rounded-lg text-neutral-900"
-            />
+            <label className="block text-neutral-700 font-semibold mb-1">Contact Email</label>
+            <div className="relative">
+              <Mail className="w-3.5 h-3.5 absolute left-3 top-1/2 -translate-y-1/2 text-neutral-400" />
+              <input
+                type="email"
+                value={settings.email}
+                onChange={(e) => setSettings({ ...settings, email: e.target.value })}
+                placeholder="zooshfurniturecompany@gmail.com"
+                className="w-full pl-9 pr-3 py-2 bg-neutral-50 border border-neutral-200 rounded-lg text-neutral-900"
+              />
+            </div>
           </div>
 
           <div>
-            <label className="block text-neutral-700 font-semibold mb-1">Workshop / Factory Address</label>
+            <label className="block text-neutral-700 font-semibold mb-1">Base Currency</label>
+            <input
+              type="text"
+              value={settings.currency}
+              onChange={(e) => setSettings({ ...settings, currency: e.target.value })}
+              className="w-full px-3 py-2 bg-neutral-50 border border-neutral-200 rounded-lg text-neutral-900"
+            />
+          </div>
+        </div>
+
+        <div>
+          <label className="block text-neutral-700 font-semibold mb-1">Factory Workshop Address</label>
+          <div className="relative">
+            <MapPin className="w-3.5 h-3.5 absolute left-3 top-3 text-neutral-400" />
             <input
               type="text"
               value={settings.address}
               onChange={(e) => setSettings({ ...settings, address: e.target.value })}
-              className="w-full px-3 py-2 bg-neutral-50 border border-neutral-200 rounded-lg text-neutral-900"
+              className="w-full pl-9 pr-3 py-2 bg-neutral-50 border border-neutral-200 rounded-lg text-neutral-900"
             />
           </div>
         </div>
@@ -174,75 +179,44 @@ export default function SettingsAdminPage() {
         </div>
       </form>
 
-      {/* Admin Users Management */}
+      {/* Single Private Admin Account Card */}
       <div className="bg-white p-6 rounded-xl border border-neutral-200 shadow-sm space-y-4 text-xs">
-        <h2 className="text-sm font-semibold text-neutral-900 border-b border-neutral-100 pb-3 flex items-center gap-2">
-          <Users className="w-4 h-4" /> Authorized Admin Team Members
-        </h2>
+        <div className="flex items-center justify-between border-b border-neutral-100 pb-3">
+          <h2 className="text-sm font-semibold text-neutral-900 flex items-center gap-2">
+            <ShieldCheck className="w-4 h-4 text-emerald-600" /> Private Single Admin Account
+          </h2>
+          <span className="px-2 py-0.5 bg-emerald-100 text-emerald-800 rounded font-semibold text-[10px] uppercase tracking-wider">
+            Active & Protected
+          </span>
+        </div>
 
-        {/* Add User Form */}
-        <form onSubmit={handleAddUser} className="grid grid-cols-1 sm:grid-cols-4 gap-2 bg-neutral-50 p-3 rounded-lg border border-neutral-200">
-          <input
-            type="email"
-            required
-            value={newUserEmail}
-            onChange={(e) => setNewUserEmail(e.target.value)}
-            placeholder="User email (e.g. member@zoosh.in)"
-            className="px-3 py-2 bg-white border border-neutral-200 rounded-lg text-neutral-900"
-          />
-          <input
-            type="text"
-            value={newUserName}
-            onChange={(e) => setNewUserName(e.target.value)}
-            placeholder="Member Name"
-            className="px-3 py-2 bg-white border border-neutral-200 rounded-lg text-neutral-900"
-          />
-          <select
-            value={newUserRole}
-            onChange={(e) => setNewUserRole(e.target.value as any)}
-            className="px-3 py-2 bg-white border border-neutral-200 rounded-lg text-neutral-900"
-          >
-            <option value="admin">Admin (Full Access)</option>
-            <option value="editor">Editor (Products Only)</option>
-          </select>
-          <button
-            type="submit"
-            className="px-4 py-2 bg-black text-white font-semibold rounded-lg hover:bg-neutral-800 flex items-center justify-center gap-1"
-          >
-            <Plus className="w-3.5 h-3.5" /> Add Access
-          </button>
-        </form>
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-4 bg-neutral-50 p-4 rounded-lg border border-neutral-200">
+          <div>
+            <p className="text-[10px] uppercase tracking-wider text-neutral-400 font-semibold">Configured Admin Email / Username</p>
+            <p className="text-sm font-bold text-neutral-900 mt-0.5">{currentAdminEmail}</p>
+          </div>
+          <div>
+            <p className="text-[10px] uppercase tracking-wider text-neutral-400 font-semibold">Access Privilege</p>
+            <p className="text-sm font-bold text-neutral-900 mt-0.5">Master Administrator (Full Access)</p>
+          </div>
+        </div>
 
-        {/* Users Table */}
-        <div className="divide-y divide-neutral-100">
-          {users.map((u) => (
-            <div key={u.id} className="py-3 flex items-center justify-between">
-              <div className="flex items-center gap-3">
-                <div className="w-8 h-8 rounded-full bg-neutral-100 font-bold text-neutral-800 flex items-center justify-center">
-                  {u.name[0]}
-                </div>
-                <div>
-                  <p className="font-semibold text-neutral-900">{u.name}</p>
-                  <p className="text-[11px] text-neutral-500">{u.email}</p>
-                </div>
-              </div>
-
-              <div className="flex items-center gap-3">
-                <span className={`text-[10px] uppercase font-bold tracking-wider px-2 py-0.5 rounded ${
-                  u.role === "admin" ? "bg-purple-100 text-purple-800" : "bg-neutral-100 text-neutral-700"
-                }`}>
-                  {u.role}
-                </span>
-                <button
-                  onClick={() => handleDeleteUser(u.id)}
-                  className="p-1.5 text-neutral-400 hover:text-red-600 rounded"
-                  title="Remove user"
-                >
-                  <Trash2 className="w-3.5 h-3.5" />
-                </button>
-              </div>
-            </div>
-          ))}
+        <div className="p-4 bg-neutral-900 text-neutral-200 rounded-xl space-y-3 text-xs">
+          <div className="flex items-center gap-2 font-semibold text-white">
+            <Key className="w-4 h-4 text-amber-400" /> How to Update Admin Credentials Without Code Changes
+          </div>
+          <p className="text-neutral-300 leading-relaxed font-light">
+            You can modify the admin email/username and password at any time in your hosting environment (e.g. Vercel Dashboard → Project Settings → Environment Variables) without modifying source code:
+          </p>
+          <div className="space-y-1.5 font-mono text-[11px] bg-black/60 p-3 rounded-lg border border-neutral-800 text-amber-300">
+            <div>ADMIN_EMAIL = "your-email@zoosh.in"</div>
+            <div>ADMIN_PASSWORD = "YourSecurePassword2026!"</div>
+            <div>ADMIN_SESSION_SECRET = "your-secure-random-secret-key"</div>
+          </div>
+          <div className="flex items-center gap-1.5 text-[11px] text-neutral-400">
+            <Info className="w-3.5 h-3.5" />
+            <span>Changes take effect immediately upon saving environment variables on Vercel.</span>
+          </div>
         </div>
       </div>
     </div>

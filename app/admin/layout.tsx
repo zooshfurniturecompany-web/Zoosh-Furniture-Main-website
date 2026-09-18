@@ -34,30 +34,37 @@ export default function AdminLayout({
   const [searchQuery, setSearchQuery] = useState("");
 
   useEffect(() => {
-    const sessionEmail = localStorage.getItem("zoosh_admin_email") || localStorage.getItem("zoosh_sales_email");
-    const sessionRole = localStorage.getItem("zoosh_admin_role") || localStorage.getItem("zoosh_sales_role") || "admin";
-
-    if (!sessionEmail && pathname !== "/login") {
-      localStorage.setItem("zoosh_admin_email", "admin@zoosh.in");
-      localStorage.setItem("zoosh_admin_role", "admin");
-      setUserEmail("admin@zoosh.in");
-      setUserRole("admin");
-    } else {
-      setUserEmail(sessionEmail || "admin@zoosh.in");
-      setUserRole(sessionRole);
+    async function checkAuth() {
+      try {
+        const res = await fetch("/api/auth/session");
+        if (res.ok) {
+          const data = await res.json();
+          if (data.authenticated && data.user) {
+            setUserEmail(data.user.email);
+            setUserRole(data.user.role || "admin");
+            return;
+          }
+        }
+        router.push("/login?redirect=" + encodeURIComponent(pathname));
+      } catch (err) {
+        router.push("/login?redirect=" + encodeURIComponent(pathname));
+      }
     }
+    checkAuth();
   }, [pathname, router]);
 
   useEffect(() => {
     setMobileOpen(false);
   }, [pathname]);
 
-  const handleLogout = () => {
+  const handleLogout = async () => {
+    try {
+      await fetch("/api/auth/logout", { method: "POST" });
+    } catch (e) {}
     localStorage.removeItem("zoosh_admin_email");
     localStorage.removeItem("zoosh_admin_role");
-    localStorage.removeItem("zoosh_sales_email");
-    localStorage.removeItem("zoosh_sales_role");
     router.push("/login");
+    router.refresh();
   };
 
   const navGroups = [
