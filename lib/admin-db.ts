@@ -1,4 +1,5 @@
 import { supabase, isSupabaseConfigured } from "./supabase";
+import productsData from "@/data/products.json";
 
 export interface AdminProduct {
   id: string;
@@ -188,194 +189,73 @@ const DEFAULT_ADMIN_USERS: AdminUser[] = [
   { id: "usr-1", email: "admin@zoosh.in", name: "Zoosh Admin", role: "admin", created_at: new Date().toISOString() }
 ];
 
-const INITIAL_FALLBACK_PRODUCTS: AdminProduct[] = [
-  {
-    id: "zsh-sf001",
-    sku: "SF001",
-    name: "Nouveau Modular Sectional Sofa",
-    slug: "nouveau-modular-sectional-sofa",
-    category_name: "Three Seater Sofa",
-    collection_id: "col-1",
-    collection_name: "Solid Teakwood Heritage",
-    short_description: "Architectural low-profile sectional crafted with solid teak wood framing and premium textured bouclé upholstery.",
-    full_description: "The Nouveau Modular Sectional Sofa is designed for open-plan modern living. Built with seasoned Kerala teakwood and high-density foam cores wrapped in feather-touch looped bouclé.",
-    status: "published",
-    featured: true,
-    pricing_type: "fixed",
-    price: 54000,
-    starting_price: 54000,
-    display_price: true,
-    dimensions: "280cm W × 160cm D × 75cm H",
-    material: "Treated Solid Teakwood & Bouclé",
-    finish: "Natural Melamine Matt Polish",
-    wood_options: ["Solid Teak Wood", "Premium Ash Wood", "Selected Mahogany Wood"],
-    fabric_options: ["Cream Textured Bouclé", "Natural Linen Blend", "Slate Grey Velvet"],
-    finish_options: ["Natural Matt Polish", "Warm Walnut Polish"],
-    specs: {
-      "Wood Type": "Treated Solid Teakwood & Bouclé",
-      "Finish": "Natural Melamine Matt Polish",
-      "Warranty": "5-Year Frame Structural Warranty",
-      "Assembly": "Delivered Fully Assembled"
-    },
-    images: [
-      "/images/products/sf001-1.jpg",
-      "/images/products/sf001-2.jpg",
-      "/images/products/sf001-3.jpg"
-    ],
-    custom_dimensions_available: true,
-    customisation_available: true,
-    created_at: new Date().toISOString(),
-    updated_at: new Date().toISOString()
-  },
-  {
-    id: "zsh-sf002",
-    sku: "SF002",
-    name: "Linear Frame Ash Lounge Chair",
-    slug: "linear-frame-ash-lounge-chair",
-    category_name: "Lounge Chair",
-    collection_id: "col-3",
-    collection_name: "Modern Ash & Cane",
-    short_description: "Minimalist Japanese-Scandinavian inspired lounge chair with treated Canadian ash wood frame and natural cane weave.",
-    full_description: "Clean linear geometry combined with ergonomic backrest angle. Hand-finished with natural hardwax oil to preserve the cathedral grain of solid ash wood.",
-    status: "published",
-    featured: true,
-    pricing_type: "fixed",
-    price: 24500,
-    starting_price: 24500,
-    display_price: true,
-    dimensions: "78cm W × 82cm D × 74cm H",
-    material: "Canadian Ash Wood & Natural Rattan",
-    finish: "Organic Hardwax Oil Polish",
-    wood_options: ["Premium Ash Wood", "Solid Teak Wood"],
-    fabric_options: ["Oatmeal Linen", "Cream Bouclé"],
-    finish_options: ["Natural Ash Polish", "Smoked Charcoal"],
-    specs: {
-      "Wood Type": "Canadian Ash Wood & Natural Rattan",
-      "Finish": "Organic Hardwax Oil Polish",
-      "Warranty": "5-Year Frame Structural Warranty",
-      "Assembly": "Delivered Fully Assembled"
-    },
-    images: [
-      "/images/products/sf002-1.jpg",
-      "/images/products/sf002-2.jpg"
-    ],
-    custom_dimensions_available: true,
-    customisation_available: true,
-    created_at: new Date().toISOString(),
-    updated_at: new Date().toISOString()
-  },
-  {
-    id: "zsh-sf003",
-    sku: "SF003",
-    name: "Atelier Solid Teak Dining Table",
-    slug: "atelier-solid-teak-dining-table",
-    category_name: "Dining Table",
-    collection_id: "col-1",
-    collection_name: "Solid Teakwood Heritage",
-    short_description: "Monumental solid teak dining table with chamfered edge profiles and sculpted monolithic trestle base.",
-    full_description: "Crafted from seasoned plantation teak planks. Seats 6 to 8 people with expansive legroom and a tactile matte sealer finish.",
-    status: "published",
-    featured: true,
-    pricing_type: "fixed",
-    price: 48000,
-    starting_price: 48000,
-    display_price: true,
-    dimensions: "210cm W × 95cm D × 76cm H",
-    material: "Solid Kerala Teak Wood",
-    finish: "Melamine Matte Sealer",
-    wood_options: ["Solid Teak Wood", "Selected Mahogany Wood"],
-    fabric_options: [],
-    finish_options: ["Natural Teak Matt", "Smoked Walnut"],
-    specs: {
-      "Wood Type": "Solid Kerala Teak Wood",
-      "Finish": "Melamine Matte Sealer",
-      "Warranty": "5-Year Frame Structural Warranty",
-      "Assembly": "Delivered Fully Assembled"
-    },
-    images: [
-      "/images/products/sf003-1.jpg",
-      "/images/products/sf003-2.jpg"
-    ],
-    custom_dimensions_available: true,
-    customisation_available: true,
-    created_at: new Date().toISOString(),
-    updated_at: new Date().toISOString()
-  },
-  {
-    id: "zsh-sf004",
-    sku: "SF004",
-    name: "Cane Back Dining Chair (Set of 2)",
-    slug: "cane-back-dining-chair-set-of-2",
-    category_name: "Dining Chair",
-    collection_id: "col-3",
-    collection_name: "Modern Ash & Cane",
-    short_description: "Refined solid wood dining chair featuring hand-woven radio cane backrest and high-density upholstered seat.",
-    full_description: "Lightweight yet structurally reinforced with mortise-and-tenon joints. Designed to complement any modern dining setting.",
-    status: "published",
-    featured: true,
-    pricing_type: "fixed",
-    price: 18500,
-    starting_price: 18500,
-    display_price: true,
-    dimensions: "52cm W × 55cm D × 82cm H",
-    material: "Solid Teak & Natural Rattan Cane",
-    finish: "Melamine Matt Polish",
-    wood_options: ["Solid Teak Wood", "Premium Ash Wood"],
-    fabric_options: ["Natural Sand Linen", "Oatmeal Bouclé"],
-    finish_options: ["Natural Matt", "Walnut Finish"],
-    specs: {
-      "Wood Type": "Solid Teak & Natural Rattan Cane",
-      "Finish": "Melamine Matt Polish",
-      "Warranty": "5-Year Frame Structural Warranty",
-      "Assembly": "Delivered Fully Assembled"
-    },
-    images: [
-      "/images/products/sf004-1.jpg",
-      "/images/products/sf004-2.jpg"
-    ],
-    custom_dimensions_available: true,
-    customisation_available: true,
-    created_at: new Date().toISOString(),
-    updated_at: new Date().toISOString()
-  },
-  {
-    id: "zsh-sf005",
-    sku: "SF005",
-    name: "Sculptural Low Platform Bed Cot",
-    slug: "sculptural-low-platform-bed-cot",
-    category_name: "Bed Cot",
-    collection_id: "col-1",
-    collection_name: "Solid Teakwood Heritage",
-    short_description: "Low-profile solid teak platform bed cot with integrated floating cantilevered side ledges.",
-    full_description: "Heavy-gauge solid teak headboard with subtle radius bevels. Engineered with rigid slat system for optimum mattress support.",
-    status: "published",
-    featured: true,
-    pricing_type: "fixed",
-    price: 62000,
-    starting_price: 62000,
-    display_price: true,
-    dimensions: "195cm W × 215cm L × 90cm H (King Size)",
-    material: "Solid Seasoned Kerala Teak",
-    finish: "Natural Matt Polish",
-    wood_options: ["Solid Teak Wood", "Canadian Ash Wood"],
-    fabric_options: [],
-    finish_options: ["Natural Teak Matt", "Warm Walnut Polish"],
-    specs: {
-      "Wood Type": "Solid Seasoned Kerala Teak",
-      "Finish": "Natural Matt Polish",
-      "Warranty": "5-Year Frame Structural Warranty",
-      "Assembly": "Delivered Fully Assembled"
-    },
-    images: [
-      "/images/products/sf005-1.jpg",
-      "/images/products/sf005-2.jpg"
-    ],
-    custom_dimensions_available: true,
-    customisation_available: true,
-    created_at: new Date().toISOString(),
-    updated_at: new Date().toISOString()
-  }
-];
+function seedAllFallbackProducts(): AdminProduct[] {
+  return (productsData as any[]).map((p, idx) => {
+    const sku = p.sku || `SF${String(idx + 1).padStart(3, "0")}`;
+    const slug = p.slug || sku.toLowerCase();
+    const id = `zsh-${sku.toLowerCase()}`;
+
+    let collection_id = "col-1";
+    let collection_name = "Solid Teakwood Heritage";
+    if (p.name.includes("Bouclé") || (p.material && p.material.includes("Bouclé")) || (p.material && p.material.includes("Plywood"))) {
+      collection_id = "col-2";
+      collection_name = "Organic Sculptural Bouclé";
+    } else if ((p.material && p.material.includes("Ash")) || (p.material && p.material.includes("Cane")) || p.name.includes("Cane")) {
+      collection_id = "col-3";
+      collection_name = "Modern Ash & Cane";
+    } else if (p.material && p.material.includes("Mahogany")) {
+      collection_id = "col-4";
+      collection_name = "Classic Spindle Mahogany";
+    }
+
+    const woodOpts = ["Solid Teak Wood", "Premium Ash Wood", "Selected Mahogany Wood"];
+    const fabricOpts = [p.fabric || "Cream Textured Bouclé", "Natural Linen Blend", "Slate Grey Velvet"];
+
+    return {
+      id,
+      sku,
+      name: p.name,
+      slug,
+      category_id: "cat-1",
+      category_name: p.category || "Three Seater Sofa",
+      collection_id,
+      collection_name,
+      short_description: p.description ? p.description.slice(0, 150) + "..." : "",
+      full_description: p.description || "",
+      status: "published" as const,
+      featured: p.featured ?? true,
+      pricing_type: "fixed" as const,
+      price: p.price || 45000,
+      starting_price: p.price || 45000,
+      display_price: true,
+      price_breakdown: p.priceBreakdown || [],
+      dimensions: p.dimensions || "210cm W × 90cm D × 80cm H",
+      dimension_breakdown: p.dimensionBreakdown || [],
+      custom_dimensions_available: true,
+      customisation_available: true,
+      material: p.material || "Solid Wood",
+      finish: p.finish || "Melamine Matt Polish",
+      wood_options: woodOpts,
+      fabric_options: fabricOpts,
+      finish_options: ["Natural Matt Polish", "Warm Walnut Polish", "Smoked Ash Polish"],
+      specs: {
+        "Wood Type": p.material || "Solid Wood",
+        "Upholstery": p.fabric || "Tailored Fabric Upholstery",
+        "Finish": p.finish || "Melamine Matt Polish",
+        "Warranty": "5-Year Frame Structural Warranty",
+        "Assembly": "Delivered Fully Assembled"
+      },
+      images: p.images || [],
+      seo_title: `${p.name} | ZOOSH Custom Furniture Kerala`,
+      seo_description: p.description || `Buy handcrafted ${p.name} made to order in solid wood with custom dimensions by ZOOSH.`,
+      keywords: ["custom sofa", "solid wood furniture", "kerala furniture", "zoosh", sku.toLowerCase()],
+      created_at: new Date(Date.now() - (21 - idx) * 86400000).toISOString(),
+      updated_at: new Date().toISOString()
+    };
+  });
+}
+
+const INITIAL_FALLBACK_PRODUCTS: AdminProduct[] = seedAllFallbackProducts();
 
 // ==========================================
 // STORE STATE
