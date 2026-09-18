@@ -25,10 +25,34 @@ import VariantSelector from "@/components/product/variant-selector";
 import RecentlyViewed from "@/components/product/recently-viewed";
 import CustomSizeForm from "@/components/product/custom-size-form";
 import ProductPricingBreakdown from "@/components/product/product-pricing-breakdown";
-import { getProductBySlug, getAllProducts, getWhatsAppLink, getRoomAndSubcategory } from "@/hooks/use-products";
+import { getProductBySlug, getAllProducts, getWhatsAppLink, getRoomAndSubcategory, transformAdminProductToProduct, Product } from "@/hooks/use-products";
+import { adminDb } from "@/lib/admin-db";
 
 interface PageProps {
   params: Promise<{ slug: string }>;
+}
+
+async function resolveProduct(rawSlug: string): Promise<Product | undefined> {
+  if (!rawSlug) return undefined;
+  
+  // 1. Try local transformed product
+  const local = getProductBySlug(rawSlug);
+  if (local) return local;
+
+  // 2. Try fetching from Supabase/adminDb directly
+  try {
+    const fromDb = await adminDb.getProductById(rawSlug);
+    if (fromDb && fromDb.status === "published") {
+      return transformAdminProductToProduct(fromDb);
+    }
+  } catch (e) {}
+
+  // 3. Try matching by SKU directly across all products
+  const all = getAllProducts();
+  const bySku = all.find(p => p.sku.toLowerCase() === rawSlug.toLowerCase() || p.id.toLowerCase() === rawSlug.toLowerCase());
+  if (bySku) return bySku;
+
+  return undefined;
 }
 
 // Generate collections links for cross-navigation
@@ -61,28 +85,31 @@ function getRelatedCollections(category: string) {
 // Dynamic SEO metadata generation
 export async function generateMetadata({ params }: PageProps): Promise<Metadata> {
   const resolvedParams = await params;
-  const product = getProductBySlug(resolvedParams.slug);
+  const product = await resolveProduct(resolvedParams.slug);
 
   if (!product) {
     return {
-      title: "Product Not Found | ZOOSH",
+      title: "Product | ZOOSH Premium Custom Furniture",
+      description: "Handcrafted bespoke solid wood furniture by ZOOSH Kerala.",
     };
   }
 
+  const primaryImage = product.images && product.images.length > 0 ? product.images[0] : "/images/products/sf001-1.jpg";
+
   return {
     title: `${product.name} | ZOOSH Premium Modern Furniture`,
-    description: product.description,
+    description: product.description || "ZOOSH Custom Solid Wood Furniture Kerala",
     openGraph: {
       title: `${product.name} | ZOOSH`,
-      description: product.description,
-      images: [{ url: product.images[0] }],
+      description: product.description || "ZOOSH Custom Solid Wood Furniture Kerala",
+      images: [{ url: primaryImage }],
     },
   };
 }
 
 export default async function ProductDetailPage({ params }: PageProps) {
   const resolvedParams = await params;
-  const product = getProductBySlug(resolvedParams.slug);
+  const product = await resolveProduct(resolvedParams.slug);
 
   if (!product) {
     notFound();

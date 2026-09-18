@@ -223,6 +223,7 @@ export function getProductBySlug(slug: string): Product | undefined {
   if (!slug) return undefined;
   
   const cleanSlug = slug.toLowerCase().replace(/_/g, "-");
+  const normalizedSku = cleanSlug.replace(/[^a-z0-9]/g, "");
   
   const aliases: Record<string, string> = {
     "arc-lounge-chair": "ch001",
@@ -240,13 +241,22 @@ export function getProductBySlug(slug: string): Product | undefined {
   const store = adminDb.getStore();
 
   const found = store.products.find(
-    (product) => 
-      product.status === "published" && (
-        product.slug.toLowerCase() === resolvedSlug || 
-        product.sku.toLowerCase() === resolvedSlug ||
-        product.id.toLowerCase() === resolvedSlug ||
-        product.name.toLowerCase().replace(/[^a-z0-9]+/g, "-") === resolvedSlug
-      )
+    (product) => {
+      const prodSlug = (product.slug || "").toLowerCase();
+      const prodSku = (product.sku || "").toLowerCase();
+      const prodId = (product.id || "").toLowerCase();
+      const prodNameSlug = (product.name || "").toLowerCase().replace(/[^a-z0-9]+/g, "-");
+      const cleanProdSku = prodSku.replace(/[^a-z0-9]/g, "");
+      
+      return (
+        prodSlug === resolvedSlug ||
+        prodSku === resolvedSlug ||
+        prodId === resolvedSlug ||
+        prodId === `zsh-${resolvedSlug}` ||
+        prodNameSlug === resolvedSlug ||
+        (normalizedSku.length > 0 && cleanProdSku === normalizedSku)
+      );
+    }
   );
 
   return found ? transformAdminProductToProduct(found) : undefined;
