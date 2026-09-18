@@ -277,9 +277,9 @@ export function useProducts(): Product[] {
     fetch("/api/products", { cache: "no-store" })
       .then((res) => res.json())
       .then((data) => {
-        if (Array.isArray(data) && data.length > 0) {
+        if (Array.isArray(data)) {
           adminDb.syncStore({ products: data });
-          setProducts(getAllProducts());
+          setProducts(data.map(transformAdminProductToProduct));
         }
       })
       .catch(() => {});

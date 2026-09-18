@@ -1,5 +1,4 @@
 import { supabase, isSupabaseConfigured } from "./supabase";
-import productsData from "@/data/products.json";
 
 export interface AdminProduct {
   id: string;
@@ -151,23 +150,22 @@ const DEFAULT_CATEGORIES: Category[] = [
 
 const DEFAULT_COLLECTIONS: Collection[] = [
   { id: "col-1", name: "Solid Teakwood Heritage", slug: "solid-teakwood-heritage", description: "Handcrafted from seasoned Kerala teakwood with traditional mortise-and-tenon joinery", image_url: "/images/products/sf001-1.jpg", display_order: 1, status: "active", created_at: new Date().toISOString() },
-  { id: "col-2", name: "Organic Sculptural Bouclé", slug: "organic-sculptural-boucle", description: "Curved architectural silhouettes wrapped in sumptuous textured bouclé", image_url: "/images/products/sf021-1.jpg", display_order: 2, status: "active", created_at: new Date().toISOString() },
+  { id: "col-2", name: "Organic Sculptural Bouclé", slug: "organic-sculptural-boucle", description: "Curved architectural silhouettes wrapped in sumptuous textured bouclé", image_url: "/images/products/sf001-2.jpg", display_order: 2, status: "active", created_at: new Date().toISOString() },
   { id: "col-3", name: "Modern Ash & Cane", slug: "modern-ash-cane", description: "Clean Scandinavian lines blending treated ash wood with natural woven cane", image_url: "/images/products/sf004-1.jpg", display_order: 3, status: "active", created_at: new Date().toISOString() },
-  { id: "col-4", name: "Classic Spindle Mahogany", slug: "classic-spindle-mahogany", description: "Refined linear spindle woodwork in warm mahogany tones", image_url: "/images/products/sf010-1.jpg", display_order: 4, status: "active", created_at: new Date().toISOString() }
+  { id: "col-4", name: "Classic Spindle Mahogany", slug: "classic-spindle-mahogany", description: "Refined linear spindle woodwork in warm mahogany tones", image_url: "/images/products/sf003-1.jpg", display_order: 4, status: "active", created_at: new Date().toISOString() }
 ];
 
 const DEFAULT_WOOD_TYPES: WoodType[] = [
   { id: "wood-1", name: "Solid Teak Wood", slug: "solid-teak-wood", description: "Premium seasoned Kerala teak known for unmatched grain depth and lifetime durability", image_url: "/images/products/sf001-1.jpg", is_available: true, display_order: 1, created_at: new Date().toISOString() },
   { id: "wood-2", name: "Premium Ash Wood", slug: "premium-ash-wood", description: "Light-toned hardwood with expressive modern cathedral grain patterns", image_url: "/images/products/sf002-1.jpg", is_available: true, display_order: 2, created_at: new Date().toISOString() },
-  { id: "wood-3", name: "Selected Mahogany Wood", slug: "selected-mahogany-wood", description: "Dense hardwood offering rich reddish-brown luster and high tensile strength", image_url: "/images/products/sf020-1.jpg", is_available: true, display_order: 3, created_at: new Date().toISOString() }
+  { id: "wood-3", name: "Selected Mahogany Wood", slug: "selected-mahogany-wood", description: "Dense hardwood offering rich reddish-brown luster and high tensile strength", image_url: "/images/products/sf003-1.jpg", is_available: true, display_order: 3, created_at: new Date().toISOString() }
 ];
 
 const DEFAULT_FABRIC_TYPES: FabricType[] = [
-  { id: "fab-1", name: "Cream Textured Bouclé", slug: "cream-textured-boucle", description: "Heavyweight looped bouclé with a soft tactile feel (₹700/m grade)", image_url: "/images/products/sf018-1.jpg", is_available: true, display_order: 1, created_at: new Date().toISOString() },
-  { id: "fab-2", name: "Natural Linen-Cotton Blend", slug: "natural-linen-cotton", description: "Breathable textured linen blend available in warm oatmeal, cream, and sand", image_url: "/images/products/sf020-1.jpg", is_available: true, display_order: 2, created_at: new Date().toISOString() },
-  { id: "fab-3", name: "Royal Indigo Blue Weave", slug: "royal-indigo-blue-weave", description: "Vibrant jewel-tone woven upholstery with stain-resistant coating", image_url: "/images/products/sf019-1.jpg", is_available: true, display_order: 3, created_at: new Date().toISOString() },
-  { id: "fab-4", name: "Slate Grey Plush Velvet", slug: "slate-grey-plush-velvet", description: "High-density micro-velvet with matte sheen and luxurious hand-feel", image_url: "/images/products/sf016-1.jpg", is_available: true, display_order: 4, created_at: new Date().toISOString() },
-  { id: "fab-5", name: "Plush Pistachio Green Fabric", slug: "plush-pistachio-green", description: "Contemporary soft green weave tailored for modern living spaces", image_url: "/images/products/sf014-1.jpg", is_available: true, display_order: 5, created_at: new Date().toISOString() }
+  { id: "fab-1", name: "Cream Textured Bouclé", slug: "cream-textured-boucle", description: "Heavyweight looped bouclé with a soft tactile feel (₹700/m grade)", image_url: "/images/products/sf001-2.jpg", is_available: true, display_order: 1, created_at: new Date().toISOString() },
+  { id: "fab-2", name: "Natural Linen-Cotton Blend", slug: "natural-linen-cotton", description: "Breathable textured linen blend available in warm oatmeal, cream, and sand", image_url: "/images/products/sf002-1.jpg", is_available: true, display_order: 2, created_at: new Date().toISOString() },
+  { id: "fab-3", name: "Royal Indigo Blue Weave", slug: "royal-indigo-blue-weave", description: "Vibrant jewel-tone woven upholstery with stain-resistant coating", image_url: "/images/products/sf004-1.jpg", is_available: true, display_order: 3, created_at: new Date().toISOString() },
+  { id: "fab-4", name: "Slate Grey Plush Velvet", slug: "slate-grey-plush-velvet", description: "High-density micro-velvet with matte sheen and luxurious hand-feel", image_url: "/images/products/sf001-3.jpg", is_available: true, display_order: 4, created_at: new Date().toISOString() }
 ];
 
 const DEFAULT_OTHER_MATERIALS: OtherMaterial[] = [
@@ -187,86 +185,204 @@ const DEFAULT_SETTINGS: WebsiteSettings = {
 };
 
 const DEFAULT_ADMIN_USERS: AdminUser[] = [
-  { id: "usr-1", email: "admin@zoosh.in", name: "Zoosh Admin", role: "admin", created_at: new Date().toISOString() },
-  { id: "usr-2", email: "sales@zoosh.in", name: "Zoosh Sales Team", role: "editor", created_at: new Date().toISOString() },
-  { id: "usr-3", email: "zooshfurniturecompany@gmail.com", name: "Muhamed Siyad", role: "admin", created_at: new Date().toISOString() }
+  { id: "usr-1", email: "admin@zoosh.in", name: "Zoosh Admin", role: "admin", created_at: new Date().toISOString() }
 ];
 
-// Map initial catalog products from products.json into AdminProduct schema
-function seedInitialProducts(): AdminProduct[] {
-  return (productsData as any[]).map((p, idx) => {
-    const sku = p.sku || `SF${String(idx + 1).padStart(3, "0")}`;
-    const slug = p.slug || sku.toLowerCase();
-    const id = p.id || `zsh-${sku.toLowerCase()}`;
-    
-    // Assign collections
-    let collection_id = "col-1";
-    let collection_name = "Solid Teakwood Heritage";
-    if (p.name.includes("Bouclé") || p.material?.includes("Bouclé") || p.material?.includes("Plywood")) {
-      collection_id = "col-2";
-      collection_name = "Organic Sculptural Bouclé";
-    } else if (p.material?.includes("Ash") || p.material?.includes("Cane") || p.name.includes("Cane")) {
-      collection_id = "col-3";
-      collection_name = "Modern Ash & Cane";
-    } else if (p.material?.includes("Mahogany")) {
-      collection_id = "col-4";
-      collection_name = "Classic Spindle Mahogany";
-    }
-
-    const woodOpts = ["Treated Solid Teak", "Canadian Ash Wood", "Selected Mahogany"];
-    if (p.material?.includes("Plywood")) woodOpts.push("Molded Plywood Structure");
-
-    const fabricOpts = [p.fabric || "Cream Textured Bouclé", "Natural Linen Blend", "Slate Grey Velvet"];
-
-    return {
-      id,
-      sku,
-      name: p.name,
-      slug,
-      category_name: p.category || "Three Seater Sofa",
-      collection_id,
-      collection_name,
-      short_description: p.description?.slice(0, 150) + "...",
-      full_description: p.description || "",
-      status: "published",
-      featured: p.featured ?? true,
-      pricing_type: "fixed",
-      price: p.price || 45000,
-      starting_price: p.price || 45000,
-      display_price: true,
-      price_breakdown: p.priceBreakdown || [],
-      dimensions: p.dimensions || "210cm W × 90cm D × 80cm H",
-      dimension_breakdown: p.dimensionBreakdown || [],
-      custom_dimensions_available: true,
-      customisation_available: true,
-      material: p.material || "Solid Wood",
-      finish: p.finish || "Melamine Matt Polish",
-      wood_options: woodOpts,
-      fabric_options: fabricOpts,
-      finish_options: ["Natural Matt Polish", "Warm Walnut Polish", "Smoked Ash Polish"],
-      specs: {
-        "Wood Type": p.material || "Treated Solid Teak",
-        "Upholstery": p.fabric || "Tailored Fabric Upholstery",
-        "Finish": p.finish || "Melamine Matt Polish",
-        "Warranty": "5-Year Frame Structural Warranty",
-        "Assembly": "Delivered Fully Assembled"
-      },
-      images: p.images || [],
-      seo_title: `${p.name} | ZOOSH Custom Furniture Kerala`,
-      seo_description: p.description || `Buy handcrafted ${p.name} made to order in solid wood with custom dimensions by ZOOSH.`,
-      keywords: ["custom sofa", "solid wood furniture", "kerala furniture", "zoosh", sku.toLowerCase()],
-      created_at: new Date(Date.now() - (21 - idx) * 86400000).toISOString(),
-      updated_at: new Date().toISOString()
-    };
-  });
-}
+const INITIAL_FALLBACK_PRODUCTS: AdminProduct[] = [
+  {
+    id: "zsh-sf001",
+    sku: "SF001",
+    name: "Nouveau Modular Sectional Sofa",
+    slug: "nouveau-modular-sectional-sofa",
+    category_name: "Three Seater Sofa",
+    collection_id: "col-1",
+    collection_name: "Solid Teakwood Heritage",
+    short_description: "Architectural low-profile sectional crafted with solid teak wood framing and premium textured bouclé upholstery.",
+    full_description: "The Nouveau Modular Sectional Sofa is designed for open-plan modern living. Built with seasoned Kerala teakwood and high-density foam cores wrapped in feather-touch looped bouclé.",
+    status: "published",
+    featured: true,
+    pricing_type: "fixed",
+    price: 54000,
+    starting_price: 54000,
+    display_price: true,
+    dimensions: "280cm W × 160cm D × 75cm H",
+    material: "Treated Solid Teakwood & Bouclé",
+    finish: "Natural Melamine Matt Polish",
+    wood_options: ["Solid Teak Wood", "Premium Ash Wood", "Selected Mahogany Wood"],
+    fabric_options: ["Cream Textured Bouclé", "Natural Linen Blend", "Slate Grey Velvet"],
+    finish_options: ["Natural Matt Polish", "Warm Walnut Polish"],
+    specs: {
+      "Wood Type": "Treated Solid Teakwood & Bouclé",
+      "Finish": "Natural Melamine Matt Polish",
+      "Warranty": "5-Year Frame Structural Warranty",
+      "Assembly": "Delivered Fully Assembled"
+    },
+    images: [
+      "/images/products/sf001-1.jpg",
+      "/images/products/sf001-2.jpg",
+      "/images/products/sf001-3.jpg"
+    ],
+    custom_dimensions_available: true,
+    customisation_available: true,
+    created_at: new Date().toISOString(),
+    updated_at: new Date().toISOString()
+  },
+  {
+    id: "zsh-sf002",
+    sku: "SF002",
+    name: "Linear Frame Ash Lounge Chair",
+    slug: "linear-frame-ash-lounge-chair",
+    category_name: "Lounge Chair",
+    collection_id: "col-3",
+    collection_name: "Modern Ash & Cane",
+    short_description: "Minimalist Japanese-Scandinavian inspired lounge chair with treated Canadian ash wood frame and natural cane weave.",
+    full_description: "Clean linear geometry combined with ergonomic backrest angle. Hand-finished with natural hardwax oil to preserve the cathedral grain of solid ash wood.",
+    status: "published",
+    featured: true,
+    pricing_type: "fixed",
+    price: 24500,
+    starting_price: 24500,
+    display_price: true,
+    dimensions: "78cm W × 82cm D × 74cm H",
+    material: "Canadian Ash Wood & Natural Rattan",
+    finish: "Organic Hardwax Oil Polish",
+    wood_options: ["Premium Ash Wood", "Solid Teak Wood"],
+    fabric_options: ["Oatmeal Linen", "Cream Bouclé"],
+    finish_options: ["Natural Ash Polish", "Smoked Charcoal"],
+    specs: {
+      "Wood Type": "Canadian Ash Wood & Natural Rattan",
+      "Finish": "Organic Hardwax Oil Polish",
+      "Warranty": "5-Year Frame Structural Warranty",
+      "Assembly": "Delivered Fully Assembled"
+    },
+    images: [
+      "/images/products/sf002-1.jpg",
+      "/images/products/sf002-2.jpg"
+    ],
+    custom_dimensions_available: true,
+    customisation_available: true,
+    created_at: new Date().toISOString(),
+    updated_at: new Date().toISOString()
+  },
+  {
+    id: "zsh-sf003",
+    sku: "SF003",
+    name: "Atelier Solid Teak Dining Table",
+    slug: "atelier-solid-teak-dining-table",
+    category_name: "Dining Table",
+    collection_id: "col-1",
+    collection_name: "Solid Teakwood Heritage",
+    short_description: "Monumental solid teak dining table with chamfered edge profiles and sculpted monolithic trestle base.",
+    full_description: "Crafted from seasoned plantation teak planks. Seats 6 to 8 people with expansive legroom and a tactile matte sealer finish.",
+    status: "published",
+    featured: true,
+    pricing_type: "fixed",
+    price: 48000,
+    starting_price: 48000,
+    display_price: true,
+    dimensions: "210cm W × 95cm D × 76cm H",
+    material: "Solid Kerala Teak Wood",
+    finish: "Melamine Matte Sealer",
+    wood_options: ["Solid Teak Wood", "Selected Mahogany Wood"],
+    fabric_options: [],
+    finish_options: ["Natural Teak Matt", "Smoked Walnut"],
+    specs: {
+      "Wood Type": "Solid Kerala Teak Wood",
+      "Finish": "Melamine Matte Sealer",
+      "Warranty": "5-Year Frame Structural Warranty",
+      "Assembly": "Delivered Fully Assembled"
+    },
+    images: [
+      "/images/products/sf003-1.jpg",
+      "/images/products/sf003-2.jpg"
+    ],
+    custom_dimensions_available: true,
+    customisation_available: true,
+    created_at: new Date().toISOString(),
+    updated_at: new Date().toISOString()
+  },
+  {
+    id: "zsh-sf004",
+    sku: "SF004",
+    name: "Cane Back Dining Chair (Set of 2)",
+    slug: "cane-back-dining-chair-set-of-2",
+    category_name: "Dining Chair",
+    collection_id: "col-3",
+    collection_name: "Modern Ash & Cane",
+    short_description: "Refined solid wood dining chair featuring hand-woven radio cane backrest and high-density upholstered seat.",
+    full_description: "Lightweight yet structurally reinforced with mortise-and-tenon joints. Designed to complement any modern dining setting.",
+    status: "published",
+    featured: true,
+    pricing_type: "fixed",
+    price: 18500,
+    starting_price: 18500,
+    display_price: true,
+    dimensions: "52cm W × 55cm D × 82cm H",
+    material: "Solid Teak & Natural Rattan Cane",
+    finish: "Melamine Matt Polish",
+    wood_options: ["Solid Teak Wood", "Premium Ash Wood"],
+    fabric_options: ["Natural Sand Linen", "Oatmeal Bouclé"],
+    finish_options: ["Natural Matt", "Walnut Finish"],
+    specs: {
+      "Wood Type": "Solid Teak & Natural Rattan Cane",
+      "Finish": "Melamine Matt Polish",
+      "Warranty": "5-Year Frame Structural Warranty",
+      "Assembly": "Delivered Fully Assembled"
+    },
+    images: [
+      "/images/products/sf004-1.jpg",
+      "/images/products/sf004-2.jpg"
+    ],
+    custom_dimensions_available: true,
+    customisation_available: true,
+    created_at: new Date().toISOString(),
+    updated_at: new Date().toISOString()
+  },
+  {
+    id: "zsh-sf005",
+    sku: "SF005",
+    name: "Sculptural Low Platform Bed Cot",
+    slug: "sculptural-low-platform-bed-cot",
+    category_name: "Bed Cot",
+    collection_id: "col-1",
+    collection_name: "Solid Teakwood Heritage",
+    short_description: "Low-profile solid teak platform bed cot with integrated floating cantilevered side ledges.",
+    full_description: "Heavy-gauge solid teak headboard with subtle radius bevels. Engineered with rigid slat system for optimum mattress support.",
+    status: "published",
+    featured: true,
+    pricing_type: "fixed",
+    price: 62000,
+    starting_price: 62000,
+    display_price: true,
+    dimensions: "195cm W × 215cm L × 90cm H (King Size)",
+    material: "Solid Seasoned Kerala Teak",
+    finish: "Natural Matt Polish",
+    wood_options: ["Solid Teak Wood", "Canadian Ash Wood"],
+    fabric_options: [],
+    finish_options: ["Natural Teak Matt", "Warm Walnut Polish"],
+    specs: {
+      "Wood Type": "Solid Seasoned Kerala Teak",
+      "Finish": "Natural Matt Polish",
+      "Warranty": "5-Year Frame Structural Warranty",
+      "Assembly": "Delivered Fully Assembled"
+    },
+    images: [
+      "/images/products/sf005-1.jpg",
+      "/images/products/sf005-2.jpg"
+    ],
+    custom_dimensions_available: true,
+    customisation_available: true,
+    created_at: new Date().toISOString(),
+    updated_at: new Date().toISOString()
+  }
+];
 
 // ==========================================
-// IN-MEMORY & LOCALSTORAGE STORE
+// STORE STATE
 // ==========================================
 
 let store = {
-  products: seedInitialProducts(),
+  products: [...INITIAL_FALLBACK_PRODUCTS],
   categories: DEFAULT_CATEGORIES,
   collections: DEFAULT_COLLECTIONS,
   woodTypes: DEFAULT_WOOD_TYPES,
@@ -277,7 +393,7 @@ let store = {
   media: [] as MediaItem[]
 };
 
-// Populate initial media from product images
+// Populate initial media from fallback product images
 const initialMediaList: MediaItem[] = [];
 store.products.forEach(p => {
   p.images.forEach((url, i) => {
@@ -296,7 +412,7 @@ store.media = initialMediaList;
 
 // Client-side synchronization
 if (typeof window !== "undefined") {
-  const saved = localStorage.getItem("zoosh_admin_store_v2");
+  const saved = localStorage.getItem("zoosh_admin_store_v3");
   if (saved) {
     try {
       const parsed = JSON.parse(saved);
@@ -304,7 +420,7 @@ if (typeof window !== "undefined") {
         store = { ...store, ...parsed };
       }
     } catch (e) {
-      console.error("Failed to parse zoosh_admin_store", e);
+      console.error("Failed to parse zoosh_admin_store_v3", e);
     }
   }
 }
@@ -312,20 +428,11 @@ if (typeof window !== "undefined") {
 function persistStore() {
   if (typeof window !== "undefined") {
     try {
-      localStorage.setItem("zoosh_admin_store_v2", JSON.stringify(store));
+      localStorage.setItem("zoosh_admin_store_v3", JSON.stringify(store));
       window.dispatchEvent(new CustomEvent("zoosh_store_updated", { detail: { timestamp: Date.now() } }));
     } catch (e) {
       console.error("Failed to persist store to localStorage", e);
     }
-
-    // Also sync to server in background
-    try {
-      fetch("/api/admin/sync", {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ store }),
-      }).catch(() => {});
-    } catch (e) {}
   }
 }
 
@@ -335,17 +442,6 @@ function persistStore() {
 
 export const adminDb = {
   getStore() {
-    if (typeof window !== "undefined") {
-      const saved = localStorage.getItem("zoosh_admin_store_v2");
-      if (saved) {
-        try {
-          const parsed = JSON.parse(saved);
-          if (parsed.products && parsed.products.length > 0) {
-            store = { ...store, ...parsed };
-          }
-        } catch (e) {}
-      }
-    }
     return store;
   },
 
@@ -375,7 +471,12 @@ export const adminDb = {
         }
         query = query.order("created_at", { ascending: false });
         const { data, error } = await query;
-        if (!error && data && data.length > 0) return data as AdminProduct[];
+        if (!error && Array.isArray(data)) {
+          if (!filters || Object.keys(filters).length === 0 || (Object.keys(filters).length === 1 && filters.status === "published")) {
+            store.products = data as AdminProduct[];
+          }
+          return data as AdminProduct[];
+        }
       } catch (err) {
         console.warn("Supabase products fetch fallback to memory store:", err);
       }
@@ -420,7 +521,7 @@ export const adminDb = {
   async getProductById(id: string): Promise<AdminProduct | null> {
     if (isSupabaseConfigured && supabase) {
       try {
-        const { data, error } = await supabase.from("products").select("*").eq("id", id).single();
+        const { data, error } = await supabase.from("products").select("*").or(`id.eq.${id},sku.eq.${id},slug.eq.${id}`).single();
         if (!error && data) return data as AdminProduct;
       } catch (e) {}
     }
@@ -428,8 +529,7 @@ export const adminDb = {
   },
 
   async saveProduct(product: Partial<AdminProduct>): Promise<AdminProduct> {
-    const isNew = !product.id || !store.products.some(p => p.id === product.id);
-    const id = product.id || (crypto.randomUUID ? crypto.randomUUID() : `zsh-${product.sku?.toLowerCase() || Date.now()}`);
+    const id = product.id || `zsh-${product.sku?.toLowerCase() || Date.now()}`;
     const sku = product.sku || `SF${String(store.products.length + 1).padStart(3, "0")}`;
     const slug = product.slug || sku.toLowerCase();
     
@@ -457,12 +557,17 @@ export const adminDb = {
       customisation_available: product.customisation_available ?? true,
       material: product.material || "Solid Wood",
       finish: product.finish || "Matt Polish",
-      wood_options: product.wood_options || ["Treated Solid Teak", "Canadian Ash Wood"],
+      wood_options: product.wood_options || ["Solid Teak Wood", "Premium Ash Wood", "Selected Mahogany Wood"],
       fabric_options: product.fabric_options || ["Cream Textured Bouclé", "Natural Linen Blend"],
       finish_options: product.finish_options || ["Natural Matt Polish"],
       size_options: product.size_options || [],
-      specs: product.specs || {},
-      images: product.images || [],
+      specs: product.specs || {
+        "Wood Type": product.material || "Solid Wood",
+        "Finish": product.finish || "Matt Polish",
+        "Warranty": "5-Year Frame Structural Warranty",
+        "Assembly": "Delivered Fully Assembled"
+      },
+      images: product.images && product.images.length > 0 ? product.images : ["/images/products/sf001-1.jpg"],
       seo_title: product.seo_title || `${product.name} | ZOOSH`,
       seo_description: product.seo_description || product.short_description || "",
       keywords: product.keywords || [],
@@ -472,25 +577,21 @@ export const adminDb = {
 
     if (isSupabaseConfigured && supabase) {
       try {
-        if (isNew) {
-          await supabase.from("products").insert([savedItem]);
-        } else {
-          await supabase.from("products").update(savedItem).eq("id", id);
+        const { error } = await supabase.from("products").upsert([savedItem], { onConflict: "id" });
+        if (error) {
+          console.warn("Supabase upsert by ID warning, trying SKU conflict resolution:", error);
+          await supabase.from("products").upsert([savedItem], { onConflict: "sku" });
         }
       } catch (err) {
         console.error("Supabase saveProduct error:", err);
       }
     }
 
-    if (isNew) {
-      store.products.unshift(savedItem);
-    } else {
-      const idx = store.products.findIndex(p => p.id === id);
-      if (idx !== -1) store.products[idx] = savedItem;
-      else store.products.unshift(savedItem);
-    }
+    const idx = store.products.findIndex(p => p.id === id || p.sku === sku);
+    if (idx !== -1) store.products[idx] = savedItem;
+    else store.products.unshift(savedItem);
 
-    // Also register images to media library
+    // Register images to media library
     savedItem.images.forEach((url, i) => {
       if (!store.media.find(m => m.url === url)) {
         store.media.unshift({
@@ -503,60 +604,108 @@ export const adminDb = {
     });
 
     persistStore();
+
+    // Trigger server-side cache revalidation
+    if (typeof window !== "undefined") {
+      fetch("/api/admin/sync", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ action: "save_product", product: savedItem }),
+      }).catch(() => {});
+    }
+
     return savedItem;
   },
 
   async deleteProduct(id: string): Promise<boolean> {
     if (isSupabaseConfigured && supabase) {
       try {
-        await supabase.from("products").delete().eq("id", id);
-      } catch (err) {}
+        await supabase.from("products").delete().or(`id.eq.${id},sku.eq.${id}`);
+      } catch (err) {
+        console.error("Supabase deleteProduct error:", err);
+      }
     }
-    store.products = store.products.filter(p => p.id !== id);
+    store.products = store.products.filter(p => p.id !== id && p.sku !== id);
     persistStore();
+
+    if (typeof window !== "undefined") {
+      fetch("/api/admin/sync", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ action: "delete_product", product: { id } }),
+      }).catch(() => {});
+    }
     return true;
   },
 
   async archiveProduct(id: string): Promise<boolean> {
-    const p = store.products.find(x => x.id === id);
+    const list = await this.getProducts();
+    const p = list.find(x => x.id === id || x.sku === id);
     if (p) {
-      p.status = p.status === "archived" ? "published" : "archived";
-      p.updated_at = new Date().toISOString();
+      const newStatus = p.status === "archived" ? "published" : "archived";
+      const updated_at = new Date().toISOString();
+      const updatedProduct = { ...p, status: newStatus, updated_at };
       if (isSupabaseConfigured && supabase) {
         try {
-          await supabase.from("products").update({ status: p.status, updated_at: p.updated_at }).eq("id", id);
+          await supabase.from("products").update({ status: newStatus, updated_at }).or(`id.eq.${p.id},sku.eq.${p.sku}`);
         } catch (err) {}
       }
+      const idx = store.products.findIndex(x => x.id === id || x.sku === id);
+      if (idx !== -1) {
+        store.products[idx].status = newStatus;
+        store.products[idx].updated_at = updated_at;
+      }
       persistStore();
+      if (typeof window !== "undefined") {
+        fetch("/api/admin/sync", {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify({ action: "save_product", product: updatedProduct }),
+        }).catch(() => {});
+      }
       return true;
     }
     return false;
   },
 
   async togglePublish(id: string): Promise<boolean> {
-    const p = store.products.find(x => x.id === id);
+    const list = await this.getProducts();
+    const p = list.find(x => x.id === id || x.sku === id);
     if (p) {
-      p.status = p.status === "published" ? "draft" : "published";
-      p.updated_at = new Date().toISOString();
+      const newStatus = p.status === "published" ? "draft" : "published";
+      const updated_at = new Date().toISOString();
+      const updatedProduct = { ...p, status: newStatus, updated_at };
       if (isSupabaseConfigured && supabase) {
         try {
-          await supabase.from("products").update({ status: p.status, updated_at: p.updated_at }).eq("id", id);
+          await supabase.from("products").update({ status: newStatus, updated_at }).or(`id.eq.${p.id},sku.eq.${p.sku}`);
         } catch (err) {}
       }
+      const idx = store.products.findIndex(x => x.id === id || x.sku === id);
+      if (idx !== -1) {
+        store.products[idx].status = newStatus;
+        store.products[idx].updated_at = updated_at;
+      }
       persistStore();
+      if (typeof window !== "undefined") {
+        fetch("/api/admin/sync", {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify({ action: "save_product", product: updatedProduct }),
+        }).catch(() => {});
+      }
       return true;
     }
     return false;
   },
 
   async duplicateProduct(id: string): Promise<AdminProduct | null> {
-    const src = store.products.find(x => x.id === id);
+    const src = await this.getProductById(id);
     if (!src) return null;
     const newSku = `${src.sku}-COPY`;
     const newName = `${src.name} (Copy)`;
     return this.saveProduct({
       ...src,
-      id: crypto.randomUUID ? crypto.randomUUID() : `zsh-${Date.now()}`,
+      id: `zsh-${newSku.toLowerCase()}-${Date.now()}`,
       sku: newSku,
       name: newName,
       slug: newSku.toLowerCase(),
@@ -570,7 +719,10 @@ export const adminDb = {
     if (isSupabaseConfigured && supabase) {
       try {
         const { data, error } = await supabase.from("categories").select("*").order("display_order", { ascending: true });
-        if (!error && data && data.length > 0) return data as Category[];
+        if (!error && data && data.length > 0) {
+          store.categories = data as Category[];
+          return data as Category[];
+        }
       } catch (e) {}
     }
     return [...store.categories].sort((a, b) => a.display_order - b.display_order);
@@ -591,16 +743,36 @@ export const adminDb = {
       created_at: cat.created_at || new Date().toISOString()
     };
 
+    if (isSupabaseConfigured && supabase) {
+      try {
+        await supabase.from("categories").upsert([item], { onConflict: "id" });
+      } catch (e) {}
+    }
+
     if (isNew) store.categories.push(item);
     else {
       const idx = store.categories.findIndex(c => c.id === id);
       if (idx !== -1) store.categories[idx] = item;
     }
     persistStore();
+
+    if (typeof window !== "undefined") {
+      fetch("/api/admin/sync", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ action: "save_category", category: item }),
+      }).catch(() => {});
+    }
+
     return item;
   },
 
   async deleteCategory(id: string): Promise<boolean> {
+    if (isSupabaseConfigured && supabase) {
+      try {
+        await supabase.from("categories").delete().eq("id", id);
+      } catch (e) {}
+    }
     store.categories = store.categories.filter(c => c.id !== id);
     persistStore();
     return true;
@@ -611,7 +783,10 @@ export const adminDb = {
     if (isSupabaseConfigured && supabase) {
       try {
         const { data, error } = await supabase.from("collections").select("*").order("display_order", { ascending: true });
-        if (!error && data && data.length > 0) return data as Collection[];
+        if (!error && data && data.length > 0) {
+          store.collections = data as Collection[];
+          return data as Collection[];
+        }
       } catch (e) {}
     }
     return [...store.collections].sort((a, b) => a.display_order - b.display_order);
@@ -631,16 +806,36 @@ export const adminDb = {
       created_at: col.created_at || new Date().toISOString()
     };
 
+    if (isSupabaseConfigured && supabase) {
+      try {
+        await supabase.from("collections").upsert([item], { onConflict: "id" });
+      } catch (e) {}
+    }
+
     if (isNew) store.collections.push(item);
     else {
       const idx = store.collections.findIndex(c => c.id === id);
       if (idx !== -1) store.collections[idx] = item;
     }
     persistStore();
+
+    if (typeof window !== "undefined") {
+      fetch("/api/admin/sync", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ action: "save_collection", collection: item }),
+      }).catch(() => {});
+    }
+
     return item;
   },
 
   async deleteCollection(id: string): Promise<boolean> {
+    if (isSupabaseConfigured && supabase) {
+      try {
+        await supabase.from("collections").delete().eq("id", id);
+      } catch (e) {}
+    }
     store.collections = store.collections.filter(c => c.id !== id);
     persistStore();
     return true;
@@ -648,6 +843,15 @@ export const adminDb = {
 
   // MATERIALS
   async getWoodTypes(): Promise<WoodType[]> {
+    if (isSupabaseConfigured && supabase) {
+      try {
+        const { data, error } = await supabase.from("wood_types").select("*").order("display_order", { ascending: true });
+        if (!error && data && data.length > 0) {
+          store.woodTypes = data as WoodType[];
+          return data as WoodType[];
+        }
+      } catch (e) {}
+    }
     return [...store.woodTypes].sort((a, b) => a.display_order - b.display_order);
   },
 
@@ -663,6 +867,13 @@ export const adminDb = {
       display_order: wood.display_order ?? (store.woodTypes.length + 1),
       created_at: wood.created_at || new Date().toISOString()
     };
+
+    if (isSupabaseConfigured && supabase) {
+      try {
+        await supabase.from("wood_types").upsert([item], { onConflict: "id" });
+      } catch (e) {}
+    }
+
     const idx = store.woodTypes.findIndex(w => w.id === id);
     if (idx !== -1) store.woodTypes[idx] = item;
     else store.woodTypes.push(item);
@@ -671,12 +882,26 @@ export const adminDb = {
   },
 
   async deleteWoodType(id: string): Promise<boolean> {
+    if (isSupabaseConfigured && supabase) {
+      try {
+        await supabase.from("wood_types").delete().eq("id", id);
+      } catch (e) {}
+    }
     store.woodTypes = store.woodTypes.filter(w => w.id !== id);
     persistStore();
     return true;
   },
 
   async getFabricTypes(): Promise<FabricType[]> {
+    if (isSupabaseConfigured && supabase) {
+      try {
+        const { data, error } = await supabase.from("fabric_types").select("*").order("display_order", { ascending: true });
+        if (!error && data && data.length > 0) {
+          store.fabricTypes = data as FabricType[];
+          return data as FabricType[];
+        }
+      } catch (e) {}
+    }
     return [...store.fabricTypes].sort((a, b) => a.display_order - b.display_order);
   },
 
@@ -692,6 +917,13 @@ export const adminDb = {
       display_order: fab.display_order ?? (store.fabricTypes.length + 1),
       created_at: fab.created_at || new Date().toISOString()
     };
+
+    if (isSupabaseConfigured && supabase) {
+      try {
+        await supabase.from("fabric_types").upsert([item], { onConflict: "id" });
+      } catch (e) {}
+    }
+
     const idx = store.fabricTypes.findIndex(f => f.id === id);
     if (idx !== -1) store.fabricTypes[idx] = item;
     else store.fabricTypes.push(item);
@@ -700,12 +932,26 @@ export const adminDb = {
   },
 
   async deleteFabricType(id: string): Promise<boolean> {
+    if (isSupabaseConfigured && supabase) {
+      try {
+        await supabase.from("fabric_types").delete().eq("id", id);
+      } catch (e) {}
+    }
     store.fabricTypes = store.fabricTypes.filter(f => f.id !== id);
     persistStore();
     return true;
   },
 
   async getOtherMaterials(): Promise<OtherMaterial[]> {
+    if (isSupabaseConfigured && supabase) {
+      try {
+        const { data, error } = await supabase.from("other_materials").select("*").order("display_order", { ascending: true });
+        if (!error && data && data.length > 0) {
+          store.otherMaterials = data as OtherMaterial[];
+          return data as OtherMaterial[];
+        }
+      } catch (e) {}
+    }
     return [...store.otherMaterials].sort((a, b) => a.display_order - b.display_order);
   },
 
@@ -722,6 +968,13 @@ export const adminDb = {
       display_order: mat.display_order ?? (store.otherMaterials.length + 1),
       created_at: mat.created_at || new Date().toISOString()
     };
+
+    if (isSupabaseConfigured && supabase) {
+      try {
+        await supabase.from("other_materials").upsert([item], { onConflict: "id" });
+      } catch (e) {}
+    }
+
     const idx = store.otherMaterials.findIndex(m => m.id === id);
     if (idx !== -1) store.otherMaterials[idx] = item;
     else store.otherMaterials.push(item);
@@ -730,6 +983,11 @@ export const adminDb = {
   },
 
   async deleteOtherMaterial(id: string): Promise<boolean> {
+    if (isSupabaseConfigured && supabase) {
+      try {
+        await supabase.from("other_materials").delete().eq("id", id);
+      } catch (e) {}
+    }
     store.otherMaterials = store.otherMaterials.filter(m => m.id !== id);
     persistStore();
     return true;
@@ -759,11 +1017,25 @@ export const adminDb = {
 
   // SETTINGS & USERS
   async getSettings(): Promise<WebsiteSettings> {
+    if (isSupabaseConfigured && supabase) {
+      try {
+        const { data, error } = await supabase.from("website_settings").select("value").eq("key", "main").single();
+        if (!error && data?.value) {
+          store.settings = { ...store.settings, ...data.value };
+          return store.settings;
+        }
+      } catch (e) {}
+    }
     return { ...store.settings };
   },
 
   async saveSettings(settings: Partial<WebsiteSettings>): Promise<WebsiteSettings> {
     store.settings = { ...store.settings, ...settings };
+    if (isSupabaseConfigured && supabase) {
+      try {
+        await supabase.from("website_settings").upsert([{ key: "main", value: store.settings, updated_at: new Date().toISOString() }], { onConflict: "key" });
+      } catch (e) {}
+    }
     persistStore();
     return store.settings;
   },
@@ -796,7 +1068,15 @@ export const adminDb = {
 
   // DASHBOARD STATS
   async getDashboardStats() {
-    const products = store.products;
+    const [products, categories, collections, woodTypes, fabricTypes, otherMaterials] = await Promise.all([
+      this.getProducts(),
+      this.getCategories(),
+      this.getCollections(),
+      this.getWoodTypes(),
+      this.getFabricTypes(),
+      this.getOtherMaterials()
+    ]);
+
     const published = products.filter(p => p.status === "published").length;
     const draft = products.filter(p => p.status === "draft").length;
     const archived = products.filter(p => p.status === "archived").length;
@@ -812,9 +1092,9 @@ export const adminDb = {
       draftProducts: draft,
       archivedProducts: archived,
       featuredProducts: featured,
-      totalCategories: store.categories.length,
-      totalCollections: store.collections.length,
-      totalMaterials: store.woodTypes.length + store.fabricTypes.length + store.otherMaterials.length,
+      totalCategories: categories.length,
+      totalCollections: collections.length,
+      totalMaterials: woodTypes.length + fabricTypes.length + otherMaterials.length,
       recentProducts
     };
   }
