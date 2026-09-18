@@ -60,15 +60,26 @@ export default function SubcategoryPage({ params }: SubcategoryPageProps) {
   // Get catalog products for this subcategory
   const rawProducts = getProductsBySubcategory(roomSlug, subcategorySlug);
 
-  // Extract available unique materials dynamically for this specific subcategory list
-  const uniqueMaterials = Array.from(
-    new Set(rawProducts.map((p) => p.material || "Solid Wood"))
-  );
+  const WOOD_FILTERS = ["Teak Wood", "Ash Wood", "Mahogany Wood"];
 
-  // Filter products based on selected options
+  // Filter products by selected primary wood species
   const filteredProducts = rawProducts.filter((product) => {
     if (materialFilter === "All") return true;
-    return product.material === materialFilter;
+    const mat = (product.material || "").toLowerCase();
+    const wood = (product.specs?.woodType || "").toLowerCase();
+    const desc = (product.description || "").toLowerCase();
+    const name = (product.name || "").toLowerCase();
+
+    if (materialFilter === "Teak Wood") {
+      return mat.includes("teak") || wood.includes("teak") || desc.includes("teak") || name.includes("teak");
+    }
+    if (materialFilter === "Ash Wood") {
+      return mat.includes("ash") || wood.includes("ash") || desc.includes("ash") || name.includes("ash");
+    }
+    if (materialFilter === "Mahogany Wood") {
+      return mat.includes("mahogany") || wood.includes("mahogany") || desc.includes("mahogany") || name.includes("mahogany");
+    }
+    return true;
   });
 
   // Sort products
@@ -135,10 +146,10 @@ export default function SubcategoryPage({ params }: SubcategoryPageProps) {
 
         {/* Desktop Filters and Sorting Bar */}
         <div className="hidden sm:flex items-center justify-between border-t border-b border-neutral-100 py-4 mb-8 gap-4">
-          {/* Material Filters */}
+          {/* Wood Filters */}
           <div className="flex items-center flex-wrap gap-2.5">
             <span className="text-[9px] tracking-widest uppercase text-neutral-400 font-sans font-semibold mr-1.5 flex items-center">
-              <Filter size={10} className="mr-1" /> Material:
+              <Filter size={10} className="mr-1" /> Wood:
             </span>
             <button
               onClick={() => setMaterialFilter("All")}
@@ -148,19 +159,19 @@ export default function SubcategoryPage({ params }: SubcategoryPageProps) {
                   : "bg-transparent text-neutral-500 border-neutral-200 hover:text-black hover:border-black"
               }`}
             >
-              All Materials
+              All
             </button>
-            {uniqueMaterials.map((mat) => (
+            {WOOD_FILTERS.map((wood) => (
               <button
-                key={mat}
-                onClick={() => setMaterialFilter(mat)}
+                key={wood}
+                onClick={() => setMaterialFilter(wood)}
                 className={`text-[9px] tracking-widest uppercase py-1.5 px-3.5 transition-all font-light border ${
-                  materialFilter === mat
+                  materialFilter === wood
                     ? "bg-black text-white border-black"
                     : "bg-transparent text-neutral-500 border-neutral-200 hover:text-black hover:border-black"
                 }`}
               >
-                {mat}
+                {wood}
               </button>
             ))}
           </div>
@@ -248,25 +259,25 @@ export default function SubcategoryPage({ params }: SubcategoryPageProps) {
         <div className="fixed inset-0 z-50 flex items-end justify-center bg-black/50 backdrop-blur-xs sm:hidden">
           <div className="w-full bg-white rounded-t-2xl p-6 space-y-4 max-h-[80vh] overflow-y-auto">
             <div className="flex items-center justify-between pb-3 border-b border-neutral-100">
-              <h3 className="font-serif text-lg text-neutral-900 font-medium">Filter by Wood / Material</h3>
+              <h3 className="font-serif text-lg text-neutral-900 font-medium">Filter by Wood</h3>
               <button onClick={() => setFilterModalOpen(false)} className="p-1">
                 <X size={20} />
               </button>
             </div>
             <div className="space-y-2">
-              {["All", ...uniqueMaterials].map((mat) => (
+              {["All", ...WOOD_FILTERS].map((wood) => (
                 <button
-                  key={mat}
+                  key={wood}
                   onClick={() => {
-                    setMaterialFilter(mat);
+                    setMaterialFilter(wood);
                     setFilterModalOpen(false);
                   }}
                   className="w-full flex items-center justify-between py-3 text-sm text-left border-b border-neutral-50"
                 >
-                  <span className={materialFilter === mat ? "font-semibold text-black" : "text-neutral-600 font-light"}>
-                    {mat === "All" ? "All Materials" : mat}
+                  <span className={materialFilter === wood ? "font-semibold text-black" : "text-neutral-600 font-light"}>
+                    {wood === "All" ? "All Wood Types" : wood}
                   </span>
-                  {materialFilter === mat && <Check size={16} className="text-black" />}
+                  {materialFilter === wood && <Check size={16} className="text-black" />}
                 </button>
               ))}
             </div>

@@ -157,11 +157,9 @@ const DEFAULT_COLLECTIONS: Collection[] = [
 ];
 
 const DEFAULT_WOOD_TYPES: WoodType[] = [
-  { id: "wood-1", name: "Treated Solid Teak", slug: "treated-solid-teak", description: "Premium seasoned Kerala teak known for unmatched grain depth and lifetime durability", image_url: "/images/products/sf001-1.jpg", is_available: true, display_order: 1, created_at: new Date().toISOString() },
-  { id: "wood-2", name: "Canadian Imported Ash Wood", slug: "canadian-ash-wood", description: "Light-toned hardwood with expressive modern cathedral grain patterns", image_url: "/images/products/sf002-1.jpg", is_available: true, display_order: 2, created_at: new Date().toISOString() },
-  { id: "wood-3", name: "Selected Mahogany Wood", slug: "selected-mahogany-wood", description: "Dense hardwood offering rich reddish-brown luster and high tensile strength", image_url: "/images/products/sf020-1.jpg", is_available: true, display_order: 3, created_at: new Date().toISOString() },
-  { id: "wood-4", name: "Treated Karivaka Wood", slug: "treated-karivaka-wood", description: "Traditional indigenous timber with earthy grain and natural insect resistance", image_url: "/images/products/sf011-1.jpg", is_available: true, display_order: 4, created_at: new Date().toISOString() },
-  { id: "wood-5", name: "Molded Plywood & Hardwood Core", slug: "molded-plywood-core", description: "High-strength engineered plywood foundation designed for organic curved silhouettes", image_url: "/images/products/sf021-1.jpg", is_available: true, display_order: 5, created_at: new Date().toISOString() }
+  { id: "wood-1", name: "Solid Teak Wood", slug: "solid-teak-wood", description: "Premium seasoned Kerala teak known for unmatched grain depth and lifetime durability", image_url: "/images/products/sf001-1.jpg", is_available: true, display_order: 1, created_at: new Date().toISOString() },
+  { id: "wood-2", name: "Premium Ash Wood", slug: "premium-ash-wood", description: "Light-toned hardwood with expressive modern cathedral grain patterns", image_url: "/images/products/sf002-1.jpg", is_available: true, display_order: 2, created_at: new Date().toISOString() },
+  { id: "wood-3", name: "Selected Mahogany Wood", slug: "selected-mahogany-wood", description: "Dense hardwood offering rich reddish-brown luster and high tensile strength", image_url: "/images/products/sf020-1.jpg", is_available: true, display_order: 3, created_at: new Date().toISOString() }
 ];
 
 const DEFAULT_FABRIC_TYPES: FabricType[] = [
