@@ -1,23 +1,20 @@
 [
   {
-    "id": "zsh-sf-001",
+    "id": "zsh-sf001",
     "sku": "SF001",
-    "name": "Teakwood & Woven Rattan Sofa",
+    "name": "Nouveau Sofa",
     "category": "Three Seater Sofa",
     "material": "Treated Solid Teakwood",
-    "dimensions": "3-Seater: 200 × 70 × 82 cm | Single Seater: 70 × 70 × 82 cm",
-    "price": 97000,
+    "dimensions": "200 cm W × 70 cm D × 82 cm H (Seat H: 42 cm)",
+    "price": 40000,
     "finish": "Melamine Matte Finish",
     "fabric": "Seated back rest new molfino 903",
     "rattan": "Fine radio pre-woven rattan",
-    "priceBreakdown": [
-      { "label": "Full Set (3-Seater + 2 Single Seaters)", "price": 97000 },
-      { "label": "3-Seater Only", "price": 40000 },
-      { "label": "Single Seater Only", "price": 28500 }
-    ],
     "dimensionBreakdown": [
-      { "label": "Three Seater", "size": "200 cm × 70 cm × 82 cm" },
-      { "label": "Single Seater", "size": "70 cm × 70 cm × 82 cm" }
+      {
+        "label": "Three Seater",
+        "size": "200 cm W × 70 cm D × 82 cm H"
+      }
     ],
     "images": [
       "/images/WhatsApp Image 2026-01-28 at 10.24.22 (1).jpeg",
@@ -28,14 +25,26 @@
     "featured": true
   },
   {
-    "id": "zsh-sf-002",
+    "id": "zsh-sf002",
     "sku": "SF002",
-    "name": "Ash Wood L-Shaped Sectional Sofa",
+    "name": "Aura Sectional Sofa",
     "category": "Three Seater Sofa",
-    "material": "Ash Wood",
-    "dimensions": "210cm x 90cm & 180cm x 90cm",
+    "material": "Solid Ash Wood",
+    "dimensions": "Main: 210 × 90 × 85 cm | Chaise: 180 × 90 × 85 cm",
     "price": 134500,
     "finish": "Melamine Matte Finish",
+    "fabric": "Cream Linen-Cotton Blend",
+    "rattan": "",
+    "dimensionBreakdown": [
+      {
+        "label": "Main Section",
+        "size": "210 cm × 90 cm × 85 cm"
+      },
+      {
+        "label": "Chaise Lounge",
+        "size": "180 cm × 90 cm × 85 cm"
+      }
+    ],
     "images": [
       "/images/products/sf002-main.jpg",
       "/images/products/sf002-1.jpg",
@@ -43,398 +52,476 @@
       "/images/products/sf002-3.jpg",
       "/images/products/sf002-4.jpg"
     ],
-    "description": "The L-shaped sofa is made of solid ash wood with a melamine matte finish, and seating made of fabric upholstery finish.",
+    "description": "Architectural L-shaped sectional sofa made of solid ash wood with a melamine matte finish, deep lounge proportions, and tailored fabric upholstery.",
     "featured": true
   },
   {
-    "id": "zsh-sf-003",
+    "id": "zsh-sf003",
     "sku": "SF003",
-    "name": "Formal Living Mahogany Spindle Sofa",
+    "name": "Kanso Sofa",
     "category": "Three Seater Sofa",
-    "material": "Mahogany",
-    "dimensions": "220cm W x 85cm D x 80cm H",
+    "material": "Solid Mahogany",
+    "dimensions": "220 cm W × 85 cm D × 80 cm H (Seat H: 42 cm)",
     "price": 75990,
     "finish": "Matt Polish",
+    "fabric": "Tailored Linen Upholstery",
+    "rattan": "",
+    "dimensionBreakdown": [
+      {
+        "label": "Three Seater",
+        "size": "220 cm W × 85 cm D × 80 cm H"
+      }
+    ],
     "images": [
       "/images/products/sf003-1.jpg",
       "/images/products/sf003-2.jpg",
       "/images/products/sf003-3.jpg"
     ],
-    "description": "Formal living sofa in solid mahogany wood featuring spindle detailing on the armrest and back frame, with side tray extension, upholstery on backrest and seating, finished with matt polish.",
+    "description": "Formal living sofa in solid mahogany wood featuring spindle detailing on the armrest and back frame, an integrated side tray extension, and refined matt polish.",
     "featured": true
   },
   {
-    "id": "zsh-sf-004",
+    "id": "zsh-sf004",
     "sku": "SF004",
-    "name": "Teal & Cane Ash Wood L-Shaped Sectional Sofa",
+    "name": "Kyoto Sectional Sofa",
     "category": "Three Seater Sofa",
-    "material": "Ash Wood",
-    "dimensions": "210cm x 90cm & 180cm x 90cm",
+    "material": "Solid Ash Wood",
+    "dimensions": "Main: 210 × 90 × 85 cm | Chaise: 180 × 90 × 85 cm",
     "price": 136700,
     "finish": "Melamine Matte Finish",
+    "fabric": "Royal Teal Fabric Upholstery",
+    "rattan": "Natural woven cane armrest panel",
+    "dimensionBreakdown": [
+      {
+        "label": "Main Section",
+        "size": "210 cm × 90 cm × 85 cm"
+      },
+      {
+        "label": "Chaise Lounge",
+        "size": "180 cm × 90 cm × 85 cm"
+      }
+    ],
     "images": [
       "/images/products/sf004-1.jpg",
       "/images/products/sf004-2.jpg",
       "/images/products/sf004-3.jpg",
       "/images/products/sf004-4.jpg"
     ],
-    "description": "The L-shaped sofa is made of solid ash wood with a melamine matte finish, natural cane armrest weave, and seating made of teal fabric upholstery finish.",
+    "description": "An architectural L-shaped sofa handcrafted in solid ash wood with a melamine matte finish, natural cane armrest weave, and deep teal fabric upholstery.",
     "featured": true
   },
   {
-    "id": "zsh-sf-005",
+    "id": "zsh-sf005",
     "sku": "SF005",
-    "name": "Solid Teak Wood Sectional Chaise Sofa",
+    "name": "Haven Sectional Sofa",
     "category": "Three Seater Sofa",
-    "material": "Teak",
-    "dimensions": "270cm W x 165cm D x 85cm H",
+    "material": "Solid Teak Wood",
+    "dimensions": "270 cm W × 165 cm D × 85 cm H (Seat H: 42 cm)",
     "price": 53200,
     "finish": "Melamine Matt Finish",
+    "fabric": "Plush Textured Fabric Upholstery",
+    "rattan": "",
+    "dimensionBreakdown": [
+      {
+        "label": "Main 3-Seater",
+        "size": "180 cm × 90 cm × 85 cm"
+      },
+      {
+        "label": "Chaise Ottoman",
+        "size": "90 cm × 165 cm × 85 cm"
+      }
+    ],
     "images": [
       "/images/products/sf005-1.jpg",
       "/images/products/sf005-2.jpg",
       "/images/products/sf005-3.jpg"
     ],
-    "description": "Sofa made of solid teak wood with melamine matt finish and upholstered seating and back rest, with modular chaise ottoman.",
+    "description": "Sectional sofa made of solid teak wood with melamine matt finish, upholstered seating and backrest, and a versatile modular chaise ottoman.",
     "featured": true
   },
   {
-    "id": "zsh-sf-006",
+    "id": "zsh-sf006",
     "sku": "SF006",
-    "name": "Curved Cane Wrap Teakwood Sofa",
+    "name": "Vara Sofa",
     "category": "Three Seater Sofa",
     "material": "Solid Teak Wood",
-    "dimensions": "3-Seater: 198 × 82 × 76 cm | Single Seater: 82 × 80 × 76 cm",
-    "price": 100850,
+    "dimensions": "198 cm W × 82 cm D × 76 cm H (Seat H: 42 cm)",
+    "price": 47850,
     "finish": "Melamine Matte Finish",
+    "fabric": "Oatmeal Tailored Upholstery",
     "rattan": "Curved woven rattan wrap-around backrest",
-    "priceBreakdown": [
-      { "label": "Full Set (3-Seater + 2 Single Seaters)", "price": 100850 },
-      { "label": "3-Seater Only", "price": 47850 },
-      { "label": "Single Seater Only", "price": 26500 }
-    ],
     "dimensionBreakdown": [
-      { "label": "Three Seater", "size": "198 cm W × 82 cm D × 76 cm H (Seat H: 42 cm)" },
-      { "label": "Single Seater", "size": "82 cm W × 80 cm D × 76 cm H (Seat H: 42 cm)" }
+      {
+        "label": "Three Seater",
+        "size": "198 cm W × 82 cm D × 76 cm H"
+      }
     ],
     "images": [
       "/images/products/sf006-1.jpg",
       "/images/products/sf006-2.jpg"
     ],
-    "description": "Handcrafted in solid teak wood with a smooth melamine matte finish, featuring continuous curved cane wrap-around framing and custom upholstered seating.",
+    "description": "Handcrafted in solid teak wood with a smooth melamine matte finish, featuring a continuous curved cane wrap-around backrest and custom upholstered seating.",
     "featured": true
   },
   {
-    "id": "zsh-sf-007",
+    "id": "zsh-sf007",
     "sku": "SF007",
-    "name": "Sculptural Organic Curved Sofa",
+    "name": "Crescent Curved Sofa",
     "category": "Three Seater Sofa",
     "material": "Plywood Core & Hardwood Frame",
-    "dimensions": "4-Seater: 260 × 110 × 78 cm | 3-Seater: 190 × 95 × 78 cm",
+    "dimensions": "260 cm W × 110 cm D × 78 cm H (Seat H: 42 cm)",
     "price": 59570,
     "finish": "Fabric Upholstery Finish",
     "fabric": "Premium Textured Soft Upholstery Fabric",
-    "priceBreakdown": [
-      { "label": "4-Seater Curved Sectional (260 cm)", "price": 59570 },
-      { "label": "3-Seater Crescent Arc (190 cm)", "price": 44677 }
-    ],
+    "rattan": "",
     "dimensionBreakdown": [
-      { "label": "4-Seater Curved Sectional", "size": "260 cm W × 110 cm D × 78 cm H (Seat H: 42 cm)" },
-      { "label": "3-Seater Crescent Arc Sofa", "size": "190 cm W × 95 cm D × 78 cm H (Seat H: 42 cm)" }
+      {
+        "label": "Curved Sectional",
+        "size": "260 cm W × 110 cm D × 78 cm H"
+      }
     ],
     "images": [
       "/images/products/sf007-1.jpg",
       "/images/products/sf007-2.jpg",
       "/images/products/sf007-3.jpg"
     ],
-    "description": "A statement of fluid modern luxury, this curved sofa features organic sculptural contours, an enveloping crescent silhouette, and sculpted arch backrests. Masterfully constructed with high-strength molded plywood framing, high-density comfort foam, and tailored tactile upholstery that transforms living spaces into refined architectural sanctuaries.",
+    "description": "A statement of fluid modern luxury featuring organic sculptural contours, an enveloping crescent silhouette, molded hardwood framing, and tactile upholstery.",
     "featured": true
   },
   {
-    "id": "zsh-sf-008",
+    "id": "zsh-sf008",
     "sku": "SF008",
-    "name": "Family Living Ochre 3-Seater Sofa",
+    "name": "Elysian Sofa",
     "category": "Three Seater Sofa",
     "material": "Mahogany Wood & Plywood",
-    "dimensions": "210cm W × 85cm D × 82cm H",
+    "dimensions": "210 cm W × 85 cm D × 82 cm H (Seat H: 44 cm)",
     "price": 39500,
     "finish": "Matt Polish",
     "fabric": "Warm Ochre Fabric Upholstery",
+    "rattan": "",
     "dimensionBreakdown": [
-      { "label": "Three Seater", "size": "210 cm W × 85 cm D × 82 cm H (Seat H: 44 cm)" }
+      {
+        "label": "Three Seater",
+        "size": "210 cm W × 85 cm D × 82 cm H"
+      }
     ],
     "images": [
       "/images/products/sf008-2.jpg",
       "/images/products/sf008-1.jpg"
     ],
-    "description": "Crafted in solid mahogany wood and commercial plywood with a smooth matt polish finish, featuring tailored warm ochre upholstery on deep-cushioned seating and supportive backrests.",
+    "description": "Crafted in solid mahogany wood and commercial plywood with a smooth matt polish finish, featuring tailored warm ochre upholstery on deep-cushioned seating.",
     "featured": true
   },
   {
-    "id": "zsh-sf-009",
+    "id": "zsh-sf009",
     "sku": "SF009",
-    "name": "Olive & Cane Ash Wood L-Shaped Sectional Sofa",
+    "name": "Zenith Sectional Sofa",
     "category": "Three Seater Sofa",
     "material": "Solid Ash Wood",
-    "dimensions": "Main Section: 270 × 90 × 85 cm | Chaise: 180 × 90 × 85 cm",
+    "dimensions": "Main: 270 × 90 × 85 cm | Chaise: 180 × 90 × 85 cm",
     "price": 135000,
     "finish": "Melamine Matte Finish",
     "fabric": "Olive Green Fabric Upholstery",
     "rattan": "Natural woven cane chaise armrest panel",
     "dimensionBreakdown": [
-      { "label": "Main 3-Seater Section", "size": "270 cm × 90 cm × 85 cm" },
-      { "label": "Chaise Lounge Section", "size": "180 cm × 90 cm × 85 cm" }
+      {
+        "label": "Main Section",
+        "size": "270 cm × 90 cm × 85 cm"
+      },
+      {
+        "label": "Chaise Lounge",
+        "size": "180 cm × 90 cm × 85 cm"
+      }
     ],
     "images": [
       "/images/products/sf009-1.jpg"
     ],
-    "description": "Handcrafted from solid ash wood with a smooth melamine matte finish, featuring an integrated wooden console armrest table, natural woven cane side panel, and deep-cushioned olive green fabric upholstery.",
+    "description": "Handcrafted from solid ash wood with a smooth melamine matte finish, featuring an integrated wooden console armrest table, natural cane side panel, and olive green upholstery.",
     "featured": true
   },
   {
-    "id": "zsh-sf-010",
+    "id": "zsh-sf010",
     "sku": "SF010",
-    "name": "Forest Green Mahogany Spindle Sofa",
+    "name": "Sora Sofa",
     "category": "Three Seater Sofa",
     "material": "Solid Mahogany Wood",
-    "dimensions": "3-Seater: 195 × 80 × 78 cm | Single Seater: 75 × 80 × 78 cm",
-    "price": 72300,
+    "dimensions": "195 cm W × 80 cm D × 78 cm H (Seat H: 42 cm)",
+    "price": 38700,
     "finish": "Melamine Matt Polish",
     "fabric": "Forest Green Textured Fabric Upholstery",
-    "priceBreakdown": [
-      { "label": "Full Set (3-Seater + 2 Single Seaters)", "price": 72300 },
-      { "label": "3-Seater Only", "price": 38700 },
-      { "label": "Single Seater Only", "price": 16800 }
-    ],
+    "rattan": "",
     "dimensionBreakdown": [
-      { "label": "Three Seater", "size": "195 cm W × 80 cm D × 78 cm H (Seat H: 42 cm)" },
-      { "label": "Single Seater", "size": "75 cm W × 80 cm D × 78 cm H (Seat H: 42 cm)" }
+      {
+        "label": "Three Seater",
+        "size": "195 cm W × 80 cm D × 78 cm H"
+      }
     ],
     "images": [
       "/images/products/sf010-set-v2.jpg"
     ],
-    "description": "Handcrafted from selected solid mahogany wood with a refined matt polish, featuring sculpted cylindrical spindle armrests, tapered round timber legs, and plush forest green textured fabric cushions.",
+    "description": "Handcrafted from selected solid mahogany wood with a refined matt polish, featuring sculpted cylindrical spindle armrests, tapered round timber legs, and plush forest green cushions.",
     "featured": true
   },
   {
-    "id": "zsh-sf-011",
+    "id": "zsh-sf011",
     "sku": "SF011",
-    "name": "Family Living Teak Wood Sofa",
+    "name": "Linear Sofa",
     "category": "Three Seater Sofa",
     "material": "Solid Teak Wood",
-    "dimensions": "3-Seater: 198 × 82 × 78 cm | Single Seater: 78 × 82 × 78 cm",
-    "price": 79900,
+    "dimensions": "198 cm W × 82 cm D × 78 cm H (Seat H: 42 cm)",
+    "price": 41500,
     "finish": "Melamine Matt Polish",
     "fabric": "Oatmeal Textured Linen Blend Upholstery",
-    "priceBreakdown": [
-      { "label": "Full Set (3-Seater + 2 Single Seaters)", "price": 79900 },
-      { "label": "3-Seater Only", "price": 41500 },
-      { "label": "Single Seater Only", "price": 19200 },
-      { "label": "Pair of Single Seaters (2 Chairs)", "price": 38400 }
-    ],
+    "rattan": "",
     "dimensionBreakdown": [
-      { "label": "Three Seater", "size": "198 cm W × 82 cm D × 78 cm H (Seat H: 42 cm)" },
-      { "label": "Single Seater", "size": "78 cm W × 82 cm D × 78 cm H (Seat H: 42 cm)" }
+      {
+        "label": "Three Seater",
+        "size": "198 cm W × 82 cm D × 78 cm H"
+      }
     ],
     "images": [
       "/images/products/sf011-1.jpg"
     ],
-    "description": "Expertly crafted in solid teak wood with a refined matt polish finish, featuring sculpted Scandinavian clean lines, ergonomic angled armrests, and plush oatmeal textured upholstery on the seating and backrests.",
+    "description": "Expertly crafted in solid teak wood with a refined matt polish finish, featuring sculpted Scandinavian clean lines, ergonomic angled armrests, and plush oatmeal textured upholstery.",
     "featured": true
   },
   {
-    "id": "zsh-sf-012",
+    "id": "zsh-sf012",
     "sku": "SF012",
-    "name": "Sage & Cane Mahogany 3-Seater Sofa",
+    "name": "Sage Sofa",
     "category": "Three Seater Sofa",
     "material": "Solid Mahogany Wood",
-    "dimensions": "198cm W × 82cm D × 78cm H",
+    "dimensions": "198 cm W × 82 cm D × 78 cm H (Seat H: 42 cm)",
     "price": 33990,
     "finish": "Matt Polish Finish",
-    "fabric": "Sage Textured Fabric (₹700/m grade)",
+    "fabric": "Sage Textured Fabric",
     "rattan": "Natural woven cane armrest panels",
     "dimensionBreakdown": [
-      { "label": "Three Seater", "size": "198 cm W × 82 cm D × 78 cm H (Seat H: 42 cm)" }
+      {
+        "label": "Three Seater",
+        "size": "198 cm W × 82 cm D × 78 cm H"
+      }
     ],
     "images": [
       "/images/products/sf012-1.jpg"
     ],
-    "description": "Handcrafted from solid mahogany wood with a smooth matt polish finish, featuring natural woven cane armrest panels, tapered timber legs, and plush sage green textured upholstery on deep seating and backrests.",
+    "description": "Handcrafted from solid mahogany wood with a smooth matt polish finish, featuring natural woven cane armrest panels, tapered timber legs, and plush sage green textured upholstery.",
     "featured": true
   },
   {
-    "id": "zsh-sf-013",
+    "id": "zsh-sf013",
     "sku": "SF013",
-    "name": "Acacia & Cane Sculptural Daybed Sofa",
+    "name": "Koto Daybed",
     "category": "Three Seater Sofa",
     "material": "Solid Acacia Wood",
-    "dimensions": "195cm W × 80cm D × 72cm H",
+    "dimensions": "195 cm W × 80 cm D × 72 cm H (Seat H: 42 cm)",
     "price": 24200,
     "finish": "Matt Polish Finish",
-    "fabric": "Beige Linen Blend Fabric (₹700/m grade)",
+    "fabric": "Beige Linen Blend Fabric",
     "rattan": "Natural woven cane backrest weave",
     "dimensionBreakdown": [
-      { "label": "Daybed Lounge", "size": "195 cm W × 80 cm D × 72 cm H (Seat H: 42 cm)" }
+      {
+        "label": "Daybed Lounge",
+        "size": "195 cm W × 80 cm D × 72 cm H"
+      }
     ],
     "images": [
       "/images/products/sf013-1.jpg"
     ],
-    "description": "Handcrafted from solid acacia wood with a smooth matt polish finish, featuring an asymmetrical curved natural cane backrest, vertical timber spindle details, tailored linen seating, and matching cylindrical bolster cushions.",
+    "description": "Handcrafted from solid acacia wood with a smooth matt polish finish, featuring an asymmetrical curved cane backrest, vertical spindle details, tailored linen seating, and cylindrical bolsters.",
     "featured": true
   },
   {
-    "id": "zsh-sf-014",
+    "id": "zsh-sf014",
     "sku": "SF014",
-    "name": "Pistachio Ash Wood Plinth Extension Sofa",
+    "name": "Plinth Sofa",
     "category": "Three Seater Sofa",
     "material": "Solid Ash Wood",
-    "dimensions": "210cm W × 90cm D × 75cm H",
+    "dimensions": "210 cm W × 90 cm D × 75 cm H (Seat H: 40 cm)",
     "price": 59500,
     "finish": "Melamine Matt Polish",
-    "fabric": "Pistachio Green Soft Upholstery (₹700/m grade)",
+    "fabric": "Pistachio Green Soft Upholstery",
+    "rattan": "",
     "dimensionBreakdown": [
-      { "label": "Plinth Sofa (210 cm)", "size": "210 cm W × 90 cm D × 75 cm H (Seat H: 40 cm)" }
+      {
+        "label": "Plinth Sofa",
+        "size": "210 cm W × 90 cm D × 75 cm H"
+      }
     ],
     "images": [
       "/images/products/sf014-v2.jpg"
     ],
-    "description": "Handcrafted from solid ash wood with a refined matt polish, featuring an extended low-profile timber side plinth ledge, sculpted upholstered right armrest, and deep plush pistachio green seating.",
+    "description": "Handcrafted from solid ash wood with a refined matt polish, featuring an extended low-profile timber side plinth ledge, sculpted right armrest, and deep plush pistachio green seating.",
     "featured": true
   },
   {
-    "id": "zsh-sf-015",
+    "id": "zsh-sf015",
     "sku": "SF015",
-    "name": "Sculpted Bouclé Teak Base 3-Seater Sofa",
+    "name": "Arc Sofa",
     "category": "Three Seater Sofa",
     "material": "Solid Teak Wood & Molded Frame",
-    "dimensions": "180cm W × 95cm D × 76cm H",
+    "dimensions": "180 cm W × 95 cm D × 76 cm H (Seat H: 42 cm)",
     "price": 48990,
     "finish": "Melamine Matt Polish",
-    "fabric": "Ivory Textured Bouclé Fabric (₹700/m grade)",
+    "fabric": "Ivory Textured Bouclé Fabric",
+    "rattan": "",
     "dimensionBreakdown": [
-      { "label": "Three Seater (180 cm)", "size": "180 cm W × 95 cm D × 76 cm H (Seat H: 42 cm)" }
+      {
+        "label": "Three Seater",
+        "size": "180 cm W × 95 cm D × 76 cm H"
+      }
     ],
     "images": [
       "/images/products/sf015-1.jpg"
     ],
-    "description": "An organic modern statement piece featuring a cocoon-like curved silhouette, continuous sculpted solid teak wood base plinth with rounded wrap-around corner trim, and luxurious ivory textured bouclé upholstery on backrest, deep seating, and contoured armrests.",
+    "description": "An organic modern piece featuring a cocoon-like curved silhouette, continuous sculpted solid teak base plinth with rounded corner trim, and ivory textured bouclé upholstery.",
     "featured": true
   },
   {
-    "id": "zsh-sf-016",
+    "id": "zsh-sf016",
     "sku": "SF016",
-    "name": "Slate Grey Modular Curved Sectional Sofa",
+    "name": "Meridian Sectional Sofa",
     "category": "Three Seater Sofa",
     "material": "Solid Teak Wood & Molded Frame",
     "dimensions": "Main: 210 × 85 × 75 cm | Chaise: 210 × 85 × 75 cm",
     "price": 88700,
     "finish": "Melamine Matt Polish",
-    "fabric": "Slate Grey Plush Velvet Fabric (₹700/m grade)",
+    "fabric": "Slate Grey Plush Velvet Fabric",
+    "rattan": "",
     "dimensionBreakdown": [
-      { "label": "Main Section", "size": "210 cm × 85 cm × 75 cm" },
-      { "label": "Chaise Lounge Section", "size": "210 cm × 85 cm × 75 cm" }
+      {
+        "label": "Main Section",
+        "size": "210 cm × 85 cm × 75 cm"
+      },
+      {
+        "label": "Chaise Lounge",
+        "size": "210 cm × 85 cm × 75 cm"
+      }
     ],
     "images": [
       "/images/products/sf016-hero.jpg",
       "/images/products/sf016-1.jpg"
     ],
-    "description": "An architectural statement in modern comfort, this modular curved sectional sofa is crafted with a solid teak wood internal frame and finished in a smooth matt polish. Featuring capsule rounded ends, an extended lounging chaise, and sumptuous slate grey upholstery.",
+    "description": "An architectural modular curved sectional sofa crafted with a solid teak wood internal frame, capsule rounded ends, an extended lounging chaise, and slate grey velvet upholstery.",
     "featured": true
   },
   {
-    "id": "zsh-sf-017",
+    "id": "zsh-sf017",
     "sku": "SF017",
-    "name": "Bentwood Teak Shell Bouclé 3-Seater Sofa",
+    "name": "Bentley Sofa",
     "category": "Three Seater Sofa",
     "material": "Solid Teak Wood, Plywood & Teak Veneer",
-    "dimensions": "216cm W × 92cm D × 95cm H",
+    "dimensions": "216 cm W × 92 cm D × 95 cm H (Seat H: 44 cm)",
     "price": 56000,
     "finish": "Melamine Matt Polish",
-    "fabric": "Ivory Textured Bouclé Fabric (₹700/m grade)",
+    "fabric": "Ivory Textured Bouclé Fabric",
+    "rattan": "",
     "dimensionBreakdown": [
-      { "label": "Three Seater (216 cm)", "size": "216 cm W × 92 cm D × 95 cm H (Seat H: 44 cm)" }
+      {
+        "label": "Three Seater",
+        "size": "216 cm W × 92 cm D × 95 cm H"
+      }
     ],
     "images": [
       "/images/products/sf017-1.jpg"
     ],
-    "description": "Masterfully crafted with curved molded plywood and warm teak veneer outer arm shells, supported by a solid teak wood plinth frame with angled splayed legs. Finished with a refined matt polish and upholstered in soft, textured ivory bouclé.",
+    "description": "Masterfully crafted with curved molded plywood and warm teak veneer outer arm shells, solid teak plinth frame with angled splayed legs, and soft ivory bouclé upholstery.",
     "featured": true
   },
   {
-    "id": "zsh-sf-018",
+    "id": "zsh-sf018",
     "sku": "SF018",
-    "name": "Grand Cloud Bouclé Teak 3-Seater Sofa",
+    "name": "Astra Sofa",
     "category": "Three Seater Sofa",
     "material": "Solid Teak Wood & Hardwood Frame",
-    "dimensions": "230cm W × 100cm D × 80cm H",
+    "dimensions": "230 cm W × 100 cm D × 80 cm H (Seat H: 42 cm)",
     "price": 54100,
     "finish": "Melamine Matt Polish",
-    "fabric": "Cream Textured Bouclé Fabric (₹700/m grade)",
+    "fabric": "Cream Textured Bouclé Fabric",
+    "rattan": "",
     "dimensionBreakdown": [
-      { "label": "Grand Three Seater (230 cm)", "size": "230 cm W × 100 cm D × 80 cm H (Seat H: 42 cm)" }
+      {
+        "label": "Grand Three Seater",
+        "size": "230 cm W × 100 cm D × 80 cm H"
+      }
     ],
     "images": [
       "/images/products/sf018-1.jpg"
     ],
-    "description": "A grand 230 cm architectural sofa embodying organic softness and refined joinery. Features voluptuous cloud-like contours, expansive twin bench seating, and an exposed solid teak wood base plinth with sculpted corner bracket feet finished in a smooth matt polish.",
+    "description": "A grand 230 cm architectural sofa featuring cloud-like contours, expansive twin bench seating, and an exposed solid teak wood base plinth with sculpted corner bracket feet.",
     "featured": true
   },
   {
-    "id": "zsh-sf-019",
+    "id": "zsh-sf019",
     "sku": "SF019",
-    "name": "Indigo Spindle Teak L-Shaped Sectional Sofa",
+    "name": "Indigo Sectional Sofa",
     "category": "Three Seater Sofa",
     "material": "Solid Teak Wood",
     "dimensions": "Main: 210 × 90 × 82 cm | Chaise: 165 × 90 × 82 cm",
     "price": 52200,
     "finish": "Melamine Matt Polish",
     "fabric": "Royal Indigo Blue Fabric Upholstery",
+    "rattan": "",
     "dimensionBreakdown": [
-      { "label": "Main Seating Section", "size": "210 cm × 90 cm × 82 cm" },
-      { "label": "Chaise Lounge Section", "size": "165 cm × 90 cm × 82 cm" }
+      {
+        "label": "Main Section",
+        "size": "210 cm × 90 cm × 82 cm"
+      },
+      {
+        "label": "Chaise Lounge",
+        "size": "165 cm × 90 cm × 82 cm"
+      }
     ],
     "images": [
       "/images/products/sf019-v2.jpg"
     ],
-    "description": "Handcrafted from solid teak wood with a refined matt polish finish, featuring vertical timber spindle railings on the armrest and chaise back, supported by a low-profile plinth base with tapered legs and upholstered in deep royal indigo fabric.",
+    "description": "Handcrafted from solid teak wood with vertical timber spindle railings on the armrest and chaise back, supported by a low-profile plinth base in deep royal indigo fabric.",
     "featured": true
   },
   {
-    "id": "zsh-sf-020",
+    "id": "zsh-sf020",
     "sku": "SF020",
-    "name": "Sculpted Arm Mahogany 3-Seater Sofa",
+    "name": "Serena Sofa",
     "category": "Three Seater Sofa",
     "material": "Solid Mahogany Wood",
-    "dimensions": "210cm W × 85cm D × 80cm H",
+    "dimensions": "210 cm W × 85 cm D × 80 cm H (Seat H: 42 cm)",
     "price": 43200,
     "finish": "Melamine Matt Polish",
     "fabric": "Cream Textured Linen Blend Upholstery",
+    "rattan": "",
     "dimensionBreakdown": [
-      { "label": "Three Seater (210 cm)", "size": "210 cm W × 85 cm D × 80 cm H (Seat H: 42 cm)" }
+      {
+        "label": "Three Seater",
+        "size": "210 cm W × 85 cm D × 80 cm H"
+      }
     ],
     "images": [
       "/images/products/sf020-1.jpg"
     ],
-    "description": "Handcrafted from solid mahogany wood with a refined matt polish, featuring sculpted, gently curved forward-tapering armrests, an exposed geometric A-line timber frame, and tailored cream linen blend cushions.",
+    "description": "Handcrafted from solid mahogany wood with a refined matt polish, featuring sculpted forward-tapering armrests, an exposed geometric A-line timber frame, and cream linen blend cushions.",
     "featured": true
   },
   {
-    "id": "zsh-sf-021",
+    "id": "zsh-sf021",
     "sku": "SF021",
-    "name": "Organic Serpentine Bouclé Curved Sofa",
+    "name": "Sol Curved Sofa",
     "category": "Three Seater Sofa",
     "material": "Molded Plywood & Hardwood Core",
-    "dimensions": "240cm W × 115cm D × 78cm H",
+    "dimensions": "240 cm W × 115 cm D × 78 cm H (Seat H: 42 cm)",
     "price": 45700,
     "finish": "Fabric Upholstery Finish",
     "fabric": "Cream Textured Bouclé Fabric Upholstery",
+    "rattan": "",
     "dimensionBreakdown": [
-      { "label": "Grand Serpentine Curved Sofa (240 cm)", "size": "240 cm W × 115 cm D × 78 cm H (Seat H: 42 cm)" }
+      {
+        "label": "Serpentine Curved Sofa",
+        "size": "240 cm W × 115 cm D × 78 cm H"
+      }
     ],
     "images": [
       "/images/products/sf021-1.jpg"
     ],
-    "description": "A fluid architectural statement piece crafted with a high-strength molded plywood structure and high-resilience foam core. Features organic S-curved contours, an enveloping low-profile silhouette with vertical segmented backrest tailoring, and rich cream textured bouclé upholstery on seating and backrest.",
+    "description": "A fluid architectural statement piece featuring organic S-curved contours, an enveloping low-profile silhouette with vertical segmented backrest tailoring, and rich cream textured bouclé upholstery.",
     "featured": true
   }
 ]

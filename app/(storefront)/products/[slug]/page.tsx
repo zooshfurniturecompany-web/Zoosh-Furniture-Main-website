@@ -237,7 +237,8 @@ Thank you.`;
           </div>
 
           {/* Right Column: Sticky Product Navigation & Details */}
-          <div className="lg:col-span-5 space-y-6 lg:sticky lg:top-28 bg-white border border-neutral-50 p-6 lg:p-8 shadow-sm">
+          <div className="lg:col-span-5 space-y-6 lg:sticky lg:top-28 bg-white border border-neutral-100 p-6 lg:p-8 shadow-xs">
+            {/* 1. Header & Title */}
             <div className="space-y-3">
               <div className="flex justify-between items-start">
                 <span className="text-[10px] tracking-[0.25em] uppercase text-neutral-400 font-sans font-medium">
@@ -245,23 +246,34 @@ Thank you.`;
                 </span>
                 <ShareButton />
               </div>
-              <h1 className="font-serif text-3xl sm:text-4xl font-light tracking-wide text-neutral-900 leading-tight">
+              <h1 className="font-serif text-3xl sm:text-4xl font-light tracking-wide text-neutral-950 leading-tight">
                 {product.name}
               </h1>
               <div className="flex items-center justify-between text-[10px] tracking-widest text-neutral-400 font-sans uppercase pt-1">
                 <span>SKU: {product.sku}</span>
                 <span className="text-emerald-700 font-medium bg-emerald-50 px-2 py-0.5">In Stock / Made to Order</span>
               </div>
-
             </div>
 
-            {/* Description (Editorial Story Only) */}
-            <p className="text-neutral-500 font-sans text-xs md:text-sm font-light leading-relaxed">
+            {/* 2. Editorial Description */}
+            <p className="text-neutral-600 font-sans text-xs md:text-sm font-light leading-relaxed">
               {product.description}
             </p>
 
-            {/* Structured Specifications Spaces */}
-            <div className="border-t border-b border-neutral-100 py-4 space-y-2.5">
+            {/* 3. Price Display Block (Dtale Modern Layout) */}
+            <div className="pt-3 pb-3 border-t border-b border-neutral-100 space-y-1">
+              <div className="flex items-baseline gap-3">
+                <span className="font-sans text-3xl sm:text-4xl font-bold text-neutral-950 tracking-tight tabular-nums">
+                  ₹{product.price ? product.price.toLocaleString("en-IN") : "Price on Request"}
+                </span>
+              </div>
+              <span className="text-xs text-neutral-500 font-sans font-light tracking-wide block">
+                Excl. GST & Taxes | Custom made to order in Pattambi factory
+              </span>
+            </div>
+
+            {/* 4. Structured Specifications Spaces */}
+            <div className="py-2 space-y-2.5">
               <div className="flex justify-between text-xs font-sans">
                 <span className="text-neutral-400 font-light">Wood Selection</span>
                 <span className="text-neutral-800 font-medium">{product.material || product.specs.material}</span>
@@ -289,30 +301,28 @@ Thank you.`;
               {product.dimensionBreakdown && product.dimensionBreakdown.length > 0 ? (
                 <div className="pt-2 border-t border-neutral-100/60 space-y-1.5">
                   <span className="text-[10px] uppercase tracking-wider text-neutral-400 font-sans block font-semibold">
-                    Measurements / Dimensions:
+                    Dimensions:
                   </span>
                   {product.dimensionBreakdown.map((item) => (
                     <div key={item.label} className="flex justify-between text-xs font-sans pl-2">
                       <span className="text-neutral-500 font-light">• {item.label}</span>
-                      <span className="text-neutral-900 font-medium">{item.size}</span>
+                      <span className="text-neutral-900 font-medium tabular-nums">{item.size}</span>
                     </div>
                   ))}
                 </div>
               ) : (
                 <div className="flex justify-between text-xs font-sans">
                   <span className="text-neutral-400 font-light">Dimensions</span>
-                  <span className="text-neutral-800 font-medium">{product.dimensions || product.specs.dimensions}</span>
+                  <span className="text-neutral-800 font-medium tabular-nums">{product.dimensions || product.specs.dimensions}</span>
                 </div>
               )}
             </div>
 
-            {/* Dynamic Price & Interactive Set Configuration Breakdown */}
+            {/* 5. WhatsApp Action CTA */}
             <ProductPricingBreakdown
               productName={product.name}
               productSku={product.sku}
               basePrice={product.price || 0}
-              priceBreakdown={product.priceBreakdown}
-              dimensionBreakdown={product.dimensionBreakdown}
             />
 
             {/* Return Link */}
