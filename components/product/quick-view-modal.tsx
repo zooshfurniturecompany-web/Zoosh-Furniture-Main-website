@@ -50,6 +50,7 @@ export default function QuickViewModal({ product, onClose }: QuickViewModalProps
               src={product.images[0]}
               alt={product.name}
               fill
+              unoptimized={product.images[0]?.startsWith("data:") || product.images[0]?.startsWith("http")}
               className="object-cover"
               sizes="(max-width: 768px) 100vw, 50vw"
             />

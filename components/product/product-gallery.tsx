@@ -55,6 +55,7 @@ export default function ProductGallery({ images }: ProductGalleryProps) {
                   src={img}
                   alt={`Thumbnail view ${idx + 1}`}
                   fill
+                  unoptimized={img.startsWith("data:") || img.startsWith("http")}
                   className="object-cover"
                   sizes="80px"
                 />
@@ -72,6 +73,7 @@ export default function ProductGallery({ images }: ProductGalleryProps) {
             alt="Active product view"
             fill
             priority
+            unoptimized={images[activeIdx]?.startsWith("data:") || images[activeIdx]?.startsWith("http")}
             sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 40vw"
             className="object-cover"
           />
