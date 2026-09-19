@@ -1,6 +1,6 @@
 "use client";
 
-import { useState, useEffect } from "react";
+import { useState, useEffect, useRef } from "react";
 import { useRouter } from "next/navigation";
 import Link from "next/link";
 import {
@@ -19,9 +19,14 @@ import {
   Layers,
   Search,
   Eye,
-  ExternalLink
+  ExternalLink,
+  FolderOpen,
+  ChevronLeft,
+  ChevronRight,
+  X,
+  Loader2
 } from "lucide-react";
-import { adminDb, AdminProduct, Category, Collection, WoodType, FabricType } from "@/lib/admin-db";
+import { adminDb, AdminProduct, Category, Collection, WoodType, FabricType, MediaItem } from "@/lib/admin-db";
 
 interface ProductFormProps {
   initialData?: AdminProduct | null;
@@ -30,6 +35,7 @@ interface ProductFormProps {
 
 export default function ProductForm({ initialData, isEdit = false }: ProductFormProps) {
   const router = useRouter();
+  const fileInputRef = useRef<HTMLInputElement>(null);
 
   // Active form tab
   const [activeTab, setActiveTab] = useState<"basic" | "images" | "specs" | "pricing" | "seo">("basic");
@@ -41,13 +47,18 @@ export default function ProductForm({ initialData, isEdit = false }: ProductForm
   const [collections, setCollections] = useState<Collection[]>([]);
   const [woodList, setWoodList] = useState<WoodType[]>([]);
   const [fabricList, setFabricList] = useState<FabricType[]>([]);
+  const [mediaList, setMediaList] = useState<MediaItem[]>([]);
+  const [mediaLibraryOpen, setMediaLibraryOpen] = useState(false);
+  const [mediaSearch, setMediaSearch] = useState("");
+  const [isUploading, setIsUploading] = useState(false);
+  const [isDragging, setIsDragging] = useState(false);
 
   // Form State
   const [name, setName] = useState(initialData?.name || "");
   const [sku, setSku] = useState(initialData?.sku || "");
   const [slug, setSlug] = useState(initialData?.slug || "");
   const [categoryId, setCategoryId] = useState(initialData?.category_id || "");
-  const [categoryName, setCategoryName] = useState(initialData?.category_name || "Three Seater Sofa");
+  const [categoryName, setCategoryName] = useState(initialData?.category_name || "L-Shape Sofa");
   const [collectionId, setCollectionId] = useState(initialData?.collection_id || "col-1");
   const [collectionName, setCollectionName] = useState(initialData?.collection_name || "Solid Teakwood Heritage");
   const [status, setStatus] = useState<"published" | "draft" | "archived">(initialData?.status || "published");
@@ -80,7 +91,7 @@ export default function ProductForm({ initialData, isEdit = false }: ProductForm
   const [selectedFinishes, setSelectedFinishes] = useState<string[]>(initialData?.finish_options || ["Natural Matt Polish", "Warm Walnut Polish", "Smoked Ash"]);
 
   // Images
-  const [images, setImages] = useState<string[]>(initialData?.images || ["/images/catalog/page_14_img_00.webp"]);
+  const [images, setImages] = useState<string[]>(initialData?.images || []);
   const [newImageUrl, setNewImageUrl] = useState("");
 
   // SEO
@@ -91,16 +102,18 @@ export default function ProductForm({ initialData, isEdit = false }: ProductForm
   // Load supporting reference lists
   useEffect(() => {
     async function loadRefs() {
-      const [cats, cols, woods, fabs] = await Promise.all([
+      const [cats, cols, woods, fabs, meds] = await Promise.all([
         adminDb.getCategories(),
         adminDb.getCollections(),
         adminDb.getWoodTypes(),
-        adminDb.getFabricTypes()
+        adminDb.getFabricTypes(),
+        adminDb.getMediaItems()
       ]);
       setCategories(cats);
       setCollections(cols);
       setWoodList(woods);
       setFabricList(fabs);
+      setMediaList(meds);
     }
     loadRefs();
   }, []);
@@ -113,7 +126,100 @@ export default function ProductForm({ initialData, isEdit = false }: ProductForm
     }
   };
 
-  // Add Image URL
+  // Image compression & DataURL helper
+  const compressImage = (file: File): Promise<string> => {
+    return new Promise((resolve) => {
+      const reader = new FileReader();
+      reader.onload = (e) => {
+        const img = new Image();
+        img.onload = () => {
+          const maxDim = 1920;
+          let w = img.width;
+          let h = img.height;
+          if (w > maxDim || h > maxDim) {
+            if (w > h) {
+              h = Math.round((h * maxDim) / w);
+              w = maxDim;
+            } else {
+              w = Math.round((w * maxDim) / h);
+              h = maxDim;
+            }
+          }
+          const canvas = document.createElement("canvas");
+          canvas.width = w;
+          canvas.height = h;
+          const ctx = canvas.getContext("2d");
+          if (ctx) {
+            ctx.drawImage(img, 0, 0, w, h);
+            resolve(canvas.toDataURL("image/jpeg", 0.88));
+          } else {
+            resolve(e.target?.result as string);
+          }
+        };
+        img.onerror = () => resolve(e.target?.result as string);
+        img.src = e.target?.result as string;
+      };
+      reader.readAsDataURL(file);
+    });
+  };
+
+  // Handle direct file uploads from computer/mobile
+  const handleFilesSelected = async (files: FileList | null) => {
+    if (!files || files.length === 0) return;
+    setIsUploading(true);
+    const addedUrls: string[] = [];
+    for (let i = 0; i < files.length; i++) {
+      const file = files[i];
+      if (!file.type.startsWith("image/")) continue;
+      try {
+        const dataUrl = await compressImage(file);
+        addedUrls.push(dataUrl);
+        await adminDb.addMediaItem({
+          url: dataUrl,
+          name: file.name,
+          size: `${Math.round(file.size / 1024)} KB`
+        });
+      } catch (err) {
+        console.error("Error compressing file:", err);
+      }
+    }
+    if (addedUrls.length > 0) {
+      setImages((prev) => [...prev, ...addedUrls]);
+      const updatedMedia = await adminDb.getMediaItems();
+      setMediaList(updatedMedia);
+    }
+    setIsUploading(false);
+  };
+
+  // Drag & Drop handlers
+  const handleDragOver = (e: React.DragEvent) => {
+    e.preventDefault();
+    setIsDragging(true);
+  };
+
+  const handleDragLeave = (e: React.DragEvent) => {
+    e.preventDefault();
+    setIsDragging(false);
+  };
+
+  const handleDrop = async (e: React.DragEvent) => {
+    e.preventDefault();
+    setIsDragging(false);
+    if (e.dataTransfer.files) {
+      await handleFilesSelected(e.dataTransfer.files);
+    }
+  };
+
+  // Toggle selection from Media Library
+  const handleToggleMediaImage = (url: string) => {
+    if (images.includes(url)) {
+      setImages(images.filter((u) => u !== url));
+    } else {
+      setImages([...images, url]);
+    }
+  };
+
+  // Add Image URL manual field
   const handleAddImage = () => {
     if (newImageUrl.trim() && !images.includes(newImageUrl.trim())) {
       setImages([...images, newImageUrl.trim()]);
@@ -130,6 +236,16 @@ export default function ProductForm({ initialData, isEdit = false }: ProductForm
     const item = images[index];
     const rest = images.filter((_, i) => i !== index);
     setImages([item, ...rest]);
+  };
+
+  const handleMoveImage = (fromIdx: number, direction: "left" | "right") => {
+    const toIdx = direction === "left" ? fromIdx - 1 : fromIdx + 1;
+    if (toIdx < 0 || toIdx >= images.length) return;
+    const newArr = [...images];
+    const temp = newArr[fromIdx];
+    newArr[fromIdx] = newArr[toIdx];
+    newArr[toIdx] = temp;
+    setImages(newArr);
   };
 
   // Add Price breakdown row
@@ -419,73 +535,278 @@ export default function ProductForm({ initialData, isEdit = false }: ProductForm
             ======================================================== */}
         {activeTab === "images" && (
           <div className="bg-white p-6 rounded-xl border border-neutral-200 shadow-sm space-y-6 text-xs">
-            <div>
-              <h3 className="text-sm font-semibold text-neutral-900">Product Photography Gallery</h3>
-              <p className="text-neutral-500 mt-0.5">
-                Add multiple high-resolution photos. The first image will be used as the primary cover photo across the storefront.
-              </p>
+            <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-2">
+              <div>
+                <h3 className="text-sm font-semibold text-neutral-900">Product Photography Gallery</h3>
+                <p className="text-neutral-500 mt-0.5">
+                  Upload photos directly from your device or select from the Media Library. The first image is the main cover photo.
+                </p>
+              </div>
+              <div className="flex items-center gap-2">
+                <button
+                  type="button"
+                  onClick={() => setMediaLibraryOpen(true)}
+                  className="px-3.5 py-2 bg-neutral-100 hover:bg-neutral-200 text-neutral-800 font-semibold rounded-lg transition-colors flex items-center gap-1.5"
+                >
+                  <FolderOpen className="w-3.5 h-3.5" />
+                  <span>Browse Media Library ({mediaList.length})</span>
+                </button>
+                <button
+                  type="button"
+                  onClick={() => fileInputRef.current?.click()}
+                  disabled={isUploading}
+                  className="px-4 py-2 bg-black hover:bg-neutral-800 text-white font-semibold rounded-lg transition-colors flex items-center gap-1.5 shadow-xs disabled:opacity-60"
+                >
+                  {isUploading ? <Loader2 className="w-3.5 h-3.5 animate-spin" /> : <Upload className="w-3.5 h-3.5" />}
+                  <span>Upload Photos</span>
+                </button>
+              </div>
             </div>
 
-            {/* Add Image URL Field */}
-            <div className="flex gap-2">
-              <div className="relative flex-1">
-                <input
-                  type="text"
-                  value={newImageUrl}
-                  onChange={(e) => setNewImageUrl(e.target.value)}
-                  placeholder="Enter image URL or path (e.g. /images/products/sf021-1.jpg or https://...)"
-                  className="w-full px-3 py-2 bg-neutral-50 border border-neutral-200 rounded-lg focus:outline-none focus:ring-1 focus:ring-black focus:bg-white text-neutral-900"
-                />
+            {/* Hidden Native File Input */}
+            <input
+              ref={fileInputRef}
+              type="file"
+              multiple
+              accept="image/*"
+              onChange={(e) => handleFilesSelected(e.target.files)}
+              className="hidden"
+            />
+
+            {/* Drag and Drop Zone */}
+            <div
+              onDragOver={handleDragOver}
+              onDragLeave={handleDragLeave}
+              onDrop={handleDrop}
+              onClick={() => fileInputRef.current?.click()}
+              className={`border-2 border-dashed rounded-xl p-8 text-center cursor-pointer transition-all ${
+                isDragging
+                  ? "border-black bg-neutral-100 scale-[0.99]"
+                  : "border-neutral-300 hover:border-black bg-neutral-50/60 hover:bg-neutral-50"
+              }`}
+            >
+              <div className="max-w-xs mx-auto space-y-2">
+                <div className="w-12 h-12 bg-white rounded-full border border-neutral-200 flex items-center justify-center mx-auto shadow-xs">
+                  {isUploading ? (
+                    <Loader2 className="w-6 h-6 text-neutral-900 animate-spin" />
+                  ) : (
+                    <Upload className="w-6 h-6 text-neutral-600" />
+                  )}
+                </div>
+                <div>
+                  <p className="font-semibold text-neutral-900 text-xs">
+                    {isUploading ? "Uploading & Optimizing..." : "Click to upload or drag photos here"}
+                  </p>
+                  <p className="text-[11px] text-neutral-500 mt-0.5">
+                    Supports JPG, PNG, WEBP, HEIC from phone or desktop
+                  </p>
+                </div>
               </div>
-              <button
-                type="button"
-                onClick={handleAddImage}
-                className="px-4 py-2 bg-neutral-900 text-white font-semibold rounded-lg hover:bg-black transition-colors flex items-center gap-1.5"
-              >
-                <Plus className="w-3.5 h-3.5" /> Add Image
-              </button>
+            </div>
+
+            {/* Manual Image URL Input fallback */}
+            <div className="pt-2 border-t border-neutral-100">
+              <label className="block text-neutral-500 font-medium mb-1 text-[11px]">Or add via image URL / path:</label>
+              <div className="flex gap-2">
+                <div className="relative flex-1">
+                  <input
+                    type="text"
+                    value={newImageUrl}
+                    onChange={(e) => setNewImageUrl(e.target.value)}
+                    placeholder="Enter image URL or path (e.g. /images/products/sf021-1.jpg or https://...)"
+                    className="w-full px-3 py-2 bg-neutral-50 border border-neutral-200 rounded-lg focus:outline-none focus:ring-1 focus:ring-black focus:bg-white text-neutral-900"
+                  />
+                </div>
+                <button
+                  type="button"
+                  onClick={handleAddImage}
+                  className="px-4 py-2 bg-neutral-900 text-white font-semibold rounded-lg hover:bg-black transition-colors flex items-center gap-1.5 shrink-0"
+                >
+                  <Plus className="w-3.5 h-3.5" /> Add URL
+                </button>
+              </div>
             </div>
 
             {/* Images Grid */}
-            <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 gap-4">
-              {images.map((imgUrl, idx) => (
-                <div key={idx} className="relative group border border-neutral-200 rounded-xl overflow-hidden bg-neutral-50 shadow-sm aspect-[4/5] flex flex-col">
-                  <img
-                    src={imgUrl}
-                    alt={"Product image " + (idx + 1)}
-                    className="w-full h-full object-cover"
-                  />
+            <div className="space-y-3 pt-2 border-t border-neutral-100">
+              <div className="flex items-center justify-between">
+                <span className="font-semibold text-neutral-900">
+                  Uploaded Photos ({images.length})
+                </span>
+                <span className="text-[10px] text-neutral-400">
+                  First photo is the primary storefront cover
+                </span>
+              </div>
 
-                  {/* Cover Badge */}
-                  {idx === 0 && (
-                    <div className="absolute top-2 left-2 bg-black/80 text-white text-[10px] font-semibold px-2 py-0.5 rounded backdrop-blur-sm">
-                      Cover Photo
-                    </div>
-                  )}
-
-                  {/* Image Action Overlay */}
-                  <div className="absolute inset-0 bg-black/40 opacity-0 group-hover:opacity-100 transition-opacity flex items-center justify-center gap-2 p-2">
-                    {idx !== 0 && (
-                      <button
-                        type="button"
-                        onClick={() => handleSetCoverImage(idx)}
-                        className="px-2 py-1 bg-white text-black text-[10px] font-semibold rounded shadow hover:bg-neutral-100 transition-colors"
-                        title="Set as Main Cover Photo"
-                      >
-                        Set Cover
-                      </button>
-                    )}
-                    <button
-                      type="button"
-                      onClick={() => handleRemoveImage(idx)}
-                      className="p-1.5 bg-red-600 text-white rounded shadow hover:bg-red-700 transition-colors"
-                      title="Delete Image"
-                    >
-                      <Trash2 className="w-3.5 h-3.5" />
-                    </button>
-                  </div>
+              {images.length === 0 ? (
+                <div className="p-8 text-center border border-dashed border-neutral-200 rounded-lg bg-neutral-50 text-neutral-400">
+                  <ImageIcon className="w-8 h-8 mx-auto mb-1 stroke-1 text-neutral-300" />
+                  <p>No photos added yet. Upload from your device or browse the media library.</p>
                 </div>
-              ))}
+              ) : (
+                <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 gap-4">
+                  {images.map((imgUrl, idx) => (
+                    <div
+                      key={idx}
+                      className={`relative group border rounded-xl overflow-hidden bg-neutral-50 shadow-xs aspect-[4/5] flex flex-col transition-all ${
+                        idx === 0 ? "border-black ring-2 ring-black/10" : "border-neutral-200"
+                      }`}
+                    >
+                      <img
+                        src={imgUrl}
+                        alt={`Product image ${idx + 1}`}
+                        className="w-full h-full object-cover"
+                      />
+
+                      {/* Cover Badge */}
+                      <div className="absolute top-2 left-2 flex gap-1">
+                        {idx === 0 ? (
+                          <span className="bg-black text-white text-[9px] font-bold uppercase tracking-wider px-2 py-0.5 rounded shadow-xs">
+                            Cover
+                          </span>
+                        ) : (
+                          <span className="bg-black/60 text-white text-[9px] font-medium px-1.5 py-0.5 rounded backdrop-blur-xs">
+                            #{idx + 1}
+                          </span>
+                        )}
+                      </div>
+
+                      {/* Reorder Arrows on Card */}
+                      <div className="absolute bottom-2 left-2 right-2 flex items-center justify-between opacity-0 group-hover:opacity-100 transition-opacity">
+                        <div className="flex gap-1 bg-black/70 p-1 rounded-md backdrop-blur-xs">
+                          <button
+                            type="button"
+                            disabled={idx === 0}
+                            onClick={(e) => {
+                              e.stopPropagation();
+                              handleMoveImage(idx, "left");
+                            }}
+                            className="p-1 text-white hover:text-neutral-200 disabled:opacity-30"
+                            title="Move Left"
+                          >
+                            <ChevronLeft className="w-3.5 h-3.5" />
+                          </button>
+                          <button
+                            type="button"
+                            disabled={idx === images.length - 1}
+                            onClick={(e) => {
+                              e.stopPropagation();
+                              handleMoveImage(idx, "right");
+                            }}
+                            className="p-1 text-white hover:text-neutral-200 disabled:opacity-30"
+                            title="Move Right"
+                          >
+                            <ChevronRight className="w-3.5 h-3.5" />
+                          </button>
+                        </div>
+
+                        <div className="flex gap-1">
+                          {idx !== 0 && (
+                            <button
+                              type="button"
+                              onClick={() => handleSetCoverImage(idx)}
+                              className="px-2 py-1 bg-white text-black text-[10px] font-bold rounded shadow hover:bg-neutral-100 transition-colors"
+                              title="Set as Main Cover Photo"
+                            >
+                              Make Cover
+                            </button>
+                          )}
+                          <button
+                            type="button"
+                            onClick={() => handleRemoveImage(idx)}
+                            className="p-1.5 bg-red-600 text-white rounded shadow hover:bg-red-700 transition-colors"
+                            title="Delete Image"
+                          >
+                            <Trash2 className="w-3.5 h-3.5" />
+                          </button>
+                        </div>
+                      </div>
+                    </div>
+                  ))}
+                </div>
+              )}
+            </div>
+          </div>
+        )}
+
+        {/* Media Library Picker Modal */}
+        {mediaLibraryOpen && (
+          <div className="fixed inset-0 z-50 bg-black/60 backdrop-blur-xs flex items-center justify-center p-4 sm:p-6">
+            <div className="bg-white rounded-2xl max-w-4xl w-full max-h-[85vh] flex flex-col shadow-2xl border border-neutral-200 overflow-hidden">
+              {/* Modal Header */}
+              <div className="p-4 sm:p-6 border-b border-neutral-200 flex items-center justify-between">
+                <div>
+                  <h3 className="font-serif text-lg font-bold text-neutral-900">Select From Media Library</h3>
+                  <p className="text-xs text-neutral-500">
+                    Click photos to add or remove them from this product ({images.length} selected).
+                  </p>
+                </div>
+                <button
+                  type="button"
+                  onClick={() => setMediaLibraryOpen(false)}
+                  className="p-2 text-neutral-400 hover:text-black rounded-lg hover:bg-neutral-100"
+                >
+                  <X className="w-5 h-5" />
+                </button>
+              </div>
+
+              {/* Modal Search Bar */}
+              <div className="px-6 py-3 border-b border-neutral-100 bg-neutral-50 flex items-center gap-2">
+                <Search className="w-4 h-4 text-neutral-400 shrink-0" />
+                <input
+                  type="text"
+                  placeholder="Search photos by filename..."
+                  value={mediaSearch}
+                  onChange={(e) => setMediaSearch(e.target.value)}
+                  className="w-full bg-transparent border-none text-xs focus:outline-none text-neutral-900"
+                />
+              </div>
+
+              {/* Modal Grid */}
+              <div className="p-6 overflow-y-auto flex-1 max-h-[50vh]">
+                <div className="grid grid-cols-3 sm:grid-cols-4 md:grid-cols-6 gap-3">
+                  {mediaList
+                    .filter((m) => m.name.toLowerCase().includes(mediaSearch.toLowerCase()) || m.url.toLowerCase().includes(mediaSearch.toLowerCase()))
+                    .map((m) => {
+                      const isSelected = images.includes(m.url);
+                      return (
+                        <div
+                          key={m.id}
+                          onClick={() => handleToggleMediaImage(m.url)}
+                          className={`relative aspect-[4/5] rounded-lg overflow-hidden border cursor-pointer group transition-all ${
+                            isSelected
+                              ? "border-black ring-2 ring-black"
+                              : "border-neutral-200 hover:border-neutral-400"
+                          }`}
+                        >
+                          <img src={m.url} alt={m.name} className="w-full h-full object-cover" />
+                          {isSelected && (
+                            <div className="absolute top-1.5 right-1.5 w-5 h-5 bg-black text-white rounded-full flex items-center justify-center shadow-xs">
+                              <Check className="w-3 h-3 stroke-[3]" />
+                            </div>
+                          )}
+                          <div className="absolute inset-x-0 bottom-0 bg-black/60 text-white p-1 text-[9px] truncate opacity-0 group-hover:opacity-100 transition-opacity">
+                            {m.name}
+                          </div>
+                        </div>
+                      );
+                    })}
+                </div>
+              </div>
+
+              {/* Modal Footer */}
+              <div className="p-4 border-t border-neutral-200 bg-neutral-50 flex items-center justify-between">
+                <span className="text-xs text-neutral-600 font-medium">
+                  {images.length} photo(s) attached to product
+                </span>
+                <button
+                  type="button"
+                  onClick={() => setMediaLibraryOpen(false)}
+                  className="px-5 py-2 bg-black hover:bg-neutral-800 text-white text-xs font-semibold rounded-lg transition-colors"
+                >
+                  Done
+                </button>
+              </div>
             </div>
           </div>
         )}
