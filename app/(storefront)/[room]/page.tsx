@@ -229,9 +229,9 @@ export default function RoomPage({ params }: RoomPageProps) {
             </div>
           </div>
 
-          {/* 2-Columns Mobile Product Grid */}
+          {/* Products Grid (Dtale Modern 3-Columns Layout) */}
           {sortedProducts.length > 0 ? (
-            <div className="grid grid-cols-2 lg:grid-cols-4 gap-3 sm:gap-6 md:gap-8">
+            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-6 md:gap-8">
               {sortedProducts.map((product) => (
                 <ProductCard
                   key={product.id}
