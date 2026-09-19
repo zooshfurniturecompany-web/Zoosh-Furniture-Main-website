@@ -64,9 +64,9 @@ export default function ProductGallery({ images }: ProductGalleryProps) {
           </div>
         )}
 
-        {/* Main active image viewport */}
+        {/* Main active image viewport (1:1 square ratio) */}
         <div
-          className="relative flex-grow aspect-[4/5] bg-neutral-50 overflow-hidden border border-neutral-100 group"
+          className="relative flex-grow aspect-square bg-neutral-50 overflow-hidden border border-neutral-100 group"
         >
           <Image
             src={images[activeIdx]}

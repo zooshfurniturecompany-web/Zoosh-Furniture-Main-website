@@ -23,8 +23,8 @@ export default function ProductCard({ product, onQuickView }: ProductCardProps) 
       onMouseEnter={() => setIsHovered(true)}
       onMouseLeave={() => setIsHovered(false)}
     >
-      {/* Image Gallery Container with exact 4:5 ratio */}
-      <div className="relative aspect-[4/5] w-full overflow-hidden bg-[#fafafa]">
+      {/* Image Gallery Container with 1:1 square ratio */}
+      <div className="relative aspect-square w-full overflow-hidden bg-neutral-100">
         {/* Wishlist Heart Icon */}
         <button
           type="button"
@@ -42,16 +42,16 @@ export default function ProductCard({ product, onQuickView }: ProductCardProps) 
           />
         </button>
 
-        <Link href={`/products/${product.slug}`} className="block h-full w-full relative">
-          {/* Primary Image - fully visible without cropping */}
-          <div className="absolute inset-0 p-2 sm:p-3 flex items-center justify-center">
+        <Link href={`/products/${product.slug}`} className="block h-full w-full">
+          {/* Primary Image - square cropped like Siena L Shape Sofa */}
+          <div className="absolute inset-0">
             <Image
               src={primaryImage}
               alt={product.name}
               fill
               unoptimized={primaryImage?.startsWith("data:") || primaryImage?.startsWith("http")}
               sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 33vw"
-              className="object-contain object-center group-hover:scale-105 transition-transform duration-700 ease-out"
+              className="object-cover object-center group-hover:scale-105 transition-transform duration-700 ease-out"
               priority={false}
             />
           </div>

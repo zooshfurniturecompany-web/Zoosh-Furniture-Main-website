@@ -480,7 +480,7 @@ Thank you.`;
           </div>
           <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
             {product.lifestyleImages.map((img, idx) => (
-              <div key={idx} className="relative aspect-[4/5] overflow-hidden bg-neutral-100 group">
+              <div key={idx} className="relative aspect-square overflow-hidden bg-neutral-100 group">
                 <img
                   src={img}
                   alt={`Lifestyle view ${idx + 1}`}
