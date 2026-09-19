@@ -329,9 +329,11 @@ export default function ProductForm({ initialData, isEdit = false }: ProductForm
                   }}
                   className="w-full px-3 py-2 bg-neutral-50 border border-neutral-200 rounded-lg focus:outline-none focus:ring-1 focus:ring-black focus:bg-white text-neutral-900"
                 >
+                  <option value="L-Shape Sofa">L-Shape Sofa</option>
                   <option value="Three Seater Sofa">Three Seater Sofa</option>
                   <option value="Two Seater Sofa">Two Seater Sofa</option>
                   <option value="Single Seater Sofa">Single Seater Sofa</option>
+                  <option value="Sectional Sofa">Sectional Sofa</option>
                   <option value="Lounge Chair">Lounge Chair</option>
                   <option value="Arm Chair">Arm Chair</option>
                   <option value="Dining Table">Dining Table</option>
