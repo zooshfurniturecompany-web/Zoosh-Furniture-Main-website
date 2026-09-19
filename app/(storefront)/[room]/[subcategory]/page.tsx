@@ -148,83 +148,163 @@ export default function SubcategoryPage({ params }: SubcategoryPageProps) {
           </button>
         </div>
 
-        {/* Desktop Filters and Sorting Bar */}
-        <div className="hidden sm:flex items-center justify-between border-t border-b border-neutral-100 py-4 mb-8 gap-4">
-          {/* Wood Filters */}
-          <div className="flex items-center flex-wrap gap-2.5">
-            <span className="text-[9px] tracking-widest uppercase text-neutral-400 font-sans font-semibold mr-1.5 flex items-center">
-              <Filter size={10} className="mr-1" /> Wood:
-            </span>
-            <button
-              onClick={() => setMaterialFilter("All")}
-              className={`text-[9px] tracking-widest uppercase py-1.5 px-3.5 transition-all font-light border ${
-                materialFilter === "All"
-                  ? "bg-black text-white border-black"
-                  : "bg-transparent text-neutral-500 border-neutral-200 hover:text-black hover:border-black"
-              }`}
-            >
-              All
-            </button>
-            {WOOD_FILTERS.map((wood) => (
-              <button
-                key={wood}
-                onClick={() => setMaterialFilter(wood)}
-                className={`text-[9px] tracking-widest uppercase py-1.5 px-3.5 transition-all font-light border ${
-                  materialFilter === wood
-                    ? "bg-black text-white border-black"
-                    : "bg-transparent text-neutral-500 border-neutral-200 hover:text-black hover:border-black"
-                }`}
-              >
-                {wood}
-              </button>
-            ))}
-          </div>
+        {/* Main Workspace with Dtale Modern Left Sidebar & 3-Columns Grid */}
+        <div className="flex flex-col lg:flex-row gap-8 lg:gap-12 items-start">
+          
+          {/* Desktop Left Filter Sidebar (Dtale Modern Style) */}
+          <aside className="hidden lg:block w-64 shrink-0 space-y-6 pr-6 border-r border-neutral-100">
+            <div className="flex items-center justify-between pb-3 border-b border-neutral-100">
+              <h3 className="font-sans text-xs font-semibold uppercase tracking-wider text-neutral-900">
+                Browse by
+              </h3>
+              {(materialFilter !== "All" || sortOption !== "Featured") && (
+                <button
+                  onClick={() => {
+                    setMaterialFilter("All");
+                    setSortOption("Featured");
+                  }}
+                  className="text-[10px] text-neutral-400 hover:text-black uppercase tracking-wider font-medium transition-colors"
+                >
+                  Clear All
+                </button>
+              )}
+            </div>
 
-          {/* Sorting Dropdown */}
-          <div className="flex items-center space-x-2">
-            <span className="text-[9px] tracking-widest uppercase text-neutral-400 font-sans font-semibold flex items-center">
-              <ArrowUpDown size={10} className="mr-1" /> Sort by:
-            </span>
-            <select
-              value={sortOption}
-              onChange={(e) => setSortOption(e.target.value)}
-              className="bg-transparent border border-neutral-200 text-[10px] tracking-wider uppercase py-1.5 px-3 text-neutral-700 font-sans font-light focus:outline-none focus:border-black"
-            >
-              <option value="Featured">Featured</option>
-              <option value="Newest">Newest</option>
-              <option value="Price: Low to High">Price: Low to High</option>
-              <option value="Price: High to Low">Price: High to Low</option>
-            </select>
+            {/* Product Type / Subcategories */}
+            <div className="space-y-3">
+              <h4 className="font-sans text-xs font-semibold text-neutral-900 tracking-wide">
+                Product Type
+              </h4>
+              <div className="space-y-2 text-xs font-sans">
+                <Link
+                  href={`/${roomSlug}`}
+                  className="flex items-center justify-between py-1 text-neutral-600 hover:text-black transition-colors font-light"
+                >
+                  <span>All {roomName}</span>
+                </Link>
+                {Object.entries(subcategoryLabels)
+                  .filter(([slug]) => {
+                    // Match subcategories belonging to this room
+                    const sample = allProducts.find(p => getRoomAndSubcategory(p.category).subcategory === slug && getRoomAndSubcategory(p.category).room === roomSlug);
+                    return sample !== undefined || slug === subcategorySlug;
+                  })
+                  .map(([slug, name]) => {
+                    const isActive = slug === subcategorySlug;
+                    const count = allProducts.filter(p => {
+                      const m = getRoomAndSubcategory(p.category);
+                      return m.room === roomSlug && m.subcategory === slug;
+                    }).length;
+                    return (
+                      <Link
+                        key={slug}
+                        href={`/${roomSlug}/${slug}`}
+                        className={`flex items-center justify-between py-1 transition-colors ${
+                          isActive ? "text-black font-semibold" : "text-neutral-600 hover:text-black font-light"
+                        }`}
+                      >
+                        <span>{name}</span>
+                        <span className="text-neutral-400 text-[10px]">({count})</span>
+                      </Link>
+                    );
+                  })}
+              </div>
+            </div>
+
+            {/* Wood / Material Filters */}
+            <div className="space-y-3 pt-5 border-t border-neutral-100">
+              <h4 className="font-sans text-xs font-semibold text-neutral-900 tracking-wide">
+                Wood & Material
+              </h4>
+              <div className="space-y-2 text-xs font-sans">
+                <button
+                  onClick={() => setMaterialFilter("All")}
+                  className={`w-full flex items-center justify-between py-1 text-left transition-colors ${
+                    materialFilter === "All" ? "text-black font-semibold" : "text-neutral-600 hover:text-black font-light"
+                  }`}
+                >
+                  <span>All Materials</span>
+                  <span className="text-neutral-400 text-[10px]">({rawProducts.length})</span>
+                </button>
+                {WOOD_FILTERS.map((wood) => {
+                  const count = rawProducts.filter((product) => {
+                    const mat = (product.material || "").toLowerCase();
+                    const w = (product.specs?.woodType || "").toLowerCase();
+                    const desc = (product.description || "").toLowerCase();
+                    const name = (product.name || "").toLowerCase();
+                    const target = wood.toLowerCase().replace(" wood", "");
+                    return mat.includes(target) || w.includes(target) || desc.includes(target) || name.includes(target);
+                  }).length;
+                  return (
+                    <button
+                      key={wood}
+                      onClick={() => setMaterialFilter(wood)}
+                      className={`w-full flex items-center justify-between py-1 text-left transition-colors ${
+                        materialFilter === wood ? "text-black font-semibold" : "text-neutral-600 hover:text-black font-light"
+                      }`}
+                    >
+                      <span>{wood}</span>
+                      <span className="text-neutral-400 text-[10px]">({count})</span>
+                    </button>
+                  );
+                })}
+              </div>
+            </div>
+          </aside>
+
+          {/* Right Product Grid Area */}
+          <div className="flex-1 w-full">
+            {/* Header Bar with Count & Sort (Dtale Modern style) */}
+            <div className="flex items-center justify-between pb-4 mb-6 border-b border-neutral-100">
+              <span className="text-xs text-neutral-500 font-sans font-light">
+                <strong className="text-neutral-900 font-medium">{sortedProducts.length}</strong> {sortedProducts.length === 1 ? "Result" : "Results"}
+              </span>
+
+              <div className="flex items-center space-x-2">
+                <span className="text-[10px] tracking-wider uppercase text-neutral-400 font-sans font-medium">
+                  Sort:
+                </span>
+                <select
+                  value={sortOption}
+                  onChange={(e) => setSortOption(e.target.value)}
+                  className="bg-transparent border border-neutral-200 text-xs py-1.5 px-3 text-neutral-800 font-sans focus:outline-none focus:border-black rounded-xs"
+                >
+                  <option value="Featured">Featured</option>
+                  <option value="Newest">Newest</option>
+                  <option value="Price: Low to High">Price: Low to High</option>
+                  <option value="Price: High to Low">Price: High to Low</option>
+                </select>
+              </div>
+            </div>
+
+            {/* Products Grid (Dtale Modern 3-Columns Layout) */}
+            {sortedProducts.length > 0 ? (
+              <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 md:gap-8">
+                {sortedProducts.map((product) => (
+                  <ProductCard
+                    key={product.id}
+                    product={product}
+                    onQuickView={(p) => setSelectedProduct(p)}
+                  />
+                ))}
+              </div>
+            ) : (
+              <div className="text-center py-20 space-y-4">
+                <p className="text-neutral-500 font-sans text-sm font-light">
+                  No products found matching the selected filter options.
+                </p>
+                <button
+                  onClick={() => {
+                    setMaterialFilter("All");
+                    setSortOption("Featured");
+                  }}
+                  className="inline-flex items-center text-[10px] tracking-widest uppercase text-black font-semibold border-b border-black pb-0.5 hover:opacity-75 transition-opacity"
+                >
+                  Reset Filters
+                </button>
+              </div>
+            )}
           </div>
         </div>
-
-        {/* Products Grid (Dtale Modern 3-Columns Layout) */}
-        {sortedProducts.length > 0 ? (
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-6 md:gap-8">
-            {sortedProducts.map((product) => (
-              <ProductCard
-                key={product.id}
-                product={product}
-                onQuickView={(p) => setSelectedProduct(p)}
-              />
-            ))}
-          </div>
-        ) : (
-          <div className="text-center py-20 space-y-4">
-            <p className="text-neutral-500 font-sans text-sm font-light">
-              No products found matching the selected filter options.
-            </p>
-            <button
-              onClick={() => {
-                setMaterialFilter("All");
-                setSortOption("Featured");
-              }}
-              className="inline-flex items-center text-[10px] tracking-widest uppercase text-black font-semibold border-b border-black pb-0.5 hover:opacity-75 transition-opacity"
-            >
-              Reset Filters
-            </button>
-          </div>
-        )}
       </div>
 
       {/* Mobile Sort Sheet */}

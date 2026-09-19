@@ -42,16 +42,16 @@ export default function ProductCard({ product, onQuickView }: ProductCardProps) 
           />
         </button>
 
-        <Link href={`/products/${product.slug}`} className="block h-full w-full">
-          {/* Primary Image */}
-          <div className="absolute inset-0">
+        <Link href={`/products/${product.slug}`} className="block h-full w-full relative">
+          {/* Primary Image - fully visible without cropping */}
+          <div className="absolute inset-0 p-2 sm:p-3 flex items-center justify-center">
             <Image
               src={primaryImage}
               alt={product.name}
               fill
               unoptimized={primaryImage?.startsWith("data:") || primaryImage?.startsWith("http")}
               sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 33vw"
-              className="object-cover object-center group-hover:scale-105 transition-transform duration-700 ease-out"
+              className="object-contain object-center group-hover:scale-105 transition-transform duration-700 ease-out"
               priority={false}
             />
           </div>
