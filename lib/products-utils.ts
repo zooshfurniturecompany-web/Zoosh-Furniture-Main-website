@@ -144,6 +144,15 @@ export function transformAdminProductToProduct(p: AdminProduct): Product {
   const primaryImg = p.images && p.images.length > 0 ? p.images[0] : "/images/products/sf001-1.jpg";
   const allImgs = p.images && p.images.length > 0 ? p.images : [primaryImg];
 
+  // Resolve wood selection: if wood_options is specified, accurately prioritize it over fallback default string
+  const hasWoodOptions = Boolean(p.wood_options && p.wood_options.length > 0);
+  const woodDisplay = hasWoodOptions
+    ? p.wood_options.join(", ")
+    : (p.material || "Solid Wood");
+  const primaryWood = hasWoodOptions
+    ? p.wood_options[0]
+    : (p.material || dynamic.specs.woodType);
+
   return {
     id: p.id,
     name: p.name,
@@ -152,7 +161,7 @@ export function transformAdminProductToProduct(p: AdminProduct): Product {
     description: p.full_description || p.short_description || "",
     images: allImgs,
     dimensions: p.dimensions || "",
-    material: p.material || "Solid Wood",
+    material: woodDisplay,
     finish: p.finish || "Melamine Matt Polish",
     sku: p.sku,
     featured: p.featured ?? false,
@@ -164,8 +173,8 @@ export function transformAdminProductToProduct(p: AdminProduct): Product {
       ...(p.specs?.story ? (p.specs.story as any) : {})
     },
     specs: {
-      material: p.material || "Solid Wood",
-      woodType: p.wood_options?.[0] || dynamic.specs.woodType,
+      material: woodDisplay,
+      woodType: primaryWood,
       fabric: p.fabric_options?.[0] || dynamic.specs.fabric,
       dimensions: p.dimensions || dynamic.specs.dimensions,
       weight: (p.specs?.weight as string) || dynamic.specs.weight,

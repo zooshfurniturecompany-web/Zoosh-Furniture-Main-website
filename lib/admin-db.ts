@@ -436,14 +436,18 @@ export const adminDb = {
       dimension_breakdown: product.dimension_breakdown || [],
       custom_dimensions_available: product.custom_dimensions_available ?? true,
       customisation_available: product.customisation_available ?? true,
-      material: product.material || "Solid Wood",
+      material: (product.wood_options && product.wood_options.length > 0)
+        ? (product.material && product.material !== "Treated Solid Teakwood" && product.material !== "Solid Wood" ? product.material : product.wood_options.join(", "))
+        : (product.material || "Solid Wood"),
       finish: product.finish || "Matt Polish",
-      wood_options: product.wood_options || ["Solid Teak Wood", "Premium Ash Wood", "Selected Mahogany Wood"],
+      wood_options: product.wood_options && product.wood_options.length > 0
+        ? product.wood_options
+        : (product.material ? [product.material] : ["Solid Teak Wood", "Premium Ash Wood", "Selected Mahogany Wood"]),
       fabric_options: product.fabric_options || ["Cream Textured Bouclé", "Natural Linen Blend"],
       finish_options: product.finish_options || ["Natural Matt Polish"],
       size_options: product.size_options || [],
       specs: product.specs || {
-        "Wood Type": product.material || "Solid Wood",
+        "Wood Type": (product.wood_options && product.wood_options.length > 0) ? product.wood_options.join(", ") : (product.material || "Solid Wood"),
         "Finish": product.finish || "Matt Polish",
         "Warranty": "5-Year Frame Structural Warranty",
         "Assembly": "Delivered Fully Assembled"

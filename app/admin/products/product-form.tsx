@@ -82,11 +82,18 @@ export default function ProductForm({ initialData, isEdit = false }: ProductForm
   );
   const [customDimensionsAvailable, setCustomDimensionsAvailable] = useState(initialData?.custom_dimensions_available ?? true);
   const [customisationAvailable, setCustomisationAvailable] = useState(initialData?.customisation_available ?? true);
-  const [material, setMaterial] = useState(initialData?.material || "Treated Solid Teakwood");
+  const [material, setMaterial] = useState(
+    initialData?.material ||
+    (initialData?.wood_options && initialData.wood_options.length > 0 ? initialData.wood_options.join(", ") : "Solid Teak Wood")
+  );
   const [finish, setFinish] = useState(initialData?.finish || "Melamine Matt Polish");
 
   // Options
-  const [selectedWoods, setSelectedWoods] = useState<string[]>(initialData?.wood_options || ["Treated Solid Teak", "Canadian Ash Wood", "Selected Mahogany"]);
+  const [selectedWoods, setSelectedWoods] = useState<string[]>(
+    initialData?.wood_options && initialData.wood_options.length > 0
+      ? initialData.wood_options
+      : ["Solid Teak Wood", "Premium Ash Wood", "Selected Mahogany Wood"]
+  );
   const [selectedFabrics, setSelectedFabrics] = useState<string[]>(initialData?.fabric_options || ["Cream Textured Bouclé", "Natural Linen Blend"]);
   const [selectedFinishes, setSelectedFinishes] = useState<string[]>(initialData?.finish_options || ["Natural Matt Polish", "Warm Walnut Polish", "Smoked Ash"]);
 
@@ -267,6 +274,14 @@ export default function ProductForm({ initialData, isEdit = false }: ProductForm
     try {
       const kwArray = keywords.split(",").map(k => k.trim()).filter(Boolean);
       
+      const finalWoodOptions = selectedWoods.length > 0
+        ? selectedWoods
+        : (material ? [material] : ["Solid Teak Wood"]);
+
+      const finalMaterial = (material && material !== "Treated Solid Teakwood" && material !== "Solid Wood" && material.trim().length > 0)
+        ? material
+        : finalWoodOptions.join(", ");
+
       const payload: Partial<AdminProduct> = {
         id: initialData?.id,
         sku: sku || ("SF" + Math.floor(100 + Math.random() * 900)),
@@ -289,9 +304,9 @@ export default function ProductForm({ initialData, isEdit = false }: ProductForm
         dimension_breakdown: dimensionBreakdowns,
         custom_dimensions_available: customDimensionsAvailable,
         customisation_available: customisationAvailable,
-        material,
+        material: finalMaterial,
         finish,
-        wood_options: selectedWoods,
+        wood_options: finalWoodOptions,
         fabric_options: selectedFabrics,
         finish_options: selectedFinishes,
         images: images.length > 0 ? images : ["/images/catalog/page_14_img_00.webp"],
@@ -299,7 +314,7 @@ export default function ProductForm({ initialData, isEdit = false }: ProductForm
         seo_description: seoDesc || shortDesc,
         keywords: kwArray,
         specs: {
-          "Wood Type": material,
+          "Wood Type": finalMaterial,
           "Finish": finish,
           "Dimensions": dimensions,
           "Customizable": customisationAvailable ? "Yes - Made to order" : "No",
@@ -878,7 +893,10 @@ export default function ProductForm({ initialData, isEdit = false }: ProductForm
 
             {/* Wood Options Selector */}
             <div className="space-y-2 border-t border-neutral-100 pt-4">
-              <label className="block text-neutral-700 font-semibold">Available Wood Options</label>
+              <div className="flex items-center justify-between">
+                <label className="block text-neutral-700 font-semibold">Available Wood Options</label>
+                <span className="text-[11px] text-neutral-500 font-normal">Toggling updates Primary Wood automatically</span>
+              </div>
               <div className="grid grid-cols-2 sm:grid-cols-3 gap-2">
                 {woodList.map((wood) => {
                   const checked = selectedWoods.includes(wood.name);
@@ -890,8 +908,16 @@ export default function ProductForm({ initialData, isEdit = false }: ProductForm
                         type="checkbox"
                         checked={checked}
                         onChange={(e) => {
-                          if (e.target.checked) setSelectedWoods([...selectedWoods, wood.name]);
-                          else setSelectedWoods(selectedWoods.filter(w => w !== wood.name));
+                          let updated: string[];
+                          if (e.target.checked) {
+                            updated = [...selectedWoods, wood.name];
+                          } else {
+                            updated = selectedWoods.filter(w => w !== wood.name);
+                          }
+                          setSelectedWoods(updated);
+                          if (updated.length > 0) {
+                            setMaterial(updated.join(", "));
+                          }
                         }}
                         className="sr-only"
                       />
