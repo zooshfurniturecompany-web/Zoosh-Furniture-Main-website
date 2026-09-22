@@ -86,7 +86,7 @@ export default function CustomFurniturePage() {
       {/* 2. Editorial Description */}
       <section className="py-16 md:py-20 max-w-7xl mx-auto px-6 md:px-12">
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-16 items-center">
-          <motion.div {...fadeInUp} className="lg:col-span-5 relative aspect-[4/5] bg-neutral-100 overflow-hidden shadow-sm">
+          <motion.div {...fadeInUp} className="lg:col-span-5 relative aspect-square bg-neutral-100 overflow-hidden shadow-sm">
             <Image
               src="https://images.unsplash.com/photo-1616046229478-9901c5536a45?q=80&w=1000"
               alt="Artisanal drawing concept"

@@ -84,20 +84,15 @@ export default function ProductCard({ product, onQuickView }: ProductCardProps) 
           <Link href={`/products/${product.slug}`}>{product.name}</Link>
         </h3>
 
-        {/* Bold Price Block */}
-        <div className="pt-0.5">
-          {product.price && product.price > 0 ? (
-            <div className="space-y-0.5">
-              <span className="text-base sm:text-lg font-bold text-neutral-950 font-sans tracking-tight block tabular-nums">
-                ₹{product.price.toLocaleString("en-IN")}
-              </span>
-              <span className="text-[8px] sm:text-[9px] text-neutral-400 font-sans font-light tracking-wide block truncate">
-                Excl. GST & Taxes | Custom made in Pattambi factory
-              </span>
-            </div>
-          ) : (
-            <span className="text-neutral-500 font-sans text-xs italic">Enquire for Price</span>
-          )}
+        {/* Enquiry CTA Action */}
+        <div className="pt-1 flex items-center justify-between">
+          <span className="text-[10px] sm:text-[11px] font-sans font-medium uppercase tracking-wider text-neutral-900 group-hover:text-black transition-colors flex items-center gap-1">
+            <span>Enquire Now</span>
+            <span className="text-[10px] text-neutral-400 font-normal">&rarr;</span>
+          </span>
+          <span className="text-[9px] text-neutral-400 font-sans font-light tracking-wide">
+            Custom Sizing
+          </span>
         </div>
       </div>
     </div>

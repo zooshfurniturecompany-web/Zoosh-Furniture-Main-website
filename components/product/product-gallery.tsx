@@ -31,7 +31,7 @@ export default function ProductGallery({ images }: ProductGalleryProps) {
 
   if (!images || images.length === 0) {
     return (
-      <div className="relative aspect-[4/5] w-full bg-neutral-100 flex items-center justify-center text-neutral-400 font-light font-sans text-xs">
+      <div className="relative aspect-square w-full bg-neutral-100 flex items-center justify-center text-neutral-400 font-light font-sans text-xs">
         No images available
       </div>
     );

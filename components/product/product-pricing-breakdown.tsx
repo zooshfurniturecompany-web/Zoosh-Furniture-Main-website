@@ -5,22 +5,18 @@ import { Send } from "lucide-react";
 interface ProductPricingBreakdownProps {
   productName: string;
   productSku: string;
-  basePrice: number;
 }
 
 export default function ProductPricingBreakdown({
   productName,
   productSku,
-  basePrice,
 }: ProductPricingBreakdownProps) {
-  const formattedPrice = basePrice ? basePrice.toLocaleString("en-IN") : "Price on Request";
   const customWhatsAppMsg = `Hello ZOOSH,
 
 I am interested in:
 Product: ${productName} (SKU: ${productSku})
-Price: ₹${formattedPrice} (Excl. GST)
 
-Please share availability, finish options, and delivery timeframe.
+Please share the pricing, available finishes, and delivery timeframe.
 
 Thank you.`;
 

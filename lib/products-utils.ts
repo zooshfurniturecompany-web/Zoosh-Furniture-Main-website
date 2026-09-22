@@ -23,10 +23,8 @@ export interface Product {
   finish: string;
   sku: string;
   featured?: boolean;
-  price?: number;
   fabric?: string;
   rattan?: string;
-  priceBreakdown?: PriceOption[];
   dimensionBreakdown?: DimensionItem[];
   story: {
     inspiration: string;
@@ -158,10 +156,8 @@ export function transformAdminProductToProduct(p: AdminProduct): Product {
     finish: p.finish || "Melamine Matt Polish",
     sku: p.sku,
     featured: p.featured ?? false,
-    price: p.price,
     fabric: p.fabric_options?.[0] || "",
     rattan: (p.specs?.["Rattan"] as string) || "",
-    priceBreakdown: p.price_breakdown as any,
     dimensionBreakdown: (p.dimension_breakdown || (p as any).dimensionBreakdown) as any,
     story: {
       ...dynamic.story,

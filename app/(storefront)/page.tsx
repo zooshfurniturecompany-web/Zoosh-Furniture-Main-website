@@ -215,7 +215,7 @@ export default function HomePage() {
                 transition={{ duration: 0.6, delay: idx * 0.1 }}
                 className="group flex flex-col justify-between"
               >
-                <Link href={`/${space.slug}`} className="block relative aspect-[3/4] overflow-hidden bg-neutral-50 border border-neutral-100 mb-4">
+                <Link href={`/${space.slug}`} className="block relative aspect-square overflow-hidden bg-neutral-50 border border-neutral-100 mb-4">
                   <Image
                     src={space.image}
                     alt={space.name}
@@ -324,7 +324,7 @@ export default function HomePage() {
                 transition={{ duration: 0.6, delay: idx * 0.15 }}
                 className="flex flex-col space-y-4 bg-white border border-neutral-100 p-6 shadow-sm"
               >
-                <div className="relative aspect-[4/3] overflow-hidden bg-neutral-100">
+                <div className="relative aspect-square overflow-hidden bg-neutral-100">
                   <Image
                     src={mat.image}
                     alt={mat.title}
@@ -579,7 +579,7 @@ export default function HomePage() {
                 transition={{ duration: 0.6, delay: idx * 0.1 }}
                 className="group flex flex-col space-y-4"
               >
-                <div className="relative aspect-[4/5] overflow-hidden bg-neutral-50 border border-neutral-100">
+                <div className="relative aspect-square overflow-hidden bg-neutral-50 border border-neutral-100">
                   <Image
                     src={project.image}
                     alt={`${project.title} - ${project.category}`}

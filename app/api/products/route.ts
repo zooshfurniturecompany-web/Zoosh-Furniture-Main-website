@@ -17,7 +17,40 @@ export async function GET(request: Request) {
       search,
     });
 
-    return NextResponse.json(products, {
+    // Sanitize response: exclude all pricing fields from public API endpoint
+    const publicProducts = products.map((p) => ({
+      id: p.id,
+      sku: p.sku,
+      name: p.name,
+      slug: p.slug,
+      category_id: p.category_id,
+      category_name: p.category_name,
+      collection_id: p.collection_id,
+      collection_name: p.collection_name,
+      short_description: p.short_description,
+      full_description: p.full_description,
+      status: p.status,
+      featured: p.featured,
+      dimensions: p.dimensions,
+      dimension_breakdown: p.dimension_breakdown,
+      custom_dimensions_available: p.custom_dimensions_available,
+      customisation_available: p.customisation_available,
+      material: p.material,
+      finish: p.finish,
+      wood_options: p.wood_options,
+      fabric_options: p.fabric_options,
+      finish_options: p.finish_options,
+      size_options: p.size_options ? p.size_options.map(s => ({ name: s.name, dimensions: s.dimensions })) : [],
+      specs: p.specs,
+      images: p.images,
+      seo_title: p.seo_title,
+      seo_description: p.seo_description,
+      keywords: p.keywords,
+      created_at: p.created_at,
+      updated_at: p.updated_at,
+    }));
+
+    return NextResponse.json(publicProducts, {
       headers: {
         "Cache-Control": "no-store, max-age=0",
       },

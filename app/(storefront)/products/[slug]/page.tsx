@@ -150,7 +150,7 @@ Thank you.`;
 
   const relatedCollectionsList = getRelatedCollections(product.category);
 
-  // Schema.org structured data (JSON-LD)
+  // Schema.org structured data (JSON-LD) - strictly no pricing or offers object
   const jsonLd = {
     "@context": "https://schema.org",
     "@type": "Product",
@@ -160,16 +160,10 @@ Thank you.`;
     "sku": product.sku,
     "category": product.category,
     "material": product.material,
-    "offers": {
-      "@type": "AggregateOffer",
-      "priceCurrency": "INR",
-      "price": "Price on Request",
-      "availability": "https://schema.org/InStock",
-      "seller": {
-        "@type": "FurnitureStore",
-        "name": "ZOOSH Furniture Company",
-      },
-    },
+    "brand": {
+      "@type": "Brand",
+      "name": "ZOOSH Furniture"
+    }
   };
 
   const roomLabels: Record<string, string> = {
@@ -260,15 +254,18 @@ Thank you.`;
               {product.description}
             </p>
 
-            {/* 3. Price Display Block (Dtale Modern Layout) */}
-            <div className="pt-3 pb-3 border-t border-b border-neutral-100 space-y-1">
-              <div className="flex items-baseline gap-3">
-                <span className="font-sans text-3xl sm:text-4xl font-bold text-neutral-950 tracking-tight tabular-nums">
-                  ₹{product.price ? product.price.toLocaleString("en-IN") : "Price on Request"}
+            {/* 3. Made to Order Craftsmanship Banner */}
+            <div className="pt-3 pb-3 border-t border-b border-neutral-100 space-y-1.5">
+              <div className="flex items-center gap-2">
+                <span className="inline-block bg-neutral-100 text-neutral-900 text-[10px] font-semibold tracking-wider uppercase px-2.5 py-1">
+                  Made to Order
+                </span>
+                <span className="text-xs text-neutral-500 font-sans font-light">
+                  Direct Factory Crafting
                 </span>
               </div>
               <span className="text-xs text-neutral-500 font-sans font-light tracking-wide block">
-                Excl. GST & Taxes | Custom made to order in Pattambi factory
+                Custom built to your room dimensions at our Pattambi factory
               </span>
             </div>
 
@@ -322,7 +319,6 @@ Thank you.`;
             <ProductPricingBreakdown
               productName={product.name}
               productSku={product.sku}
-              basePrice={product.price || 0}
             />
 
             {/* Return Link */}
