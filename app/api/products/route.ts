@@ -17,7 +17,6 @@ export async function GET(request: Request) {
       search,
     });
 
-    // Sanitize response: exclude all pricing fields from public API endpoint
     const publicProducts = products.map((p) => ({
       id: p.id,
       sku: p.sku,
@@ -31,6 +30,11 @@ export async function GET(request: Request) {
       full_description: p.full_description,
       status: p.status,
       featured: p.featured,
+      pricing_type: p.pricing_type,
+      price: p.price,
+      starting_price: p.starting_price,
+      display_price: p.display_price,
+      price_breakdown: p.price_breakdown,
       dimensions: p.dimensions,
       dimension_breakdown: p.dimension_breakdown,
       custom_dimensions_available: p.custom_dimensions_available,

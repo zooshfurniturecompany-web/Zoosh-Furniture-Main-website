@@ -5,18 +5,23 @@ import { Send } from "lucide-react";
 interface ProductPricingBreakdownProps {
   productName: string;
   productSku: string;
+  basePrice?: number;
+  priceBreakdown?: Array<{ label: string; price: number; note?: string }>;
 }
 
 export default function ProductPricingBreakdown({
   productName,
   productSku,
+  basePrice,
+  priceBreakdown,
 }: ProductPricingBreakdownProps) {
+  const priceInfo = basePrice ? ` (Base Price: ₹${basePrice.toLocaleString("en-IN")})` : "";
   const customWhatsAppMsg = `Hello ZOOSH,
 
 I am interested in:
-Product: ${productName} (SKU: ${productSku})
+Product: ${productName} (SKU: ${productSku})${priceInfo}
 
-Please share the pricing, available finishes, and delivery timeframe.
+Please share available finishes, custom dimensions, and delivery timeframe.
 
 Thank you.`;
 
@@ -24,6 +29,25 @@ Thank you.`;
 
   return (
     <div className="space-y-4 pt-1">
+      {/* Price breakdown table if multiple sizing tiers exist */}
+      {priceBreakdown && priceBreakdown.length > 0 && (
+        <div className="bg-neutral-50/70 border border-neutral-100 rounded p-3.5 space-y-2">
+          <span className="text-[10px] uppercase tracking-wider text-neutral-400 font-sans block font-semibold">
+            Dimension & Size Pricing:
+          </span>
+          <div className="space-y-1.5 text-xs font-sans">
+            {priceBreakdown.map((item, idx) => (
+              <div key={idx} className="flex justify-between items-center text-neutral-700">
+                <span className="font-light">{item.label}</span>
+                <span className="font-semibold text-neutral-900 tabular-nums">
+                  ₹{item.price.toLocaleString("en-IN")}
+                </span>
+              </div>
+            ))}
+          </div>
+        </div>
+      )}
+
       <a
         href={dynamicWhatsAppUrl}
         target="_blank"

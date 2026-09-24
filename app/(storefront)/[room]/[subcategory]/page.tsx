@@ -88,6 +88,12 @@ export default function SubcategoryPage({ params }: SubcategoryPageProps) {
 
   // Sort products
   const sortedProducts = [...filteredProducts].sort((a, b) => {
+    if (sortOption === "Price: Low to High") {
+      return (a.price || 0) - (b.price || 0);
+    }
+    if (sortOption === "Price: High to Low") {
+      return (b.price || 0) - (a.price || 0);
+    }
     if (sortOption === "Name: A to Z") {
       return a.name.localeCompare(b.name);
     }
@@ -270,6 +276,8 @@ export default function SubcategoryPage({ params }: SubcategoryPageProps) {
                 >
                   <option value="Featured">Featured</option>
                   <option value="Newest">Newest</option>
+                  <option value="Price: Low to High">Price: Low to High</option>
+                  <option value="Price: High to Low">Price: High to Low</option>
                   <option value="Name: A to Z">Name: A to Z</option>
                   <option value="Name: Z to A">Name: Z to A</option>
                 </select>
@@ -318,7 +326,7 @@ export default function SubcategoryPage({ params }: SubcategoryPageProps) {
               </button>
             </div>
             <div className="space-y-2">
-              {["Featured", "Newest", "Name: A to Z", "Name: Z to A"].map((option) => (
+              {["Featured", "Newest", "Price: Low to High", "Price: High to Low", "Name: A to Z", "Name: Z to A"].map((option) => (
                 <button
                   key={option}
                   onClick={() => {

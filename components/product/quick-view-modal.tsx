@@ -69,11 +69,22 @@ export default function QuickViewModal({ product, onClose }: QuickViewModalProps
                 <p className="text-[10px] tracking-wider text-neutral-400 font-sans mt-1">
                   SKU: {product.sku}
                 </p>
-                <div className="pt-2">
-                  <span className="inline-block bg-neutral-100 text-neutral-800 text-[9px] font-medium tracking-wider uppercase px-2 py-0.5">
-                    Made to Order • Custom Sizing Available
-                  </span>
-                </div>
+                {product.price && product.price > 0 && product.displayPrice !== false ? (
+                  <div className="pt-2">
+                    <span className="font-serif text-2xl md:text-3xl font-bold text-neutral-950 block tabular-nums">
+                      {product.pricingType === "starting_from" ? "Starting from " : ""}₹{product.price.toLocaleString("en-IN")}
+                    </span>
+                    <span className="text-[9px] text-neutral-400 font-sans block mt-0.5">
+                      Excl. GST & Taxes | Made to Order
+                    </span>
+                  </div>
+                ) : (
+                  <div className="pt-2">
+                    <span className="inline-block bg-neutral-100 text-neutral-800 text-[9px] font-medium tracking-wider uppercase px-2 py-0.5">
+                      Made to Order • Custom Sizing Available
+                    </span>
+                  </div>
+                )}
               </div>
 
               <p className="text-neutral-500 text-xs md:text-sm font-sans font-light leading-relaxed">

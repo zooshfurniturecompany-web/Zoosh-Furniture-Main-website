@@ -23,6 +23,11 @@ export interface Product {
   finish: string;
   sku: string;
   featured?: boolean;
+  price?: number;
+  startingPrice?: number;
+  displayPrice?: boolean;
+  pricingType?: "fixed" | "starting_from" | "on_request";
+  priceBreakdown?: PriceOption[];
   fabric?: string;
   rattan?: string;
   dimensionBreakdown?: DimensionItem[];
@@ -165,6 +170,11 @@ export function transformAdminProductToProduct(p: AdminProduct): Product {
     finish: p.finish || "Melamine Matt Polish",
     sku: p.sku,
     featured: p.featured ?? false,
+    price: p.price,
+    startingPrice: p.starting_price ?? p.price,
+    displayPrice: p.display_price ?? true,
+    pricingType: p.pricing_type || "fixed",
+    priceBreakdown: p.price_breakdown as any,
     fabric: p.fabric_options?.[0] || "",
     rattan: (p.specs?.["Rattan"] as string) || "",
     dimensionBreakdown: (p.dimension_breakdown || (p as any).dimensionBreakdown) as any,
