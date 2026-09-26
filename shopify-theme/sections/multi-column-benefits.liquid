@@ -1,0 +1,78 @@
+<section class="multi-column-benefits py-12 sm:py-16 bg-white border-b border-neutral-100">
+  <div class="max-w-7xl mx-auto px-6 md:px-12">
+    <div class="grid grid-cols-2 lg:grid-cols-4 gap-8 md:gap-12 text-center">
+      
+      {%- for block in section.blocks -%}
+        <div class="flex flex-col items-center space-y-3 p-4" {{ block.shopify_attributes }}>
+          <div class="w-12 h-12 rounded-full bg-neutral-50 border border-neutral-200 flex items-center justify-center text-neutral-800">
+            {%- if block.settings.icon_name == 'truck' -%}
+              <svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" viewBox="0 0 24 24"><path d="M14 18V6a2 2 0 0 0-2-2H4a2 2 0 0 0-2 2v11a1 1 0 0 0 1 1h2"/><path d="M15 18H9"/><path d="M19 18h2a1 1 0 0 0 1-1v-5l-3-4h-5v10Z"/><circle cx="7" cy="18" r="2"/><circle cx="17" cy="18" r="2"/></svg>
+            {%- elsif block.settings.icon_name == 'tree' -%}
+              <svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" viewBox="0 0 24 24"><path d="M12 19v3"/><path d="M12 19a7 7 0 0 1-7-7c0-3.87 3.13-7 7-7s7 3.13 7 7a7 7 0 0 1-7 7Z"/><path d="M12 5V2"/></svg>
+            {%- elsif block.settings.icon_name == 'shield' -%}
+              <svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" viewBox="0 0 24 24"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
+            {%- else -%}
+              <svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><path d="m9 12 2 2 4-4"/></svg>
+            {%- endif -%}
+          </div>
+          <h4 class="font-serif text-sm text-neutral-950 font-medium tracking-wide">
+            {{ block.settings.title }}
+          </h4>
+          <p class="font-sans text-xs text-neutral-500 font-light leading-relaxed max-w-xs">
+            {{ block.settings.description }}
+          </p>
+        </div>
+      {%- endfor -%}
+
+    </div>
+  </div>
+</section>
+
+{% schema %}
+{
+  "name": "Benefits Bar",
+  "blocks": [
+    {
+      "type": "benefit",
+      "name": "Benefit Item",
+      "settings": [
+        {
+          "type": "select",
+          "id": "icon_name",
+          "label": "Icon",
+          "options": [
+            { "value": "truck", "label": "Truck / Shipping" },
+            { "value": "tree", "label": "Timber / Wood" },
+            { "value": "shield", "label": "Shield / Warranty" },
+            { "value": "check", "label": "Checkmark / Quality" }
+          ],
+          "default": "truck"
+        },
+        {
+          "type": "text",
+          "id": "title",
+          "label": "Title",
+          "default": "Pan-India Secure Shipping"
+        },
+        {
+          "type": "text",
+          "id": "description",
+          "label": "Description",
+          "default": "Factory crating with insured doorstep delivery across India."
+        }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "Benefits Bar",
+      "blocks": [
+        { "type": "benefit", "settings": { "icon_name": "truck", "title": "Pan-India Shipping", "description": "Reinforced wooden crates & white-glove transport." } },
+        { "type": "benefit", "settings": { "icon_name": "tree", "title": "100% Solid Seasoned Timber", "description": "Kiln-dried Kerala teak, ash & mahogany hardwoods." } },
+        { "type": "benefit", "settings": { "icon_name": "check", "title": "Custom Blueprint Sizing", "description": "Made-to-order adjustments to fit your exact floorplan." } },
+        { "type": "benefit", "settings": { "icon_name": "shield", "title": "5-Year Structural Frame Warranty", "description": "Generational durability backed by master joinery." } }
+      ]
+    }
+  ]
+}
+{% endschema %}

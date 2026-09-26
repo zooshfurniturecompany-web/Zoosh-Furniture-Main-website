@@ -1,0 +1,102 @@
+<section class="featured-collection py-16 sm:py-24 bg-white border-b border-neutral-100">
+  <div class="max-w-7xl mx-auto px-6 md:px-12">
+    
+    <!-- Section Header -->
+    <div class="flex flex-col sm:flex-row sm:items-end justify-between mb-10 sm:mb-14 gap-4 text-center sm:text-left">
+      <div>
+        {%- if section.settings.subheading != blank -%}
+          <span class="text-[10px] tracking-[0.3em] uppercase text-neutral-400 font-sans block mb-2">
+            {{ section.settings.subheading }}
+          </span>
+        {%- endif -%}
+        <h2 class="font-serif text-2xl sm:text-3xl md:text-4xl font-light tracking-wide text-neutral-900">
+          {{ section.settings.heading | default: 'Featured Creations' }}
+        </h2>
+      </div>
+
+      {%- if section.settings.view_all_link != blank -%}
+        <a
+          href="{{ section.settings.view_all_link }}"
+          class="inline-flex items-center text-xs font-sans tracking-[0.2em] uppercase text-neutral-900 font-medium border-b border-black pb-1 hover:opacity-70 transition-opacity self-center sm:self-auto"
+        >
+          <span>{{ section.settings.view_all_text | default: 'View Entire Catalog' }}</span>
+          <span class="ml-2">&rarr;</span>
+        </a>
+      {%- endif -%}
+    </div>
+
+    <!-- Products Grid (3 Columns Desktop, 2 Columns Tablet, 1 Column Mobile) -->
+    <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 md:gap-8">
+      {%- assign collection = collections[section.settings.collection] -%}
+      {%- if collection != blank and collection.products_count > 0 -%}
+        {%- for product in collection.products limit: section.settings.products_to_show -%}
+          {% render 'product-card', card_product: product, show_secondary_image: true, section_id: section.id %}
+        {%- endfor -%}
+      {%- else -%}
+        {%- for i in (1..section.settings.products_to_show) -%}
+          <div class="product-card-placeholder bg-white flex flex-col space-y-3">
+            <div class="relative aspect-square bg-neutral-100 flex items-center justify-center text-neutral-300">
+              {{ 'product-1' | placeholder_svg_tag: 'w-full h-full' }}
+            </div>
+            <div class="space-y-1">
+              <span class="text-[9px] uppercase tracking-wider text-neutral-400">Solid Teakwood</span>
+              <h4 class="font-sans text-sm font-medium text-neutral-900">Handcrafted Sample Sofa</h4>
+              <span class="text-sm font-semibold text-neutral-950">₹45,000</span>
+            </div>
+          </div>
+        {%- endfor -%}
+      {%- endif -%}
+    </div>
+
+  </div>
+</section>
+
+{% schema %}
+{
+  "name": "Featured Collection",
+  "settings": [
+    {
+      "type": "text",
+      "id": "subheading",
+      "label": "Subheading",
+      "default": "The Heritage Catalog"
+    },
+    {
+      "type": "text",
+      "id": "heading",
+      "label": "Heading",
+      "default": "Best Selling Masterpieces"
+    },
+    {
+      "type": "collection",
+      "id": "collection",
+      "label": "Collection"
+    },
+    {
+      "type": "range",
+      "id": "products_to_show",
+      "min": 3,
+      "max": 12,
+      "step": 3,
+      "default": 6,
+      "label": "Maximum products to show"
+    },
+    {
+      "type": "url",
+      "id": "view_all_link",
+      "label": "View All Link"
+    },
+    {
+      "type": "text",
+      "id": "view_all_text",
+      "label": "View All Label",
+      "default": "Explore Full Collection"
+    }
+  ],
+  "presets": [
+    {
+      "name": "Featured Collection"
+    }
+  ]
+}
+{% endschema %}

@@ -1,0 +1,14 @@
+{
+  "sections": {
+    "main": {
+      "type": "main-product"
+    },
+    "benefits": {
+      "type": "multi-column-benefits"
+    }
+  },
+  "order": [
+    "main",
+    "benefits"
+  ]
+}

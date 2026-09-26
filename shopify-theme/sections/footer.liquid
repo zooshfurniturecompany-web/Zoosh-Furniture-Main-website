@@ -1,0 +1,125 @@
+<footer class="site-footer bg-black text-white pt-16 pb-12 border-t border-neutral-800">
+  <div class="max-w-7xl mx-auto px-6 md:px-12">
+    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-10 lg:gap-12 pb-12 border-b border-neutral-800">
+      
+      <!-- Brand & Mission Column -->
+      <div class="space-y-4">
+        <span class="font-serif text-2xl font-normal tracking-[0.2em] uppercase block">
+          {{ section.settings.title | default: 'ZOOSH' }}
+        </span>
+        <p class="font-sans text-xs text-neutral-400 font-light leading-relaxed">
+          {{ section.settings.description | default: 'Architectural solid wood living furniture handcrafted inside our Pattambi factory. Sourced sustainably, seasoned patiently, built to endure generations.' }}
+        </p>
+        <div class="pt-2 text-xs font-sans text-neutral-300">
+          <p>Factory: Pattambi, Palakkad, Kerala 679303</p>
+          <p class="mt-1">Direct Concierge: +91 9567193992</p>
+        </div>
+      </div>
+
+      <!-- Navigation Column 1 -->
+      <div>
+        <h4 class="font-sans text-[11px] font-semibold tracking-[0.25em] uppercase text-white mb-4">
+          {{ section.settings.menu_1_title | default: 'Collections' }}
+        </h4>
+        <ul class="space-y-2.5 font-sans text-xs font-light text-neutral-400">
+          {%- for link in linklists[section.settings.menu_1].links -%}
+            <li><a href="{{ link.url }}" class="hover:text-white transition-colors">{{ link.title }}</a></li>
+          {%- else -%}
+            <li><a href="/collections/sofas" class="hover:text-white transition-colors">Living Room Sofas</a></li>
+            <li><a href="/collections/dining" class="hover:text-white transition-colors">Solid Dining Tables</a></li>
+            <li><a href="/collections/bedroom" class="hover:text-white transition-colors">Plinth Bed Cots</a></li>
+            <li><a href="/collections/chairs" class="hover:text-white transition-colors">Sculptural Accent Chairs</a></li>
+          {%- endfor -%}
+        </ul>
+      </div>
+
+      <!-- Navigation Column 2 -->
+      <div>
+        <h4 class="font-sans text-[11px] font-semibold tracking-[0.25em] uppercase text-white mb-4">
+          {{ section.settings.menu_2_title | default: 'The Factory' }}
+        </h4>
+        <ul class="space-y-2.5 font-sans text-xs font-light text-neutral-400">
+          {%- for link in linklists[section.settings.menu_2].links -%}
+            <li><a href="{{ link.url }}" class="hover:text-white transition-colors">{{ link.title }}</a></li>
+          {%- else -%}
+            <li><a href="/pages/our-story" class="hover:text-white transition-colors">Our Craftsmanship</a></li>
+            <li><a href="/pages/custom-furniture" class="hover:text-white transition-colors">Custom Dimensions</a></li>
+            <li><a href="/pages/materials-finishes" class="hover:text-white transition-colors">Timber & Polish Guide</a></li>
+            <li><a href="/pages/contact" class="hover:text-white transition-colors">Visit Pattambi Workshop</a></li>
+          {%- endfor -%}
+        </ul>
+      </div>
+
+      <!-- Newsletter & WhatsApp Column -->
+      <div class="space-y-4">
+        <h4 class="font-sans text-[11px] font-semibold tracking-[0.25em] uppercase text-white mb-4">
+          Bespoke Concierge
+        </h4>
+        <p class="font-sans text-xs text-neutral-400 font-light">
+          Have an architectural floorplan or custom dimensions? Connect directly with our master woodworkers.
+        </p>
+        <a
+          href="https://wa.me/{{ settings.whatsapp_phone | replace: '+', '' | replace: ' ', '' }}?text=Hello%20ZOOSH%2C%20I%20would%20like%20to%20discuss%20a%20custom%20order."
+          target="_blank"
+          rel="noopener noreferrer"
+          class="inline-flex items-center justify-center gap-2 w-full bg-neutral-900 hover:bg-neutral-800 text-white text-xs tracking-widest uppercase py-3 font-medium transition-colors border border-neutral-700"
+        >
+          {% render 'icon', icon: 'whatsapp' %}
+          <span>WhatsApp Consultation</span>
+        </a>
+      </div>
+
+    </div>
+
+    <!-- Bottom Bar -->
+    <div class="pt-8 flex flex-col sm:flex-row items-center justify-between text-[11px] font-sans text-neutral-500 font-light gap-4">
+      <p>&copy; {{ 'now' | date: '%Y' }} {{ shop.name }}. All rights reserved.</p>
+      <div class="flex items-center space-x-6">
+        <a href="/policies/privacy-policy" class="hover:text-neutral-400 transition-colors">Privacy</a>
+        <a href="/policies/terms-of-service" class="hover:text-neutral-400 transition-colors">Terms of Service</a>
+        <a href="/policies/shipping-policy" class="hover:text-neutral-400 transition-colors">Shipping & Crating</a>
+      </div>
+    </div>
+  </div>
+</footer>
+
+{% schema %}
+{
+  "name": "Footer",
+  "settings": [
+    {
+      "type": "text",
+      "id": "title",
+      "label": "Brand Heading",
+      "default": "ZOOSH"
+    },
+    {
+      "type": "textarea",
+      "id": "description",
+      "label": "Brand Description"
+    },
+    {
+      "type": "text",
+      "id": "menu_1_title",
+      "label": "Menu 1 Title",
+      "default": "Collections"
+    },
+    {
+      "type": "link_list",
+      "id": "menu_1",
+      "label": "Menu 1 Linklist"
+    },
+    {
+      "type": "text",
+      "id": "menu_2_title",
+      "label": "Menu 2 Title",
+      "default": "Artisanal Studio"
+    },
+    {
+      "type": "link_list",
+      "id": "menu_2",
+      "label": "Menu 2 Linklist"
+    }
+  ]
+}
+{% endschema %}

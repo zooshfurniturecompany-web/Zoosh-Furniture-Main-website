@@ -7,6 +7,7 @@ import { useState, useEffect } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { Menu, X, ChevronDown, Search, Send, ShoppingBag } from "lucide-react";
 import { getGeneralWhatsAppLink } from "@/hooks/use-products";
+import { useCart } from "@/components/cart/cart-context";
 
 // Configured mega-menu structure matching ZOOSH categories
 const rooms = [
@@ -58,6 +59,7 @@ const rooms = [
 ];
 
 export default function Navbar() {
+  const { openCart, totalCount } = useCart();
   const [isOpen, setIsOpen] = useState(false);
   const [isScrolled, setIsScrolled] = useState(false);
   const [hoveredRoom, setHoveredRoom] = useState<string | null>(null);
@@ -170,8 +172,8 @@ export default function Navbar() {
               </div>
             </nav>
 
-            {/* RIGHT: WHATSAPP */}
-            <div className="flex justify-end items-center">
+            {/* RIGHT: WHATSAPP & CART */}
+            <div className="flex justify-end items-center space-x-4">
               <a
                 href={customEnquiryLink}
                 target="_blank"
@@ -180,6 +182,18 @@ export default function Navbar() {
               >
                 WhatsApp
               </a>
+
+              <button
+                type="button"
+                onClick={openCart}
+                aria-label="Shopping Bag"
+                className="relative flex items-center justify-center text-neutral-800 hover:text-black transition-colors p-1"
+              >
+                <ShoppingBag size={20} strokeWidth={1.5} />
+                <span className="absolute -top-1.5 -right-1.5 bg-black text-white text-[9px] font-mono font-bold w-4 h-4 rounded-full flex items-center justify-center">
+                  {totalCount}
+                </span>
+              </button>
             </div>
           </div>
 
@@ -206,7 +220,7 @@ export default function Navbar() {
               </span>
             </Link>
 
-            {/* RIGHT: SEARCH & BAG/WHATSAPP */}
+            {/* RIGHT: SEARCH & BAG */}
             <div className="flex items-center gap-3">
               <button
                 type="button"
@@ -217,15 +231,17 @@ export default function Navbar() {
                 <Search size={20} strokeWidth={1.5} />
               </button>
 
-              <a
-                href={customEnquiryLink}
-                target="_blank"
-                rel="noopener noreferrer"
-                aria-label="WhatsApp Enquiry"
-                className="flex items-center justify-center text-black"
+              <button
+                type="button"
+                onClick={openCart}
+                aria-label="Shopping Bag"
+                className="relative flex items-center justify-center text-black"
               >
                 <ShoppingBag size={20} strokeWidth={1.5} />
-              </a>
+                <span className="absolute -top-1.5 -right-1.5 bg-black text-white text-[8px] font-mono font-bold w-3.5 h-3.5 rounded-full flex items-center justify-center">
+                  {totalCount}
+                </span>
+              </button>
             </div>
           </div>
         </div>

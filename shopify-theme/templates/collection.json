@@ -1,0 +1,14 @@
+{
+  "sections": {
+    "main": {
+      "type": "main-collection"
+    },
+    "benefits": {
+      "type": "multi-column-benefits"
+    }
+  },
+  "order": [
+    "main",
+    "benefits"
+  ]
+}

@@ -326,6 +326,7 @@ Thank you.`;
 
             {/* 5. WhatsApp Action CTA & Price Breakdowns */}
             <ProductPricingBreakdown
+              product={product}
               productName={product.name}
               productSku={product.sku}
               basePrice={product.price || 0}

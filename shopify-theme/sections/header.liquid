@@ -1,0 +1,159 @@
+<header class="site-header sticky top-0 z-40 bg-white/95 backdrop-blur-md border-b border-neutral-100 transition-all duration-300">
+  <div class="max-w-7xl mx-auto px-4 sm:px-6 md:px-12">
+    <div class="flex items-center justify-between h-20">
+      
+      <!-- Mobile Menu Button -->
+      <div class="flex items-center lg:hidden">
+        <button type="button" class="mobile-nav-toggle p-2 text-neutral-800" onclick="window.toggleMobileNav()">
+          {% render 'icon', icon: 'menu' %}
+        </button>
+      </div>
+
+      <!-- Logo -->
+      <div class="header__logo flex-shrink-0">
+        <a href="{{ routes.root_url }}" class="flex items-center space-x-2">
+          {%- if section.settings.logo != blank -%}
+            <img src="{{ section.settings.logo | image_url: width: 300 }}" alt="{{ shop.name }}" class="h-8 w-auto">
+          {%- else -%}
+            <span class="font-serif text-2xl sm:text-3xl font-normal tracking-[0.2em] text-neutral-950 uppercase">
+              {{ section.settings.logo_text | default: 'ZOOSH' }}
+            </span>
+          {%- endif -%}
+        </a>
+      </div>
+
+      <!-- Desktop Navigation Menu (Prestige / Homework Living style uppercase links) -->
+      <nav class="hidden lg:flex items-center space-x-8">
+        {%- for link in linklists[section.settings.menu].links -%}
+          <div class="relative group">
+            <a
+              href="{{ link.url }}"
+              class="font-sans text-[11px] font-medium tracking-[0.2em] uppercase text-neutral-800 hover:text-black transition-colors py-2 flex items-center gap-1"
+            >
+              <span>{{ link.title }}</span>
+              {%- if link.links != blank -%}
+                {% render 'icon', icon: 'chevron-down' %}
+              {%- endif -%}
+            </a>
+
+            {%- if link.links != blank -%}
+              <div class="absolute left-0 top-full pt-2 w-56 opacity-0 translate-y-2 pointer-events-none group-hover:opacity-100 group-hover:translate-y-0 group-hover:pointer-events-auto transition-all duration-200 z-50">
+                <div class="bg-white shadow-xl border border-neutral-100 p-4 space-y-2">
+                  {%- for childlink in link.links -%}
+                    <a
+                      href="{{ childlink.url }}"
+                      class="block font-sans text-xs tracking-wider uppercase text-neutral-600 hover:text-black transition-colors py-1.5"
+                    >
+                      {{ childlink.title }}
+                    </a>
+                  {%- endfor -%}
+                </div>
+              </div>
+            {%- endif -%}
+          </div>
+        {%- endfor -%}
+      </nav>
+
+      <!-- Right Action Icons: Search, WhatsApp Concierge, Cart Drawer Trigger -->
+      <div class="flex items-center space-x-4 sm:space-x-6">
+        <!-- Search Trigger -->
+        <a href="{{ routes.search_url }}" class="text-neutral-700 hover:text-black transition-colors p-1" aria-label="Search">
+          {% render 'icon', icon: 'search' %}
+        </a>
+
+        <!-- WhatsApp Direct Link -->
+        <a
+          href="https://wa.me/{{ settings.whatsapp_phone | replace: '+', '' | replace: ' ', '' }}?text=Hello%20ZOOSH%20Team%2C%20I%20am%20interested%20in%20your%20bespoke%20furniture%20collections."
+          target="_blank"
+          rel="noopener noreferrer"
+          class="hidden sm:flex items-center gap-1.5 text-emerald-700 hover:text-emerald-800 text-[10px] font-sans font-semibold tracking-wider uppercase bg-emerald-50 px-3 py-1.5 rounded-full transition-colors"
+        >
+          {% render 'icon', icon: 'whatsapp' %}
+          <span>Concierge</span>
+        </a>
+
+        <!-- Cart Trigger Button -->
+        <button
+          type="button"
+          class="cart-drawer-trigger relative text-neutral-800 hover:text-black transition-colors p-1"
+          onclick="window.toggleCartDrawer()"
+          aria-label="Shopping Cart"
+        >
+          {% render 'icon', icon: 'cart' %}
+          <span class="cart-count-badge absolute -top-1 -right-1 bg-black text-white text-[9px] font-mono font-bold w-4 h-4 rounded-full flex items-center justify-center">
+            {{ cart.item_count }}
+          </span>
+        </button>
+      </div>
+
+    </div>
+  </div>
+</header>
+
+<!-- Mobile Navigation Drawer -->
+<div id="mobile-nav" class="fixed inset-0 z-50 bg-black/60 backdrop-blur-sm hidden">
+  <div class="w-4/5 max-w-sm h-full bg-white p-6 flex flex-col justify-between overflow-y-auto">
+    <div>
+      <div class="flex items-center justify-between pb-6 border-b border-neutral-100">
+        <span class="font-serif text-xl tracking-[0.2em] uppercase font-medium">ZOOSH</span>
+        <button type="button" class="p-2" onclick="window.toggleMobileNav()">
+          {% render 'icon', icon: 'close' %}
+        </button>
+      </div>
+      <div class="py-6 space-y-4">
+        {%- for link in linklists[section.settings.menu].links -%}
+          <div>
+            <a href="{{ link.url }}" class="block font-sans text-xs uppercase tracking-[0.2em] font-semibold text-neutral-900 py-1">
+              {{ link.title }}
+            </a>
+            {%- if link.links != blank -%}
+              <div class="pl-3 pt-2 space-y-2 border-l border-neutral-200 mt-2">
+                {%- for childlink in link.links -%}
+                  <a href="{{ childlink.url }}" class="block font-sans text-xs tracking-wider text-neutral-600">
+                    {{ childlink.title }}
+                  </a>
+                {%- endfor -%}
+              </div>
+            {%- endif -%}
+          </div>
+        {%- endfor -%}
+      </div>
+    </div>
+    <div class="pt-6 border-t border-neutral-100">
+      <a
+        href="https://wa.me/{{ settings.whatsapp_phone | replace: '+', '' | replace: ' ', '' }}"
+        target="_blank"
+        rel="noopener noreferrer"
+        class="w-full inline-flex items-center justify-center gap-2 bg-emerald-700 text-white text-xs tracking-widest uppercase py-3 font-medium"
+      >
+        {% render 'icon', icon: 'whatsapp' %}
+        <span>WhatsApp Concierge</span>
+      </a>
+    </div>
+  </div>
+</div>
+
+{% schema %}
+{
+  "name": "Header",
+  "settings": [
+    {
+      "type": "text",
+      "id": "logo_text",
+      "label": "Logo Text",
+      "default": "ZOOSH"
+    },
+    {
+      "type": "image_picker",
+      "id": "logo",
+      "label": "Custom Logo Image"
+    },
+    {
+      "type": "link_list",
+      "id": "menu",
+      "label": "Navigation Menu",
+      "default": "main-menu"
+    }
+  ]
+}
+{% endschema %}

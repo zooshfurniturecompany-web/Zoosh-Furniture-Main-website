@@ -1,0 +1,33 @@
+{
+  "general": {
+    "search": {
+      "search": "Search our bespoke collections",
+      "heading": "Search results",
+      "no_results": "No products found matching your search."
+    },
+    "cart": {
+      "title": "Your Shopping Bag",
+      "empty": "Your shopping bag is currently empty.",
+      "continue_shopping": "Continue Shopping",
+      "subtotal": "Subtotal",
+      "taxes_included_and_shipping_policy_html": "Taxes calculated at checkout. Free factory crating & pan-India logistics available.",
+      "checkout": "Proceed to Checkout",
+      "view_cart": "View Cart",
+      "whatsapp_order": "Order via WhatsApp Concierge"
+    }
+  },
+  "products": {
+    "product": {
+      "add_to_cart": "Add to Cart",
+      "sold_out": "Sold Out",
+      "unavailable": "Unavailable",
+      "price": "Price",
+      "regular_price": "Regular price",
+      "sale_price": "Sale price",
+      "unit_price": "Unit price",
+      "made_to_order": "Made to Order • Direct Factory Crafting",
+      "enquire_whatsapp": "Enquire on WhatsApp",
+      "custom_dimensions": "Bespoke dimensions & wood finishes available on request."
+    }
+  }
+}

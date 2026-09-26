@@ -1,8 +1,12 @@
 "use client";
 
-import { Send } from "lucide-react";
+import { Send, ShoppingBag, Check } from "lucide-react";
+import { useState } from "react";
+import { useCart } from "@/components/cart/cart-context";
+import { Product } from "@/hooks/use-products";
 
 interface ProductPricingBreakdownProps {
+  product?: Product;
   productName: string;
   productSku: string;
   basePrice?: number;
@@ -10,22 +14,36 @@ interface ProductPricingBreakdownProps {
 }
 
 export default function ProductPricingBreakdown({
+  product,
   productName,
   productSku,
   basePrice,
   priceBreakdown,
 }: ProductPricingBreakdownProps) {
+  const { addItem } = useCart();
+  const [added, setAdded] = useState(false);
+  const [selectedWood, setSelectedWood] = useState<string>(product?.material || "Teak Wood");
+
   const priceInfo = basePrice ? ` (Base Price: ₹${basePrice.toLocaleString("en-IN")})` : "";
   const customWhatsAppMsg = `Hello ZOOSH,
 
 I am interested in:
 Product: ${productName} (SKU: ${productSku})${priceInfo}
+Wood Choice: ${selectedWood}
 
 Please share available finishes, custom dimensions, and delivery timeframe.
 
 Thank you.`;
 
   const dynamicWhatsAppUrl = `https://wa.me/919567193992?text=${encodeURIComponent(customWhatsAppMsg)}`;
+
+  const handleAddToCart = () => {
+    if (product) {
+      addItem(product, { wood: selectedWood });
+      setAdded(true);
+      setTimeout(() => setAdded(false), 2000);
+    }
+  };
 
   return (
     <div className="space-y-4 pt-1">
@@ -48,15 +66,39 @@ Thank you.`;
         </div>
       )}
 
-      <a
-        href={dynamicWhatsAppUrl}
-        target="_blank"
-        rel="noopener noreferrer"
-        className="w-full inline-flex items-center justify-center space-x-3 bg-black text-white hover:bg-neutral-900 text-xs tracking-[0.25em] uppercase py-4.5 transition-colors font-sans font-medium shadow-sm group"
-      >
-        <Send size={14} className="group-hover:translate-x-0.5 transition-transform" />
-        <span>Enquire on WhatsApp</span>
-      </a>
+      {/* Add to Bag and WhatsApp CTA Buttons */}
+      <div className="flex flex-col gap-3">
+        {product && (
+          <button
+            type="button"
+            onClick={handleAddToCart}
+            className="w-full inline-flex items-center justify-center space-x-2 bg-neutral-900 hover:bg-black text-white text-xs tracking-[0.2em] uppercase py-4 transition-all duration-200 font-sans font-medium shadow-xs group"
+          >
+            {added ? (
+              <>
+                <Check size={14} className="text-emerald-400" />
+                <span>Added to Bag</span>
+              </>
+            ) : (
+              <>
+                <ShoppingBag size={14} />
+                <span>Add to Bag</span>
+              </>
+            )}
+          </button>
+        )}
+
+        <a
+          href={dynamicWhatsAppUrl}
+          target="_blank"
+          rel="noopener noreferrer"
+          className="w-full inline-flex items-center justify-center space-x-2 border border-neutral-900 hover:bg-neutral-900 hover:text-white text-neutral-900 text-xs tracking-[0.2em] uppercase py-3.5 transition-all duration-200 font-sans font-medium"
+        >
+          <Send size={13} />
+          <span>Enquire on WhatsApp</span>
+        </a>
+      </div>
+
       <p className="text-center text-[10px] text-neutral-400 leading-relaxed font-sans font-light">
         Bespoke dimensions & timber polish options available at our Pattambi factory.<br />
         Direct WhatsApp: +91 9567193992
@@ -64,4 +106,3 @@ Thank you.`;
     </div>
   );
 }
-

@@ -1,0 +1,146 @@
+<section class="category-slider py-16 sm:py-24 bg-white border-b border-neutral-100 overflow-hidden">
+  <div class="max-w-7xl mx-auto px-6 md:px-12">
+    
+    <!-- Section Header with Arrows -->
+    <div class="flex flex-col sm:flex-row sm:items-end justify-between mb-8 sm:mb-12 gap-4">
+      <div>
+        {%- if section.settings.subheading != blank -%}
+          <span class="text-[10px] tracking-[0.3em] uppercase text-neutral-400 font-sans block mb-2">
+            {{ section.settings.subheading }}
+          </span>
+        {%- endif -%}
+        <h2 class="font-serif text-2xl sm:text-3xl md:text-4xl font-light tracking-wide text-neutral-900">
+          {{ section.settings.heading | default: 'Curated Living Spaces' }}
+        </h2>
+      </div>
+
+      <!-- Navigation Arrows -->
+      <div class="hidden sm:flex items-center space-x-3">
+        <button
+          type="button"
+          onclick="window.scrollCategorySlider(-320)"
+          class="w-10 h-10 rounded-full border border-neutral-200 flex items-center justify-center hover:bg-black hover:text-white hover:border-black transition-colors"
+          aria-label="Scroll left"
+        >
+          &larr;
+        </button>
+        <button
+          type="button"
+          onclick="window.scrollCategorySlider(320)"
+          class="w-10 h-10 rounded-full border border-neutral-200 flex items-center justify-center hover:bg-black hover:text-white hover:border-black transition-colors"
+          aria-label="Scroll right"
+        >
+          &rarr;
+        </button>
+      </div>
+    </div>
+
+    <!-- Category Image Cards Horizontal Slider -->
+    <div
+      id="category-slider-track"
+      class="flex gap-4 sm:gap-6 overflow-x-auto pb-4 scroll-smooth no-scrollbar"
+      style="-webkit-overflow-scrolling: touch; scroll-snap-type: x mandatory;"
+    >
+      {%- for block in section.blocks -%}
+        <div
+          class="flex-shrink-0 w-[260px] sm:w-[320px] group cursor-pointer"
+          style="scroll-snap-align: start;"
+          {{ block.shopify_attributes }}
+        >
+          <a href="{{ block.settings.link }}" class="block">
+            <!-- Card Image -->
+            <div class="relative aspect-square overflow-hidden bg-neutral-100 mb-4 border border-neutral-100">
+              {%- if block.settings.image != blank -%}
+                <img
+                  src="{{ block.settings.image | image_url: width: 800 }}"
+                  alt="{{ block.settings.title | escape }}"
+                  loading="lazy"
+                  class="w-full h-full object-cover object-center group-hover:scale-105 transition-transform duration-700 ease-out"
+                >
+              {%- else -%}
+                <div class="w-full h-full flex items-center justify-center bg-neutral-100 text-neutral-400">
+                  {{ 'collection-1' | placeholder_svg_tag }}
+                </div>
+              {%- endif -%}
+
+              <div class="absolute inset-0 bg-gradient-to-t from-black/50 via-transparent to-transparent opacity-60 group-hover:opacity-40 transition-opacity"></div>
+              
+              <!-- Floating Card Title on Image -->
+              <div class="absolute bottom-4 left-4 right-4">
+                <h3 class="font-serif text-lg sm:text-xl text-white font-medium tracking-wide">
+                  {{ block.settings.title }}
+                </h3>
+                <span class="text-[10px] tracking-[0.2em] uppercase text-white/80 font-sans mt-0.5 block">
+                  {{ block.settings.subtitle | default: 'Explore Space →' }}
+                </span>
+              </div>
+            </div>
+          </a>
+        </div>
+      {%- endfor -%}
+    </div>
+
+  </div>
+</section>
+
+{% schema %}
+{
+  "name": "Category Card Slider",
+  "settings": [
+    {
+      "type": "text",
+      "id": "subheading",
+      "label": "Subheading",
+      "default": "Shop By Room"
+    },
+    {
+      "type": "text",
+      "id": "heading",
+      "label": "Heading",
+      "default": "Curated Furniture Spaces"
+    }
+  ],
+  "blocks": [
+    {
+      "type": "category_card",
+      "name": "Category Card",
+      "settings": [
+        {
+          "type": "image_picker",
+          "id": "image",
+          "label": "Space Image"
+        },
+        {
+          "type": "text",
+          "id": "title",
+          "label": "Category Title",
+          "default": "Living Room"
+        },
+        {
+          "type": "text",
+          "id": "subtitle",
+          "label": "Subtitle / Badge",
+          "default": "Sofas, Lounges & Tables"
+        },
+        {
+          "type": "url",
+          "id": "link",
+          "label": "Collection Link"
+        }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "Category Card Slider",
+      "blocks": [
+        { "type": "category_card", "settings": { "title": "Living Room", "subtitle": "Sectionals, Sofas & Coffee Tables" } },
+        { "type": "category_card", "settings": { "title": "Dining Space", "subtitle": "Solid Hardwood Tables & Chairs" } },
+        { "type": "category_card", "settings": { "title": "Bedroom Cots", "subtitle": "Plinth Frames & Nightstands" } },
+        { "type": "category_card", "settings": { "title": "Accent Seating", "subtitle": "Sculptural Bouclé & Cane Chairs" } },
+        { "type": "category_card", "settings": { "title": "Entryway & Decor", "subtitle": "Monolithic Consoles & Benches" } }
+      ]
+    }
+  ]
+}
+{% endschema %}

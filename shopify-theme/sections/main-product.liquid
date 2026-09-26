@@ -1,0 +1,192 @@
+<section class="main-product py-10 sm:py-16 bg-white">
+  <div class="max-w-7xl mx-auto px-6 md:px-12">
+    
+    <!-- Breadcrumbs -->
+    <div class="flex items-center space-x-2 text-[10px] tracking-widest uppercase text-neutral-400 mb-6 font-sans font-medium">
+      <a href="{{ routes.root_url }}" class="hover:text-black transition-colors">Home</a>
+      <span>/</span>
+      {%- if collection -%}
+        <a href="{{ collection.url }}" class="hover:text-black transition-colors">{{ collection.title }}</a>
+        <span>/</span>
+      {%- endif -%}
+      <span class="text-neutral-800 truncate">{{ product.title }}</span>
+    </div>
+
+    <!-- Product Layout Grid -->
+    <div class="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-16 items-start">
+      
+      <!-- Left Column: Gallery -->
+      <div class="lg:col-span-7 space-y-4">
+        <div class="product-main-image relative aspect-square w-full bg-neutral-100 overflow-hidden border border-neutral-100">
+          {%- if product.featured_media -%}
+            <img
+              id="ProductMainImage"
+              src="{{ product.featured_media | image_url: width: 1200 }}"
+              alt="{{ product.featured_media.alt | escape }}"
+              class="w-full h-full object-cover object-center"
+              loading="eager"
+            >
+          {%- else -%}
+            {{ 'product-1' | placeholder_svg_tag }}
+          {%- endif -%}
+        </div>
+
+        {%- if product.media.size > 1 -%}
+          <div class="grid grid-cols-4 sm:grid-cols-6 gap-3">
+            {%- for media in product.media -%}
+              <div
+                class="aspect-square bg-neutral-100 cursor-pointer overflow-hidden border border-neutral-200 hover:border-black transition-colors"
+                onclick="document.getElementById('ProductMainImage').src='{{ media | image_url: width: 1200 }}'"
+              >
+                <img src="{{ media | image_url: width: 250 }}" alt="{{ media.alt | escape }}" class="w-full h-full object-cover">
+              </div>
+            {%- endfor -%}
+          </div>
+        {%- endif -%}
+      </div>
+
+      <!-- Right Column: Details, Variants, CTAs, Accordions -->
+      <div class="lg:col-span-5 space-y-6 bg-white border border-neutral-100 p-6 sm:p-8 shadow-xs">
+        
+        <!-- Header & Title -->
+        <div class="space-y-2">
+          <div class="flex items-center justify-between">
+            <span class="text-[10px] tracking-[0.25em] uppercase text-neutral-400 font-sans font-medium">
+              {{ product.type | default: 'Bespoke Creation' }}
+            </span>
+            <span class="text-[10px] text-emerald-700 bg-emerald-50 px-2 py-0.5 font-medium">
+              In Stock &bull; Made to Order
+            </span>
+          </div>
+
+          <h1 class="font-serif text-2xl sm:text-3xl md:text-4xl font-light text-neutral-950 tracking-wide leading-tight">
+            {{ product.title }}
+          </h1>
+
+          <p class="text-[10px] tracking-wider text-neutral-400 font-mono">
+            SKU: {{ product.selected_or_first_available_variant.sku | default: 'ZSH-CUSTOM' }}
+          </p>
+        </div>
+
+        <!-- Price Block -->
+        <div class="pt-3 pb-3 border-t border-b border-neutral-100 space-y-1">
+          <div class="text-2xl sm:text-3xl font-bold font-sans text-neutral-950 tabular-nums">
+            {% render 'price', product: product, use_variant: true %}
+          </div>
+          <span class="text-xs text-neutral-500 font-sans font-light tracking-wide block">
+            Excl. GST & Taxes | Custom hand-finished in Pattambi workshop
+          </span>
+        </div>
+
+        <!-- Description -->
+        <div class="text-neutral-600 font-sans text-xs md:text-sm font-light leading-relaxed">
+          {{ product.description }}
+        </div>
+
+        <!-- Product Form -->
+        {% form 'product', product, id: 'product-form' %}
+          <input type="hidden" name="id" value="{{ product.selected_or_first_available_variant.id }}">
+
+          <!-- Variant Options -->
+          {%- unless product.has_only_default_variant -%}
+            <div class="space-y-4 py-2 border-t border-neutral-100">
+              {%- for option in product.options_with_values -%}
+                <div class="space-y-2">
+                  <label class="block text-xs font-semibold uppercase tracking-wider text-neutral-800">
+                    {{ option.name }}: <span class="font-normal text-neutral-500">{{ option.selected_value }}</span>
+                  </label>
+                  <div class="flex flex-wrap gap-2">
+                    {%- for value in option.values -%}
+                      <label class="cursor-pointer">
+                        <input
+                          type="radio"
+                          name="{{ option.name }}"
+                          value="{{ value }}"
+                          {% if option.selected_value == value %}checked{% endif %}
+                          class="sr-only peer"
+                        >
+                        <span class="inline-block px-4 py-2 text-xs font-sans tracking-wide border border-neutral-200 peer-checked:border-black peer-checked:bg-black peer-checked:text-white transition-colors">
+                          {{ value }}
+                        </span>
+                      </label>
+                    {%- endfor -%}
+                  </div>
+                </div>
+              {%- endfor -%}
+            </div>
+          {%- endunless -%}
+
+          <!-- Actions: Add to Cart + WhatsApp Concierge -->
+          <div class="space-y-3 pt-4">
+            <button
+              type="submit"
+              name="add"
+              class="w-full bg-black hover:bg-neutral-900 text-white text-xs font-sans tracking-[0.25em] uppercase py-4.5 font-medium transition-colors shadow-sm"
+              {% unless product.available %}disabled{% endunless %}
+            >
+              {%- if product.available -%}
+                Add to Cart &bull; {{ product.selected_or_first_available_variant.price | money }}
+              {%- else -%}
+                Made to Order
+              {%- endif -%}
+            </button>
+
+            <a
+              href="https://wa.me/{{ settings.whatsapp_phone | replace: '+', '' | replace: ' ', '' }}?text=Hello%20ZOOSH%2C%20I%20am%20interested%20in%20the%20product%20'{{ product.title | url_encode }}'%20(SKU%3A%20{{ product.selected_or_first_available_variant.sku }}).%20Please%20share%20custom%20finish%20options."
+              target="_blank"
+              rel="noopener noreferrer"
+              class="w-full inline-flex items-center justify-center gap-2 border border-black hover:bg-neutral-50 text-neutral-900 text-xs font-sans tracking-[0.25em] uppercase py-4 font-medium transition-colors"
+            >
+              {% render 'icon', icon: 'whatsapp' %}
+              <span>Enquire on WhatsApp</span>
+            </a>
+          </div>
+        {% endform %}
+
+        <!-- Expandable Accordions (Prestige / Homework Living layout) -->
+        <div class="pt-6 border-t border-neutral-100 space-y-3 font-sans text-xs text-neutral-700">
+          
+          <details class="group border-b border-neutral-100 pb-3" open>
+            <summary class="flex justify-between items-center cursor-pointer font-semibold uppercase tracking-wider text-neutral-900 list-none py-1">
+              <span>Craftsmanship & Timber Selection</span>
+              <span class="group-open:rotate-180 transition-transform">&darr;</span>
+            </summary>
+            <p class="pt-2 font-light text-neutral-600 leading-relaxed">
+              Seasoned solid hardwood frame jointed with mortise-and-tenon structural bonds. Protective melamine matte polish applied by hand for lifetime resilience against tropical climates.
+            </p>
+          </details>
+
+          <details class="group border-b border-neutral-100 pb-3">
+            <summary class="flex justify-between items-center cursor-pointer font-semibold uppercase tracking-wider text-neutral-900 list-none py-1">
+              <span>Custom Dimensions & Blueprints</span>
+              <span class="group-open:rotate-180 transition-transform">&darr;</span>
+            </summary>
+            <p class="pt-2 font-light text-neutral-600 leading-relaxed">
+              Every unit can be dimensioned to your architectural drawings. Send your room layout over WhatsApp (+91 9567193992) for a customized 3D render and factory quote.
+            </p>
+          </details>
+
+          <details class="group border-b border-neutral-100 pb-3">
+            <summary class="flex justify-between items-center cursor-pointer font-semibold uppercase tracking-wider text-neutral-900 list-none py-1">
+              <span>Pan-India Crating & White Glove Delivery</span>
+              <span class="group-open:rotate-180 transition-transform">&darr;</span>
+            </summary>
+            <p class="pt-2 font-light text-neutral-600 leading-relaxed">
+              Shipped in reinforced industrial wooden crates. Insured door-to-door transit across all major Indian cities with delivery timelines typically within 14-21 business days.
+            </p>
+          </details>
+
+        </div>
+
+      </div>
+
+    </div>
+  </div>
+</section>
+
+{% schema %}
+{
+  "name": "Product Details",
+  "settings": []
+}
+{% endschema %}

@@ -1,0 +1,144 @@
+{
+  "sections": {
+    "hero_slideshow": {
+      "type": "slideshow-hero",
+      "settings": {
+        "subheading": "Seasoned Solid Hardwood • Kerala Workshop",
+        "heading": "Modern Architectural Furniture Handcrafted For Life",
+        "text": "Bespoke sofas, sculptural lounge chairs, and monolithic dining tables crafted in treated Kerala Teak, Canadian Ash, and Spindle Mahogany.",
+        "button_text": "Shop All Furniture",
+        "button_link": "/collections/all",
+        "secondary_button_text": "Request Custom Dimensions",
+        "secondary_button_link": "/pages/custom-furniture"
+      }
+    },
+    "category_slider": {
+      "type": "category-slider",
+      "settings": {
+        "subheading": "Curated Living Spaces",
+        "heading": "Shop By Room"
+      },
+      "blocks": {
+        "space_1": {
+          "type": "category_card",
+          "settings": {
+            "title": "Living Space",
+            "subtitle": "Modular Sofas, Lounges & Coffee Tables",
+            "link": "/collections/sofas"
+          }
+        },
+        "space_2": {
+          "type": "category_card",
+          "settings": {
+            "title": "Dining Room",
+            "subtitle": "Solid Hardwood Tables & Ergonomic Chairs",
+            "link": "/collections/dining"
+          }
+        },
+        "space_3": {
+          "type": "category_card",
+          "settings": {
+            "title": "Bedroom Sanctuary",
+            "subtitle": "Plinth Bed Cots & Floating Nightstands",
+            "link": "/collections/bedroom"
+          }
+        },
+        "space_4": {
+          "type": "category_card",
+          "settings": {
+            "title": "Accent Seating",
+            "subtitle": "Sculptural Bouclé & Cane Armchairs",
+            "link": "/collections/lounge-chairs"
+          }
+        },
+        "space_5": {
+          "type": "category_card",
+          "settings": {
+            "title": "Entryway & Credenzas",
+            "subtitle": "Monolithic Consoles & Entry Benches",
+            "link": "/collections/entryway"
+          }
+        }
+      },
+      "block_order": [
+        "space_1",
+        "space_2",
+        "space_3",
+        "space_4",
+        "space_5"
+      ]
+    },
+    "featured_collection": {
+      "type": "featured-collection",
+      "settings": {
+        "subheading": "The Heritage Catalog",
+        "heading": "Best Selling Masterpieces",
+        "products_to_show": 6,
+        "view_all_text": "Explore Entire Collection",
+        "view_all_link": "/collections/all"
+      }
+    },
+    "image_with_text": {
+      "type": "image-with-text",
+      "settings": {
+        "subheading": "The Artisanal Journey",
+        "heading": "Seasoned Hardwoods Crafted in Pattambi",
+        "text": "<p>Every ZOOSH creation is born inside our dedicated Kerala factory. We season solid timber, carve mortise-and-tenon joints, hand-plane organic chamfers, and hand-tailor commercial grade linens to elevate your interior living architecture.</p>",
+        "button_text": "Our Story & Philosophy",
+        "button_link": "/pages/our-story",
+        "secondary_text": "Factory Blueprint Visit",
+        "secondary_link": "/pages/contact"
+      }
+    },
+    "benefits_bar": {
+      "type": "multi-column-benefits",
+      "blocks": {
+        "benefit_1": {
+          "type": "benefit",
+          "settings": {
+            "icon_name": "truck",
+            "title": "Pan-India Secure Shipping",
+            "description": "Reinforced wooden crates & white-glove transport."
+          }
+        },
+        "benefit_2": {
+          "type": "benefit",
+          "settings": {
+            "icon_name": "tree",
+            "title": "100% Solid Seasoned Timber",
+            "description": "Kiln-dried Kerala teak, ash & mahogany hardwoods."
+          }
+        },
+        "benefit_3": {
+          "type": "benefit",
+          "settings": {
+            "icon_name": "check",
+            "title": "Custom Blueprint Sizing",
+            "description": "Made-to-order adjustments to fit your exact floorplan."
+          }
+        },
+        "benefit_4": {
+          "type": "benefit",
+          "settings": {
+            "icon_name": "shield",
+            "title": "5-Year Structural Warranty",
+            "description": "Generational durability backed by master joinery."
+          }
+        }
+      },
+      "block_order": [
+        "benefit_1",
+        "benefit_2",
+        "benefit_3",
+        "benefit_4"
+      ]
+    }
+  },
+  "order": [
+    "hero_slideshow",
+    "category_slider",
+    "featured_collection",
+    "image_with_text",
+    "benefits_bar"
+  ]
+}

@@ -1,0 +1,16 @@
+{
+  "name": "Footer Group",
+  "type": "footer",
+  "sections": {
+    "footer": {
+      "type": "footer",
+      "settings": {
+        "title": "ZOOSH",
+        "description": "Architectural solid wood furniture handcrafted inside our Kerala workshop. Sourced sustainably, seasoned patiently, built to endure generations."
+      }
+    }
+  },
+  "order": [
+    "footer"
+  ]
+}
