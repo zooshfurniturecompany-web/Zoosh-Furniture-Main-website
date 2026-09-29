@@ -1,100 +1,111 @@
-<section class="main-product py-10 sm:py-16 bg-white">
+<section class="main-product py-10 sm:py-16 bg-white min-h-screen">
   <div class="max-w-7xl mx-auto px-6 md:px-12">
     
     <!-- Breadcrumbs -->
-    <div class="flex items-center space-x-2 text-[10px] tracking-widest uppercase text-neutral-400 mb-6 font-sans font-medium">
+    <div class="flex items-center space-x-2 text-[10px] tracking-widest uppercase text-neutral-400 mb-8 font-sans font-medium">
       <a href="{{ routes.root_url }}" class="hover:text-black transition-colors">Home</a>
       <span>/</span>
       {%- if collection -%}
         <a href="{{ collection.url }}" class="hover:text-black transition-colors">{{ collection.title }}</a>
         <span>/</span>
+      {%- else -%}
+        <a href="{{ routes.all_products_collection_url }}" class="hover:text-black transition-colors">Furniture</a>
+        <span>/</span>
       {%- endif -%}
-      <span class="text-neutral-800 truncate">{{ product.title }}</span>
+      <span class="text-neutral-900 truncate">{{ product.title }}</span>
     </div>
 
-    <!-- Product Layout Grid -->
-    <div class="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-16 items-start">
+    <!-- Main Product Grid (Homework Living Layout) -->
+    <div class="grid grid-cols-1 lg:grid-cols-12 gap-10 lg:gap-16 items-start">
       
-      <!-- Left Column: Gallery -->
+      <!-- Left Column: Image Gallery Stack / Thumbnails -->
       <div class="lg:col-span-7 space-y-4">
+        <!-- Main Featured Image -->
         <div class="product-main-image relative aspect-square w-full bg-neutral-100 overflow-hidden border border-neutral-100">
           {%- if product.featured_media -%}
             <img
               id="ProductMainImage"
-              src="{{ product.featured_media | image_url: width: 1200 }}"
-              alt="{{ product.featured_media.alt | escape }}"
+              src="{{ product.featured_media | image_url: width: 1400 }}"
+              alt="{{ product.featured_media.alt | default: product.title | escape }}"
               class="w-full h-full object-cover object-center"
               loading="eager"
             >
           {%- else -%}
-            {{ 'product-1' | placeholder_svg_tag }}
+            <img
+              id="ProductMainImage"
+              src="https://zoosh.in/images/products/sf001-2.jpg"
+              alt="{{ product.title | escape }}"
+              class="w-full h-full object-cover object-center"
+              loading="eager"
+            >
           {%- endif -%}
         </div>
 
+        <!-- Thumbnail Grid if multiple images -->
         {%- if product.media.size > 1 -%}
-          <div class="grid grid-cols-4 sm:grid-cols-6 gap-3">
+          <div class="grid grid-cols-4 sm:grid-cols-5 gap-3 pt-1">
             {%- for media in product.media -%}
               <div
-                class="aspect-square bg-neutral-100 cursor-pointer overflow-hidden border border-neutral-200 hover:border-black transition-colors"
-                onclick="document.getElementById('ProductMainImage').src='{{ media | image_url: width: 1200 }}'"
+                class="aspect-square bg-neutral-100 cursor-pointer overflow-hidden border {% if forloop.first %}border-black{% else %}border-neutral-200{% endif %} hover:border-black transition-colors"
+                onclick="document.getElementById('ProductMainImage').src='{{ media | image_url: width: 1400 }}'; document.querySelectorAll('.product-thumb').forEach(el => el.classList.remove('border-black')); this.classList.add('border-black');"
               >
-                <img src="{{ media | image_url: width: 250 }}" alt="{{ media.alt | escape }}" class="w-full h-full object-cover">
+                <img src="{{ media | image_url: width: 250 }}" alt="{{ media.alt | default: product.title | escape }}" class="w-full h-full object-cover">
               </div>
             {%- endfor -%}
           </div>
         {%- endif -%}
       </div>
 
-      <!-- Right Column: Details, Variants, CTAs, Accordions -->
-      <div class="lg:col-span-5 space-y-6 bg-white border border-neutral-100 p-6 sm:p-8 shadow-xs">
+      <!-- Right Column: Sticky Product Form & Specifications (Homework Living Style) -->
+      <div class="lg:col-span-5 space-y-6 lg:sticky lg:top-28 bg-white">
         
-        <!-- Header & Title -->
+        <!-- Vendor & Title -->
         <div class="space-y-2">
-          <div class="flex items-center justify-between">
-            <span class="text-[10px] tracking-[0.25em] uppercase text-neutral-400 font-sans font-medium">
-              {{ product.type | default: 'Bespoke Creation' }}
-            </span>
-            <span class="text-[10px] text-emerald-700 bg-emerald-50 px-2 py-0.5 font-medium">
-              In Stock &bull; Made to Order
-            </span>
-          </div>
+          <span class="text-[10px] tracking-[0.25em] uppercase text-neutral-400 font-sans font-medium block">
+            {{ product.vendor | default: 'ZOOSH' }}
+          </span>
 
           <h1 class="font-serif text-2xl sm:text-3xl md:text-4xl font-light text-neutral-950 tracking-wide leading-tight">
             {{ product.title }}
           </h1>
 
-          <p class="text-[10px] tracking-wider text-neutral-400 font-mono">
-            SKU: {{ product.selected_or_first_available_variant.sku | default: 'ZSH-CUSTOM' }}
-          </p>
+          {%- if product.selected_or_first_available_variant.sku != blank -%}
+            <p class="text-[10px] tracking-wider text-neutral-400 font-mono">
+              SKU: {{ product.selected_or_first_available_variant.sku }}
+            </p>
+          {%- endif -%}
         </div>
 
-        <!-- Price Block -->
-        <div class="pt-3 pb-3 border-t border-b border-neutral-100 space-y-1">
-          <div class="text-2xl sm:text-3xl font-bold font-sans text-neutral-950 tabular-nums">
-            {% render 'price', product: product, use_variant: true %}
+        <!-- Price Block (Clean Homework Living Style) -->
+        <div class="py-3 border-t border-b border-neutral-100 space-y-1">
+          <div class="flex items-baseline gap-3">
+            <span id="ProductPrice" class="font-sans text-2xl sm:text-3xl font-bold text-neutral-950 tracking-tight tabular-nums">
+              {{ product.selected_or_first_available_variant.price | money }}
+            </span>
+            {%- if product.selected_or_first_available_variant.compare_at_price > product.selected_or_first_available_variant.price -%}
+              <span id="ComparePrice" class="font-sans text-sm sm:text-base text-neutral-400 line-through tabular-nums">
+                {{ product.selected_or_first_available_variant.compare_at_price | money }}
+              </span>
+            {%- endif -%}
           </div>
-          <span class="text-xs text-neutral-500 font-sans font-light tracking-wide block">
-            Excl. GST & Taxes | Custom hand-finished in Pattambi workshop
+          <span class="text-[11px] text-neutral-500 font-sans font-light tracking-wide block">
+            Tax included. Shipping calculated at checkout.
           </span>
         </div>
 
-        <!-- Description -->
-        <div class="text-neutral-600 font-sans text-xs md:text-sm font-light leading-relaxed">
-          {{ product.description }}
-        </div>
+        <!-- Product Form: Variants, Quantity, Add to Cart -->
+        {% form 'product', product, id: 'product-form', class: 'space-y-5' %}
+          <input type="hidden" name="id" value="{{ product.selected_or_first_available_variant.id }}" id="SelectedVariantId">
 
-        <!-- Product Form -->
-        {% form 'product', product, id: 'product-form' %}
-          <input type="hidden" name="id" value="{{ product.selected_or_first_available_variant.id }}">
-
-          <!-- Variant Options -->
+          <!-- Variant Options (Pill selectors) -->
           {%- unless product.has_only_default_variant -%}
-            <div class="space-y-4 py-2 border-t border-neutral-100">
+            <div class="space-y-4">
               {%- for option in product.options_with_values -%}
                 <div class="space-y-2">
-                  <label class="block text-xs font-semibold uppercase tracking-wider text-neutral-800">
-                    {{ option.name }}: <span class="font-normal text-neutral-500">{{ option.selected_value }}</span>
-                  </label>
+                  <div class="flex items-center justify-between text-xs font-sans">
+                    <span class="font-semibold uppercase tracking-wider text-neutral-900">{{ option.name }}</span>
+                    <span class="text-neutral-500 font-light" id="OptionLabel-{{ forloop.index }}">{{ option.selected_value }}</span>
+                  </div>
                   <div class="flex flex-wrap gap-2">
                     {%- for value in option.values -%}
                       <label class="cursor-pointer">
@@ -104,8 +115,9 @@
                           value="{{ value }}"
                           {% if option.selected_value == value %}checked{% endif %}
                           class="sr-only peer"
+                          onchange="document.getElementById('OptionLabel-{{ forloop.parentloop.index }}').textContent = '{{ value }}';"
                         >
-                        <span class="inline-block px-4 py-2 text-xs font-sans tracking-wide border border-neutral-200 peer-checked:border-black peer-checked:bg-black peer-checked:text-white transition-colors">
+                        <span class="inline-block px-4 py-2.5 text-xs font-sans tracking-wide border border-neutral-200 peer-checked:border-black peer-checked:bg-black peer-checked:text-white transition-all">
                           {{ value }}
                         </span>
                       </label>
@@ -116,71 +128,197 @@
             </div>
           {%- endunless -%}
 
-          <!-- Actions: Add to Cart + WhatsApp Concierge -->
-          <div class="space-y-3 pt-4">
+          <!-- Quantity Selector -->
+          <div class="space-y-2 pt-1">
+            <label class="block text-xs font-semibold uppercase tracking-wider text-neutral-900 font-sans">
+              Quantity
+            </label>
+            <div class="inline-flex items-center border border-neutral-200 bg-white">
+              <button
+                type="button"
+                onclick="const q = document.getElementById('Quantity'); if(parseInt(q.value) > 1) q.value = parseInt(q.value) - 1;"
+                class="px-4 py-2.5 text-neutral-600 hover:text-black font-mono text-sm"
+                aria-label="Decrease quantity"
+              >
+                &minus;
+              </button>
+              <input
+                type="number"
+                id="Quantity"
+                name="quantity"
+                value="1"
+                min="1"
+                class="w-12 text-center text-xs font-sans font-medium focus:outline-none border-none p-0"
+              >
+              <button
+                type="button"
+                onclick="const q = document.getElementById('Quantity'); q.value = parseInt(q.value) + 1;"
+                class="px-4 py-2.5 text-neutral-600 hover:text-black font-mono text-sm"
+                aria-label="Increase quantity"
+              >
+                &#43;
+              </button>
+            </div>
+          </div>
+
+          <!-- CTAs: Add to Cart & Buy Now / WhatsApp -->
+          <div class="space-y-3 pt-2">
             <button
               type="submit"
               name="add"
-              class="w-full bg-black hover:bg-neutral-900 text-white text-xs font-sans tracking-[0.25em] uppercase py-4.5 font-medium transition-colors shadow-sm"
+              class="w-full bg-black hover:bg-neutral-900 text-white text-xs font-sans tracking-[0.25em] uppercase py-4.5 font-medium transition-all duration-200 shadow-sm text-center"
               {% unless product.available %}disabled{% endunless %}
             >
               {%- if product.available -%}
-                Add to Cart &bull; {{ product.selected_or_first_available_variant.price | money }}
+                Add to Cart
               {%- else -%}
                 Made to Order
               {%- endif -%}
             </button>
 
             <a
-              href="https://wa.me/{{ settings.whatsapp_phone | replace: '+', '' | replace: ' ', '' }}?text=Hello%20ZOOSH%2C%20I%20am%20interested%20in%20the%20product%20'{{ product.title | url_encode }}'%20(SKU%3A%20{{ product.selected_or_first_available_variant.sku }}).%20Please%20share%20custom%20finish%20options."
+              href="https://wa.me/{{ settings.whatsapp_phone | replace: '+', '' | replace: ' ', '' }}?text=Hello%20ZOOSH%2C%20I%20am%20interested%20in%20'{{ product.title | url_encode }}'%20({{ product.selected_or_first_available_variant.price | money | url_encode }}).%20Please%20share%20custom%20finish%20options."
               target="_blank"
               rel="noopener noreferrer"
-              class="w-full inline-flex items-center justify-center gap-2 border border-black hover:bg-neutral-50 text-neutral-900 text-xs font-sans tracking-[0.25em] uppercase py-4 font-medium transition-colors"
+              class="w-full inline-flex items-center justify-center gap-2 border border-neutral-900 hover:bg-neutral-900 hover:text-white text-neutral-900 text-xs font-sans tracking-[0.25em] uppercase py-4 font-medium transition-all duration-200"
             >
               {% render 'icon', icon: 'whatsapp' %}
-              <span>Enquire on WhatsApp</span>
+              <span>Order via WhatsApp</span>
             </a>
           </div>
         {% endform %}
 
-        <!-- Expandable Accordions (Prestige / Homework Living layout) -->
-        <div class="pt-6 border-t border-neutral-100 space-y-3 font-sans text-xs text-neutral-700">
+        <!-- Pan-India Shipping Estimation Box (Homework Living Style) -->
+        <div class="p-4 bg-neutral-50 border border-neutral-100 flex items-center gap-3 text-xs font-sans text-neutral-700">
+          <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" class="text-neutral-900 flex-shrink-0">
+            <path d="M14 18V6a2 2 0 0 0-2-2H4a2 2 0 0 0-2 2v11a1 1 0 0 0 1 1h2"/>
+            <path d="M15 18H9"/>
+            <path d="M19 18h2a1 1 0 0 0 1-1v-3.65a1 1 0 0 0-.22-.624l-3.48-4.35A1 1 0 0 0 17.52 8H14"/>
+            <circle cx="17" cy="18" r="2"/>
+            <circle cx="7" cy="18" r="2"/>
+          </svg>
+          <p class="font-light leading-relaxed">
+            <strong class="font-medium text-neutral-900">White-Glove Insured Delivery:</strong> Estimated dispatch within 10 - 15 business days across India.
+          </p>
+        </div>
+
+        <!-- Product Overview & Specifications (OPEN / UNCOLLAPSED - NO ACCORDIONS) -->
+        <div class="pt-6 border-t border-neutral-100 space-y-6 font-sans text-xs text-neutral-700">
           
-          <details class="group border-b border-neutral-100 pb-3" open>
-            <summary class="flex justify-between items-center cursor-pointer font-semibold uppercase tracking-wider text-neutral-900 list-none py-1">
-              <span>Craftsmanship & Timber Selection</span>
-              <span class="group-open:rotate-180 transition-transform">&darr;</span>
-            </summary>
-            <p class="pt-2 font-light text-neutral-600 leading-relaxed">
-              Seasoned solid hardwood frame jointed with mortise-and-tenon structural bonds. Protective melamine matte polish applied by hand for lifetime resilience against tropical climates.
-            </p>
-          </details>
+          <!-- Open Product Description -->
+          <div class="space-y-2">
+            <h3 class="font-serif text-sm uppercase tracking-wider text-neutral-900 font-semibold">
+              Product Overview
+            </h3>
+            <div class="text-neutral-600 font-light leading-relaxed space-y-2">
+              {%- if product.description != blank -%}
+                {{ product.description }}
+              {%- else -%}
+                <p>Handcrafted in treated solid hardwood with a smooth melamine matte finish. Built specifically to order with reinforced mortise-and-tenon structural joints.</p>
+              {%- endif -%}
+            </div>
+          </div>
 
-          <details class="group border-b border-neutral-100 pb-3">
-            <summary class="flex justify-between items-center cursor-pointer font-semibold uppercase tracking-wider text-neutral-900 list-none py-1">
-              <span>Custom Dimensions & Blueprints</span>
-              <span class="group-open:rotate-180 transition-transform">&darr;</span>
-            </summary>
-            <p class="pt-2 font-light text-neutral-600 leading-relaxed">
-              Every unit can be dimensioned to your architectural drawings. Send your room layout over WhatsApp (+91 9567193992) for a customized 3D render and factory quote.
-            </p>
-          </details>
-
-          <details class="group border-b border-neutral-100 pb-3">
-            <summary class="flex justify-between items-center cursor-pointer font-semibold uppercase tracking-wider text-neutral-900 list-none py-1">
-              <span>Pan-India Crating & White Glove Delivery</span>
-              <span class="group-open:rotate-180 transition-transform">&darr;</span>
-            </summary>
-            <p class="pt-2 font-light text-neutral-600 leading-relaxed">
-              Shipped in reinforced industrial wooden crates. Insured door-to-door transit across all major Indian cities with delivery timelines typically within 14-21 business days.
-            </p>
-          </details>
+          <!-- Open Technical Specifications List -->
+          <div class="space-y-2.5 pt-2 border-t border-neutral-100">
+            <h3 class="font-serif text-sm uppercase tracking-wider text-neutral-900 font-semibold">
+              Specifications
+            </h3>
+            <div class="space-y-2 text-xs">
+              <div class="flex justify-between py-1 border-b border-neutral-100">
+                <span class="text-neutral-400 font-light">Timber Material</span>
+                <span class="text-neutral-900 font-medium">Kiln-Dried Solid Hardwood</span>
+              </div>
+              <div class="flex justify-between py-1 border-b border-neutral-100">
+                <span class="text-neutral-400 font-light">Finish / Sealer</span>
+                <span class="text-neutral-900 font-medium">Melamine Hand-Rubbed Polish</span>
+              </div>
+              <div class="flex justify-between py-1 border-b border-neutral-100">
+                <span class="text-neutral-400 font-light">Custom Sizing</span>
+                <span class="text-neutral-900 font-medium">Available Upon Request</span>
+              </div>
+              <div class="flex justify-between py-1 border-b border-neutral-100">
+                <span class="text-neutral-400 font-light">Atelier Origin</span>
+                <span class="text-neutral-900 font-medium">Pattambi Factory, Kerala</span>
+              </div>
+              <div class="flex justify-between py-1">
+                <span class="text-neutral-400 font-light">Warranty</span>
+                <span class="text-neutral-900 font-medium">5-Year Structural Frame Warranty</span>
+              </div>
+            </div>
+          </div>
 
         </div>
 
       </div>
 
     </div>
+
+    <!-- Related Products ("You May Also Like") Section -->
+    <div class="mt-20 sm:mt-28 pt-12 border-t border-neutral-100">
+      <div class="text-center max-w-2xl mx-auto mb-10 space-y-2">
+        <span class="text-[10px] tracking-[0.3em] uppercase text-neutral-400 font-sans block font-medium">
+          Curated Recommendations
+        </span>
+        <h2 class="font-serif text-2xl sm:text-3xl font-light tracking-wide text-neutral-900">
+          You May Also Like
+        </h2>
+      </div>
+
+      <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 md:gap-8">
+        {%- assign current_handle = product.handle -%}
+        {%- assign recommended_count = 0 -%}
+        {%- if collection != blank and collection.products.size > 1 -%}
+          {%- for rec in collection.products -%}
+            {%- unless rec.handle == current_handle -%}
+              {% render 'product-card', card_product: rec, show_secondary_image: true, section_id: 'rec-' | append: rec.id %}
+              {%- assign recommended_count = recommended_count | plus: 1 -%}
+              {%- if recommended_count == 4 -%}{%- break -%}{%- endif -%}
+            {%- endunless -%}
+          {%- endfor -%}
+        {%- else -%}
+          <!-- Fallback Real Zoosh Products with Clean Pricing -->
+          {%- assign rec_samples = '
+            Aura Sectional Sofa|1,34,500|Solid Ash Wood|https://zoosh.in/images/products/sf002-main.jpg,
+            Kanso Sofa|75,990|Solid Mahogany|https://zoosh.in/images/products/sf003-1.jpg,
+            Kyoto Sectional Sofa|1,36,700|Solid Ash Wood|https://zoosh.in/images/products/sf004-1.jpg,
+            Haven Sectional Sofa|53,200|Solid Teak Wood|https://zoosh.in/images/products/sf005-1.jpg
+          ' | split: ',' -%}
+          {%- for p_data in rec_samples -%}
+            {%- assign p_parts = p_data | split: '|' -%}
+            {%- assign p_name = p_parts[0] | strip -%}
+            {%- assign p_price = p_parts[1] | strip -%}
+            {%- assign p_mat = p_parts[2] | strip -%}
+            {%- assign p_img = p_parts[3] | strip -%}
+
+            <div class="product-card group relative flex flex-col justify-between bg-white text-left">
+              <div class="product-card__media relative aspect-square w-full overflow-hidden bg-neutral-100 border border-neutral-100">
+                <img
+                  src="{{ p_img }}"
+                  alt="{{ p_name }}"
+                  loading="lazy"
+                  class="w-full h-full object-cover object-center group-hover:scale-105 transition-transform duration-700 ease-out"
+                >
+              </div>
+              <div class="product-card__info flex flex-col pt-3.5 space-y-1">
+                <span class="inline-block bg-[#f4f4f4] text-neutral-800 text-[9px] font-semibold tracking-wider uppercase px-2 py-0.5 w-fit">
+                  Made to Order
+                </span>
+                <h3 class="product-card__title font-sans text-sm sm:text-base text-neutral-900 font-medium leading-snug">
+                  {{ p_name }}
+                </h3>
+                <div class="pt-0.5">
+                  <span class="font-sans text-sm font-semibold text-neutral-950 tabular-nums block">
+                    ₹{{ p_price }}
+                  </span>
+                </div>
+              </div>
+            </div>
+          {%- endfor -%}
+        {%- endif -%}
+      </div>
+    </div>
+
   </div>
 </section>
 
