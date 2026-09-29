@@ -3,15 +3,15 @@
    ========================================================================== */
 
 :root {
-  --font-heading: 'Cabin', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
-  --font-body: 'Instrument Sans', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
-  --color-primary: #1C1C1C;
+  --font-heading: 'EB Garamond', 'Granjon', 'Garamond', Georgia, serif;
+  --font-body: 'Plus Jakarta Sans', system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+  --color-primary: #111111;
   --color-bg: #FFFFFF;
-  --color-text: #1C1C1C;
+  --color-text: #111111;
   --color-secondary-text: #737373;
   --color-borders: #E5E5E5;
-  --letter-spacing-heading: 0.18em;
-  --letter-spacing-subheading: 0.25em;
+  --letter-spacing-heading: 0.10em;
+  --letter-spacing-subheading: 0.20em;
 }
 
 *, *::before, *::after {
