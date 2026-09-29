@@ -15,13 +15,21 @@
         </button>
       </div>
 
-      <!-- Logo -->
+      <!-- Logo with Custom Size Slider Support -->
       <div class="header__logo flex-shrink-0">
-        <a href="{{ routes.root_url }}" class="flex items-center space-x-2">
+        <a href="{{ routes.root_url }}" class="flex items-center">
           {%- if section.settings.logo != blank -%}
-            <img src="{{ section.settings.logo | image_url: width: 300 }}" alt="{{ shop.name }}" class="h-8 w-auto">
+            <img
+              src="{{ section.settings.logo | image_url: width: 600 }}"
+              alt="{{ shop.name }}"
+              style="max-width: {{ section.settings.logo_width | default: 140 }}px; max-height: {{ section.settings.logo_max_height | default: 52 }}px; width: auto; height: auto;"
+              class="object-contain transition-all"
+            >
           {%- else -%}
-            <span class="font-serif text-2xl sm:text-3xl font-normal tracking-[0.2em] text-neutral-950 uppercase">
+            <span
+              class="font-serif font-normal tracking-[0.2em] text-neutral-950 uppercase"
+              style="font-size: {{ section.settings.logo_text_size | default: 24 }}px;"
+            >
               {{ section.settings.logo_text | default: 'ZOOSH' }}
             </span>
           {%- endif -%}
@@ -180,6 +188,36 @@
       "type": "image_picker",
       "id": "logo",
       "label": "Custom Logo Image"
+    },
+    {
+      "type": "range",
+      "id": "logo_width",
+      "min": 50,
+      "max": 350,
+      "step": 5,
+      "unit": "px",
+      "label": "Logo Max Width",
+      "default": 140
+    },
+    {
+      "type": "range",
+      "id": "logo_max_height",
+      "min": 20,
+      "max": 100,
+      "step": 2,
+      "unit": "px",
+      "label": "Logo Max Height",
+      "default": 52
+    },
+    {
+      "type": "range",
+      "id": "logo_text_size",
+      "min": 16,
+      "max": 48,
+      "step": 2,
+      "unit": "px",
+      "label": "Logo Text Font Size (if no image)",
+      "default": 24
     },
     {
       "type": "link_list",
