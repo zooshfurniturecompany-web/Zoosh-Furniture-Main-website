@@ -21,6 +21,16 @@
     <!-- Gallery Grid -->
     <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 md:gap-8">
       {%- for block in section.blocks -%}
+        {%- assign fallback_img = 'https://zoosh.in/images/catalog/page_14_img_00.webp' -%}
+        {%- case forloop.index -%}
+          {%- when 1 -%}{%- assign fallback_img = 'https://zoosh.in/images/catalog/page_14_img_00.webp' -%}
+          {%- when 2 -%}{%- assign fallback_img = 'https://zoosh.in/images/catalog/page_32_img_00.webp' -%}
+          {%- when 3 -%}{%- assign fallback_img = 'https://zoosh.in/images/catalog/page_29_img_00.webp' -%}
+          {%- when 4 -%}{%- assign fallback_img = 'https://zoosh.in/images/catalog/page_44_img_00.webp' -%}
+          {%- when 5 -%}{%- assign fallback_img = 'https://zoosh.in/images/catalog/page_35_img_00.webp' -%}
+          {%- when 6 -%}{%- assign fallback_img = 'https://zoosh.in/images/catalog/page_51_img_01.webp' -%}
+        {%- endcase -%}
+
         <div class="group flex flex-col space-y-3" {{ block.shopify_attributes }}>
           <div class="relative aspect-square overflow-hidden bg-neutral-50 border border-neutral-100">
             {%- if block.settings.image != blank -%}
@@ -31,9 +41,12 @@
                 class="w-full h-full object-cover transition-transform duration-700 ease-out group-hover:scale-105"
               >
             {%- else -%}
-              <div class="w-full h-full bg-neutral-100 flex items-center justify-center text-neutral-400">
-                {{ 'image' | placeholder_svg_tag: 'w-full h-full' }}
-              </div>
+              <img
+                src="{{ fallback_img }}"
+                alt="{{ block.settings.title | escape }}"
+                loading="lazy"
+                class="w-full h-full object-cover transition-transform duration-700 ease-out group-hover:scale-105"
+              >
             {%- endif -%}
             <div class="absolute inset-0 bg-black/10 group-hover:bg-black/25 transition-colors duration-500"></div>
           </div>

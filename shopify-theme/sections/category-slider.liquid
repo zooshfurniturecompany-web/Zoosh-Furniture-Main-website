@@ -5,7 +5,7 @@
     <div class="flex flex-col sm:flex-row sm:items-end justify-between mb-8 sm:mb-12 gap-4">
       <div>
         {%- if section.settings.subheading != blank -%}
-          <span class="text-[10px] tracking-[0.3em] uppercase text-neutral-400 font-sans block mb-2">
+          <span class="text-[10px] tracking-[0.3em] uppercase text-neutral-400 font-sans block mb-2 font-medium">
             {{ section.settings.subheading }}
           </span>
         {%- endif -%}
@@ -18,17 +18,17 @@
       <div class="hidden sm:flex items-center space-x-3">
         <button
           type="button"
-          onclick="window.scrollCategorySlider(-320)"
-          class="w-10 h-10 rounded-full border border-neutral-200 flex items-center justify-center hover:bg-black hover:text-white hover:border-black transition-colors"
-          aria-label="Scroll left"
+          onclick="window.scrollCategorySlider(-340)"
+          class="w-10 h-10 rounded-full border border-neutral-200 flex items-center justify-center text-neutral-800 hover:bg-black hover:text-white hover:border-black transition-colors"
+          aria-label="Previous space"
         >
           &larr;
         </button>
         <button
           type="button"
-          onclick="window.scrollCategorySlider(320)"
-          class="w-10 h-10 rounded-full border border-neutral-200 flex items-center justify-center hover:bg-black hover:text-white hover:border-black transition-colors"
-          aria-label="Scroll right"
+          onclick="window.scrollCategorySlider(340)"
+          class="w-10 h-10 rounded-full border border-neutral-200 flex items-center justify-center text-neutral-800 hover:bg-black hover:text-white hover:border-black transition-colors"
+          aria-label="Next space"
         >
           &rarr;
         </button>
@@ -42,6 +42,15 @@
       style="-webkit-overflow-scrolling: touch; scroll-snap-type: x mandatory;"
     >
       {%- for block in section.blocks -%}
+        {%- assign fallback_img = 'https://zoosh.in/images/catalog/page_14_img_00.webp' -%}
+        {%- case forloop.index -%}
+          {%- when 1 -%}{%- assign fallback_img = 'https://zoosh.in/images/catalog/page_14_img_00.webp' -%}
+          {%- when 2 -%}{%- assign fallback_img = 'https://zoosh.in/images/catalog/page_21_img_00.webp' -%}
+          {%- when 3 -%}{%- assign fallback_img = 'https://zoosh.in/images/catalog/page_22_img_00.webp' -%}
+          {%- when 4 -%}{%- assign fallback_img = 'https://zoosh.in/images/catalog/page_15_img_00.webp' -%}
+          {%- when 5 -%}{%- assign fallback_img = 'https://zoosh.in/images/catalog/page_27_img_00.webp' -%}
+        {%- endcase -%}
+
         <div
           class="flex-shrink-0 w-[260px] sm:w-[320px] group cursor-pointer"
           style="scroll-snap-align: start;"
@@ -58,16 +67,19 @@
                   class="w-full h-full object-cover object-center group-hover:scale-105 transition-transform duration-700 ease-out"
                 >
               {%- else -%}
-                <div class="w-full h-full flex items-center justify-center bg-neutral-100 text-neutral-400">
-                  {{ 'collection-1' | placeholder_svg_tag }}
-                </div>
+                <img
+                  src="{{ fallback_img }}"
+                  alt="{{ block.settings.title | escape }}"
+                  loading="lazy"
+                  class="w-full h-full object-cover object-center group-hover:scale-105 transition-transform duration-700 ease-out"
+                >
               {%- endif -%}
 
-              <div class="absolute inset-0 bg-gradient-to-t from-black/50 via-transparent to-transparent opacity-60 group-hover:opacity-40 transition-opacity"></div>
+              <div class="absolute inset-0 bg-gradient-to-t from-black/60 via-black/10 to-transparent opacity-70 group-hover:opacity-50 transition-opacity"></div>
               
               <!-- Floating Card Title on Image -->
-              <div class="absolute bottom-4 left-4 right-4">
-                <h3 class="font-serif text-lg sm:text-xl text-white font-medium tracking-wide">
+              <div class="absolute bottom-4 left-4 right-4 text-white">
+                <h3 class="font-serif text-lg sm:text-xl font-medium tracking-wide">
                   {{ block.settings.title }}
                 </h3>
                 <span class="text-[10px] tracking-[0.2em] uppercase text-white/80 font-sans mt-0.5 block">
@@ -97,7 +109,7 @@
       "type": "text",
       "id": "heading",
       "label": "Heading",
-      "default": "Curated Furniture Spaces"
+      "default": "Curated Living Spaces"
     }
   ],
   "blocks": [
@@ -114,13 +126,13 @@
           "type": "text",
           "id": "title",
           "label": "Category Title",
-          "default": "Living Room"
+          "default": "Living Space"
         },
         {
           "type": "text",
           "id": "subtitle",
           "label": "Subtitle / Badge",
-          "default": "Sofas, Lounges & Tables"
+          "default": "Modular Sofas, Lounges & Coffee Tables"
         },
         {
           "type": "url",
@@ -134,11 +146,11 @@
     {
       "name": "Category Card Slider",
       "blocks": [
-        { "type": "category_card", "settings": { "title": "Living Room", "subtitle": "Sectionals, Sofas & Coffee Tables" } },
-        { "type": "category_card", "settings": { "title": "Dining Space", "subtitle": "Solid Hardwood Tables & Chairs" } },
-        { "type": "category_card", "settings": { "title": "Bedroom Cots", "subtitle": "Plinth Frames & Nightstands" } },
-        { "type": "category_card", "settings": { "title": "Accent Seating", "subtitle": "Sculptural Bouclé & Cane Chairs" } },
-        { "type": "category_card", "settings": { "title": "Entryway & Decor", "subtitle": "Monolithic Consoles & Benches" } }
+        { "type": "category_card", "settings": { "title": "Living Space", "subtitle": "Modular Sofas, Lounges & Coffee Tables", "link": "/collections/living" } },
+        { "type": "category_card", "settings": { "title": "Dining Room", "subtitle": "Solid Hardwood Tables & Ergonomic Chairs", "link": "/collections/dining" } },
+        { "type": "category_card", "settings": { "title": "Bedroom Sanctuary", "subtitle": "Plinth Bed Cots & Floating Nightstands", "link": "/collections/bedroom" } },
+        { "type": "category_card", "settings": { "title": "Accent Seating", "subtitle": "Sculptural Bouclé & Cane Armchairs", "link": "/collections/chairs" } },
+        { "type": "category_card", "settings": { "title": "Entryway & Credenzas", "subtitle": "Monolithic Consoles & Entry Benches", "link": "/collections/entryway" } }
       ]
     }
   ]

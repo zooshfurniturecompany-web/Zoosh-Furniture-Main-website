@@ -5,12 +5,12 @@
     <div class="flex flex-col sm:flex-row sm:items-end justify-between mb-10 sm:mb-14 gap-4 text-center sm:text-left">
       <div>
         {%- if section.settings.subheading != blank -%}
-          <span class="text-[10px] tracking-[0.3em] uppercase text-neutral-400 font-sans block mb-2">
+          <span class="text-[10px] tracking-[0.3em] uppercase text-neutral-400 font-sans block mb-2 font-medium">
             {{ section.settings.subheading }}
           </span>
         {%- endif -%}
         <h2 class="font-serif text-2xl sm:text-3xl md:text-4xl font-light tracking-wide text-neutral-900">
-          {{ section.settings.heading | default: 'Featured Creations' }}
+          {{ section.settings.heading | default: 'Signature Collection' }}
         </h2>
       </div>
 
@@ -33,17 +33,73 @@
           {% render 'product-card', card_product: product, show_secondary_image: true, section_id: section.id %}
         {%- endfor -%}
       {%- else -%}
-        {%- for i in (1..section.settings.products_to_show) -%}
-          <div class="product-card-placeholder bg-white flex flex-col space-y-3">
-            <div class="relative aspect-square bg-neutral-100 flex items-center justify-center text-neutral-300">
-              {{ 'product-1' | placeholder_svg_tag: 'w-full h-full' }}
+        <!-- Preloaded Real ZOOSH Catalog Products with Square 1:1 Aspect Ratio -->
+        {%- assign sample_products = '
+          Nouveau Sofa|40000|Treated Solid Teakwood|https://zoosh.in/images/WhatsApp%20Image%202026-01-28%20at%2010.24.22%20%281%29.jpeg|Three Seater Sofa,
+          Aura Sectional Sofa|134500|Solid Ash Wood|https://zoosh.in/images/products/sf002-main.jpg|Sectional Lounge,
+          Kanso Sofa|75990|Solid Mahogany|https://zoosh.in/images/products/sf003-1.jpg|Spindle Armrest Sofa,
+          Kyoto Sectional Sofa|136700|Solid Ash Wood|https://zoosh.in/images/products/sf004-1.jpg|Woven Cane Sectional,
+          Haven Sectional Sofa|53200|Solid Teak Wood|https://zoosh.in/images/products/sf005-1.jpg|Deep Lounge Sectional,
+          Vara Sofa|47850|Solid Teak Wood|https://zoosh.in/images/products/sf006-1.jpg|Linear Solid Wood Sofa
+        ' | split: ',' -%}
+
+        {%- for p_data in sample_products -%}
+          {%- assign p_parts = p_data | split: '|' -%}
+          {%- assign p_name = p_parts[0] | strip -%}
+          {%- assign p_price = p_parts[1] | strip -%}
+          {%- assign p_mat = p_parts[2] | strip -%}
+          {%- assign p_img = p_parts[3] | strip -%}
+          {%- assign p_cat = p_parts[4] | strip -%}
+
+          {%- if forloop.index <= section.settings.products_to_show -%}
+            <div class="product-card group relative flex flex-col justify-between bg-white">
+              <!-- Image Container (Square 1:1) -->
+              <div class="product-card__image-wrap relative aspect-square w-full overflow-hidden bg-neutral-100 border border-neutral-100">
+                <img
+                  src="{{ p_img }}"
+                  alt="{{ p_name }} - {{ p_mat }}"
+                  loading="lazy"
+                  class="w-full h-full object-cover object-center group-hover:scale-105 transition-transform duration-700 ease-out"
+                >
+                <div class="absolute inset-0 bg-black/5 group-hover:bg-black/20 transition-colors duration-300"></div>
+
+                <!-- Quick Enquire WhatsApp Overlay -->
+                <div class="absolute inset-x-0 bottom-0 p-3 translate-y-full group-hover:translate-y-0 transition-transform duration-300 ease-out hidden md:block">
+                  <a
+                    href="https://wa.me/{{ settings.whatsapp_phone | replace: '+', '' | replace: ' ', '' }}?text=Hello%20ZOOSH%2C%20I%20am%20interested%20in%20the%20{{ p_name | url_encode }}%20({{ p_mat | url_encode }})."
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    class="w-full bg-white text-black text-[9px] tracking-[0.2em] uppercase py-3 block text-center hover:bg-black hover:text-white transition-colors duration-300 shadow-md font-medium"
+                  >
+                    Enquire on WhatsApp
+                  </a>
+                </div>
+              </div>
+
+              <!-- Info Section -->
+              <div class="flex flex-col pt-3.5 space-y-1.5">
+                <div>
+                  <span class="inline-block bg-[#f0f0f0] text-neutral-800 text-[9px] sm:text-[10px] font-semibold tracking-wider uppercase px-2.5 py-0.5">
+                    Made to Order
+                  </span>
+                </div>
+                <h3 class="font-sans text-sm sm:text-base text-neutral-900 font-medium leading-snug">
+                  {{ p_name }}
+                </h3>
+                <span class="text-[10px] text-neutral-400 font-sans tracking-wide uppercase">
+                  {{ p_mat }}
+                </span>
+                <div class="pt-0.5">
+                  <span class="text-base sm:text-lg font-bold text-neutral-950 font-sans tracking-tight tabular-nums block">
+                    Starting from ₹{{ p_price }}
+                  </span>
+                  <span class="text-[8px] sm:text-[9px] text-neutral-400 font-sans font-light tracking-wide block">
+                    Excl. GST | Custom made in Pattambi factory
+                  </span>
+                </div>
+              </div>
             </div>
-            <div class="space-y-1">
-              <span class="text-[9px] uppercase tracking-wider text-neutral-400">Solid Teakwood</span>
-              <h4 class="font-sans text-sm font-medium text-neutral-900">Handcrafted Sample Sofa</h4>
-              <span class="text-sm font-semibold text-neutral-950">₹45,000</span>
-            </div>
-          </div>
+          {%- endif -%}
         {%- endfor -%}
       {%- endif -%}
     </div>
@@ -59,13 +115,13 @@
       "type": "text",
       "id": "subheading",
       "label": "Subheading",
-      "default": "The Heritage Catalog"
+      "default": "Curated Catalog"
     },
     {
       "type": "text",
       "id": "heading",
       "label": "Heading",
-      "default": "Best Selling Masterpieces"
+      "default": "Signature Collection"
     },
     {
       "type": "collection",
@@ -90,7 +146,7 @@
       "type": "text",
       "id": "view_all_text",
       "label": "View All Label",
-      "default": "Explore Full Collection"
+      "default": "View Entire Catalog"
     }
   ],
   "presets": [

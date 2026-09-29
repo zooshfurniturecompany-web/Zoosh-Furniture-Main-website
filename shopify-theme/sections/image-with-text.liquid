@@ -2,32 +2,16 @@
   <div class="max-w-7xl mx-auto px-6 md:px-12">
     <div class="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-16 items-center">
       
-      <!-- Image Column -->
-      <div class="lg:col-span-6 relative aspect-square sm:aspect-[4/3] lg:aspect-square overflow-hidden bg-neutral-200 shadow-md">
-        {%- if section.settings.image != blank -%}
-          <img
-            src="{{ section.settings.image | image_url: width: 1200 }}"
-            alt="{{ section.settings.heading | escape }}"
-            loading="lazy"
-            class="w-full h-full object-cover object-center"
-          >
-        {%- else -%}
-          <div class="w-full h-full bg-neutral-200 flex items-center justify-center text-neutral-400">
-            {{ 'lifestyle-2' | placeholder_svg_tag }}
-          </div>
-        {%- endif -%}
-      </div>
-
       <!-- Text Story Column -->
       <div class="lg:col-span-6 space-y-6">
         {%- if section.settings.subheading != blank -%}
-          <span class="text-[10px] tracking-[0.3em] uppercase text-neutral-400 font-sans block">
+          <span class="text-[10px] tracking-[0.3em] uppercase text-neutral-400 font-sans font-medium block">
             {{ section.settings.subheading }}
           </span>
         {%- endif -%}
 
         <h2 class="font-serif text-3xl sm:text-4xl lg:text-5xl font-light tracking-wide text-neutral-900 leading-tight">
-          {{ section.settings.heading | default: 'Rooted In Raw Timber, Mastered By Hand' }}
+          {{ section.settings.heading | default: 'Shaped by time, engineered for life.' }}
         </h2>
 
         <div class="space-y-4 text-neutral-600 font-sans text-xs sm:text-sm font-light leading-relaxed">
@@ -38,22 +22,41 @@
           {%- if section.settings.button_link != blank -%}
             <a
               href="{{ section.settings.button_link }}"
-              class="inline-flex items-center justify-center bg-black text-white hover:bg-neutral-800 text-xs font-sans tracking-[0.25em] uppercase px-8 py-4 font-medium transition-colors shadow-sm"
+              class="inline-flex items-center justify-center bg-black text-white hover:bg-neutral-800 text-xs font-sans tracking-[0.2em] uppercase px-8 py-4 font-medium transition-colors shadow-sm"
             >
-              {{ section.settings.button_text | default: 'Our Story & Philosophy' }}
+              {{ section.settings.button_text | default: 'Our Heritage & Process' }}
             </a>
           {%- endif -%}
 
           {%- if section.settings.secondary_link != blank -%}
             <a
               href="{{ section.settings.secondary_link }}"
-              class="inline-flex items-center justify-center border border-neutral-300 text-neutral-900 hover:border-black text-xs font-sans tracking-[0.25em] uppercase px-8 py-4 font-medium transition-colors"
+              class="inline-flex items-center justify-center border border-neutral-300 text-neutral-900 hover:border-black text-xs font-sans tracking-[0.2em] uppercase px-8 py-4 font-medium transition-colors"
             >
               {{ section.settings.secondary_text | default: 'Factory Blueprint Visit' }}
             </a>
           {%- endif -%}
         </div>
 
+      </div>
+
+      <!-- Workshop Collage Imagery Column -->
+      <div class="lg:col-span-6 grid grid-cols-12 gap-4">
+        <div class="col-span-8 relative aspect-[4/5] bg-neutral-200 overflow-hidden shadow-sm">
+          {%- if section.settings.image != blank -%}
+            <img src="{{ section.settings.image | image_url: width: 1000 }}" alt="{{ section.settings.heading | escape }}" class="w-full h-full object-cover">
+          {%- else -%}
+            <img src="https://zoosh.in/images/catalog/page_10_img_00.webp" alt="ZOOSH master carpenters crafting dining table" class="w-full h-full object-cover">
+          {%- endif -%}
+        </div>
+        <div class="col-span-4 flex flex-col gap-4">
+          <div class="relative aspect-square bg-neutral-200 overflow-hidden shadow-sm">
+            <img src="https://zoosh.in/images/catalog/page_06_img_01.webp" alt="Precision mortise and tenon wood joinery" class="w-full h-full object-cover">
+          </div>
+          <div class="relative aspect-[3/4] bg-neutral-200 overflow-hidden shadow-sm">
+            <img src="https://zoosh.in/images/catalog/page_02_img_01.webp" alt="Timber seasoning and finishing" class="w-full h-full object-cover">
+          </div>
+        </div>
       </div>
 
     </div>
@@ -67,36 +70,36 @@
     {
       "type": "image_picker",
       "id": "image",
-      "label": "Section Image"
+      "label": "Custom Main Image"
     },
     {
       "type": "text",
       "id": "subheading",
       "label": "Subheading",
-      "default": "The Artisanal Journey"
+      "default": "Factory Direct Craftsmanship"
     },
     {
       "type": "text",
       "id": "heading",
       "label": "Heading",
-      "default": "Seasoned Hardwoods Crafted in Pattambi"
+      "default": "Shaped by time, engineered for life."
     },
     {
       "type": "richtext",
       "id": "text",
       "label": "Narrative Text",
-      "default": "<p>Every ZOOSH creation is born inside our dedicated Kerala factory. We season solid timber, carve mortise-and-tenon joints, hand-plane organic chamfers, and hand-tailor commercial grade linens to elevate your interior living architecture.</p>"
+      "default": "<p>Founded in Kerala, ZOOSH operates a dedicated manufacturing facility in Pattambi. By managing every stage in-house—from selecting raw Teak logs at licensed timber yards to hand-jointing frames and tailoring custom cushions—we ensure uncompromising quality with zero retail middleman markup.</p><p>We believe that furniture should adapt to the architecture of your home, not the other way around. Every piece is fabricated to order with your choice of solid hardwood, dimensions, and fabric textures.</p>"
     },
     {
       "type": "url",
       "id": "button_link",
-      "label": "Button Link"
+      "label": "Primary Button Link"
     },
     {
       "type": "text",
       "id": "button_text",
-      "label": "Button Label",
-      "default": "Our Story"
+      "label": "Primary Button Label",
+      "default": "Our Heritage & Process"
     },
     {
       "type": "url",
@@ -107,7 +110,7 @@
       "type": "text",
       "id": "secondary_text",
       "label": "Secondary Label",
-      "default": "Bespoke Consultations"
+      "default": "Factory Blueprint Visit"
     }
   ],
   "presets": [
