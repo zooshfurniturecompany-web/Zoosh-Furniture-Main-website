@@ -2,7 +2,7 @@
 
 import { useState } from "react";
 import Link from "next/link";
-import { Send, Truck, ShieldCheck, Check, CornerDownLeft, Sparkles, Award } from "lucide-react";
+import { Send, Truck, ShieldCheck, Check, CornerDownLeft } from "lucide-react";
 import { Product } from "@/lib/products-utils";
 import { useCart } from "@/components/cart/cart-context";
 import ShareButton from "@/components/product/share-button";
@@ -89,8 +89,8 @@ Thank you.`;
         </p>
       </div>
 
-      {/* 3. PRODUCT OVERVIEW (Positioned directly after pricing, before Add to Cart) */}
-      <div className="py-2 space-y-2 border-b border-neutral-100">
+      {/* 3. PRODUCT OVERVIEW (Between Price & Add to Cart) */}
+      <div className="pt-1 pb-3 space-y-2 border-b border-neutral-100">
         <h3 className="font-serif text-xs uppercase tracking-wider text-neutral-900 font-semibold">
           Product Overview
         </h3>
@@ -100,7 +100,68 @@ Thank you.`;
         </p>
       </div>
 
-      {/* 4. Quantity Selector & CTAs */}
+      {/* 4. TECHNICAL SPECIFICATIONS (Between Price & Add to Cart) */}
+      <div className="py-2 space-y-3 font-sans text-xs border-b border-neutral-100">
+        <h3 className="font-serif text-xs uppercase tracking-wider text-neutral-900 font-semibold">
+          Specifications
+        </h3>
+        <div className="space-y-2 divide-y divide-neutral-100">
+          <div className="flex justify-between py-1.5">
+            <span className="text-neutral-400 font-light">Timber Material</span>
+            <span className="text-neutral-900 font-medium">{product.material || product.specs?.material || "Solid Teakwood"}</span>
+          </div>
+
+          {product.finish && (
+            <div className="flex justify-between py-1.5">
+              <span className="text-neutral-400 font-light">Finish / Sealer</span>
+              <span className="text-neutral-900 font-medium">{product.finish}</span>
+            </div>
+          )}
+
+          {product.fabric && (
+            <div className="flex justify-between py-1.5">
+              <span className="text-neutral-400 font-light">Fabric Upholstery</span>
+              <span className="text-neutral-900 font-medium">{product.fabric}</span>
+            </div>
+          )}
+
+          {product.rattan && (
+            <div className="flex justify-between py-1.5">
+              <span className="text-neutral-400 font-light">Rattan Crafting</span>
+              <span className="text-neutral-900 font-medium">{product.rattan}</span>
+            </div>
+          )}
+
+          {/* Dimensions */}
+          <div className="flex justify-between py-1.5">
+            <span className="text-neutral-400 font-light">Dimensions</span>
+            <span className="text-neutral-900 font-medium tabular-nums">{product.dimensions || product.specs?.dimensions || "Standard"}</span>
+          </div>
+
+          <div className="flex justify-between py-1.5">
+            <span className="text-neutral-400 font-light">Atelier Origin</span>
+            <span className="text-neutral-900 font-medium">Pattambi Workshop, Kerala</span>
+          </div>
+
+          <div className="flex justify-between py-1.5">
+            <span className="text-neutral-400 font-light">Structural Warranty</span>
+            <span className="text-neutral-900 font-medium">5-Year Frame Warranty</span>
+          </div>
+        </div>
+      </div>
+
+      {/* 5. Delivery Information Callout Box */}
+      <div className="p-3.5 sm:p-4 bg-neutral-50 border border-neutral-100 flex items-start gap-3 text-xs font-sans text-neutral-700">
+        <Truck size={18} className="text-neutral-900 shrink-0 mt-0.5" />
+        <div className="space-y-0.5">
+          <strong className="font-semibold text-neutral-900 block">White-Glove Insured Delivery:</strong>
+          <p className="font-light text-neutral-600 leading-relaxed">
+            Custom built to order in our Pattambi factory workshop. Estimated dispatch within 10–15 business days across India.
+          </p>
+        </div>
+      </div>
+
+      {/* 6. Quantity Selector & CTAs (ADD TO CART & CUSTOMISE) */}
       <div className="space-y-4 pt-1">
         
         {/* Quantity Stepper (44px min touch target) */}
@@ -157,67 +218,6 @@ Thank you.`;
           <Send size={13} />
           <span>Customise This Product</span>
         </a>
-      </div>
-
-      {/* 5. Delivery Information Callout Box */}
-      <div className="p-3.5 sm:p-4 bg-neutral-50 border border-neutral-100 flex items-start gap-3 text-xs font-sans text-neutral-700">
-        <Truck size={18} className="text-neutral-900 shrink-0 mt-0.5" />
-        <div className="space-y-0.5">
-          <strong className="font-semibold text-neutral-900 block">White-Glove Insured Delivery:</strong>
-          <p className="font-light text-neutral-600 leading-relaxed">
-            Custom built to order in our Pattambi factory workshop. Estimated dispatch within 10–15 business days across India.
-          </p>
-        </div>
-      </div>
-
-      {/* 6. Technical Specifications (Open / Un-collapsed Rows) */}
-      <div className="pt-4 border-t border-neutral-100 space-y-3 font-sans text-xs">
-        <h3 className="font-serif text-sm uppercase tracking-wider text-neutral-900 font-semibold">
-          Specifications
-        </h3>
-        <div className="space-y-2 divide-y divide-neutral-100">
-          <div className="flex justify-between py-1.5">
-            <span className="text-neutral-400 font-light">Timber Material</span>
-            <span className="text-neutral-900 font-medium">{product.material || product.specs?.material || "Solid Teakwood"}</span>
-          </div>
-
-          {product.finish && (
-            <div className="flex justify-between py-1.5">
-              <span className="text-neutral-400 font-light">Finish / Sealer</span>
-              <span className="text-neutral-900 font-medium">{product.finish}</span>
-            </div>
-          )}
-
-          {product.fabric && (
-            <div className="flex justify-between py-1.5">
-              <span className="text-neutral-400 font-light">Fabric Upholstery</span>
-              <span className="text-neutral-900 font-medium">{product.fabric}</span>
-            </div>
-          )}
-
-          {product.rattan && (
-            <div className="flex justify-between py-1.5">
-              <span className="text-neutral-400 font-light">Rattan Crafting</span>
-              <span className="text-neutral-900 font-medium">{product.rattan}</span>
-            </div>
-          )}
-
-          {/* Dimensions */}
-          <div className="flex justify-between py-1.5">
-            <span className="text-neutral-400 font-light">Dimensions</span>
-            <span className="text-neutral-900 font-medium tabular-nums">{product.dimensions || product.specs?.dimensions || "Standard"}</span>
-          </div>
-
-          <div className="flex justify-between py-1.5">
-            <span className="text-neutral-400 font-light">Atelier Origin</span>
-            <span className="text-neutral-900 font-medium">Pattambi Workshop, Kerala</span>
-          </div>
-
-          <div className="flex justify-between py-1.5">
-            <span className="text-neutral-400 font-light">Structural Warranty</span>
-            <span className="text-neutral-900 font-medium">5-Year Frame Warranty</span>
-          </div>
-        </div>
       </div>
 
       {/* Return Navigation */}
