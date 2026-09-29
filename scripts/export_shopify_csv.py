@@ -2,6 +2,16 @@ import json
 import csv
 import re
 import os
+import urllib.parse
+
+def clean_image_url(url_or_path: str) -> str:
+    if not url_or_path:
+        return "https://zoosh.in/images/hero-bg.jpg"
+    
+    full_url = url_or_path if url_or_path.startswith("http") else f"https://zoosh.in{url_or_path}"
+    parts = urllib.parse.urlsplit(full_url)
+    clean_path = urllib.parse.quote(parts.path)
+    return urllib.parse.urlunsplit((parts.scheme, parts.netloc, clean_path, parts.query, parts.fragment))
 
 def export_to_shopify_csv():
     base_dir = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
@@ -32,8 +42,8 @@ def export_to_shopify_csv():
             handle = sku.lower()
         
         cat = p.get('category', 'Furniture')
-        material = p.get('material', 'Solid Hardwood')
-        finish = p.get('finish', 'Matte Polish')
+        material = p.get('material', 'Solid Hardwood').replace('/', '-').strip()
+        finish = p.get('finish', 'Matte Polish').replace('/', '-').strip()
         fabric = p.get('fabric', 'Tailored Upholstery')
         rattan = p.get('rattan', '')
         dimensions = p.get('dimensions', 'Custom Dimensions')
@@ -41,7 +51,7 @@ def export_to_shopify_csv():
         compare_price = round(price * 1.15) if price > 0 else ''
         desc = p.get('description', '')
         
-        # Rich HTML Description with specs table
+        # Build clean HTML description
         body_html = f"<p>{desc}</p>\n" \
                     f"<h3>Product Specifications</h3>\n" \
                     f"<ul>\n" \
@@ -69,8 +79,8 @@ def export_to_shopify_csv():
             images = ['/images/hero-bg.jpg']
         
         # Primary Row
-        first_img = images[0]
-        img_src = first_img if first_img.startswith('http') else f"https://zoosh.in{first_img}"
+        first_img_url = clean_image_url(images[0])
+        clean_dim = dimensions.split('(')[0].replace('/', 'x').strip() if '(' in dimensions else dimensions.replace('/', 'x')
         
         first_row = {
             'Handle': handle,
@@ -81,12 +91,12 @@ def export_to_shopify_csv():
             'Type': cat,
             'Tags': tags,
             'Published': 'TRUE',
-            'Option1 Name': 'Wood / Material',
+            'Option1 Name': 'Material',
             'Option1 Value': material,
             'Option2 Name': 'Dimensions',
-            'Option2 Value': dimensions.split('(')[0].strip() if '(' in dimensions else dimensions,
-            'Option3 Name': 'Title',
-            'Option3 Value': 'Default Title',
+            'Option2 Value': clean_dim,
+            'Option3 Name': '',
+            'Option3 Value': '',
             'Variant SKU': sku,
             'Variant Grams': '50000',
             'Variant Inventory Tracker': 'shopify',
@@ -98,7 +108,7 @@ def export_to_shopify_csv():
             'Variant Requires Shipping': 'TRUE',
             'Variant Taxable': 'TRUE',
             'Variant Barcode': '',
-            'Image Src': img_src,
+            'Image Src': first_img_url,
             'Image Position': '1',
             'Image Alt Text': f"{title} - {material} by ZOOSH",
             'Gift Card': 'FALSE',
@@ -111,7 +121,7 @@ def export_to_shopify_csv():
         
         # Extra images
         for idx, img in enumerate(images[1:], start=2):
-            img_url = img if img.startswith('http') else f"https://zoosh.in{img}"
+            img_url = clean_image_url(img)
             extra_row = {
                 'Handle': handle,
                 'Title': '',
@@ -154,7 +164,7 @@ def export_to_shopify_csv():
         writer.writeheader()
         writer.writerows(rows)
 
-    print(f"Successfully generated {csv_output_path} with {len(rows)} rows for {len(products)} products.")
+    print(f"Successfully regenerated {csv_output_path} with {len(rows)} rows for {len(products)} products.")
 
 if __name__ == '__main__':
     export_to_shopify_csv()
