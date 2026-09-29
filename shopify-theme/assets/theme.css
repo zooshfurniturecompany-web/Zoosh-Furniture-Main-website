@@ -91,7 +91,7 @@ img, svg {
 
 /* Hidden Utility */
 .hidden {
-  display: none !important;
+  display: none;
 }
 
 /* Scrollbar helpers */
@@ -127,6 +127,24 @@ img, svg {
   background-color: rgba(255, 255, 255, 0.98);
   backdrop-filter: blur(8px);
   border-bottom: 1px solid #f0f0f0;
+}
+
+.site-nav-desktop {
+  display: flex !important;
+  align-items: center;
+}
+
+.mobile-nav-toggle {
+  display: none !important;
+}
+
+@media (max-width: 1023px) {
+  .site-nav-desktop {
+    display: none !important;
+  }
+  .mobile-nav-toggle {
+    display: flex !important;
+  }
 }
 
 /* Mobile Nav Drawer */
