@@ -278,12 +278,7 @@
           {%- endfor -%}
         {%- else -%}
           <!-- Fallback Real Zoosh Products with Clean Pricing -->
-          {%- assign rec_samples = '
-            Aura Sectional Sofa|1,34,500|Solid Ash Wood|https://zoosh.in/images/products/sf002-main.jpg,
-            Kanso Sofa|75,990|Solid Mahogany|https://zoosh.in/images/products/sf003-1.jpg,
-            Kyoto Sectional Sofa|1,36,700|Solid Ash Wood|https://zoosh.in/images/products/sf004-1.jpg,
-            Haven Sectional Sofa|53,200|Solid Teak Wood|https://zoosh.in/images/products/sf005-1.jpg
-          ' | split: ',' -%}
+          {%- assign rec_samples = 'Aura Sectional Sofa|1,34,500|Solid Ash Wood|https://zoosh.in/images/products/sf002-main.jpg;;;Kanso Sofa|75,990|Solid Mahogany|https://zoosh.in/images/products/sf003-1.jpg;;;Kyoto Sectional Sofa|1,36,700|Solid Ash Wood|https://zoosh.in/images/products/sf004-1.jpg;;;Haven Sectional Sofa|53,200|Solid Teak Wood|https://zoosh.in/images/products/sf005-1.jpg' | split: ';;;' -%}
           {%- for p_data in rec_samples -%}
             {%- assign p_parts = p_data | split: '|' -%}
             {%- assign p_name = p_parts[0] | strip -%}

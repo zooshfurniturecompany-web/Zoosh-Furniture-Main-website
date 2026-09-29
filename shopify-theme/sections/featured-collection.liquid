@@ -34,14 +34,7 @@
         {%- endfor -%}
       {%- else -%}
         <!-- Preloaded Real ZOOSH Catalog Products with Square 1:1 Aspect Ratio -->
-        {%- assign sample_products = '
-          Nouveau Sofa|40,000|Treated Solid Teakwood|https://zoosh.in/images/WhatsApp%20Image%202026-01-28%20at%2010.24.22%20%281%29.jpeg|Three Seater Sofa,
-          Aura Sectional Sofa|1,34,500|Solid Ash Wood|https://zoosh.in/images/products/sf002-main.jpg|Sectional Lounge,
-          Kanso Sofa|75,990|Solid Mahogany|https://zoosh.in/images/products/sf003-1.jpg|Spindle Armrest Sofa,
-          Kyoto Sectional Sofa|1,36,700|Solid Ash Wood|https://zoosh.in/images/products/sf004-1.jpg|Woven Cane Sectional,
-          Haven Sectional Sofa|53,200|Solid Teak Wood|https://zoosh.in/images/products/sf005-1.jpg|Deep Lounge Sectional,
-          Vara Sofa|47,850|Solid Teak Wood|https://zoosh.in/images/products/sf006-1.jpg|Linear Solid Wood Sofa
-        ' | split: ',' -%}
+        {%- assign sample_products = 'Nouveau Sofa|40,000|Treated Solid Teakwood|https://zoosh.in/images/WhatsApp%20Image%202026-01-28%20at%2010.24.22%20%281%29.jpeg|Three Seater Sofa;;;Aura Sectional Sofa|1,34,500|Solid Ash Wood|https://zoosh.in/images/products/sf002-main.jpg|Sectional Lounge;;;Kanso Sofa|75,990|Solid Mahogany|https://zoosh.in/images/products/sf003-1.jpg|Spindle Armrest Sofa;;;Kyoto Sectional Sofa|1,36,700|Solid Ash Wood|https://zoosh.in/images/products/sf004-1.jpg|Woven Cane Sectional;;;Haven Sectional Sofa|53,200|Solid Teak Wood|https://zoosh.in/images/products/sf005-1.jpg|Deep Lounge Sectional;;;Vara Sofa|47,850|Solid Teak Wood|https://zoosh.in/images/products/sf006-1.jpg|Linear Solid Wood Sofa' | split: ';;;' -%}
 
         {%- for p_data in sample_products -%}
           {%- assign p_parts = p_data | split: '|' -%}
