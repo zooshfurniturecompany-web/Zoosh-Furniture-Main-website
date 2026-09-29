@@ -1,0 +1,18 @@
+{
+  "sections": {
+    "main_about": {
+      "type": "main-about"
+    },
+    "benefits": {
+      "type": "multi-column-benefits"
+    },
+    "cta": {
+      "type": "cta-banner"
+    }
+  },
+  "order": [
+    "main_about",
+    "benefits",
+    "cta"
+  ]
+}

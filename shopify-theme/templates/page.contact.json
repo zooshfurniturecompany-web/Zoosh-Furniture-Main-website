@@ -1,0 +1,14 @@
+{
+  "sections": {
+    "main_contact": {
+      "type": "main-contact"
+    },
+    "benefits": {
+      "type": "multi-column-benefits"
+    }
+  },
+  "order": [
+    "main_contact",
+    "benefits"
+  ]
+}

@@ -14,8 +14,15 @@ window.scrollCategorySlider = function(offset) {
 window.toggleMobileNav = function() {
   const nav = document.getElementById('mobile-nav');
   if (nav) {
-    nav.classList.toggle('open');
-    nav.classList.toggle('hidden');
+    if (nav.style.display === 'none' || nav.classList.contains('hidden')) {
+      nav.style.display = 'block';
+      nav.classList.remove('hidden');
+      nav.classList.add('open');
+    } else {
+      nav.style.display = 'none';
+      nav.classList.add('hidden');
+      nav.classList.remove('open');
+    }
   }
 };
 

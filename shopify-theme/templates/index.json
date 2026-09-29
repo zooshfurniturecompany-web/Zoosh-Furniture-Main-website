@@ -3,20 +3,20 @@
     "hero_slideshow": {
       "type": "slideshow-hero",
       "settings": {
-        "subheading": "Seasoned Solid Hardwood • Kerala Workshop",
-        "heading": "Modern Architectural Furniture Handcrafted For Life",
-        "text": "Bespoke sofas, sculptural lounge chairs, and monolithic dining tables crafted in treated Kerala Teak, Canadian Ash, and Spindle Mahogany.",
-        "button_text": "Shop All Furniture",
+        "subheading": "Bespoke Hardwood Architecture • Kerala Factory",
+        "heading": "Every Home Deserves Furniture Built Specifically For It.",
+        "text": "Crafted in solid Teak, Ash & Mahogany woods, natural woven cane, and premium tailored fabrics. Custom manufactured in our Pattambi workshop.",
+        "button_text": "Explore Collections",
         "button_link": "/collections/all",
-        "secondary_button_text": "Request Custom Dimensions",
+        "secondary_button_text": "Custom Commission",
         "secondary_button_link": "/pages/custom-furniture"
       }
     },
     "category_slider": {
       "type": "category-slider",
       "settings": {
-        "subheading": "Curated Living Spaces",
-        "heading": "Shop By Room"
+        "subheading": "Shop By Room",
+        "heading": "Curated Living Spaces"
       },
       "blocks": {
         "space_1": {
@@ -24,7 +24,7 @@
           "settings": {
             "title": "Living Space",
             "subtitle": "Modular Sofas, Lounges & Coffee Tables",
-            "link": "/collections/sofas"
+            "link": "/collections/living"
           }
         },
         "space_2": {
@@ -48,7 +48,7 @@
           "settings": {
             "title": "Accent Seating",
             "subtitle": "Sculptural Bouclé & Cane Armchairs",
-            "link": "/collections/lounge-chairs"
+            "link": "/collections/chairs"
           }
         },
         "space_5": {
@@ -71,10 +71,10 @@
     "featured_collection": {
       "type": "featured-collection",
       "settings": {
-        "subheading": "The Heritage Catalog",
-        "heading": "Best Selling Masterpieces",
+        "subheading": "Curated Catalog",
+        "heading": "Signature Collection",
         "products_to_show": 6,
-        "view_all_text": "Explore Entire Collection",
+        "view_all_text": "View Entire Catalog",
         "view_all_link": "/collections/all"
       }
     },
@@ -82,10 +82,10 @@
       "type": "image-with-text",
       "settings": {
         "subheading": "The Artisanal Journey",
-        "heading": "Seasoned Hardwoods Crafted in Pattambi",
-        "text": "<p>Every ZOOSH creation is born inside our dedicated Kerala factory. We season solid timber, carve mortise-and-tenon joints, hand-plane organic chamfers, and hand-tailor commercial grade linens to elevate your interior living architecture.</p>",
-        "button_text": "Our Story & Philosophy",
-        "button_link": "/pages/our-story",
+        "heading": "Shaped by time, engineered for life.",
+        "text": "<p>Founded in Kerala, ZOOSH operates a dedicated manufacturing facility in Pattambi. By managing every stage in-house—from selecting raw Teak logs at licensed timber yards to hand-jointing frames and tailoring custom cushions—we ensure uncompromising quality with zero retail middleman markup.</p>",
+        "button_text": "Our Heritage & Process",
+        "button_link": "/pages/about",
         "secondary_text": "Factory Blueprint Visit",
         "secondary_link": "/pages/contact"
       }
@@ -97,24 +97,24 @@
           "type": "benefit",
           "settings": {
             "icon_name": "truck",
-            "title": "Pan-India Secure Shipping",
-            "description": "Reinforced wooden crates & white-glove transport."
+            "title": "Pan-India White Glove Delivery",
+            "description": "Insured door-to-door transit directly from our Pattambi factory to your home."
           }
         },
         "benefit_2": {
           "type": "benefit",
           "settings": {
             "icon_name": "tree",
-            "title": "100% Solid Seasoned Timber",
-            "description": "Kiln-dried Kerala teak, ash & mahogany hardwoods."
+            "title": "100% Solid Hardwoods",
+            "description": "Kiln-dried Kerala Teak, imported Ash wood, and rich Mahogany with zero particle boards."
           }
         },
         "benefit_3": {
           "type": "benefit",
           "settings": {
             "icon_name": "check",
-            "title": "Custom Blueprint Sizing",
-            "description": "Made-to-order adjustments to fit your exact floorplan."
+            "title": "Bespoke Custom Sizing",
+            "description": "Every single piece is manufactured to your architectural floor plan and exact dimensions."
           }
         },
         "benefit_4": {
@@ -122,7 +122,7 @@
           "settings": {
             "icon_name": "shield",
             "title": "5-Year Structural Warranty",
-            "description": "Generational durability backed by master joinery."
+            "description": "Engineered with traditional mortise-and-tenon joineries built to last generations."
           }
         }
       },
@@ -132,6 +132,76 @@
         "benefit_3",
         "benefit_4"
       ]
+    },
+    "projects_gallery": {
+      "type": "projects-gallery",
+      "settings": {
+        "subheading": "Architectural Installations",
+        "heading": "Completed Spaces",
+        "description": "A gallery of custom bespoke furniture installations handcrafted for residences across India."
+      },
+      "blocks": {
+        "proj_1": {
+          "type": "project",
+          "settings": {
+            "title": "Ajmal Residence",
+            "category": "Residential Living Room Space"
+          }
+        },
+        "proj_2": {
+          "type": "project",
+          "settings": {
+            "title": "Rajesh Menon Residence",
+            "category": "Teak Dining Suite"
+          }
+        },
+        "proj_3": {
+          "type": "project",
+          "settings": {
+            "title": "Akhil Residence",
+            "category": "Sculptural Lounge Chairs"
+          }
+        },
+        "proj_4": {
+          "type": "project",
+          "settings": {
+            "title": "Sufaina Residence",
+            "category": "Solid Wood Dining & Benches"
+          }
+        },
+        "proj_5": {
+          "type": "project",
+          "settings": {
+            "title": "Sanjeevan Residence",
+            "category": "Cane Back Bedroom Retreat"
+          }
+        },
+        "proj_6": {
+          "type": "project",
+          "settings": {
+            "title": "Brown Barrel Cafe",
+            "category": "Commercial Hospitality Fitout"
+          }
+        }
+      },
+      "block_order": [
+        "proj_1",
+        "proj_2",
+        "proj_3",
+        "proj_4",
+        "proj_5",
+        "proj_6"
+      ]
+    },
+    "cta_banner": {
+      "type": "cta-banner",
+      "settings": {
+        "subheading": "Custom Commissions",
+        "heading": "Have a blueprint or bespoke design in mind?",
+        "text": "Share your room dimensions, floor plans, or moodboards. Our craftsmen and designers will engineer furniture tailored specifically for your space.",
+        "primary_button_text": "Request A Quote",
+        "primary_button_link": "/pages/contact"
+      }
     }
   },
   "order": [
@@ -139,6 +209,8 @@
     "category_slider",
     "featured_collection",
     "image_with_text",
-    "benefits_bar"
+    "benefits_bar",
+    "projects_gallery",
+    "cta_banner"
   ]
 }

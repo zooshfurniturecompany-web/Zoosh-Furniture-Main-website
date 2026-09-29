@@ -1,0 +1,110 @@
+<section class="main-about py-16 sm:py-24 bg-white">
+  <div class="max-w-7xl mx-auto px-6 md:px-12 space-y-16 sm:space-y-24">
+    
+    <!-- Hero Header -->
+    <div class="max-w-3xl space-y-4">
+      <span class="text-[10px] tracking-[0.3em] uppercase text-neutral-400 font-sans font-medium block">
+        Our Heritage & Factory
+      </span>
+      <h1 class="font-serif text-3xl sm:text-5xl md:text-6xl font-light tracking-wide text-neutral-900 leading-[1.1]">
+        Shaped by time, guided by passion.
+      </h1>
+      <p class="text-neutral-600 font-sans text-sm sm:text-base font-light leading-relaxed pt-2">
+        Established in 2021 in Kerala, ZOOSH was founded with a singular conviction: every home deserves furniture crafted specifically for its architecture, using solid hardwoods that endure for generations.
+      </p>
+    </div>
+
+    <!-- Editorial Story Split -->
+    <div class="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-16 items-center">
+      <div class="lg:col-span-6 space-y-6 text-neutral-600 font-sans text-xs sm:text-sm font-light leading-relaxed">
+        <h3 class="font-serif text-xl sm:text-2xl text-neutral-900 font-normal">
+          Factory-Direct from Pattambi, Palakkad
+        </h3>
+        <p>
+          We do not sell pre-fabricated ready stock or operate traditional retail showrooms with middleman markups. Instead, our master carpenters construct each bespoke piece inside our dedicated Pattambi manufacturing facility against confirmed dimensions and custom architectural briefs.
+        </p>
+        <p>
+          By controlling the complete lifecycle—from hand-selecting raw timber logs at licensed Kerala yards, kiln seasoning, structural mortise-and-tenon jointing, to hand-wax finishing—we uphold exacting standards of furniture craft.
+        </p>
+        <div class="pt-2">
+          <a
+            href="/collections/all"
+            class="inline-flex items-center text-xs tracking-[0.2em] uppercase text-black font-semibold border-b border-black pb-1 hover:pr-2 transition-all"
+          >
+            <span>Explore Handcrafted Catalog</span>
+            <span class="ml-2">&rarr;</span>
+          </a>
+        </div>
+      </div>
+
+      <div class="lg:col-span-6 grid grid-cols-2 gap-4">
+        <div class="aspect-square bg-neutral-100 overflow-hidden border border-neutral-100">
+          {%- if section.settings.image_1 != blank -%}
+            <img src="{{ section.settings.image_1 | image_url: width: 800 }}" alt="Master carpenter at work" class="w-full h-full object-cover">
+          {%- else -%}
+            {{ 'image' | placeholder_svg_tag: 'w-full h-full' }}
+          {%- endif -%}
+        </div>
+        <div class="aspect-square bg-neutral-100 overflow-hidden border border-neutral-100">
+          {%- if section.settings.image_2 != blank -%}
+            <img src="{{ section.settings.image_2 | image_url: width: 800 }}" alt="Solid wood joinery detail" class="w-full h-full object-cover">
+          {%- else -%}
+            {{ 'image' | placeholder_svg_tag: 'w-full h-full' }}
+          {%- endif -%}
+        </div>
+      </div>
+    </div>
+
+    <!-- 3 Hardwood Materials Detail -->
+    <div class="pt-8 border-t border-neutral-100">
+      <div class="text-center max-w-2xl mx-auto mb-12 space-y-2">
+        <span class="text-[10px] tracking-[0.3em] uppercase text-neutral-400 font-sans font-medium block">
+          Timber Selection
+        </span>
+        <h2 class="font-serif text-2xl sm:text-3xl font-light tracking-wide text-neutral-900">
+          Premium Solid Materials
+        </h2>
+      </div>
+
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+        <div class="p-6 border border-neutral-100 bg-neutral-50/40 space-y-3">
+          <h4 class="font-serif text-lg text-neutral-950 font-medium">Licensed Kerala Teak</h4>
+          <p class="text-neutral-500 font-sans text-xs leading-relaxed font-light">
+            Sourced through government auctions, seasoned for dense structural fibers, natural insect resistance, and a rich golden-brown grain.
+          </p>
+        </div>
+        <div class="p-6 border border-neutral-100 bg-neutral-50/40 space-y-3">
+          <h4 class="font-serif text-lg text-neutral-950 font-medium">Imported Ash Wood</h4>
+          <p class="text-neutral-500 font-sans text-xs leading-relaxed font-light">
+            Celebrated for striking open-pore cathedral grain patterns, flexibility, and architectural curves across dining chairs and tables.
+          </p>
+        </div>
+        <div class="p-6 border border-neutral-100 bg-neutral-50/40 space-y-3">
+          <h4 class="font-serif text-lg text-neutral-950 font-medium">Solid Mahogany</h4>
+          <p class="text-neutral-500 font-sans text-xs leading-relaxed font-light">
+            Fine-textured grain with warm reddish-brown undertones, providing structural stability for consoles, sideboards, and credenzas.
+          </p>
+        </div>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+{% schema %}
+{
+  "name": "About Story",
+  "settings": [
+    {
+      "type": "image_picker",
+      "id": "image_1",
+      "label": "Workshop Image 1"
+    },
+    {
+      "type": "image_picker",
+      "id": "image_2",
+      "label": "Workshop Image 2"
+    }
+  ]
+}
+{% endschema %}

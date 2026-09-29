@@ -1,0 +1,18 @@
+{
+  "sections": {
+    "main_custom": {
+      "type": "main-custom"
+    },
+    "projects": {
+      "type": "projects-gallery"
+    },
+    "benefits": {
+      "type": "multi-column-benefits"
+    }
+  },
+  "order": [
+    "main_custom",
+    "projects",
+    "benefits"
+  ]
+}

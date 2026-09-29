@@ -1,0 +1,117 @@
+<section class="projects-gallery py-16 sm:py-24 bg-white border-b border-neutral-100">
+  <div class="max-w-7xl mx-auto px-6 md:px-12">
+    
+    <!-- Section Header -->
+    <div class="text-center max-w-2xl mx-auto mb-12 space-y-2">
+      {%- if section.settings.subheading != blank -%}
+        <span class="text-[10px] tracking-[0.3em] uppercase text-neutral-400 font-sans font-medium block">
+          {{ section.settings.subheading }}
+        </span>
+      {%- endif -%}
+      <h2 class="font-serif text-3xl sm:text-4xl font-light tracking-wide text-neutral-900">
+        {{ section.settings.heading | default: 'Completed Spaces' }}
+      </h2>
+      {%- if section.settings.description != blank -%}
+        <p class="text-neutral-500 text-xs sm:text-sm font-sans font-light">
+          {{ section.settings.description }}
+        </p>
+      {%- endif -%}
+    </div>
+
+    <!-- Gallery Grid -->
+    <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 md:gap-8">
+      {%- for block in section.blocks -%}
+        <div class="group flex flex-col space-y-3" {{ block.shopify_attributes }}>
+          <div class="relative aspect-square overflow-hidden bg-neutral-50 border border-neutral-100">
+            {%- if block.settings.image != blank -%}
+              <img
+                src="{{ block.settings.image | image_url: width: 800 }}"
+                alt="{{ block.settings.title | escape }}"
+                loading="lazy"
+                class="w-full h-full object-cover transition-transform duration-700 ease-out group-hover:scale-105"
+              >
+            {%- else -%}
+              <div class="w-full h-full bg-neutral-100 flex items-center justify-center text-neutral-400">
+                {{ 'image' | placeholder_svg_tag: 'w-full h-full' }}
+              </div>
+            {%- endif -%}
+            <div class="absolute inset-0 bg-black/10 group-hover:bg-black/25 transition-colors duration-500"></div>
+          </div>
+          <div class="space-y-0.5 px-1">
+            <span class="text-[9px] tracking-[0.2em] uppercase text-neutral-400 font-sans font-medium block">
+              {{ block.settings.category }}
+            </span>
+            <h3 class="font-serif text-base text-neutral-950 font-medium group-hover:text-neutral-600 transition-colors">
+              {{ block.settings.title }}
+            </h3>
+          </div>
+        </div>
+      {%- endfor -%}
+    </div>
+
+  </div>
+</section>
+
+{% schema %}
+{
+  "name": "Projects Gallery",
+  "settings": [
+    {
+      "type": "text",
+      "id": "subheading",
+      "label": "Subheading",
+      "default": "Architectural Installations"
+    },
+    {
+      "type": "text",
+      "id": "heading",
+      "label": "Heading",
+      "default": "Completed Spaces"
+    },
+    {
+      "type": "textarea",
+      "id": "description",
+      "label": "Description",
+      "default": "A gallery of custom bespoke furniture installations handcrafted for residences across India."
+    }
+  ],
+  "blocks": [
+    {
+      "type": "project",
+      "name": "Project Card",
+      "settings": [
+        {
+          "type": "image_picker",
+          "id": "image",
+          "label": "Project Photo"
+        },
+        {
+          "type": "text",
+          "id": "title",
+          "label": "Project Title",
+          "default": "Ajmal Residence"
+        },
+        {
+          "type": "text",
+          "id": "category",
+          "label": "Category / Space",
+          "default": "Residential Living Room Space"
+        }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "Projects Gallery",
+      "blocks": [
+        { "type": "project", "settings": { "title": "Ajmal Residence", "category": "Residential Living Room Space" } },
+        { "type": "project", "settings": { "title": "Rajesh Menon Residence", "category": "Teak Dining Suite" } },
+        { "type": "project", "settings": { "title": "Akhil Residence", "category": "Sculptural Lounge Chairs" } },
+        { "type": "project", "settings": { "title": "Sufaina Residence", "category": "Solid Wood Dining & Benches" } },
+        { "type": "project", "settings": { "title": "Sanjeevan Residence", "category": "Cane Back Bedroom Retreat" } },
+        { "type": "project", "settings": { "title": "Brown Barrel Cafe", "category": "Commercial Hospitality Fitout" } }
+      ]
+    }
+  ]
+}
+{% endschema %}

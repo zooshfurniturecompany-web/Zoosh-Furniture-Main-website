@@ -9,8 +9,8 @@
         loading="eager"
       >
     {%- else -%}
-      <div class="w-full h-full bg-gradient-to-r from-neutral-900 via-neutral-800 to-neutral-950 flex items-center justify-center opacity-80">
-        {{ 'lifestyle-1' | placeholder_svg_tag }}
+      <div class="w-full h-full bg-neutral-900 flex items-center justify-center">
+        {{ 'lifestyle-1' | placeholder_svg_tag: 'w-full h-full object-cover opacity-20' }}
       </div>
     {%- endif -%}
     <div class="absolute inset-0 bg-black/40 backdrop-blur-[0.5px]"></div>
