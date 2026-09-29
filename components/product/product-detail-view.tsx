@@ -77,8 +77,8 @@ Thank you.`;
         </div>
       </div>
 
-      {/* 2. Clean Minimal Price Display (Homework Living Style) */}
-      <div className="py-3.5 border-t border-b border-neutral-100 space-y-1">
+      {/* 2. Clean Minimal Price Display */}
+      <div className="py-3 border-t border-b border-neutral-100 space-y-1">
         <div className="flex items-baseline gap-3">
           <span className="font-sans text-2xl sm:text-3xl font-bold text-neutral-950 tracking-tight tabular-nums">
             {formattedPrice}
@@ -89,7 +89,18 @@ Thank you.`;
         </p>
       </div>
 
-      {/* 3. Quantity Selector & CTAs (Homework Living Touch Layout) */}
+      {/* 3. PRODUCT OVERVIEW (Positioned directly after pricing, before Add to Cart) */}
+      <div className="py-2 space-y-2 border-b border-neutral-100">
+        <h3 className="font-serif text-xs uppercase tracking-wider text-neutral-900 font-semibold">
+          Product Overview
+        </h3>
+        <p className="text-neutral-600 font-sans text-xs sm:text-sm font-light leading-relaxed">
+          {product.description ||
+            "Handcrafted in treated solid hardwood with a smooth melamine matte finish. Built specifically to order with reinforced mortise-and-tenon structural joints."}
+        </p>
+      </div>
+
+      {/* 4. Quantity Selector & CTAs */}
       <div className="space-y-4 pt-1">
         
         {/* Quantity Stepper (44px min touch target) */}
@@ -120,7 +131,7 @@ Thank you.`;
           </div>
         </div>
 
-        {/* Primary CTA: ADD TO CART (44px+ height) */}
+        {/* Primary CTA: ADD TO CART */}
         <button
           type="button"
           onClick={handleAddToCart}
@@ -136,7 +147,7 @@ Thank you.`;
           )}
         </button>
 
-        {/* Secondary CTA: CUSTOMISE THIS PRODUCT (WhatsApp Enquiry) */}
+        {/* Secondary CTA: CUSTOMISE THIS PRODUCT */}
         <a
           href={whatsappUrl}
           target="_blank"
@@ -148,7 +159,7 @@ Thank you.`;
         </a>
       </div>
 
-      {/* 4. Delivery Information Callout Box */}
+      {/* 5. Delivery Information Callout Box */}
       <div className="p-3.5 sm:p-4 bg-neutral-50 border border-neutral-100 flex items-start gap-3 text-xs font-sans text-neutral-700">
         <Truck size={18} className="text-neutral-900 shrink-0 mt-0.5" />
         <div className="space-y-0.5">
@@ -157,17 +168,6 @@ Thank you.`;
             Custom built to order in our Pattambi factory workshop. Estimated dispatch within 10–15 business days across India.
           </p>
         </div>
-      </div>
-
-      {/* 5. Product Overview (Open / Un-collapsed) */}
-      <div className="pt-4 border-t border-neutral-100 space-y-2">
-        <h3 className="font-serif text-sm uppercase tracking-wider text-neutral-900 font-semibold">
-          Product Overview
-        </h3>
-        <p className="text-neutral-600 font-sans text-xs sm:text-sm font-light leading-relaxed">
-          {product.description ||
-            "Handcrafted in treated solid hardwood with a smooth melamine matte finish. Built specifically to order with reinforced mortise-and-tenon structural joints."}
-        </p>
       </div>
 
       {/* 6. Technical Specifications (Open / Un-collapsed Rows) */}
