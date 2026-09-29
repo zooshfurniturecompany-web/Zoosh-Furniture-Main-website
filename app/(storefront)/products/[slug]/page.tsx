@@ -206,15 +206,6 @@ export default async function ProductDetailPage({ params }: PageProps) {
           </div>
         </div>
 
-        {/* Custom Sizing Request Form */}
-        <div className="mt-14 pt-10 border-t border-neutral-100">
-          <CustomSizeForm
-            productName={product.name}
-            productSku={product.sku}
-            productUrl={`https://zoosh.in/products/${product.slug}`}
-          />
-        </div>
-
         {/* "You May Also Like" Curated Recommendations Grid */}
         {recommendations.length > 0 && (
           <section className="border-t border-neutral-100 mt-16 pt-12">
@@ -235,6 +226,15 @@ export default async function ProductDetailPage({ params }: PageProps) {
             </div>
           </section>
         )}
+
+        {/* Custom Sizing Request Form */}
+        <div className="mt-14 pt-10 border-t border-neutral-100">
+          <CustomSizeForm
+            productName={product.name}
+            productSku={product.sku}
+            productUrl={`https://zoosh.in/products/${product.slug}`}
+          />
+        </div>
 
         {/* Recently Viewed Panel */}
         <RecentlyViewed currentProduct={product} allProducts={allProducts} />
