@@ -2,233 +2,263 @@
 
 import { useState } from "react";
 import Image from "next/image";
-import { motion } from "framer-motion";
-import { Send, FileText, Monitor, Compass, Hammer, Sparkles } from "lucide-react";
+import Link from "next/link";
+import { Send, FileText, Monitor, Compass, Hammer, Sparkles, Check } from "lucide-react";
 import ProductCard from "@/components/product/product-card";
 import QuickViewModal from "@/components/product/quick-view-modal";
 import { useProducts, Product, getGeneralWhatsAppLink } from "@/hooks/use-products";
 
 export default function CustomFurniturePage() {
   const [selectedProduct, setSelectedProduct] = useState<Product | null>(null);
-  const allProds = useProducts();
-  const products = allProds.slice(0, 3);
-  const whatsappUrl = getGeneralWhatsAppLink("custom");
+  const [formData, setFormData] = useState({
+    name: "",
+    phone: "",
+    roomType: "Living Room",
+    woodPreference: "Solid Teakwood",
+    dimensions: "",
+    notes: "",
+  });
+  const [submitted, setSubmitted] = useState(false);
 
-  const fadeInUp = {
-    initial: { opacity: 0, y: 25 },
-    whileInView: { opacity: 1, y: 0 },
-    viewport: { once: true },
-    transition: { duration: 0.8, ease: "easeOut" },
-  } as const;
+  const allProds = useProducts();
+  const products = allProds.slice(0, 4);
+  const whatsappUrl = getGeneralWhatsAppLink("custom");
 
   const processSteps = [
     {
-      icon: <FileText size={20} className="stroke-[1.2]" />,
       number: "01",
-      title: "Design Consultation",
-      description: "Collaborate with our designers to sketch concepts, define proportions, and align with your interior blueprint layouts.",
+      title: "Blueprint & Concept",
+      description: "Share your room floor plan, sketches, or reference photographs with our bespoke design team.",
     },
     {
-      icon: <Monitor size={20} className="stroke-[1.2]" />,
       number: "02",
-      title: "3D Rendering & CADs",
-      description: "Our studio converts concepts into three-dimensional rendering models, allowing you to review geometries and details before fabrication.",
+      title: "Material & Wood Selection",
+      description: "Choose seasoned solid Teakwood, Ash, or Mahogany with custom stains (Natural, Walnut, Charcoal) and bouclé/linen fabrics.",
     },
     {
-      icon: <Compass size={20} className="stroke-[1.2]" />,
       number: "03",
-      title: "Material Selection",
-      description: "Select from premium solid wood timbers—including aged Kerala Teak Wood, Mahogany, and imported Ash Wood—complemented by natural rattan cane weaves and premium upholstery fabrics.",
+      title: "CAD & Sizing Verification",
+      description: "We verify exact length, width, seat depth, and structural joinery before manufacturing.",
     },
     {
-      icon: <Hammer size={20} className="stroke-[1.2]" />,
       number: "04",
-      title: "Master Construction",
-      description: "Our veteran carpenters craft the piece manually, leveraging traditional joineries (mortise & tenon) for structural supremacy.",
+      title: "Pattambi Factory Fabrication",
+      description: "Crafted by master carpenters with traditional mortise-and-tenon structural joints.",
     },
     {
-      icon: <Sparkles size={20} className="stroke-[1.2]" />,
       number: "05",
-      title: "White-Glove Delivery",
-      description: "The custom furniture piece is packed inside wooden crates and delivered directly to your room with full installation assistance.",
+      title: "Insured White-Glove Transit",
+      description: "Safely crated and shipped directly to your residence across any state in India.",
     },
   ];
 
+  const handleFormSubmit = (e: React.FormEvent) => {
+    e.preventDefault();
+    const msg = `Hello ZOOSH,
+
+I would like to commission a custom furniture piece:
+
+• Name: ${formData.name}
+• Phone: ${formData.phone}
+• Room Type: ${formData.roomType}
+• Wood Preference: ${formData.woodPreference}
+• Dimensions: ${formData.dimensions || "To be discussed"}
+• Details: ${formData.notes || "Standard specification"}
+
+Please share a consultation & quote.
+
+Thank you.`;
+
+    window.open(`https://wa.me/919567193992?text=${encodeURIComponent(msg)}`, "_blank");
+    setSubmitted(true);
+  };
+
   return (
     <div className="bg-white">
+      
       {/* 1. Header Hero */}
-      <section className="relative h-[50vh] flex items-center justify-center bg-neutral-900 overflow-hidden">
+      <section className="relative h-[40vh] sm:h-[48vh] flex items-center justify-center bg-neutral-950 overflow-hidden">
         <div className="absolute inset-0">
           <Image
-            src="https://images.unsplash.com/photo-1618219908412-a29a1bb7b86e?q=80&w=2000"
-            alt="Bespoke furniture crafting workshop"
+            src="/images/catalog/page_10_img_00.webp"
+            alt="Bespoke furniture crafting at ZOOSH"
             fill
             priority
-            className="object-cover opacity-35 scale-102"
+            className="object-cover opacity-35"
           />
-          <div className="absolute inset-0 bg-gradient-to-t from-black/65 via-black/25 to-black/30" />
+          <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/40 to-black/20" />
         </div>
 
-        <div className="relative z-10 text-center text-white max-w-3xl mx-auto px-6 space-y-6">
-          <span className="text-[10px] tracking-[0.4em] uppercase text-neutral-300 font-sans font-light block">
-            Tailor-Made Artistry
+        <div className="relative z-10 text-center text-white max-w-3xl mx-auto px-4 sm:px-6 space-y-3">
+          <span className="text-[9px] sm:text-[10px] tracking-[0.35em] uppercase text-neutral-300 font-sans font-semibold block">
+            Atelier Fabrication
           </span>
-          <h1 className="font-serif text-4xl sm:text-5xl md:text-6xl font-light tracking-wide leading-tight">
-            Custom Furniture Services
+          <h1 className="font-serif text-3xl sm:text-5xl md:text-6xl font-light tracking-wide leading-tight">
+            Custom Furniture Blueprint
           </h1>
-          <p className="text-neutral-300 font-sans text-xs sm:text-sm font-light tracking-wider max-w-xl mx-auto leading-relaxed">
-            Co-design unique layouts. Tailor dimensions, timber grains, or fabrics to harmonize with your high-end interior concepts.
-          </p>
-          <div className="w-12 h-[1px] bg-white/35 mx-auto pt-4" />
+          <div className="w-12 h-[1px] bg-white/40 mx-auto mt-4" />
         </div>
       </section>
 
-      {/* 2. Editorial Description */}
-      <section className="py-16 md:py-20 max-w-7xl mx-auto px-6 md:px-12">
-        <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-16 items-center">
-          <motion.div {...fadeInUp} className="lg:col-span-5 relative aspect-square bg-neutral-100 overflow-hidden shadow-sm">
-            <Image
-              src="https://images.unsplash.com/photo-1616046229478-9901c5536a45?q=80&w=1000"
-              alt="Artisanal drawing concept"
-              fill
-              sizes="(max-width: 1024px) 100vw, 40vw"
-              className="object-cover"
-            />
-          </motion.div>
-
-          <motion.div {...fadeInUp} className="lg:col-span-7 space-y-8">
-            <span className="text-[10px] tracking-[0.3em] uppercase text-neutral-400 font-sans font-medium block">
-              The Bespoke Experience
-            </span>
-            <h2 className="font-serif text-3xl md:text-5xl font-light tracking-wide text-neutral-900 leading-tight">
-              Crafting unique pieces that tell your home's story.
-            </h2>
-            <div className="h-[1px] bg-neutral-100 w-full" />
-             <p className="text-neutral-500 font-sans text-sm md:text-base font-light leading-relaxed">
-               Standard retail sizes rarely suit architecturally distinct homes. We operate our dedicated made-to-order manufacturing workshop in Pattambi, Kerala, offering complete design flexibility. You can modify any of our signature models or request custom fabrication of entirely new solid wood designs from your own drawings and sketches.
-             </p>
-             <p className="text-neutral-500 font-sans text-sm md:text-base font-light leading-relaxed">
-               Whether configuring a custom size sectional sofa, a solid teak wood dining table, custom cabinets, or bespoke bedroom wardrobes, our master carpenters handle every joint and finish with absolute precision.
-             </p>
-            <div className="pt-4">
-              <a
-                href={whatsappUrl}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="inline-flex items-center justify-center space-x-3 bg-black text-white hover:bg-neutral-900 text-xs tracking-[0.2em] uppercase py-4.5 px-8 transition-colors font-light shadow-md"
-              >
-                <Send size={14} className="animate-pulse" />
-                <span>Enquire on WhatsApp</span>
-              </a>
-            </div>
-          </motion.div>
+      {/* 2. Process Section */}
+      <section className="py-12 sm:py-20 max-w-7xl mx-auto px-4 sm:px-6 md:px-12 border-b border-neutral-100">
+        <div className="text-center max-w-2xl mx-auto mb-10 space-y-2">
+          <span className="text-[9px] sm:text-[10px] tracking-[0.3em] uppercase text-neutral-400 font-sans font-semibold block">
+            The Bespoke Journey
+          </span>
+          <h2 className="font-serif text-2xl sm:text-4xl font-light tracking-wide text-neutral-900">
+            How Custom Sizing Works
+          </h2>
         </div>
-      </section>
 
-      {/* 3. The Design Flow Timeline */}
-      <section className="py-16 bg-brand-grey">
-        <div className="max-w-7xl mx-auto px-6 md:px-12">
-          <motion.div {...fadeInUp} className="text-center max-w-2xl mx-auto mb-10 space-y-3">
-            <span className="text-[10px] tracking-[0.3em] uppercase text-neutral-400 font-sans font-medium block">
-              Methodology
-            </span>
-            <h2 className="font-serif text-3xl md:text-4xl font-light tracking-wide text-neutral-900">
-              The Custom Crafting Process
-            </h2>
-            <p className="text-neutral-500 text-xs md:text-sm font-sans font-light leading-relaxed">
-              Every custom order travels through a structured design and building cycle to guarantee precision.
-            </p>
-          </motion.div>
-
-          {/* Process steps horizontal/vertical flow */}
-          <div className="grid grid-cols-1 md:grid-cols-5 gap-8">
-            {processSteps.map((step, idx) => (
-              <motion.div
-                key={idx}
-                {...fadeInUp}
-                transition={{ duration: 0.6, delay: idx * 0.1 }}
-                className="bg-white p-8 space-y-6 relative border border-neutral-100 shadow-sm flex flex-col justify-between"
-              >
-                <div className="space-y-6">
-                  {/* Top: Icon & step number */}
-                  <div className="flex items-center justify-between border-b border-neutral-50 pb-4">
-                    <span className="text-black">{step.icon}</span>
-                    <span className="font-serif text-xl tracking-wider text-neutral-300 font-bold">
-                      {step.number}
-                    </span>
-                  </div>
-                  <h3 className="font-serif text-lg tracking-wide text-neutral-900 font-light leading-tight">
-                    {step.title}
-                  </h3>
-                  <p className="text-neutral-500 text-xs font-sans font-light leading-relaxed">
-                    {step.description}
-                  </p>
-                </div>
-              </motion.div>
-            ))}
-          </div>
-        </div>
-      </section>
-
-      {/* 4. Quality Standards banner */}
-      <section className="py-16 md:py-20 bg-white">
-        <div className="max-w-5xl mx-auto px-6 md:px-12 text-center space-y-6">
-          <motion.h2 {...fadeInUp} className="font-serif text-3xl md:text-4xl font-light tracking-wide text-neutral-950">
-            Discuss Your Space Concept
-          </motion.h2>
-          <motion.p
-            {...fadeInUp}
-            transition={{ duration: 0.8, delay: 0.15 }}
-            className="text-neutral-500 font-sans text-xs sm:text-sm md:text-base font-light leading-relaxed max-w-lg mx-auto"
-          >
-            Ready to design the perfect addition to your home space? Share your blueprints or reference images with our consultants directly via WhatsApp.
-          </motion.p>
-          <motion.div
-            {...fadeInUp}
-            transition={{ duration: 0.8, delay: 0.3 }}
-            className="flex flex-col sm:flex-row justify-center gap-4"
-          >
-            <a
-              href={whatsappUrl}
-              target="_blank"
-              rel="noopener noreferrer"
-              className="inline-flex items-center justify-center space-x-3 bg-black text-white hover:bg-neutral-900 text-xs tracking-[0.2em] uppercase py-4 px-8 transition-colors font-light"
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-5 gap-4 sm:gap-6">
+          {processSteps.map((step) => (
+            <div
+              key={step.number}
+              className="p-5 sm:p-6 border border-neutral-100 bg-neutral-50/40 space-y-2 relative"
             >
-              <Send size={12} />
-              <span>Schedule Consultation</span>
-            </a>
-          </motion.div>
+              <span className="font-mono text-xs font-bold text-neutral-400 block">{step.number}</span>
+              <h3 className="font-serif text-base text-neutral-900 font-medium">{step.title}</h3>
+              <p className="text-neutral-500 font-sans text-xs font-light leading-relaxed">
+                {step.description}
+              </p>
+            </div>
+          ))}
         </div>
       </section>
 
-      {/* Showcase Curation Section */}
-      <section className="py-16 border-t border-neutral-100 bg-brand-white">
-        <div className="max-w-7xl mx-auto px-6 md:px-12">
-          <div className="text-center max-w-2xl mx-auto mb-10 space-y-3">
-            <span className="text-[10px] tracking-[0.3em] uppercase text-neutral-400 font-sans font-medium block">
-              Bespoke Portfolio
-            </span>
-            <h2 className="font-serif text-3xl md:text-4xl font-light tracking-wide text-neutral-900">
-              Custom Crafted Solutions
-            </h2>
-            <p className="text-neutral-500 text-xs md:text-sm font-sans font-light">
-              Explore signature custom-designed pieces created for our clients.
-            </p>
-          </div>
+      {/* 3. Interactive Custom Enquiry Form */}
+      <section className="py-12 sm:py-20 max-w-3xl mx-auto px-4 sm:px-6">
+        <div className="text-center mb-8 space-y-2">
+          <span className="text-[9px] sm:text-[10px] tracking-[0.3em] uppercase text-neutral-400 font-sans font-semibold block">
+            Direct Consultation
+          </span>
+          <h2 className="font-serif text-2xl sm:text-3xl font-light text-neutral-900">
+            Submit Your Custom Specifications
+          </h2>
+          <p className="text-neutral-500 font-sans text-xs sm:text-sm font-light">
+            Fill in your preferred dimensions and wood species. Our workshop team will respond with blueprints and pricing.
+          </p>
+        </div>
 
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
-            {products.map((product) => (
-              <ProductCard
-                key={product.id}
-                product={product}
-                onQuickView={(p) => setSelectedProduct(p)}
+        <form onSubmit={handleFormSubmit} className="space-y-4 border border-neutral-200 p-6 sm:p-8 bg-neutral-50/30">
+          <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+            <div className="space-y-1">
+              <label className="text-[10px] uppercase tracking-wider text-neutral-600 font-medium">Your Name</label>
+              <input
+                type="text"
+                required
+                value={formData.name}
+                onChange={(e) => setFormData({ ...formData, name: e.target.value })}
+                placeholder="e.g. Rahul Sharma"
+                className="w-full text-xs font-sans p-3 bg-white border border-neutral-200 focus:outline-none focus:border-black"
               />
-            ))}
+            </div>
+            <div className="space-y-1">
+              <label className="text-[10px] uppercase tracking-wider text-neutral-600 font-medium">Phone / WhatsApp</label>
+              <input
+                type="tel"
+                required
+                value={formData.phone}
+                onChange={(e) => setFormData({ ...formData, phone: e.target.value })}
+                placeholder="e.g. +91 9876543210"
+                className="w-full text-xs font-sans p-3 bg-white border border-neutral-200 focus:outline-none focus:border-black"
+              />
+            </div>
           </div>
-        </div>
+
+          <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+            <div className="space-y-1">
+              <label className="text-[10px] uppercase tracking-wider text-neutral-600 font-medium">Room Space</label>
+              <select
+                value={formData.roomType}
+                onChange={(e) => setFormData({ ...formData, roomType: e.target.value })}
+                className="w-full text-xs font-sans p-3 bg-white border border-neutral-200 focus:outline-none focus:border-black"
+              >
+                <option>Living Room Space</option>
+                <option>Dining Suite</option>
+                <option>Bedroom Sanctuary</option>
+                <option>Entryway / Console</option>
+                <option>Full Home Interior</option>
+              </select>
+            </div>
+            <div className="space-y-1">
+              <label className="text-[10px] uppercase tracking-wider text-neutral-600 font-medium">Timber Species</label>
+              <select
+                value={formData.woodPreference}
+                onChange={(e) => setFormData({ ...formData, woodPreference: e.target.value })}
+                className="w-full text-xs font-sans p-3 bg-white border border-neutral-200 focus:outline-none focus:border-black"
+              >
+                <option>Solid Teakwood</option>
+                <option>Solid Ash Wood</option>
+                <option>Solid Mahogany</option>
+                <option>Woven Cane + Hardwood</option>
+              </select>
+            </div>
+          </div>
+
+          <div className="space-y-1">
+            <label className="text-[10px] uppercase tracking-wider text-neutral-600 font-medium">Target Dimensions (Approx Length × Width × Height in cm or feet)</label>
+            <input
+              type="text"
+              value={formData.dimensions}
+              onChange={(e) => setFormData({ ...formData, dimensions: e.target.value })}
+              placeholder="e.g. 210 cm L × 90 cm D × 80 cm H"
+              className="w-full text-xs font-sans p-3 bg-white border border-neutral-200 focus:outline-none focus:border-black"
+            />
+          </div>
+
+          <div className="space-y-1">
+            <label className="text-[10px] uppercase tracking-wider text-neutral-600 font-medium">Design Notes / Specific Requirements</label>
+            <textarea
+              rows={3}
+              value={formData.notes}
+              onChange={(e) => setFormData({ ...formData, notes: e.target.value })}
+              placeholder="Describe upholstery fabric choice, stain color, or architectural details..."
+              className="w-full text-xs font-sans p-3 bg-white border border-neutral-200 focus:outline-none focus:border-black"
+            />
+          </div>
+
+          <div className="pt-2">
+            <button
+              type="submit"
+              className="w-full bg-black hover:bg-neutral-900 text-white text-xs font-sans tracking-[0.2em] uppercase py-4 font-medium transition-colors flex items-center justify-center gap-2 shadow-xs"
+            >
+              <Send size={13} />
+              <span>Send Blueprint Request via WhatsApp</span>
+            </button>
+          </div>
+        </form>
       </section>
 
-      {/* Quick View Modal */}
+      {/* 4. Signature Bespoke Inspirations */}
+      {products.length > 0 && (
+        <section className="py-12 sm:py-20 bg-white border-t border-neutral-100">
+          <div className="max-w-7xl mx-auto px-4 sm:px-6 md:px-12">
+            <div className="text-center max-w-2xl mx-auto mb-8 sm:mb-12 space-y-2">
+              <span className="text-[9px] sm:text-[10px] tracking-[0.3em] uppercase text-neutral-400 font-sans font-semibold block">
+                Catalog Basis
+              </span>
+              <h2 className="font-serif text-2xl sm:text-3xl font-light text-neutral-900">
+                Customizable Base Models
+              </h2>
+            </div>
+
+            {/* 2-Column Mobile Grid / 4-Column Desktop */}
+            <div className="grid grid-cols-2 lg:grid-cols-4 gap-3.5 sm:gap-6 md:gap-8">
+              {products.map((p) => (
+                <ProductCard
+                  key={p.id}
+                  product={p}
+                  onQuickView={(prod) => setSelectedProduct(prod)}
+                />
+              ))}
+            </div>
+          </div>
+        </section>
+      )}
+
+      {/* Quick View Overlay */}
       <QuickViewModal
         product={selectedProduct}
         onClose={() => setSelectedProduct(null)}

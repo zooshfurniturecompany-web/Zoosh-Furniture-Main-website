@@ -2,315 +2,246 @@
 
 import Image from "next/image";
 import Link from "next/link";
-import { useState, useEffect, useCallback, Suspense } from "react";
-import { useSearchParams } from "next/navigation";
-import { motion, AnimatePresence } from "framer-motion";
+import { useState, Suspense } from "react";
 import { X, ChevronLeft, ChevronRight, Maximize2 } from "lucide-react";
 
-interface GalleryItem {
+interface GalleryProject {
   id: number;
   title: string;
-  category: "Sofa" | "Dining Table" | "Chairs" | "Bedroom" | "Details";
+  category: string;
   image: string;
   description: string;
-  slug: string;
 }
 
-const galleryItems: GalleryItem[] = [
+const projects: GalleryProject[] = [
   {
     id: 1,
-    title: "Arc Lounge Composition",
-    category: "Chairs",
-    image: "https://images.unsplash.com/photo-1618221195710-dd6b41faaea6?q=80&w=1200",
-    description: "An editorial display of the Arc Lounge Chair nestled in a minimal light-flooded concrete interior.",
-    slug: "arc-lounge-chair",
+    title: "Ajmal Residence",
+    category: "Living Space",
+    image: "/images/catalog/page_14_img_00.webp",
+    description: "Custom modular solid wood sectional sofa with natural linen upholstery and matching centre plinth.",
   },
   {
     id: 2,
-    title: "Sculptural Bouclé Armchair Close Up",
-    category: "Chairs",
-    image: "https://images.unsplash.com/photo-1598300042247-d088f8ab3a91?q=80&w=1200",
-    description: "Capturing the organic contours and woven loops of our signature cream bouclé upholstery.",
-    slug: "sculptural-boucle-armchair",
+    title: "Rajesh Menon Residence",
+    category: "Dining Suite",
+    image: "/images/catalog/page_32_img_00.webp",
+    description: "Solid Teakwood 8-seater dining table with hand-woven radio cane backrest ergonomic chairs.",
   },
   {
     id: 3,
-    title: "Linear Dining Arrangement",
-    category: "Dining Table",
-    image: "https://images.unsplash.com/photo-1604014237800-1c9102c219da?q=80&w=1200",
-    description: "The Linear Oak Dining Table paired with minimalist concrete benches under muted gallery lighting.",
-    slug: "linear-oak-dining-table",
+    title: "Akhil Residence",
+    category: "Lounge Suite",
+    image: "/images/catalog/page_29_img_00.webp",
+    description: "Sculptural low-slung armchairs with solid Ash wood structure and tailored textured weave.",
   },
   {
     id: 4,
-    title: "Plinth Bedroom Aesthetics",
-    category: "Bedroom",
-    image: "https://images.unsplash.com/photo-1505693416388-ac5ce068fe85?q=80&w=1200",
-    description: "Low-profile ebonized bed frame and integrated floating nightstand showcase minimalist sleeping solutions.",
-    slug: "plinth-oak-bed-frame",
+    title: "Sufaina Residence",
+    category: "Dining & Benches",
+    image: "/images/catalog/page_44_img_00.webp",
+    description: "Monolithic solid wood dining table with chamfered edge profiling and matching solid bench.",
   },
   {
     id: 5,
-    title: "Travertine Raw Texture",
-    category: "Details",
-    image: "https://images.unsplash.com/photo-1600585154340-be6161a56a0c?q=80&w=1200",
-    description: "Close-up detailing highlighting the porous cavities and honed surface of Italian Travertine stone.",
-    slug: "travertine-bench",
+    title: "Sanjeevan Residence",
+    category: "Bedroom Sanctuary",
+    image: "/images/catalog/page_35_img_00.webp",
+    description: "Solid Teakwood platform cot with woven natural cane headboard and floating bedside units.",
   },
   {
     id: 6,
-    title: "Monolith Media Concept",
-    category: "Details",
-    image: "https://images.unsplash.com/photo-1616486338812-3dadae4b4ace?q=80&w=1200",
-    description: "The vertical fluting of the Monolith Credenza paired with neutral travertine ceramics.",
-    slug: "monolith-credenza",
+    title: "Brown Barrel Cafe",
+    category: "Commercial Fitout",
+    image: "/images/catalog/page_51_img_01.webp",
+    description: "Heavy-duty commercial solid hardwood table tops, fluted counter stools, and lounge benches.",
   },
   {
     id: 7,
-    title: "Nouveau L-Shape Setup",
-    category: "Sofa",
-    image: "/images/WhatsApp Image 2026-01-28 at 10.24.23 (1).jpeg",
-    description: "A wide modular layout of the Nouveau Sofa in raw Italian linen, styled with organic wool throws.",
-    slug: "nouveau-modular-sofa",
+    title: "Precision Wood Joinery",
+    category: "Workshop Craft",
+    image: "/images/catalog/page_06_img_01.webp",
+    description: "Traditional mortise and tenon jointing executed by master carpenters at our Pattambi factory.",
   },
   {
     id: 8,
-    title: "Linear Wood Joints",
-    category: "Details",
-    image: "https://images.unsplash.com/photo-1586023492125-27b2c045efd7?q=80&w=1200",
-    description: "Showcasing structural mortise & tenon joints, engineered for generations of heavy use.",
-    slug: "linear-oak-dining-table",
+    title: "Timber Seasoning",
+    category: "Material Curation",
+    image: "/images/catalog/page_02_img_01.webp",
+    description: "Kiln-dried solid Teakwood seasoned to optimal moisture levels to ensure generational stability.",
   },
   {
     id: 9,
-    title: "Cohesive Bedside Lighting",
-    category: "Bedroom",
-    image: "https://images.unsplash.com/photo-1540518614846-7eded433c457?q=80&w=1200",
-    description: "Integrated oak shelves with warm recessed LED elements for a serene evening ambience.",
-    slug: "plinth-oak-bed-frame",
+    title: "Custom Dining Fabrication",
+    category: "Workshop Craft",
+    image: "/images/catalog/page_10_img_00.webp",
+    description: "Hand-sanding and matte melamine sealer application on custom bespoke table commission.",
   },
 ];
 
-const categories = ["All", "Sofa", "Dining Table", "Chairs", "Bedroom", "Details"];
-
 function GalleryContent() {
-  const searchParams = useSearchParams();
   const [activeCategory, setActiveCategory] = useState("All");
   const [lightboxIdx, setLightboxIdx] = useState<number | null>(null);
 
-  // Sync category from URL parameter on load or change
-  useEffect(() => {
-    const categoryParam = searchParams.get("category");
-    if (categoryParam) {
-      // Find case-insensitive or exact match in the categories list
-      const matched = categories.find(
-        (c) => c.toLowerCase() === categoryParam.toLowerCase()
-      );
-      if (matched) {
-        setActiveCategory(matched);
-      }
-    } else {
-      setActiveCategory("All");
-    }
-  }, [searchParams]);
+  const categories = ["All", "Living Space", "Dining Suite", "Bedroom Sanctuary", "Workshop Craft"];
 
-  // Filter items
-  const filteredItems = galleryItems.filter(
-    (item) => activeCategory === "All" || item.category === activeCategory
+  const filtered = projects.filter(
+    (p) => activeCategory === "All" || p.category === activeCategory
   );
-
-  // Keyboard navigation inside Lightbox
-  const handleKeyDown = useCallback(
-    (e: KeyboardEvent) => {
-      if (lightboxIdx === null) return;
-      if (e.key === "Escape") setLightboxIdx(null);
-      if (e.key === "ArrowRight") {
-        setLightboxIdx((prev) => (prev !== null && prev < filteredItems.length - 1 ? prev + 1 : 0));
-      }
-      if (e.key === "ArrowLeft") {
-        setLightboxIdx((prev) => (prev !== null && prev > 0 ? prev - 1 : filteredItems.length - 1));
-      }
-    },
-    [lightboxIdx, filteredItems]
-  );
-
-  useEffect(() => {
-    window.addEventListener("keydown", handleKeyDown);
-    return () => window.removeEventListener("keydown", handleKeyDown);
-  }, [handleKeyDown]);
-
-  const handlePrev = (e: React.MouseEvent) => {
-    e.stopPropagation();
-    setLightboxIdx((prev) => (prev !== null && prev > 0 ? prev - 1 : filteredItems.length - 1));
-  };
-
-  const handleNext = (e: React.MouseEvent) => {
-    e.stopPropagation();
-    setLightboxIdx((prev) => (prev !== null && prev < filteredItems.length - 1 ? prev + 1 : 0));
-  };
 
   return (
-    <div className="pt-8 pb-16 bg-white min-h-screen">
-      <div className="max-w-7xl mx-auto px-6 md:px-12">
-        {/* Header Title */}
-        <div className="text-center max-w-2xl mx-auto mb-10 space-y-3">
-          <span className="text-[10px] tracking-[0.3em] uppercase text-neutral-400 font-sans font-medium block">
-            Visual Portfolio
+    <div className="py-8 sm:py-16 bg-white min-h-screen">
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 md:px-12">
+        
+        {/* Header */}
+        <div className="text-center max-w-2xl mx-auto mb-8 sm:mb-12 space-y-2">
+          <span className="text-[9px] sm:text-[10px] tracking-[0.3em] uppercase text-neutral-400 font-sans font-semibold block">
+            Bespoke Portfolio
           </span>
-          <h1 className="font-serif text-3xl md:text-5xl font-light tracking-wide text-neutral-900">
-            Design Portfolios
+          <h1 className="font-serif text-2xl sm:text-4xl md:text-5xl font-light tracking-wide text-neutral-900">
+            Completed Projects
           </h1>
-          <p className="text-neutral-500 text-xs md:text-sm font-sans font-light leading-relaxed">
-            A visual showcase of ZOOSH custom layouts, material finishes, and interior styling projects.
+          <p className="text-neutral-500 text-xs sm:text-sm font-sans font-light leading-relaxed">
+            A curated visual archive of bespoke furniture installations handcrafted at our Pattambi workshop for homes across India.
           </p>
         </div>
 
-        {/* Filter bar */}
-        <div className="flex items-center justify-center overflow-x-auto no-scrollbar space-x-2 md:space-x-3 pb-4 mb-8 border-b border-neutral-100">
-          {categories.map((cat) => (
-            <button
-              key={cat}
-              onClick={() => {
-                setActiveCategory(cat);
-                setLightboxIdx(null); // Reset lightbox on category change
-              }}
-              className={`text-[10px] tracking-widest uppercase py-2.5 px-5 transition-all duration-300 font-light border whitespace-nowrap ${
-                activeCategory === cat
-                  ? "bg-black text-white border-black"
-                  : "bg-transparent text-neutral-500 border-neutral-100 hover:text-black hover:border-black"
-              }`}
-            >
-              {cat}
-            </button>
-          ))}
+        {/* Category Filters (Mobile Edge Bleed) */}
+        <div className="flex items-center overflow-x-auto no-scrollbar py-1 -mx-4 px-4 sm:mx-0 sm:px-0 space-x-1.5 scroll-smooth mb-8">
+          {categories.map((cat) => {
+            const isActive = activeCategory === cat;
+            return (
+              <button
+                key={cat}
+                type="button"
+                onClick={() => setActiveCategory(cat)}
+                className={`text-[9px] sm:text-[10px] tracking-wider uppercase py-2 px-3.5 sm:px-4.5 transition-all whitespace-nowrap font-medium border ${
+                  isActive
+                    ? "bg-black text-white border-black"
+                    : "bg-transparent text-neutral-600 border-neutral-200 hover:text-black hover:border-black"
+                }`}
+              >
+                {cat}
+              </button>
+            );
+          })}
         </div>
 
-        {/* Masonry CSS Column layout */}
-        <div className="columns-1 sm:columns-2 md:columns-3 gap-6 space-y-6">
-          {filteredItems.map((item, idx) => (
+        {/* 2-Column Mobile Grid / 3-Column Desktop Grid */}
+        <div className="grid grid-cols-2 md:grid-cols-3 gap-3.5 sm:gap-6 md:gap-8">
+          {filtered.map((item, idx) => (
             <div
               key={item.id}
-              className="break-inside-avoid relative overflow-hidden group bg-neutral-50 shadow-sm border border-neutral-100/50 flex flex-col cursor-pointer"
+              className="group cursor-pointer flex flex-col space-y-2"
+              onClick={() => setLightboxIdx(idx)}
             >
-              {/* Wrapping card in Next Link */}
-              <Link href={`/products/${item.slug}`} className="relative w-full aspect-auto h-auto block">
-                {/* Visual Image */}
-                <img
+              <div className="relative aspect-square overflow-hidden bg-neutral-100 border border-neutral-100">
+                <Image
                   src={item.image}
                   alt={item.title}
-                  className="w-full h-auto object-cover transition-transform duration-1000 ease-out group-hover:scale-102"
-                  loading="lazy"
+                  fill
+                  sizes="(max-width: 640px) 50vw, (max-width: 1024px) 33vw, 30vw"
+                  className="object-cover object-center group-hover:scale-105 transition-transform duration-700 ease-out"
                 />
+                <div className="absolute inset-0 bg-black/10 group-hover:bg-black/30 transition-colors" />
                 
-                {/* Title Slide-up Info Panel */}
-                <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-black/20 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex flex-col justify-end p-6">
-                  <span className="text-[9px] tracking-[0.2em] uppercase text-neutral-300 font-sans block mb-1">
-                    {item.category}
-                  </span>
-                  <h3 className="font-serif text-lg text-white tracking-wide">
-                    {item.title}
-                  </h3>
-                  <p className="text-neutral-200 text-[10px] font-sans font-light leading-relaxed line-clamp-2 mt-1 mb-6">
-                    {item.description}
-                  </p>
-                  
-                  <span className="inline-flex items-center text-[9px] tracking-[0.2em] uppercase text-white font-light border-b border-white/20 pb-0.5 max-w-max hover:border-white transition-all">
-                    View Product Details &rarr;
-                  </span>
+                <div className="absolute top-2.5 right-2.5 w-7 h-7 bg-white/90 backdrop-blur-xs flex items-center justify-center rounded-full opacity-0 group-hover:opacity-100 transition-opacity">
+                  <Maximize2 size={12} />
                 </div>
-              </Link>
+              </div>
 
-              {/* Small "View Image" Lightbox Icon Button */}
-              <button
-                onClick={(e) => {
-                  e.preventDefault();
-                  e.stopPropagation();
-                  setLightboxIdx(idx);
-                }}
-                className="absolute top-4 right-4 z-10 bg-white/80 hover:bg-black hover:text-white backdrop-blur-sm p-2 transition-all duration-300 text-neutral-700 shadow-sm opacity-0 group-hover:opacity-100"
-                title="View Image Lightbox"
-              >
-                <Maximize2 size={12} />
-              </button>
+              <div className="space-y-0.5 px-0.5">
+                <span className="text-[8px] sm:text-[9px] tracking-wider uppercase text-neutral-400 font-sans block">
+                  {item.category}
+                </span>
+                <h3 className="font-serif text-xs sm:text-sm md:text-base text-neutral-900 group-hover:text-neutral-600 transition-colors leading-tight">
+                  {item.title}
+                </h3>
+              </div>
             </div>
           ))}
         </div>
+
+        {/* Custom Commission Banner */}
+        <div className="mt-16 bg-neutral-50 p-8 sm:p-12 text-center border border-neutral-100 space-y-4">
+          <h2 className="font-serif text-xl sm:text-3xl text-neutral-900 font-light">
+            Commission a Design for Your Home
+          </h2>
+          <p className="text-neutral-500 font-sans text-xs sm:text-sm font-light max-w-lg mx-auto leading-relaxed">
+            Have an architectural floor plan or sketch? Our master carpenters will fabricate bespoke solid wood pieces matching your exact proportions.
+          </p>
+          <div className="pt-2">
+            <Link
+              href="/custom"
+              className="inline-flex items-center justify-center bg-black hover:bg-neutral-900 text-white text-xs tracking-[0.2em] uppercase py-3.5 px-8 font-medium transition-colors"
+            >
+              Start Custom Blueprint
+            </Link>
+          </div>
+        </div>
+
       </div>
 
       {/* Lightbox Modal */}
-      <AnimatePresence>
-        {lightboxIdx !== null && (
-          <div
-            className="fixed inset-0 z-50 flex items-center justify-center bg-black/90 backdrop-blur-md p-4 md:p-12 select-none"
+      {lightboxIdx !== null && (
+        <div
+          className="fixed inset-0 z-[100] flex items-center justify-center bg-black/95 backdrop-blur-md select-none p-4"
+          onClick={() => setLightboxIdx(null)}
+        >
+          <button
+            type="button"
             onClick={() => setLightboxIdx(null)}
+            className="absolute top-5 right-5 text-white/80 hover:text-white p-3 z-10 bg-white/10 rounded-full"
+            aria-label="Close"
           >
-            {/* Close button */}
-            <button
-              onClick={() => setLightboxIdx(null)}
-              className="absolute top-6 right-6 text-white/70 hover:text-white transition-colors p-2 z-55 bg-black/40 rounded-full"
-              aria-label="Close"
-            >
-              <X size={24} />
-            </button>
+            <X size={20} />
+          </button>
 
-            {/* Left selector */}
-            <button
-              onClick={handlePrev}
-              className="absolute left-6 text-white/50 hover:text-white transition-colors p-3 bg-black/40 rounded-full z-55 hidden sm:block"
-              aria-label="Previous"
-            >
-              <ChevronLeft size={24} />
-            </button>
+          <button
+            type="button"
+            onClick={(e) => {
+              e.stopPropagation();
+              setLightboxIdx((prev) => (prev !== null && prev > 0 ? prev - 1 : filtered.length - 1));
+            }}
+            className="absolute left-3 sm:left-8 text-white/70 hover:text-white p-3 bg-white/10 rounded-full z-10"
+            aria-label="Previous"
+          >
+            <ChevronLeft size={24} />
+          </button>
 
-            {/* Main view container */}
-            <div
-              className="relative max-w-4xl max-h-[85vh] flex flex-col items-center justify-center space-y-4"
-              onClick={(e) => e.stopPropagation()}
-            >
-              {/* Active Image */}
-              <div className="relative max-h-[70vh] aspect-auto flex justify-center">
-                <img
-                  src={filteredItems[lightboxIdx].image}
-                  alt={filteredItems[lightboxIdx].title}
-                  className="max-w-full max-h-[70vh] object-contain border border-neutral-800 shadow-2xl"
-                />
-              </div>
-
-              {/* Text metadata */}
-              <div className="text-center text-white max-w-2xl px-4 space-y-1">
-                <span className="text-[9px] tracking-[0.25em] uppercase text-neutral-400 font-sans block">
-                  {filteredItems[lightboxIdx].category}
-                </span>
-                <h2 className="font-serif text-xl md:text-2xl font-light tracking-wide">
-                  {filteredItems[lightboxIdx].title}
-                </h2>
-                <p className="text-neutral-400 text-xs font-sans font-light max-w-md mx-auto leading-relaxed mt-2">
-                  {filteredItems[lightboxIdx].description}
-                </p>
-              </div>
+          <div
+            className="relative w-full max-w-4xl max-h-[85vh] flex flex-col items-center justify-center"
+            onClick={(e) => e.stopPropagation()}
+          >
+            <div className="relative aspect-square max-h-[65vh] w-full bg-neutral-900 mb-3">
+              <Image
+                src={filtered[lightboxIdx].image}
+                alt={filtered[lightboxIdx].title}
+                fill
+                className="object-contain"
+              />
             </div>
-
-            {/* Right selector */}
-            <button
-              onClick={handleNext}
-              className="absolute right-6 text-white/50 hover:text-white transition-colors p-3 bg-black/40 rounded-full z-55 hidden sm:block"
-              aria-label="Next"
-            >
-              <ChevronRight size={24} />
-            </button>
-
-            {/* Touch swiping triggers for mobile */}
-            <div className="absolute bottom-6 flex justify-center space-x-6 sm:hidden text-white/70 text-[10px] tracking-[0.2em] uppercase">
-              <button onClick={handlePrev} className="px-4 py-2 bg-neutral-900 border border-neutral-800">
-                Prev
-              </button>
-              <button onClick={handleNext} className="px-4 py-2 bg-neutral-900 border border-neutral-800">
-                Next
-              </button>
+            <div className="text-center text-white space-y-1 max-w-lg">
+              <h3 className="font-serif text-lg">{filtered[lightboxIdx].title}</h3>
+              <p className="text-xs text-neutral-400 font-sans font-light">
+                {filtered[lightboxIdx].description}
+              </p>
             </div>
           </div>
-        )}
-      </AnimatePresence>
+
+          <button
+            type="button"
+            onClick={(e) => {
+              e.stopPropagation();
+              setLightboxIdx((prev) => (prev !== null && prev < filtered.length - 1 ? prev + 1 : 0));
+            }}
+            className="absolute right-3 sm:right-8 text-white/70 hover:text-white p-3 bg-white/10 rounded-full z-10"
+            aria-label="Next"
+          >
+            <ChevronRight size={24} />
+          </button>
+        </div>
+      )}
     </div>
   );
 }
@@ -319,10 +250,8 @@ export default function GalleryPage() {
   return (
     <Suspense
       fallback={
-        <div className="pt-28 pb-24 bg-white min-h-screen flex items-center justify-center">
-          <p className="text-neutral-400 font-light font-sans text-sm animate-pulse">
-            Loading gallery...
-          </p>
+        <div className="min-h-screen flex items-center justify-center">
+          <div className="w-8 h-8 border-t-2 border-black rounded-full animate-spin" />
         </div>
       }
     >

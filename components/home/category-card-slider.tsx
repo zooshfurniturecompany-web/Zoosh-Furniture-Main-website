@@ -15,13 +15,13 @@ interface CategorySpace {
 const spaces: CategorySpace[] = [
   {
     title: "Living Space",
-    subtitle: "Modular Sofas, Lounges & Coffee Tables",
+    subtitle: "Modular Sofas, Lounges & Centre Tables",
     slug: "living",
     image: "/images/catalog/page_14_img_00.webp",
   },
   {
     title: "Dining Room",
-    subtitle: "Solid Hardwood Tables & Ergonomic Chairs",
+    subtitle: "Solid Hardwood Tables & Dining Chairs",
     slug: "dining",
     image: "/images/catalog/page_21_img_00.webp",
   },
@@ -38,7 +38,7 @@ const spaces: CategorySpace[] = [
     image: "/images/catalog/page_15_img_00.webp",
   },
   {
-    title: "Entryway & Credenzas",
+    title: "Entryway & Consoles",
     subtitle: "Monolithic Consoles & Entry Benches",
     slug: "entryway",
     image: "/images/catalog/page_27_img_00.webp",
@@ -55,25 +55,25 @@ export default function CategoryCardSlider() {
   };
 
   return (
-    <section className="py-16 sm:py-24 bg-white border-b border-neutral-100 overflow-hidden">
-      <div className="max-w-7xl mx-auto px-6 md:px-12">
+    <section className="py-12 sm:py-20 bg-white border-b border-neutral-100 overflow-hidden">
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 md:px-12">
         
-        {/* Section Header with Arrows */}
-        <div className="flex flex-col sm:flex-row sm:items-end justify-between mb-8 sm:mb-12 gap-4">
+        {/* Section Header with Desktop Navigation Arrows */}
+        <div className="flex flex-col sm:flex-row sm:items-end justify-between mb-6 sm:mb-10 gap-3">
           <div>
-            <span className="text-[10px] tracking-[0.3em] uppercase text-neutral-400 font-sans block mb-2 font-medium">
-              Shop By Room
+            <span className="text-[9px] sm:text-[10px] tracking-[0.3em] uppercase text-neutral-400 font-sans block mb-1.5 font-semibold">
+              Curated Spaces
             </span>
             <h2 className="font-serif text-2xl sm:text-3xl md:text-4xl font-light tracking-wide text-neutral-900">
-              Curated Living Spaces
+              Shop by Room
             </h2>
           </div>
 
-          {/* Navigation Arrows */}
-          <div className="hidden sm:flex items-center space-x-3">
+          {/* Desktop Navigation Arrows */}
+          <div className="hidden sm:flex items-center space-x-2">
             <button
               type="button"
-              onClick={() => handleScroll(-340)}
+              onClick={() => handleScroll(-320)}
               className="w-10 h-10 rounded-full border border-neutral-200 flex items-center justify-center text-neutral-800 hover:bg-black hover:text-white hover:border-black transition-colors"
               aria-label="Previous space"
             >
@@ -81,7 +81,7 @@ export default function CategoryCardSlider() {
             </button>
             <button
               type="button"
-              onClick={() => handleScroll(340)}
+              onClick={() => handleScroll(320)}
               className="w-10 h-10 rounded-full border border-neutral-200 flex items-center justify-center text-neutral-800 hover:bg-black hover:text-white hover:border-black transition-colors"
               aria-label="Next space"
             >
@@ -90,37 +90,37 @@ export default function CategoryCardSlider() {
           </div>
         </div>
 
-        {/* Category Image Cards Horizontal Slider */}
+        {/* Category Image Cards Horizontal Slider (Mobile Edge Bleed) */}
         <div
           ref={scrollContainerRef}
-          className="flex gap-4 sm:gap-6 overflow-x-auto pb-4 scroll-smooth no-scrollbar"
+          className="flex gap-3.5 sm:gap-6 overflow-x-auto pb-4 pt-1 -mx-4 px-4 sm:-mx-6 sm:px-6 md:mx-0 md:px-0 scroll-smooth no-scrollbar"
           style={{ WebkitOverflowScrolling: "touch", scrollSnapType: "x mandatory" }}
         >
           {spaces.map((space) => (
             <div
               key={space.title}
-              className="flex-shrink-0 w-[260px] sm:w-[320px] group cursor-pointer"
+              className="flex-shrink-0 w-[220px] sm:w-[280px] md:w-[310px] group cursor-pointer"
               style={{ scrollSnapAlign: "start" }}
             >
               <Link href={`/${space.slug}`} className="block">
                 {/* Card Image */}
-                <div className="relative aspect-square overflow-hidden bg-neutral-100 mb-4 border border-neutral-100">
+                <div className="relative aspect-square overflow-hidden bg-neutral-100 border border-neutral-100">
                   <Image
                     src={space.image}
                     alt={space.title}
                     fill
-                    sizes="(max-width: 640px) 260px, 320px"
+                    sizes="(max-width: 640px) 220px, 310px"
                     className="object-cover object-center group-hover:scale-105 transition-transform duration-700 ease-out"
                   />
-                  <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-black/10 to-transparent opacity-70 group-hover:opacity-50 transition-opacity" />
+                  <div className="absolute inset-0 bg-gradient-to-t from-black/75 via-black/20 to-transparent opacity-80 group-hover:opacity-60 transition-opacity" />
 
                   {/* Floating Card Title on Image */}
-                  <div className="absolute bottom-4 left-4 right-4 text-white">
-                    <h3 className="font-serif text-lg sm:text-xl font-medium tracking-wide">
+                  <div className="absolute bottom-3.5 left-3.5 right-3.5 sm:bottom-4 sm:left-4 sm:right-4 text-white">
+                    <h3 className="font-serif text-base sm:text-lg md:text-xl font-medium tracking-wide leading-tight">
                       {space.title}
                     </h3>
-                    <span className="text-[10px] tracking-[0.2em] uppercase text-white/80 font-sans mt-0.5 block">
-                      {space.subtitle} &rarr;
+                    <span className="text-[9px] sm:text-[10px] tracking-[0.2em] uppercase text-white/80 font-sans mt-1 block truncate">
+                      {space.subtitle}
                     </span>
                   </div>
                 </div>

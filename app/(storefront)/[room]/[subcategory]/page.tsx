@@ -3,13 +3,11 @@
 import Link from "next/link";
 import { useState, use } from "react";
 import { notFound } from "next/navigation";
-import { ChevronRight, Filter, SlidersHorizontal, ArrowUpDown, X, Check } from "lucide-react";
+import { ChevronRight, SlidersHorizontal, ArrowUpDown, X, Check } from "lucide-react";
 import ProductCard from "@/components/product/product-card";
 import QuickViewModal from "@/components/product/quick-view-modal";
-import Button from "@/components/ui/button";
 import { Product, useProducts, getRoomAndSubcategory } from "@/hooks/use-products";
 
-// Human-readable labels for slugs
 const roomLabels: Record<string, string> = {
   living: "Living",
   dining: "Dining",
@@ -57,7 +55,6 @@ export default function SubcategoryPage({ params }: SubcategoryPageProps) {
   const [sortModalOpen, setSortModalOpen] = useState(false);
   const [filterModalOpen, setFilterModalOpen] = useState(false);
 
-  // Get live catalog products for this subcategory from CMS
   const allProducts = useProducts();
   const rawProducts = allProducts.filter((p) => {
     const mapped = getRoomAndSubcategory(p.category);
@@ -66,7 +63,7 @@ export default function SubcategoryPage({ params }: SubcategoryPageProps) {
 
   const WOOD_FILTERS = ["Teak Wood", "Ash Wood", "Mahogany Wood"];
 
-  // Filter products by selected primary wood species
+  // Filter products
   const filteredProducts = rawProducts.filter((product) => {
     if (materialFilter === "All") return true;
     const mat = (product.material || "").toLowerCase();
@@ -107,252 +104,119 @@ export default function SubcategoryPage({ params }: SubcategoryPageProps) {
   });
 
   return (
-    <div className="pt-4 sm:pt-8 pb-16 bg-white min-h-screen">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 md:px-12">
-        
-        {/* Breadcrumb Navigation */}
-        <div className="flex items-center space-x-2 text-[9px] sm:text-[10px] tracking-widest uppercase text-neutral-400 mb-4 sm:mb-8 font-sans font-medium">
-          <Link href="/" className="hover:text-black transition-colors">
-            Home
-          </Link>
-          <ChevronRight size={10} />
-          <Link href={`/${roomSlug}`} className="hover:text-black transition-colors">
-            {roomName}
-          </Link>
-          <ChevronRight size={10} />
-          <span className="text-neutral-800">{subcategoryName}</span>
-        </div>
-
-        {/* Section Header */}
-        <div className="mb-4 sm:mb-8 space-y-1 sm:space-y-2">
-          <span className="text-[9px] sm:text-[10px] tracking-[0.3em] uppercase text-neutral-400 font-sans font-medium block">
-            {roomName} Collection
-          </span>
-          <h1 className="font-serif text-2xl sm:text-3xl md:text-4xl font-light tracking-wide text-neutral-900 leading-tight">
-            {subcategoryName}
-          </h1>
-          <p className="text-neutral-500 font-sans text-xs sm:text-sm font-light max-w-xl">
-            Custom made-to-order {subcategoryName.toLowerCase()} crafted directly in our Pattambi factory from solid wood and cane weaves.
-          </p>
-        </div>
-
-        {/* Mobile Sort & Filter Bar (DTALEMODERN Style) */}
-        <div className="grid grid-cols-2 border-t border-b border-neutral-200 divide-x divide-neutral-200 mb-6 sm:hidden">
-          <button
-            onClick={() => setSortModalOpen(true)}
-            className="flex items-center justify-center gap-2 py-3 text-xs tracking-wider uppercase font-sans text-neutral-800 font-medium active:bg-neutral-100"
-          >
-            <ArrowUpDown size={14} />
-            <span>Sort</span>
-          </button>
-          <button
-            onClick={() => setFilterModalOpen(true)}
-            className="flex items-center justify-center gap-2 py-3 text-xs tracking-wider uppercase font-sans text-neutral-800 font-medium active:bg-neutral-100"
-          >
-            <SlidersHorizontal size={14} />
-            <span>Filter</span>
-          </button>
-        </div>
-
-        {/* Main Workspace with Dtale Modern Left Sidebar & 3-Columns Grid */}
-        <div className="flex flex-col lg:flex-row gap-8 lg:gap-12 items-start">
+    <div className="bg-white min-h-screen">
+      
+      {/* Subcategory Header & Breadcrumb */}
+      <div className="border-b border-neutral-100 bg-neutral-50/40 py-6 sm:py-10">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 md:px-12 space-y-2.5">
           
-          {/* Desktop Left Filter Sidebar (Dtale Modern Style) */}
-          <aside className="hidden lg:block w-64 shrink-0 space-y-6 pr-6 border-r border-neutral-100">
-            <div className="flex items-center justify-between pb-3 border-b border-neutral-100">
-              <h3 className="font-sans text-xs font-semibold uppercase tracking-wider text-neutral-900">
-                Browse by
-              </h3>
-              {(materialFilter !== "All" || sortOption !== "Featured") && (
-                <button
-                  onClick={() => {
-                    setMaterialFilter("All");
-                    setSortOption("Featured");
-                  }}
-                  className="text-[10px] text-neutral-400 hover:text-black uppercase tracking-wider font-medium transition-colors"
-                >
-                  Clear All
-                </button>
-              )}
-            </div>
-
-            {/* Product Type / Subcategories */}
-            <div className="space-y-3">
-              <h4 className="font-sans text-xs font-semibold text-neutral-900 tracking-wide">
-                Product Type
-              </h4>
-              <div className="space-y-2 text-xs font-sans">
-                <Link
-                  href={`/${roomSlug}`}
-                  className="flex items-center justify-between py-1 text-neutral-600 hover:text-black transition-colors font-light"
-                >
-                  <span>All {roomName}</span>
-                </Link>
-                {Object.entries(subcategoryLabels)
-                  .filter(([slug]) => {
-                    // Match subcategories belonging to this room
-                    const sample = allProducts.find(p => getRoomAndSubcategory(p.category).subcategory === slug && getRoomAndSubcategory(p.category).room === roomSlug);
-                    return sample !== undefined || slug === subcategorySlug;
-                  })
-                  .map(([slug, name]) => {
-                    const isActive = slug === subcategorySlug;
-                    const count = allProducts.filter(p => {
-                      const m = getRoomAndSubcategory(p.category);
-                      return m.room === roomSlug && m.subcategory === slug;
-                    }).length;
-                    return (
-                      <Link
-                        key={slug}
-                        href={`/${roomSlug}/${slug}`}
-                        className={`flex items-center justify-between py-1 transition-colors ${
-                          isActive ? "text-black font-semibold" : "text-neutral-600 hover:text-black font-light"
-                        }`}
-                      >
-                        <span>{name}</span>
-                        <span className="text-neutral-400 text-[10px]">({count})</span>
-                      </Link>
-                    );
-                  })}
-              </div>
-            </div>
-
-            {/* Wood / Material Filters */}
-            <div className="space-y-3 pt-5 border-t border-neutral-100">
-              <h4 className="font-sans text-xs font-semibold text-neutral-900 tracking-wide">
-                Wood & Material
-              </h4>
-              <div className="space-y-2 text-xs font-sans">
-                <button
-                  onClick={() => setMaterialFilter("All")}
-                  className={`w-full flex items-center justify-between py-1 text-left transition-colors ${
-                    materialFilter === "All" ? "text-black font-semibold" : "text-neutral-600 hover:text-black font-light"
-                  }`}
-                >
-                  <span>All Materials</span>
-                  <span className="text-neutral-400 text-[10px]">({rawProducts.length})</span>
-                </button>
-                {WOOD_FILTERS.map((wood) => {
-                  const count = rawProducts.filter((product) => {
-                    const mat = (product.material || "").toLowerCase();
-                    const w = (product.specs?.woodType || "").toLowerCase();
-                    const desc = (product.description || "").toLowerCase();
-                    const name = (product.name || "").toLowerCase();
-                    const target = wood.toLowerCase().replace(" wood", "");
-                    return mat.includes(target) || w.includes(target) || desc.includes(target) || name.includes(target);
-                  }).length;
-                  return (
-                    <button
-                      key={wood}
-                      onClick={() => setMaterialFilter(wood)}
-                      className={`w-full flex items-center justify-between py-1 text-left transition-colors ${
-                        materialFilter === wood ? "text-black font-semibold" : "text-neutral-600 hover:text-black font-light"
-                      }`}
-                    >
-                      <span>{wood}</span>
-                      <span className="text-neutral-400 text-[10px]">({count})</span>
-                    </button>
-                  );
-                })}
-              </div>
-            </div>
-          </aside>
-
-          {/* Right Product Grid Area */}
-          <div className="flex-1 w-full">
-            {/* Header Bar with Count & Sort (Dtale Modern style) */}
-            <div className="flex items-center justify-between pb-4 mb-6 border-b border-neutral-100">
-              <span className="text-xs text-neutral-500 font-sans font-light">
-                <strong className="text-neutral-900 font-medium">{sortedProducts.length}</strong> {sortedProducts.length === 1 ? "Result" : "Results"}
-              </span>
-
-              <div className="flex items-center space-x-2">
-                <span className="text-[10px] tracking-wider uppercase text-neutral-400 font-sans font-medium">
-                  Sort:
-                </span>
-                <select
-                  value={sortOption}
-                  onChange={(e) => setSortOption(e.target.value)}
-                  className="bg-transparent border border-neutral-200 text-xs py-1.5 px-3 text-neutral-800 font-sans focus:outline-none focus:border-black rounded-xs"
-                >
-                  <option value="Featured">Featured</option>
-                  <option value="Newest">Newest</option>
-                  <option value="Price: Low to High">Price: Low to High</option>
-                  <option value="Price: High to Low">Price: High to Low</option>
-                  <option value="Name: A to Z">Name: A to Z</option>
-                  <option value="Name: Z to A">Name: Z to A</option>
-                </select>
-              </div>
-            </div>
-
-            {/* Products Grid (Dtale Modern 3-Columns Layout) */}
-            {sortedProducts.length > 0 ? (
-              <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 md:gap-8">
-                {sortedProducts.map((product) => (
-                  <ProductCard
-                    key={product.id}
-                    product={product}
-                    onQuickView={(p) => setSelectedProduct(p)}
-                  />
-                ))}
-              </div>
-            ) : (
-              <div className="text-center py-20 space-y-4">
-                <p className="text-neutral-500 font-sans text-sm font-light">
-                  No products found matching the selected filter options.
-                </p>
-                <button
-                  onClick={() => {
-                    setMaterialFilter("All");
-                    setSortOption("Featured");
-                  }}
-                  className="inline-flex items-center text-[10px] tracking-widest uppercase text-black font-semibold border-b border-black pb-0.5 hover:opacity-75 transition-opacity"
-                >
-                  Reset Filters
-                </button>
-              </div>
-            )}
+          <div className="flex items-center space-x-2 text-[9px] sm:text-[10px] tracking-widest uppercase text-neutral-400 font-sans font-medium">
+            <Link href="/" className="hover:text-black transition-colors">Home</Link>
+            <ChevronRight size={10} />
+            <Link href={`/${roomSlug}`} className="hover:text-black transition-colors">{roomName}</Link>
+            <ChevronRight size={10} />
+            <span className="text-neutral-900">{subcategoryName}</span>
           </div>
+
+          <div className="flex flex-col sm:flex-row sm:items-baseline sm:justify-between gap-1">
+            <h1 className="font-serif text-2xl sm:text-3xl md:text-4xl font-light tracking-wide text-neutral-900">
+              {subcategoryName}
+            </h1>
+            <span className="text-xs text-neutral-400 font-sans font-light">
+              {sortedProducts.length} {sortedProducts.length === 1 ? "Creation" : "Creations"}
+            </span>
+          </div>
+
+          <p className="text-neutral-500 font-sans text-xs sm:text-sm font-light max-w-lg">
+            Custom made-to-order {subcategoryName.toLowerCase()} handcrafted in our Pattambi factory workshop.
+          </p>
         </div>
       </div>
 
-      {/* Mobile Sort Sheet */}
-      {sortModalOpen && (
-        <div className="fixed inset-0 z-50 flex items-end justify-center bg-black/50 backdrop-blur-xs sm:hidden">
-          <div className="w-full bg-white rounded-t-2xl p-6 space-y-4 max-h-[80vh] overflow-y-auto">
-            <div className="flex items-center justify-between pb-3 border-b border-neutral-100">
-              <h3 className="font-serif text-lg text-neutral-900 font-medium">Sort By</h3>
-              <button onClick={() => setSortModalOpen(false)} className="p-1">
-                <X size={20} />
+      {/* Main Workspace */}
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 md:px-12 py-6 sm:py-10">
+        
+        {/* Action Bar (Count, Sort, Filter) */}
+        <div className="flex items-center justify-between border-b border-neutral-100 pb-3 mb-6 text-xs font-sans">
+          <span className="text-neutral-500 font-light text-[11px] sm:text-xs">
+            Showing <strong>{sortedProducts.length}</strong> items
+          </span>
+
+          <div className="flex items-center gap-2 sm:gap-3">
+            {/* Filter Trigger */}
+            <button
+              type="button"
+              onClick={() => setFilterModalOpen(true)}
+              className="flex items-center gap-1.5 py-1.5 px-3 border border-neutral-200 text-neutral-800 hover:border-black text-[10px] sm:text-xs uppercase tracking-wider font-medium"
+            >
+              <SlidersHorizontal size={13} />
+              <span>{materialFilter === "All" ? "Filter" : materialFilter}</span>
+            </button>
+
+            {/* Sort Control */}
+            <div className="relative">
+              <button
+                type="button"
+                onClick={() => setSortModalOpen(true)}
+                className="flex sm:hidden items-center gap-1.5 py-1.5 px-3 border border-neutral-200 text-neutral-800 text-[10px] uppercase tracking-wider font-medium"
+              >
+                <ArrowUpDown size={13} />
+                <span>Sort</span>
               </button>
-            </div>
-            <div className="space-y-2">
-              {["Featured", "Newest", "Price: Low to High", "Price: High to Low", "Name: A to Z", "Name: Z to A"].map((option) => (
-                <button
-                  key={option}
-                  onClick={() => {
-                    setSortOption(option);
-                    setSortModalOpen(false);
-                  }}
-                  className="w-full flex items-center justify-between py-3 text-sm text-left border-b border-neutral-50"
-                >
-                  <span className={sortOption === option ? "font-semibold text-black" : "text-neutral-600 font-light"}>
-                    {option}
-                  </span>
-                  {sortOption === option && <Check size={16} className="text-black" />}
-                </button>
-              ))}
+
+              <select
+                value={sortOption}
+                onChange={(e) => setSortOption(e.target.value)}
+                className="hidden sm:block bg-transparent border border-neutral-200 text-xs py-1.5 px-3 text-neutral-800 focus:outline-none focus:border-black font-sans"
+              >
+                <option value="Featured">Sort: Featured</option>
+                <option value="Newest">Sort: Newest</option>
+                <option value="Price: Low to High">Price: Low to High</option>
+                <option value="Price: High to Low">Price: High to Low</option>
+                <option value="Name: A to Z">Name: A to Z</option>
+              </select>
             </div>
           </div>
         </div>
-      )}
+
+        {/* 2-Column Mobile Grid / 3-Column Desktop Grid */}
+        {sortedProducts.length > 0 ? (
+          <div className="grid grid-cols-2 md:grid-cols-3 gap-3.5 sm:gap-6 md:gap-8">
+            {sortedProducts.map((product) => (
+              <ProductCard
+                key={product.id}
+                product={product}
+                onQuickView={(p) => setSelectedProduct(p)}
+              />
+            ))}
+          </div>
+        ) : (
+          <div className="text-center py-20 space-y-4">
+            <p className="text-neutral-500 font-sans text-sm font-light">
+              No products found matching the selected criteria.
+            </p>
+            <button
+              type="button"
+              onClick={() => {
+                setMaterialFilter("All");
+                setSortOption("Featured");
+              }}
+              className="inline-flex items-center text-[10px] tracking-widest uppercase text-black font-semibold border-b border-black pb-0.5 hover:opacity-75 transition-opacity"
+            >
+              Reset Filters
+            </button>
+          </div>
+        )}
+
+      </div>
 
       {/* Mobile Filter Sheet */}
       {filterModalOpen && (
-        <div className="fixed inset-0 z-50 flex items-end justify-center bg-black/50 backdrop-blur-xs sm:hidden">
-          <div className="w-full bg-white rounded-t-2xl p-6 space-y-4 max-h-[80vh] overflow-y-auto">
+        <div className="fixed inset-0 z-50 flex items-end justify-center bg-black/50 backdrop-blur-xs">
+          <div className="w-full max-w-md bg-white rounded-t-2xl p-6 space-y-4 max-h-[85vh] overflow-y-auto shadow-2xl">
             <div className="flex items-center justify-between pb-3 border-b border-neutral-100">
-              <h3 className="font-serif text-lg text-neutral-900 font-medium">Filter by Wood</h3>
-              <button onClick={() => setFilterModalOpen(false)} className="p-1">
+              <h3 className="font-serif text-lg text-neutral-900 font-medium">Filter by Hardwood</h3>
+              <button type="button" onClick={() => setFilterModalOpen(false)} className="p-1.5 text-neutral-400 hover:text-black">
                 <X size={20} />
               </button>
             </div>
@@ -360,6 +224,7 @@ export default function SubcategoryPage({ params }: SubcategoryPageProps) {
               {["All", ...WOOD_FILTERS].map((wood) => (
                 <button
                   key={wood}
+                  type="button"
                   onClick={() => {
                     setMaterialFilter(wood);
                     setFilterModalOpen(false);
@@ -370,6 +235,50 @@ export default function SubcategoryPage({ params }: SubcategoryPageProps) {
                     {wood === "All" ? "All Wood Types" : wood}
                   </span>
                   {materialFilter === wood && <Check size={16} className="text-black" />}
+                </button>
+              ))}
+            </div>
+            <div className="pt-2">
+              <button
+                type="button"
+                onClick={() => {
+                  setMaterialFilter("All");
+                  setFilterModalOpen(false);
+                }}
+                className="w-full py-3 text-xs tracking-widest uppercase font-medium text-neutral-500 hover:text-black border border-neutral-200 text-center"
+              >
+                Clear Filters
+              </button>
+            </div>
+          </div>
+        </div>
+      )}
+
+      {/* Mobile Sort Sheet */}
+      {sortModalOpen && (
+        <div className="fixed inset-0 z-50 flex items-end justify-center bg-black/50 backdrop-blur-xs sm:hidden">
+          <div className="w-full max-w-md bg-white rounded-t-2xl p-6 space-y-4 max-h-[80vh] overflow-y-auto shadow-2xl">
+            <div className="flex items-center justify-between pb-3 border-b border-neutral-100">
+              <h3 className="font-serif text-lg text-neutral-900 font-medium">Sort Catalog</h3>
+              <button type="button" onClick={() => setSortModalOpen(false)} className="p-1.5 text-neutral-400 hover:text-black">
+                <X size={20} />
+              </button>
+            </div>
+            <div className="space-y-2">
+              {["Featured", "Newest", "Price: Low to High", "Price: High to Low", "Name: A to Z"].map((opt) => (
+                <button
+                  key={opt}
+                  type="button"
+                  onClick={() => {
+                    setSortOption(opt);
+                    setSortModalOpen(false);
+                  }}
+                  className="w-full flex items-center justify-between py-3 text-sm text-left border-b border-neutral-50"
+                >
+                  <span className={sortOption === opt ? "font-semibold text-black" : "text-neutral-600 font-light"}>
+                    {opt}
+                  </span>
+                  {sortOption === opt && <Check size={16} className="text-black" />}
                 </button>
               ))}
             </div>
