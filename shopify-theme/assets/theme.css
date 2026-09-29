@@ -1,17 +1,17 @@
 /* ==========================================================================
-   ZOOSH LUXURY SHOPIFY THEME - PRESTIGE / HOMEWORK LIVING AESTHETIC
+   ZOOSH LUXURY SHOPIFY THEME - EXACT LIVE ZOOSH.IN DESIGN SYSTEM
    ========================================================================== */
 
 :root {
-  --font-heading: 'EB Garamond', 'Granjon', 'Garamond', Georgia, serif;
+  --font-heading: 'EB Garamond', Georgia, serif;
   --font-body: 'Plus Jakarta Sans', system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
   --color-primary: #111111;
   --color-bg: #FFFFFF;
   --color-text: #111111;
   --color-secondary-text: #737373;
   --color-borders: #E5E5E5;
-  --letter-spacing-heading: 0.10em;
-  --letter-spacing-subheading: 0.20em;
+  --letter-spacing-heading: 0.02em;
+  --letter-spacing-subheading: 0.30em;
 }
 
 *, *::before, *::after {
@@ -35,11 +35,12 @@ body {
   overflow-x: hidden;
 }
 
+/* Headings use EB Garamond in natural casing matching live zoosh.in */
 h1, h2, h3, h4, h5, h6, .font-serif {
   font-family: var(--font-heading) !important;
+  font-weight: 300;
   letter-spacing: var(--letter-spacing-heading);
-  text-transform: uppercase;
-  font-weight: 400;
+  line-height: 1.15;
 }
 
 .font-sans {
@@ -112,11 +113,24 @@ img, svg {
   font-variant-numeric: tabular-nums;
 }
 
-/* Layout containers */
+/* Layout containers matching zoosh.in max-w-7xl */
 .max-w-7xl {
   max-width: 80rem;
   margin-left: auto;
   margin-right: auto;
+}
+
+/* Announcement Bar */
+.announcement-bar {
+  background-color: #000000;
+  color: #ffffff;
+  font-family: var(--font-body);
+  font-size: 11px;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  padding: 10px 16px;
+  text-align: center;
+  border-bottom: 1px solid #262626;
 }
 
 /* Header & Navigation */
@@ -132,6 +146,7 @@ img, svg {
 .site-nav-desktop {
   display: flex !important;
   align-items: center;
+  gap: 2rem;
 }
 
 .mobile-nav-toggle {
@@ -145,6 +160,16 @@ img, svg {
   .mobile-nav-toggle {
     display: flex !important;
   }
+}
+
+/* Logo Typography */
+.header__logo span,
+.header__logo a {
+  font-family: var(--font-heading) !important;
+  font-size: 26px;
+  letter-spacing: 0.20em;
+  text-transform: uppercase;
+  font-weight: 400;
 }
 
 /* Mobile Nav Drawer */
@@ -181,7 +206,7 @@ img, svg {
 .slideshow-hero {
   position: relative;
   min-height: 85vh;
-  background-color: #0d0d0d;
+  background-color: #0a0a0a;
   color: #ffffff;
   display: flex;
   align-items: center;
@@ -190,7 +215,7 @@ img, svg {
 /* Category Slider */
 #category-slider-track {
   display: flex;
-  gap: 1.25rem;
+  gap: 1.5rem;
   overflow-x: auto;
   scroll-behavior: smooth;
   scrollbar-width: none;
@@ -231,15 +256,6 @@ img, svg {
   transform: scale(1.05);
 }
 
-.product-card__quick-add {
-  transform: translateY(100%);
-  transition: transform 0.3s ease-out;
-}
-
-.product-card:hover .product-card__quick-add {
-  transform: translateY(0);
-}
-
 /* Cart Drawer */
 .cart-drawer-wrapper {
   position: fixed;
@@ -274,23 +290,4 @@ img, svg {
 
 .cart-drawer-wrapper.open .cart-drawer-panel {
   transform: translateX(0) !important;
-}
-
-/* Value Props Grid */
-.benefits-grid {
-  display: grid;
-  grid-template-columns: 1fr;
-  gap: 1.5rem;
-}
-
-@media (min-width: 640px) {
-  .benefits-grid {
-    grid-template-columns: repeat(2, minmax(0, 1fr));
-  }
-}
-
-@media (min-width: 1024px) {
-  .benefits-grid {
-    grid-template-columns: repeat(4, minmax(0, 1fr));
-  }
 }
