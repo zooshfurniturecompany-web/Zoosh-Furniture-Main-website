@@ -1,0 +1,17 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 70" width="320" height="70">
+  <defs>
+    <style>
+      @import url('https://fonts.googleapis.com/css2?family=EB+Garamond:wght@400;500&amp;display=swap');
+      .logo-text {
+        font-family: 'EB Garamond', Garamond, 'Times New Roman', serif;
+        font-size: 58px;
+        font-weight: 400;
+        letter-spacing: -0.02em;
+        fill: #000000;
+        text-anchor: middle;
+        dominant-baseline: central;
+      }
+    </style>
+  </defs>
+  <text x="160" y="36" class="logo-text">ZOOSH</text>
+</svg>

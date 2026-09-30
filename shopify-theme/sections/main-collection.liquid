@@ -1,46 +1,98 @@
-<section class="main-collection py-10 sm:py-16 bg-white min-h-screen">
-  <div class="max-w-7xl mx-auto px-6 md:px-12">
+<section class="main-collection py-8 sm:py-16 bg-white min-h-screen">
+  <div class="max-w-7xl mx-auto px-4 sm:px-6 md:px-10">
     
+    <!-- Breadcrumbs -->
+    <div class="flex items-center space-x-2 text-[10px] tracking-widest uppercase text-neutral-400 mb-6 font-sans font-medium">
+      <a href="{{ routes.root_url }}" class="hover:text-black transition-colors">Home</a>
+      <span>/</span>
+      <span class="text-neutral-900 truncate">{{ collection.title | default: 'All Furniture' }}</span>
+    </div>
+
     <!-- Header -->
-    <div class="text-center max-w-2xl mx-auto mb-12 sm:mb-16 space-y-3">
-      <span class="text-[10px] tracking-[0.3em] uppercase text-neutral-400 font-sans block">
-        Bespoke Furniture Collection
+    <div class="text-center max-w-2xl mx-auto mb-8 sm:mb-12 space-y-2.5">
+      <span class="text-[10px] tracking-[0.25em] uppercase text-neutral-400 font-sans block font-medium">
+        Bespoke Hardwood Catalog
       </span>
-      <h1 class="font-serif text-3xl sm:text-4xl md:text-5xl font-light text-neutral-900 tracking-wide">
+      <h1 class="font-serif text-2xl sm:text-4xl md:text-5xl font-normal text-neutral-900 tracking-wide">
         {{ collection.title }}
       </h1>
       {%- if collection.description != blank -%}
-        <p class="font-sans text-xs sm:text-sm text-neutral-500 font-light leading-relaxed">
+        <p class="font-sans text-xs sm:text-sm text-neutral-500 font-light leading-relaxed max-w-xl mx-auto">
           {{ collection.description }}
         </p>
       {%- endif -%}
     </div>
 
-    <!-- Product Count & Sort -->
-    <div class="flex items-center justify-between border-b border-neutral-100 pb-4 mb-8 text-xs font-sans">
-      <span class="text-neutral-500 font-light">
-        <strong class="text-neutral-900 font-medium">{{ collection.products_count }}</strong> Creations
+    <!-- D'tale Modern Mobile Filter Chips -->
+    <div class="flex items-center gap-2 overflow-x-auto no-scrollbar pb-3 mb-6" style="-webkit-overflow-scrolling: touch;">
+      <a
+        href="{{ routes.all_products_collection_url }}"
+        class="flex-shrink-0 text-[11px] font-sans tracking-wider uppercase px-4 py-2 border {% if collection.handle == 'all' or collection.handle == blank %}border-black bg-black text-white font-medium{% else %}border-neutral-200 text-neutral-700 hover:border-black{% endif %} transition-colors"
+      >
+        All Creations
+      </a>
+      <a
+        href="/collections/living"
+        class="flex-shrink-0 text-[11px] font-sans tracking-wider uppercase px-4 py-2 border {% if collection.handle == 'living' %}border-black bg-black text-white font-medium{% else %}border-neutral-200 text-neutral-700 hover:border-black{% endif %} transition-colors"
+      >
+        Living
+      </a>
+      <a
+        href="/collections/dining"
+        class="flex-shrink-0 text-[11px] font-sans tracking-wider uppercase px-4 py-2 border {% if collection.handle == 'dining' %}border-black bg-black text-white font-medium{% else %}border-neutral-200 text-neutral-700 hover:border-black{% endif %} transition-colors"
+      >
+        Dining
+      </a>
+      <a
+        href="/collections/bedroom"
+        class="flex-shrink-0 text-[11px] font-sans tracking-wider uppercase px-4 py-2 border {% if collection.handle == 'bedroom' %}border-black bg-black text-white font-medium{% else %}border-neutral-200 text-neutral-700 hover:border-black{% endif %} transition-colors"
+      >
+        Bedroom
+      </a>
+      <a
+        href="/collections/chairs"
+        class="flex-shrink-0 text-[11px] font-sans tracking-wider uppercase px-4 py-2 border {% if collection.handle == 'chairs' %}border-black bg-black text-white font-medium{% else %}border-neutral-200 text-neutral-700 hover:border-black{% endif %} transition-colors"
+      >
+        Seating
+      </a>
+      <a
+        href="/collections/entryway"
+        class="flex-shrink-0 text-[11px] font-sans tracking-wider uppercase px-4 py-2 border {% if collection.handle == 'entryway' %}border-black bg-black text-white font-medium{% else %}border-neutral-200 text-neutral-700 hover:border-black{% endif %} transition-colors"
+      >
+        Consoles
+      </a>
+      <a
+        href="/pages/custom-furniture"
+        class="flex-shrink-0 text-[11px] font-sans tracking-wider uppercase px-4 py-2 border border-dashed border-neutral-400 text-neutral-800 hover:border-black transition-colors"
+      >
+        + Bespoke Order
+      </a>
+    </div>
+
+    <!-- Product Count & Sort Bar -->
+    <div class="flex items-center justify-between border-t border-b border-neutral-200/80 py-3 mb-8 text-xs font-sans">
+      <span class="text-neutral-500 font-light text-[11.5px]">
+        Showing <strong class="text-neutral-900 font-semibold">{{ collection.products_count }}</strong> items
       </span>
       <div class="flex items-center space-x-2">
-        <span class="text-[10px] uppercase tracking-wider text-neutral-400 font-medium">Sort By:</span>
+        <label for="SortBy" class="text-[10.5px] uppercase tracking-wider text-neutral-400 font-medium hidden sm:inline">Sort By:</label>
         <select
           id="SortBy"
-          class="bg-transparent border border-neutral-200 text-xs py-1.5 px-3 focus:outline-none focus:border-black"
+          class="bg-white border border-neutral-200 text-[11.5px] py-1.5 px-3 focus:outline-none focus:border-black font-sans"
           onchange="location.href = '?sort_by=' + this.value"
         >
           <option value="manual">Featured</option>
           <option value="price-ascending">Price: Low to High</option>
           <option value="price-descending">Price: High to Low</option>
           <option value="title-ascending">Alphabetically, A-Z</option>
-          <option value="title-descending">Alphabetically, Z-A</option>
-          <option value="created-descending">Date: New to Old</option>
+          <option value="created-descending">Newest First</option>
         </select>
       </div>
     </div>
 
-    <!-- Products Grid -->
-    {%- paginate collection.products by 12 -%}
-      <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 md:gap-8">
+    <!-- 2-Column Mobile & 4-Column Desktop Products Grid -->
+    {%- paginate collection.products by 16 -%}
+      <div class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-3.5 sm:gap-6 lg:gap-8">
         {%- for product in collection.products -%}
           {% render 'product-card', card_product: product, show_secondary_image: true, section_id: section.id %}
         {%- else -%}

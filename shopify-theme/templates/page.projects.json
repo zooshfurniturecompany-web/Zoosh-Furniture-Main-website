@@ -1,0 +1,26 @@
+{
+  "sections": {
+    "projects_gallery": {
+      "type": "projects-gallery",
+      "settings": {
+        "subheading": "Portfolio & Architectural Commissions",
+        "heading": "Completed Living Spaces",
+        "description": "Explore our bespoke furniture commissions crafted for luxury residences, penthouses, and private estates across India."
+      }
+    },
+    "cta_banner": {
+      "type": "cta-banner",
+      "settings": {
+        "subheading": "Bespoke Commissions",
+        "heading": "Ready to design your custom space?",
+        "text": "Share your blueprints, moodboards, or room dimensions. Our master joiners and interior design specialists will execute your vision.",
+        "primary_button_text": "Consult via WhatsApp",
+        "primary_button_link": "https://wa.me/919876543210"
+      }
+    }
+  },
+  "order": [
+    "projects_gallery",
+    "cta_banner"
+  ]
+}

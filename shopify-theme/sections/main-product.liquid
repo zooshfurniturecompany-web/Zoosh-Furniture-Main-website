@@ -314,6 +314,28 @@
       </div>
     </div>
 
+    <!-- D'tale Modern Mobile Sticky Buy Bar -->
+    <div id="mobile-sticky-pdp-bar" class="fixed bottom-0 inset-x-0 bg-white/95 backdrop-blur-md border-t border-neutral-200/90 p-3 z-40 md:hidden flex items-center justify-between gap-3 shadow-2xl">
+      <div class="flex items-center gap-2.5 overflow-hidden flex-1">
+        <div class="w-10 h-10 bg-neutral-100 flex-shrink-0 overflow-hidden rounded-xs border border-neutral-200">
+          {%- if product.featured_media -%}
+            <img src="{{ product.featured_media | image_url: width: 100 }}" alt="{{ product.title | escape }}" class="w-full h-full object-cover">
+          {%- endif -%}
+        </div>
+        <div class="truncate pr-1">
+          <p class="text-[11px] font-sans font-medium text-neutral-900 truncate leading-tight">{{ product.title }}</p>
+          <span class="text-xs font-bold text-neutral-950">{{ product.selected_or_first_available_variant.price | money }}</span>
+        </div>
+      </div>
+      <button
+        type="button"
+        onclick="const f = document.getElementById('product-form'); if(f) f.requestSubmit();"
+        class="flex-shrink-0 bg-black text-white text-[10.5px] font-sans font-semibold tracking-[0.14em] uppercase px-4 py-2.5 hover:bg-neutral-800 transition-colors shadow-sm"
+      >
+        {%- if product.available -%}Add to Cart{%- else -%}Custom Order{%- endif -%}
+      </button>
+    </div>
+
   </div>
 </section>
 

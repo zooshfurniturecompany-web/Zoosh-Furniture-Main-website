@@ -1,15 +1,15 @@
 <section class="featured-collection py-16 sm:py-24 bg-white border-b border-neutral-100">
-  <div class="max-w-7xl mx-auto px-6 md:px-12">
+  <div class="max-w-7xl mx-auto px-4 sm:px-6 md:px-10">
     
     <!-- Section Header -->
     <div class="flex flex-col sm:flex-row sm:items-end justify-between mb-10 sm:mb-14 gap-4 text-center sm:text-left">
       <div>
         {%- if section.settings.subheading != blank -%}
-          <span class="text-[10px] tracking-[0.3em] uppercase text-neutral-400 font-sans block mb-2 font-medium">
+          <span class="text-[10px] tracking-[0.25em] uppercase text-neutral-400 font-sans block mb-2 font-medium">
             {{ section.settings.subheading }}
           </span>
         {%- endif -%}
-        <h2 class="font-serif text-2xl sm:text-3xl md:text-4xl font-light tracking-wide text-neutral-900">
+        <h2 class="font-serif text-2xl sm:text-3xl md:text-4xl text-neutral-900 font-normal">
           {{ section.settings.heading | default: 'Signature Collection' }}
         </h2>
       </div>
@@ -17,7 +17,7 @@
       {%- if section.settings.view_all_link != blank -%}
         <a
           href="{{ section.settings.view_all_link }}"
-          class="inline-flex items-center text-xs font-sans tracking-[0.2em] uppercase text-neutral-900 font-medium border-b border-black pb-1 hover:opacity-70 transition-opacity self-center sm:self-auto"
+          class="inline-flex items-center text-xs font-sans tracking-[0.16em] uppercase text-neutral-900 font-semibold border-b border-black pb-1 hover:opacity-70 transition-opacity self-center sm:self-auto"
         >
           <span>{{ section.settings.view_all_text | default: 'View Entire Catalog' }}</span>
           <span class="ml-2">&rarr;</span>
@@ -25,8 +25,8 @@
       {%- endif -%}
     </div>
 
-    <!-- Products Grid (3 Columns Desktop, 2 Columns Tablet, 1 Column Mobile) -->
-    <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 md:gap-8">
+    <!-- Products Grid (2 Columns Mobile, 4 Columns Desktop - D'tale Modern Style) -->
+    <div class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-3.5 sm:gap-6 lg:gap-8">
       {%- assign collection = collections[section.settings.collection] -%}
       {%- if collection != blank and collection.products_count > 0 -%}
         {%- for product in collection.products limit: section.settings.products_to_show -%}
@@ -34,7 +34,7 @@
         {%- endfor -%}
       {%- else -%}
         <!-- Preloaded Real ZOOSH Catalog Products with Square 1:1 Aspect Ratio -->
-        {%- assign sample_products = 'Nouveau Sofa|40,000|Treated Solid Teakwood|https://zoosh.in/images/WhatsApp%20Image%202026-01-28%20at%2010.24.22%20%281%29.jpeg|Three Seater Sofa;;;Aura Sectional Sofa|1,34,500|Solid Ash Wood|https://zoosh.in/images/products/sf002-main.jpg|Sectional Lounge;;;Kanso Sofa|75,990|Solid Mahogany|https://zoosh.in/images/products/sf003-1.jpg|Spindle Armrest Sofa;;;Kyoto Sectional Sofa|1,36,700|Solid Ash Wood|https://zoosh.in/images/products/sf004-1.jpg|Woven Cane Sectional;;;Haven Sectional Sofa|53,200|Solid Teak Wood|https://zoosh.in/images/products/sf005-1.jpg|Deep Lounge Sectional;;;Vara Sofa|47,850|Solid Teak Wood|https://zoosh.in/images/products/sf006-1.jpg|Linear Solid Wood Sofa' | split: ';;;' -%}
+        {%- assign sample_products = 'Nouveau Sofa|40,000|Treated Solid Teakwood|https://zoosh.in/images/products/sf001-2.jpg|https://zoosh.in/images/products/sf001-3.jpg|Three Seater Sofa;;;Aura Sectional Sofa|1,34,500|Solid Ash Wood|https://zoosh.in/images/products/sf002-main.jpg|https://zoosh.in/images/products/sf002-1.jpg|Sectional Lounge;;;Kanso Sofa|75,990|Solid Mahogany|https://zoosh.in/images/products/sf003-1.jpg|https://zoosh.in/images/products/sf003-2.jpg|Spindle Armrest Sofa;;;Kyoto Sectional Sofa|1,36,700|Solid Ash Wood|https://zoosh.in/images/products/sf004-1.jpg|https://zoosh.in/images/products/sf004-2.jpg|Woven Cane Sectional;;;Haven Sectional Sofa|53,200|Solid Teak Wood|https://zoosh.in/images/products/sf005-1.jpg|https://zoosh.in/images/products/sf005-2.jpg|Deep Lounge Sectional;;;Sculptural Armchair|38,500|Solid Teak & Cane|https://zoosh.in/images/products/sf007-1.jpg|https://zoosh.in/images/products/sf007-2.jpg|Accent Seating;;;Verona Coffee Table|29,000|Reeded Solid Teak|https://zoosh.in/images/products/sf008-1.jpg|https://zoosh.in/images/products/sf008-2.jpg|Living Table;;;Monolithic Dining Table|1,18,000|Solid Hardwood Suite|https://zoosh.in/images/products/sf010-1.jpg|https://zoosh.in/images/products/sf010-2.jpg|Dining Room' | split: ';;;' -%}
 
         {%- for p_data in sample_products -%}
           {%- assign p_parts = p_data | split: '|' -%}
@@ -42,48 +42,60 @@
           {%- assign p_price = p_parts[1] | strip -%}
           {%- assign p_mat = p_parts[2] | strip -%}
           {%- assign p_img = p_parts[3] | strip -%}
-          {%- assign p_cat = p_parts[4] | strip -%}
+          {%- assign p_img_hover = p_parts[4] | strip -%}
+          {%- assign p_cat = p_parts[5] | strip -%}
 
           {%- if forloop.index <= section.settings.products_to_show -%}
-            <div class="product-card group relative flex flex-col justify-between bg-white">
+            <div class="product-card group relative flex flex-col justify-between bg-white text-left">
               <!-- Image Container (Square 1:1) -->
-              <div class="product-card__image-wrap relative aspect-square w-full overflow-hidden bg-neutral-100 border border-neutral-100">
-                <img
-                  src="{{ p_img }}"
-                  alt="{{ p_name }} - {{ p_mat }}"
-                  loading="lazy"
-                  class="w-full h-full object-cover object-center group-hover:scale-105 transition-transform duration-700 ease-out"
-                >
-                <div class="absolute inset-0 bg-black/5 group-hover:bg-black/20 transition-colors duration-300"></div>
+              <div class="product-card__media relative aspect-square w-full overflow-hidden bg-neutral-100 border border-neutral-100">
+                <a href="/pages/custom-furniture" class="block w-full h-full">
+                  <img
+                    src="{{ p_img }}"
+                    alt="{{ p_name }} - {{ p_mat }}"
+                    loading="lazy"
+                    class="w-full h-full object-cover object-center group-hover:scale-105 transition-transform duration-700 ease-out {% if p_img_hover != blank %}group-hover:opacity-0{% endif %}"
+                  >
+                  {%- if p_img_hover != blank -%}
+                    <img
+                      src="{{ p_img_hover }}"
+                      alt="{{ p_name }} detail"
+                      loading="lazy"
+                      class="w-full h-full object-cover object-center absolute inset-0 opacity-0 group-hover:opacity-100 transition-all duration-700 ease-out group-hover:scale-105"
+                    >
+                  {%- endif -%}
+                </a>
 
                 <!-- Quick Enquire WhatsApp Overlay -->
-                <div class="absolute inset-x-0 bottom-0 p-3 translate-y-full group-hover:translate-y-0 transition-transform duration-300 ease-out hidden md:block">
+                <div class="absolute inset-x-0 bottom-0 p-2 sm:p-3 translate-y-full group-hover:translate-y-0 transition-transform duration-300 ease-out hidden md:block">
                   <a
-                    href="https://wa.me/{{ settings.whatsapp_phone | replace: '+', '' | replace: ' ', '' }}?text=Hello%20ZOOSH%2C%20I%20am%20interested%20in%20the%20{{ p_name | url_encode }}%20({{ p_mat | url_encode }})."
+                    href="https://wa.me/{{ settings.whatsapp_phone | default: '919876543210' | replace: '+', '' | replace: ' ', '' }}?text=Hello%20ZOOSH%2C%20I%20am%20interested%20in%20the%20{{ p_name | url_encode }}%20({{ p_mat | url_encode }})."
                     target="_blank"
                     rel="noopener noreferrer"
-                    class="w-full bg-white text-black text-[9px] tracking-[0.2em] uppercase py-3 block text-center hover:bg-black hover:text-white transition-colors duration-300 shadow-md font-medium"
+                    class="w-full bg-white text-black text-[9px] tracking-[0.2em] uppercase py-2.5 block text-center hover:bg-black hover:text-white transition-colors duration-300 shadow-md font-medium border border-neutral-200"
                   >
-                    Enquire on WhatsApp
+                    Custom Quote
                   </a>
                 </div>
               </div>
 
-              <!-- Info Section -->
-              <div class="flex flex-col pt-3.5 space-y-1.5">
-                <div>
-                  <span class="inline-block bg-[#f0f0f0] text-neutral-800 text-[9px] sm:text-[10px] font-semibold tracking-wider uppercase px-2.5 py-0.5">
+              <!-- Product Info -->
+              <div class="product-card__info flex flex-col pt-3 space-y-1">
+                <div class="flex items-center justify-between">
+                  <span class="inline-block bg-[#f4f4f4] text-neutral-800 text-[8.5px] font-semibold tracking-wider uppercase px-1.5 py-0.5 w-fit">
                     Made to Order
                   </span>
+                  <span class="text-[8.5px] text-neutral-400 uppercase tracking-widest font-sans line-clamp-1">
+                    {{ p_mat }}
+                  </span>
                 </div>
-                <h3 class="font-sans text-sm sm:text-base text-neutral-900 font-medium leading-snug">
-                  {{ p_name }}
+
+                <h3 class="product-card__title font-sans text-xs sm:text-sm text-neutral-900 font-medium leading-snug line-clamp-1 group-hover:text-neutral-600 transition-colors">
+                  <a href="/pages/custom-furniture">{{ p_name }}</a>
                 </h3>
-                <span class="text-[10px] text-neutral-400 font-sans tracking-wide uppercase">
-                  {{ p_mat }}
-                </span>
+
                 <div class="pt-0.5">
-                  <span class="text-sm sm:text-base font-semibold text-neutral-950 font-sans tabular-nums block">
+                  <span class="font-sans text-xs sm:text-sm font-semibold text-neutral-950 tabular-nums block">
                     ₹{{ p_price }}
                   </span>
                 </div>
@@ -121,11 +133,11 @@
     {
       "type": "range",
       "id": "products_to_show",
-      "min": 3,
+      "min": 4,
       "max": 12,
-      "step": 3,
-      "default": 6,
-      "label": "Maximum products to show"
+      "step": 2,
+      "label": "Products to Show",
+      "default": 8
     },
     {
       "type": "url",

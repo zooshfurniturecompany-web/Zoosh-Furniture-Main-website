@@ -4,31 +4,38 @@
   {%- assign header_menu = linklists['main-menu'] -%}
 {%- endif -%}
 
-<header class="site-header sticky top-0 z-40 bg-white/95 backdrop-blur-md border-b border-neutral-100 transition-all duration-300">
-  <div class="max-w-7xl mx-auto px-4 sm:px-6 md:px-12">
-    <div class="flex items-center justify-between h-20">
+<header class="site-header sticky top-0 z-40 bg-white/95 backdrop-blur-md border-b border-neutral-200/80 transition-all duration-300">
+  <div class="max-w-7xl mx-auto px-4 sm:px-6 md:px-10">
+    <div class="flex items-center justify-between h-16 sm:h-20">
       
-      <!-- Mobile Menu Button -->
-      <div class="flex items-center lg:hidden">
-        <button type="button" class="mobile-nav-toggle p-2 text-neutral-800" onclick="window.toggleMobileNav()" aria-label="Open menu">
-          {% render 'icon', icon: 'menu' %}
+      <!-- Mobile Menu Button (Left on mobile, hidden on desktop) -->
+      <div class="flex items-center lg:hidden w-1/4 justify-start">
+        <button
+          type="button"
+          class="mobile-nav-toggle p-2 -ml-2 text-neutral-900 hover:text-black focus:outline-none"
+          onclick="window.toggleMobileNav()"
+          aria-label="Open navigation menu"
+        >
+          <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.8" d="M4 6h16M4 12h16M4 18h16" />
+          </svg>
         </button>
       </div>
 
-      <!-- Logo with Custom Size Slider Support -->
-      <div class="header__logo flex-shrink-0">
+      <!-- Logo Area (Centered on mobile, left on desktop like Homework Living) -->
+      <div class="header__logo flex items-center justify-center lg:justify-start w-2/4 lg:w-auto flex-shrink-0">
         <a href="{{ routes.root_url }}" class="flex items-center">
           {%- if section.settings.logo != blank -%}
             <img
               src="{{ section.settings.logo | image_url: width: 600 }}"
               alt="{{ shop.name }}"
-              style="max-width: {{ section.settings.logo_width | default: 140 }}px; max-height: {{ section.settings.logo_max_height | default: 52 }}px; width: auto; height: auto;"
+              style="max-width: {{ section.settings.logo_width | default: 130 }}px; max-height: {{ section.settings.logo_max_height | default: 46 }}px; width: auto; height: auto;"
               class="object-contain transition-all"
             >
           {%- else -%}
             <span
-              class="font-serif font-normal tracking-[0.2em] text-neutral-950 uppercase"
-              style="font-size: {{ section.settings.logo_text_size | default: 24 }}px;"
+              class="font-serif font-normal tracking-[0.22em] text-neutral-950 uppercase select-none"
+              style="font-size: {{ section.settings.logo_text_size | default: 22 }}px;"
             >
               {{ section.settings.logo_text | default: 'ZOOSH' }}
             </span>
@@ -36,28 +43,30 @@
         </a>
       </div>
 
-      <!-- Desktop Navigation Menu (Prestige / Homework Living style uppercase links) -->
-      <nav class="site-nav-desktop hidden lg:flex items-center space-x-8">
+      <!-- Desktop Navigation Menu (Homework Living uppercase inline links) -->
+      <nav class="site-nav-desktop hidden lg:flex items-center space-x-7 xl:space-x-8 ml-8 flex-1">
         {%- if header_menu != blank and header_menu.links.size > 0 -%}
           {%- for link in header_menu.links -%}
             <div class="relative group">
               <a
                 href="{{ link.url }}"
-                class="font-sans text-[11px] font-medium tracking-[0.2em] uppercase text-neutral-800 hover:text-black transition-colors py-2 flex items-center gap-1"
+                class="font-sans text-[11.5px] font-medium tracking-[0.16em] uppercase text-neutral-800 hover:text-black transition-colors py-2 flex items-center gap-1.5 whitespace-nowrap"
               >
                 <span>{{ link.title }}</span>
                 {%- if link.links != blank -%}
-                  {% render 'icon', icon: 'chevron-down' %}
+                  <svg class="w-3 h-3 opacity-60 group-hover:opacity-100 transition-opacity" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7" />
+                  </svg>
                 {%- endif -%}
               </a>
 
               {%- if link.links != blank -%}
-                <div class="absolute left-0 top-full pt-2 w-56 opacity-0 translate-y-2 pointer-events-none group-hover:opacity-100 group-hover:translate-y-0 group-hover:pointer-events-auto transition-all duration-200 z-50">
-                  <div class="bg-white shadow-xl border border-neutral-100 p-4 space-y-2">
+                <div class="absolute left-0 top-full pt-2 w-60 opacity-0 translate-y-2 pointer-events-none group-hover:opacity-100 group-hover:translate-y-0 group-hover:pointer-events-auto transition-all duration-200 z-50">
+                  <div class="bg-white shadow-xl border border-neutral-100 p-4 space-y-2.5">
                     {%- for childlink in link.links -%}
                       <a
                         href="{{ childlink.url }}"
-                        class="block font-sans text-xs tracking-wider uppercase text-neutral-600 hover:text-black transition-colors py-1.5"
+                        class="block font-sans text-[11px] tracking-[0.14em] uppercase text-neutral-600 hover:text-black transition-colors py-1.5 border-b border-neutral-50 last:border-0"
                       >
                         {{ childlink.title }}
                       </a>
@@ -68,52 +77,57 @@
             </div>
           {%- endfor -%}
         {%- else -%}
-          <!-- Default Fallback Links if no menu created in Shopify admin yet -->
-          <a href="{{ routes.root_url }}" class="font-sans text-[11px] font-medium tracking-[0.2em] uppercase text-neutral-800 hover:text-black transition-colors py-2">
-            Home
-          </a>
-          <a href="{{ routes.all_products_collection_url }}" class="font-sans text-[11px] font-medium tracking-[0.2em] uppercase text-neutral-800 hover:text-black transition-colors py-2">
-            All Furniture
-          </a>
-          <a href="/pages/custom-furniture" class="font-sans text-[11px] font-medium tracking-[0.2em] uppercase text-neutral-800 hover:text-black transition-colors py-2">
-            Custom Made
-          </a>
-          <a href="/pages/about" class="font-sans text-[11px] font-medium tracking-[0.2em] uppercase text-neutral-800 hover:text-black transition-colors py-2">
-            Our Story
-          </a>
-          <a href="/pages/contact" class="font-sans text-[11px] font-medium tracking-[0.2em] uppercase text-neutral-800 hover:text-black transition-colors py-2">
-            Contact
-          </a>
+          <a href="{{ routes.root_url }}" class="font-sans text-[11.5px] font-medium tracking-[0.16em] uppercase text-neutral-800 hover:text-black transition-colors py-2">Home</a>
+          <a href="{{ routes.all_products_collection_url }}" class="font-sans text-[11.5px] font-medium tracking-[0.16em] uppercase text-neutral-800 hover:text-black transition-colors py-2">Catalog</a>
+          <a href="/pages/custom-furniture" class="font-sans text-[11.5px] font-medium tracking-[0.16em] uppercase text-neutral-800 hover:text-black transition-colors py-2">Bespoke Design</a>
+          <a href="/pages/projects" class="font-sans text-[11.5px] font-medium tracking-[0.16em] uppercase text-neutral-800 hover:text-black transition-colors py-2">Projects</a>
+          <a href="/pages/about" class="font-sans text-[11.5px] font-medium tracking-[0.16em] uppercase text-neutral-800 hover:text-black transition-colors py-2">Craftsmanship</a>
+          <a href="/pages/contact" class="font-sans text-[11.5px] font-medium tracking-[0.16em] uppercase text-neutral-800 hover:text-black transition-colors py-2">Factory Visit</a>
         {%- endif -%}
       </nav>
 
-      <!-- Right Action Icons: Search, WhatsApp Concierge, Cart Drawer Trigger -->
-      <div class="flex items-center space-x-4 sm:space-x-6">
-        <!-- Search Trigger -->
-        <a href="{{ routes.search_url }}" class="text-neutral-700 hover:text-black transition-colors p-1" aria-label="Search">
-          {% render 'icon', icon: 'search' %}
+      <!-- Right Action Icons (Currency, Search, WhatsApp, Cart) -->
+      <div class="flex items-center justify-end space-x-3.5 sm:space-x-5 w-1/4 lg:w-auto flex-shrink-0">
+        <!-- Currency / Country Indicator (Homework Living Style) -->
+        <div class="hidden xl:flex items-center gap-1.5 text-[11px] font-sans font-medium tracking-wider text-neutral-700">
+          <span class="inline-block w-4 h-3 bg-neutral-200 rounded-sm overflow-hidden shadow-xs">
+            <svg viewBox="0 0 640 480" class="w-full h-full object-cover">
+              <path fill="#f93" d="M0 0h640v160H0z"/>
+              <path fill="#fff" d="M0 160h640v160H0z"/>
+              <path fill="#128807" d="M0 320h640v160H0z"/>
+              <circle cx="320" cy="240" r="40" fill="#008"/>
+            </svg>
+          </span>
+          <span>INR ₹</span>
+        </div>
+
+        <!-- Search Icon -->
+        <a href="{{ routes.search_url }}" class="text-neutral-800 hover:text-black transition-colors p-1" aria-label="Search Catalog">
+          <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.8" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" />
+          </svg>
         </a>
 
-        <!-- WhatsApp Direct Link -->
-        <a
-          href="https://wa.me/{{ settings.whatsapp_phone | replace: '+', '' | replace: ' ', '' }}?text=Hello%20ZOOSH%20Team%2C%20I%20am%20interested%20in%20your%20bespoke%20furniture%20collections."
-          target="_blank"
-          rel="noopener noreferrer"
-          class="hidden sm:flex items-center gap-1.5 text-emerald-700 hover:text-emerald-800 text-[10px] font-sans font-semibold tracking-wider uppercase bg-emerald-50 px-3 py-1.5 rounded-full transition-colors"
-        >
-          {% render 'icon', icon: 'whatsapp' %}
-          <span>Concierge</span>
-        </a>
+        <!-- Account Link (Desktop) -->
+        {%- if shop.customer_accounts_enabled -%}
+          <a href="{% if customer %}{{ routes.account_url }}{% else %}{{ routes.account_login_url }}{% endif %}" class="hidden sm:block text-neutral-800 hover:text-black transition-colors p-1" aria-label="Account">
+            <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.8" d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z" />
+            </svg>
+          </a>
+        {%- endif -%}
 
         <!-- Cart Trigger Button -->
         <button
           type="button"
-          class="cart-drawer-trigger relative text-neutral-800 hover:text-black transition-colors p-1"
+          class="cart-drawer-trigger relative text-neutral-900 hover:text-black transition-colors p-1"
           onclick="window.toggleCartDrawer()"
           aria-label="Shopping Cart"
         >
-          {% render 'icon', icon: 'cart' %}
-          <span class="cart-count-badge absolute -top-1 -right-1 bg-black text-white text-[9px] font-mono font-bold w-4 h-4 rounded-full flex items-center justify-center">
+          <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.8" d="M16 11V7a4 4 0 00-8 0v4M5 9h14l1 12H4L5 9z" />
+          </svg>
+          <span class="cart-count-badge absolute -top-1.5 -right-1.5 bg-black text-white text-[9px] font-sans font-bold w-4 h-4 rounded-full flex items-center justify-center">
             {{ cart.item_count }}
           </span>
         </button>
@@ -123,27 +137,54 @@
   </div>
 </header>
 
-<!-- Mobile Navigation Drawer -->
-<div id="mobile-nav" class="fixed inset-0 z-50 bg-black/60 backdrop-blur-sm hidden" style="display: none;">
-  <div class="w-4/5 max-w-sm h-full bg-white p-6 flex flex-col justify-between overflow-y-auto">
+<!-- Mobile Navigation Drawer (D'tale Modern App-Style) -->
+<div id="mobile-nav" class="fixed inset-0 z-50 bg-black/60 backdrop-blur-xs transition-opacity duration-300 hidden" style="display: none;">
+  <div class="w-[85%] max-w-sm h-full bg-white p-6 flex flex-col justify-between overflow-y-auto transform transition-transform duration-300 shadow-2xl">
     <div>
-      <div class="flex items-center justify-between pb-6 border-b border-neutral-100">
-        <span class="font-serif text-xl tracking-[0.2em] uppercase font-medium">ZOOSH</span>
-        <button type="button" class="p-2" onclick="window.toggleMobileNav()">
-          {% render 'icon', icon: 'close' %}
+      <div class="flex items-center justify-between pb-5 border-b border-neutral-100">
+        <span class="font-serif text-lg tracking-[0.22em] uppercase font-medium">ZOOSH</span>
+        <button type="button" class="p-2 -mr-2 text-neutral-500 hover:text-black" onclick="window.toggleMobileNav()" aria-label="Close menu">
+          <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12" />
+          </svg>
         </button>
       </div>
-      <div class="py-6 space-y-4">
+
+      <!-- Quick Search inside Mobile Drawer -->
+      <div class="mt-5 mb-6">
+        <form action="{{ routes.search_url }}" method="get" class="relative">
+          <input
+            type="search"
+            name="q"
+            placeholder="Search solid wood furniture..."
+            class="w-full bg-neutral-100 text-neutral-900 text-xs py-2.5 pl-3.5 pr-9 border-0 focus:ring-1 focus:ring-black placeholder-neutral-400 font-sans"
+          >
+          <button type="submit" class="absolute right-2.5 top-1/2 -translate-y-1/2 text-neutral-500" aria-label="Search">
+            <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" />
+            </svg>
+          </button>
+        </form>
+      </div>
+
+      <!-- Navigation Links -->
+      <div class="space-y-4">
         {%- if header_menu != blank and header_menu.links.size > 0 -%}
           {%- for link in header_menu.links -%}
             <div>
-              <a href="{{ link.url }}" class="block font-sans text-xs uppercase tracking-[0.2em] font-semibold text-neutral-900 py-1">
+              <a
+                href="{{ link.url }}"
+                class="block font-sans text-xs uppercase tracking-[0.18em] font-semibold text-neutral-900 py-1.5 hover:text-neutral-600 transition-colors"
+              >
                 {{ link.title }}
               </a>
               {%- if link.links != blank -%}
-                <div class="pl-3 pt-2 space-y-2 border-l border-neutral-200 mt-2">
+                <div class="pl-3 mt-1.5 space-y-2 border-l border-neutral-200">
                   {%- for childlink in link.links -%}
-                    <a href="{{ childlink.url }}" class="block font-sans text-xs tracking-wider text-neutral-600">
+                    <a
+                      href="{{ childlink.url }}"
+                      class="block font-sans text-[11px] uppercase tracking-wider text-neutral-600 hover:text-black py-1"
+                    >
                       {{ childlink.title }}
                     </a>
                   {%- endfor -%}
@@ -152,24 +193,29 @@
             </div>
           {%- endfor -%}
         {%- else -%}
-          <a href="{{ routes.root_url }}" class="block font-sans text-xs uppercase tracking-[0.2em] font-semibold text-neutral-900 py-1">Home</a>
-          <a href="{{ routes.all_products_collection_url }}" class="block font-sans text-xs uppercase tracking-[0.2em] font-semibold text-neutral-900 py-1">All Furniture</a>
-          <a href="/pages/custom-furniture" class="block font-sans text-xs uppercase tracking-[0.2em] font-semibold text-neutral-900 py-1">Custom Made</a>
-          <a href="/pages/about" class="block font-sans text-xs uppercase tracking-[0.2em] font-semibold text-neutral-900 py-1">Our Story</a>
-          <a href="/pages/contact" class="block font-sans text-xs uppercase tracking-[0.2em] font-semibold text-neutral-900 py-1">Contact</a>
+          <a href="{{ routes.root_url }}" class="block font-sans text-xs uppercase tracking-[0.18em] font-semibold text-neutral-900 py-1.5">Home</a>
+          <a href="{{ routes.all_products_collection_url }}" class="block font-sans text-xs uppercase tracking-[0.18em] font-semibold text-neutral-900 py-1.5">Collections</a>
+          <a href="/pages/custom-furniture" class="block font-sans text-xs uppercase tracking-[0.18em] font-semibold text-neutral-900 py-1.5">Bespoke Design</a>
+          <a href="/pages/projects" class="block font-sans text-xs uppercase tracking-[0.18em] font-semibold text-neutral-900 py-1.5">Projects</a>
+          <a href="/pages/about" class="block font-sans text-xs uppercase tracking-[0.18em] font-semibold text-neutral-900 py-1.5">Our Story</a>
+          <a href="/pages/contact" class="block font-sans text-xs uppercase tracking-[0.18em] font-semibold text-neutral-900 py-1.5">Factory & Contact</a>
         {%- endif -%}
       </div>
     </div>
-    <div class="pt-6 border-t border-neutral-100">
+
+    <!-- Mobile Drawer Footer CTA -->
+    <div class="pt-6 border-t border-neutral-100 mt-6 space-y-3">
       <a
-        href="https://wa.me/{{ settings.whatsapp_phone | replace: '+', '' | replace: ' ', '' }}"
+        href="https://wa.me/{{ settings.whatsapp_phone | default: '919876543210' | replace: '+', '' | replace: ' ', '' }}?text=Hello%20ZOOSH%2C%20I%20would%20like%20to%20consult%20on%20custom%20furniture."
         target="_blank"
         rel="noopener noreferrer"
-        class="w-full inline-flex items-center justify-center gap-2 bg-emerald-700 text-white text-xs tracking-widest uppercase py-3 font-medium"
+        class="w-full flex items-center justify-center gap-2 bg-neutral-950 text-white py-3 text-xs tracking-[0.16em] uppercase font-medium hover:bg-neutral-800 transition-colors"
       >
-        {% render 'icon', icon: 'whatsapp' %}
-        <span>WhatsApp Concierge</span>
+        <span>WhatsApp Consultation</span>
       </a>
+      <p class="text-[10px] text-neutral-400 text-center tracking-wider uppercase font-sans">
+        Handcrafted in Pattambi, Kerala • Pan-India Delivery
+      </p>
     </div>
   </div>
 </div>
@@ -179,50 +225,50 @@
   "name": "Header",
   "settings": [
     {
-      "type": "text",
-      "id": "logo_text",
-      "label": "Logo Text",
-      "default": "ZOOSH"
-    },
-    {
       "type": "image_picker",
       "id": "logo",
-      "label": "Custom Logo Image"
+      "label": "Logo Image"
     },
     {
-      "type": "range",
-      "id": "logo_width",
-      "min": 50,
-      "max": 350,
-      "step": 5,
-      "unit": "px",
-      "label": "Logo Max Width",
-      "default": 140
-    },
-    {
-      "type": "range",
-      "id": "logo_max_height",
-      "min": 20,
-      "max": 100,
-      "step": 2,
-      "unit": "px",
-      "label": "Logo Max Height",
-      "default": 52
+      "type": "text",
+      "id": "logo_text",
+      "label": "Logo Text (Fallback)",
+      "default": "ZOOSH"
     },
     {
       "type": "range",
       "id": "logo_text_size",
       "min": 16,
-      "max": 48,
+      "max": 36,
+      "step": 1,
+      "unit": "px",
+      "label": "Logo Text Size",
+      "default": 22
+    },
+    {
+      "type": "range",
+      "id": "logo_width",
+      "min": 80,
+      "max": 260,
+      "step": 5,
+      "unit": "px",
+      "label": "Desktop Logo Width",
+      "default": 130
+    },
+    {
+      "type": "range",
+      "id": "logo_max_height",
+      "min": 30,
+      "max": 80,
       "step": 2,
       "unit": "px",
-      "label": "Logo Text Font Size (if no image)",
-      "default": 24
+      "label": "Desktop Logo Max Height",
+      "default": 46
     },
     {
       "type": "link_list",
       "id": "menu",
-      "label": "Navigation Menu",
+      "label": "Main Navigation Menu",
       "default": "main-menu"
     }
   ]

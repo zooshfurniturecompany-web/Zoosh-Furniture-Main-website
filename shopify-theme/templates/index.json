@@ -12,6 +12,64 @@
         "secondary_button_link": "/pages/custom-furniture"
       }
     },
+    "category_pills": {
+      "type": "category-pills",
+      "settings": {
+        "heading": "Explore By Category"
+      },
+      "blocks": {
+        "pill_1": {
+          "type": "category_item",
+          "settings": {
+            "title": "Living",
+            "link": "/collections/living"
+          }
+        },
+        "pill_2": {
+          "type": "category_item",
+          "settings": {
+            "title": "Dining",
+            "link": "/collections/dining"
+          }
+        },
+        "pill_3": {
+          "type": "category_item",
+          "settings": {
+            "title": "Bedroom",
+            "link": "/collections/bedroom"
+          }
+        },
+        "pill_4": {
+          "type": "category_item",
+          "settings": {
+            "title": "Seating",
+            "link": "/collections/chairs"
+          }
+        },
+        "pill_5": {
+          "type": "category_item",
+          "settings": {
+            "title": "Consoles",
+            "link": "/collections/entryway"
+          }
+        },
+        "pill_6": {
+          "type": "category_item",
+          "settings": {
+            "title": "Bespoke",
+            "link": "/pages/custom-furniture"
+          }
+        }
+      },
+      "block_order": [
+        "pill_1",
+        "pill_2",
+        "pill_3",
+        "pill_4",
+        "pill_5",
+        "pill_6"
+      ]
+    },
     "category_slider": {
       "type": "category-slider",
       "settings": {
@@ -73,10 +131,43 @@
       "settings": {
         "subheading": "Curated Catalog",
         "heading": "Signature Collection",
-        "products_to_show": 6,
+        "products_to_show": 8,
         "view_all_text": "View Entire Catalog",
         "view_all_link": "/collections/all"
       }
+    },
+    "curated_spaces": {
+      "type": "curated-spaces",
+      "settings": {
+        "subheading": "Architectural Lookbook",
+        "heading": "Curated Interior Spaces",
+        "link": "/pages/projects",
+        "link_text": "View All Completed Projects"
+      },
+      "blocks": {
+        "room_1": {
+          "type": "space",
+          "settings": {
+            "room_tag": "Living Lounge",
+            "title": "The Monolithic Teak Lounge",
+            "description": "Low-slung solid teak sofas and cane-back lounge armchairs.",
+            "link": "/collections/living"
+          }
+        },
+        "room_2": {
+          "type": "space",
+          "settings": {
+            "room_tag": "Dining Space",
+            "title": "Sculptural Dining Suite",
+            "description": "Full-length 8-seater dining table with mortise-and-tenon craftsmanship.",
+            "link": "/collections/dining"
+          }
+        }
+      },
+      "block_order": [
+        "room_1",
+        "room_2"
+      ]
     },
     "image_with_text": {
       "type": "image-with-text",
@@ -98,31 +189,31 @@
           "settings": {
             "icon_name": "truck",
             "title": "Pan-India White Glove Delivery",
-            "description": "Insured door-to-door transit directly from our Pattambi factory to your home."
+            "text": "Carefully blanket-wrapped and transported to your doorstep with in-home assembly across all major Indian cities."
           }
         },
         "benefit_2": {
           "type": "benefit",
           "settings": {
-            "icon_name": "tree",
-            "title": "100% Solid Hardwoods",
-            "description": "Kiln-dried Kerala Teak, imported Ash wood, and rich Mahogany with zero particle boards."
+            "icon_name": "wood",
+            "title": "100% Solid Seasoned Hardwood",
+            "text": "Kiln-dried Teak, Ash & Mahogany timbers seasoned to optimal moisture levels. Never MDF, particle board, or fake veneers."
           }
         },
         "benefit_3": {
           "type": "benefit",
           "settings": {
-            "icon_name": "check",
-            "title": "Bespoke Custom Sizing",
-            "description": "Every single piece is manufactured to your architectural floor plan and exact dimensions."
+            "icon_name": "hammer",
+            "title": "Bespoke Size & Finish Tailoring",
+            "text": "Every sofa, dining set, and cot can be customized in length, height, wood stain, and fabric to match your architecture."
           }
         },
         "benefit_4": {
           "type": "benefit",
           "settings": {
             "icon_name": "shield",
-            "title": "5-Year Structural Warranty",
-            "description": "Engineered with traditional mortise-and-tenon joineries built to last generations."
+            "title": "10-Year Structural Warranty",
+            "text": "Our mortise-and-tenon joinery and solid timber frames are built to withstand generations of daily family use."
           }
         }
       },
@@ -136,7 +227,7 @@
     "projects_gallery": {
       "type": "projects-gallery",
       "settings": {
-        "subheading": "Architectural Installations",
+        "subheading": "Architectural Commissions",
         "heading": "Completed Spaces",
         "description": "A gallery of custom bespoke furniture installations handcrafted for residences across India."
       },
@@ -193,6 +284,47 @@
         "proj_6"
       ]
     },
+    "testimonials": {
+      "type": "testimonials",
+      "settings": {
+        "subheading": "Client Stories",
+        "heading": "Spaces Transformed"
+      },
+      "blocks": {
+        "test_1": {
+          "type": "testimonial",
+          "settings": {
+            "quote": "The solid teak dining table from ZOOSH exceeded our expectations. The joinery and hand-finish are truly world-class, delivered seamlessly to Bangalore.",
+            "author": "Arun & Meera",
+            "location": "Bangalore Villa",
+            "item_bought": "8-Seater Teak Dining"
+          }
+        },
+        "test_2": {
+          "type": "testimonial",
+          "settings": {
+            "quote": "Ordered custom bedroom cots with woven cane headboards. The Pattambi factory craftsmanship is stunning—durable, monolithic, and timeless.",
+            "author": "Dr. Farhan K.",
+            "location": "Kochi Residence",
+            "item_bought": "Plinth King Cot"
+          }
+        },
+        "test_3": {
+          "type": "testimonial",
+          "settings": {
+            "quote": "Architectural furniture made with real seasoned hardwood. No MDF or shortcuts. Their WhatsApp consultation team guided us through custom dimensions perfectly.",
+            "author": "Sneha Sen",
+            "location": "Mumbai Apartment",
+            "item_bought": "Modular Sectional Sofa"
+          }
+        }
+      },
+      "block_order": [
+        "test_1",
+        "test_2",
+        "test_3"
+      ]
+    },
     "cta_banner": {
       "type": "cta-banner",
       "settings": {
@@ -206,11 +338,14 @@
   },
   "order": [
     "hero_slideshow",
+    "category_pills",
     "category_slider",
     "featured_collection",
+    "curated_spaces",
     "image_with_text",
     "benefits_bar",
     "projects_gallery",
+    "testimonials",
     "cta_banner"
   ]
 }

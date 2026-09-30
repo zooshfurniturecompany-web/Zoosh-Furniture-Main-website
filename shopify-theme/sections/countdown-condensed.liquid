@@ -1,0 +1,94 @@
+{%- comment -%}
+Header Condensed Announcement Section for Zoosh
+Cleaned up from countdown timer template to show centered Bespoke Wooden Furniture text.
+{%- endcomment -%}
+
+<style>
+  #shopify-section-{{ section.id }} {
+    --countdown-condensed-justify-content: center;
+  }
+
+  #shopify-section-{{ section.id }} .countdown-condensed {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+  }
+
+  #shopify-section-{{ section.id }} .countdown-condensed__text {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    width: 100%;
+    margin: 0 auto;
+    gap: 0.75rem;
+  }
+
+  #shopify-section-{{ section.id }} .countdown-condensed__text .prose p,
+  #shopify-section-{{ section.id }} .countdown-condensed__text .prose {
+    margin: 0;
+    text-align: center;
+  }
+</style>
+
+<div class="countdown-condensed color-scheme color-scheme--{{ section.settings.color_scheme.id }}">
+  <div class="countdown-condensed__text">
+    {%- if section.settings.content != blank -%}
+      <div class="prose">
+        {%- if section.settings.link_url != blank and section.settings.link_text == blank -%}
+          <a href="{{ section.settings.link_url }}" class="h6 link">
+            {{- section.settings.content -}}
+          </a>
+        {%- else -%}
+          <p class="h6">{{- section.settings.content -}}</p>
+        {%- endif -%}
+      </div>
+    {%- endif -%}
+
+    {%- if section.settings.link_text != blank and section.settings.link_url != blank -%}
+      <a href="{{ section.settings.link_url }}" class="h6 link">{{ section.settings.link_text }}</a>
+    {%- endif -%}
+  </div>
+</div>
+
+{% schema %}
+{
+  "name": "Header Announcement",
+  "class": "shopify-section--countdown-condensed",
+  "tag": "section",
+  "limit": 1,
+  "enabled_on": {
+    "groups": ["header"]
+  },
+  "settings": [
+    {
+      "type": "color_scheme",
+      "id": "color_scheme",
+      "label": "Color scheme",
+      "default": "scheme-3"
+    },
+    {
+      "type": "inline_richtext",
+      "id": "content",
+      "label": "Announcement Text",
+      "default": "Bespoke Wooden Furniture"
+    },
+    {
+      "type": "text",
+      "id": "link_text",
+      "label": "Link Text (Optional)"
+    },
+    {
+      "type": "url",
+      "id": "link_url",
+      "label": "Link URL (Optional)"
+    }
+  ],
+  "presets": [
+    {
+      "name": "Header Announcement"
+    }
+  ]
+}
+{% endschema %}

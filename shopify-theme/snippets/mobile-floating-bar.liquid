@@ -1,0 +1,22 @@
+{%- comment -%}
+  Floating Mobile Quick Consultation Bar (D'tale Modern / Homework Living style)
+  Provides instant one-tap access to WhatsApp design consultation.
+{%- endcomment -%}
+
+{%- assign whatsapp_number = settings.whatsapp_number | default: '919876543210' -%}
+
+<div id="mobile-floating-consultation" class="fixed bottom-4 right-4 z-40 md:hidden flex items-center">
+  <a
+    href="https://wa.me/{{ whatsapp_number | remove: '+' | remove: ' ' | remove: '-' }}?text=Hello%20ZOOSH%20Team%2C%20I%20am%20interested%20in%20custom%20wooden%20furniture%20consultation."
+    target="_blank"
+    rel="noopener noreferrer"
+    class="flex items-center gap-2.5 bg-neutral-950 text-white px-4 py-2.5 rounded-full shadow-2xl hover:bg-neutral-800 transition-all transform active:scale-95 border border-neutral-700/50"
+    aria-label="WhatsApp Consultation"
+  >
+    <svg class="w-5 h-5 fill-emerald-400" viewBox="0 0 24 24">
+      <path d="M12.031 6.172c-3.181 0-5.767 2.586-5.768 5.766-.001 1.298.38 2.27 1.019 3.287l-.582 2.128 2.182-.573c.978.58 1.911.928 3.145.929 3.178 0 5.767-2.587 5.768-5.766.001-3.187-2.575-5.771-5.764-5.771zm3.392 8.244c-.144.405-.837.774-1.17.824-.312.045-.698.083-2.18-.53-.943-.389-1.547-1.348-1.594-1.411-.047-.063-.379-.504-.379-.962 0-.458.24-.683.325-.778.085-.095.186-.118.248-.118.062 0 .124.001.178.004.058.003.136-.022.213.163.078.188.267.653.29.702.023.049.039.108.008.17-.031.062-.047.098-.093.152-.047.054-.1.121-.143.163-.047.046-.096.096-.041.19.055.095.244.403.524.652.361.321.666.421.76.467.094.047.149.04.204-.023.055-.062.234-.272.296-.366.062-.094.125-.078.209-.047.085.031.54.254.633.3.093.047.155.07.178.109.023.039.023.226-.121.631z"/>
+      <path d="M12 2C6.477 2 2 6.477 2 12c0 1.891.524 3.66 1.436 5.176L2 22l4.981-1.309A9.957 9.957 0 0 0 12 22c5.523 0 10-4.477 10-10S17.523 2 12 2zm0 18.2c-1.63 0-3.153-.473-4.439-1.288l-.318-.202-2.964.778.791-2.889-.221-.352C4.004 15.011 3.5 13.551 3.5 12c0-4.687 3.813-8.5 8.5-8.5s8.5 3.813 8.5 8.5-3.813 8.5-8.5 8.5z"/>
+    </svg>
+    <span class="text-[11px] font-sans font-medium tracking-[0.12em] uppercase">Consult on WhatsApp</span>
+  </a>
+</div>

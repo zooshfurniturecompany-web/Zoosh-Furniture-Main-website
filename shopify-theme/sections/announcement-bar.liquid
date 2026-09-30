@@ -1,11 +1,15 @@
 {%- if section.settings.show_announcement -%}
-  <div class="announcement-bar bg-black text-white text-[11px] font-sans tracking-[0.2em] uppercase py-2.5 px-4 text-center border-b border-neutral-800">
-    <div class="max-w-7xl mx-auto flex items-center justify-center gap-4">
-      <span>{{ section.settings.announcement_text }}</span>
+  <div class="announcement-bar bg-[#111111] text-white text-[10.5px] font-sans tracking-[0.22em] uppercase py-2.5 px-4 text-center border-b border-neutral-800/80">
+    <div class="max-w-7xl mx-auto flex items-center justify-center gap-3">
       {%- if section.settings.link != blank -%}
-        <a href="{{ section.settings.link }}" class="underline hover:opacity-80 transition-opacity">
-          {{ section.settings.link_text | default: 'Explore Now' }}
+        <a href="{{ section.settings.link }}" class="hover:opacity-80 transition-opacity flex items-center gap-2">
+          <span>{{ section.settings.announcement_text | default: 'PAN INDIA FREE DELIVERY • BESPOKE WOODEN FURNITURE' }}</span>
+          {%- if section.settings.link_text != blank -%}
+            <span class="underline underline-offset-4 opacity-80">{{ section.settings.link_text }}</span>
+          {%- endif -%}
         </a>
+      {%- else -%}
+        <span>{{ section.settings.announcement_text | default: 'PAN INDIA FREE DELIVERY • BESPOKE WOODEN FURNITURE' }}</span>
       {%- endif -%}
     </div>
   </div>
@@ -25,7 +29,7 @@
       "type": "text",
       "id": "announcement_text",
       "label": "Announcement Text",
-      "default": "Bespoke Solid Wood Furniture • Handcrafted in Pattambi Factory • Pan-India Delivery"
+      "default": "PAN INDIA FREE DELIVERY • BESPOKE WOODEN FURNITURE"
     },
     {
       "type": "url",
@@ -35,8 +39,7 @@
     {
       "type": "text",
       "id": "link_text",
-      "label": "Link Text",
-      "default": "Learn More"
+      "label": "Link Text (Optional)"
     }
   ]
 }
