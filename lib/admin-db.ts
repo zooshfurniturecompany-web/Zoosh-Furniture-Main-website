@@ -191,27 +191,62 @@ const DEFAULT_ADMIN_USERS: AdminUser[] = [
   { id: "usr-1", email: "admin@zoosh.in", name: "Zoosh Admin", role: "admin", created_at: new Date().toISOString() }
 ];
 
+function extractWoodFromDesc(desc?: string, material?: string): string {
+  const d = (desc || "").toLowerCase();
+  const m = (material || "").trim();
+
+  if (d.includes("solid mahogany") || d.includes("mahogany wood") || d.includes("solid mahogany wood")) {
+    return "Solid Mahogany Wood";
+  }
+  if (d.includes("solid ash") || d.includes("ash wood") || d.includes("solid ash wood")) {
+    return "Solid Ash Wood";
+  }
+  if (d.includes("solid acacia") || d.includes("acacia wood") || d.includes("solid acacia wood")) {
+    return "Solid Acacia Wood";
+  }
+  if (d.includes("solid oak") || d.includes("oak wood") || d.includes("solid oak wood")) {
+    return "Solid Oak Wood";
+  }
+  if (d.includes("solid walnut") || d.includes("walnut wood") || d.includes("solid walnut wood")) {
+    return "Solid Walnut Wood";
+  }
+  if (d.includes("solid teak") || d.includes("teakwood") || d.includes("teak wood") || d.includes("treated solid teakwood")) {
+    return "Solid Teak Wood";
+  }
+  if (d.includes("molded plywood") || d.includes("plywood core") || d.includes("molded frame")) {
+    return "Molded Plywood & Hardwood Frame";
+  }
+
+  if (m && !m.includes(",") && m !== "Solid Wood") {
+    return m;
+  }
+
+  return "Solid Teak Wood";
+}
+
 function seedAllFallbackProducts(): AdminProduct[] {
   return (productsData as any[]).map((p, idx) => {
     const sku = p.sku || `SF${String(idx + 1).padStart(3, "0")}`;
     const slug = p.slug || sku.toLowerCase();
     const id = `zsh-${sku.toLowerCase()}`;
 
+    const specificWood = extractWoodFromDesc(p.description, p.material);
+
     let collection_id = "col-1";
     let collection_name = "Solid Teakwood Heritage";
-    if (p.name.includes("Bouclé") || (p.material && p.material.includes("Bouclé")) || (p.material && p.material.includes("Plywood"))) {
-      collection_id = "col-2";
-      collection_name = "Organic Sculptural Bouclé";
-    } else if ((p.material && p.material.includes("Ash")) || (p.material && p.material.includes("Cane")) || p.name.includes("Cane")) {
+    if (specificWood.includes("Ash") || (p.description && p.description.includes("ash"))) {
       collection_id = "col-3";
       collection_name = "Modern Ash & Cane";
-    } else if (p.material && p.material.includes("Mahogany")) {
+    } else if (specificWood.includes("Mahogany") || (p.description && p.description.includes("mahogany"))) {
       collection_id = "col-4";
       collection_name = "Classic Spindle Mahogany";
+    } else if (p.name.includes("Bouclé") || (p.material && p.material.includes("Plywood"))) {
+      collection_id = "col-2";
+      collection_name = "Organic Sculptural Bouclé";
     }
 
-    const woodOpts = ["Solid Teak Wood", "Premium Ash Wood", "Selected Mahogany Wood"];
-    const fabricOpts = [p.fabric || "Cream Textured Bouclé", "Natural Linen Blend", "Slate Grey Velvet"];
+    const woodOpts = [specificWood];
+    const fabricOpts = p.fabric ? [p.fabric] : [];
 
     return {
       id,
@@ -236,16 +271,16 @@ function seedAllFallbackProducts(): AdminProduct[] {
       dimension_breakdown: p.dimensionBreakdown || [],
       custom_dimensions_available: true,
       customisation_available: true,
-      material: p.material || "Solid Wood",
+      material: specificWood,
       finish: p.finish || "Melamine Matt Polish",
       wood_options: woodOpts,
       fabric_options: fabricOpts,
-      finish_options: ["Natural Matt Polish", "Warm Walnut Polish", "Smoked Ash Polish"],
+      finish_options: ["Natural Matt Polish", "Warm Walnut Polish"],
       specs: {
-        "Wood Type": p.material || "Solid Wood",
-        "Upholstery": p.fabric || "Tailored Fabric Upholstery",
+        "Wood Type": specificWood,
+        ...(p.fabric ? { "Upholstery": p.fabric } : {}),
         "Finish": p.finish || "Melamine Matt Polish",
-        "Warranty": "5-Year Frame Structural Warranty",
+        "Warranty": "5 Years Warranty",
         "Assembly": "Delivered Fully Assembled"
       },
       images: p.images || [],
@@ -457,20 +492,21 @@ export const adminDb = {
       dimension_breakdown: product.dimension_breakdown || [],
       custom_dimensions_available: product.custom_dimensions_available ?? true,
       customisation_available: product.customisation_available ?? true,
-      material: (product.wood_options && product.wood_options.length > 0)
-        ? (product.material && product.material !== "Treated Solid Teakwood" && product.material !== "Solid Wood" ? product.material : product.wood_options.join(", "))
-        : (product.material || "Solid Wood"),
-      finish: product.finish || "Matt Polish",
+      material: (product.wood_options && product.wood_options.length === 1)
+        ? product.wood_options[0]
+        : (product.material || "Solid Teak Wood"),
+      finish: product.finish || "Melamine Matt Polish",
       wood_options: product.wood_options && product.wood_options.length > 0
         ? product.wood_options
-        : (product.material ? [product.material] : ["Solid Teak Wood", "Premium Ash Wood", "Selected Mahogany Wood"]),
-      fabric_options: product.fabric_options || ["Cream Textured Bouclé", "Natural Linen Blend"],
+        : [product.material || "Solid Teak Wood"],
+      fabric_options: product.fabric_options || [],
       finish_options: product.finish_options || ["Natural Matt Polish"],
       size_options: product.size_options || [],
       specs: product.specs || {
-        "Wood Type": (product.wood_options && product.wood_options.length > 0) ? product.wood_options.join(", ") : (product.material || "Solid Wood"),
-        "Finish": product.finish || "Matt Polish",
-        "Warranty": "5-Year Frame Structural Warranty",
+        "Wood Type": product.material || "Solid Teak Wood",
+        ...(product.fabric_options?.[0] ? { "Upholstery": product.fabric_options[0] } : {}),
+        "Finish": product.finish || "Melamine Matt Polish",
+        "Warranty": "5 Years Warranty",
         "Assembly": "Delivered Fully Assembled"
       },
       images: product.images && product.images.length > 0 ? product.images : ["/images/products/sf001-1.jpg"],

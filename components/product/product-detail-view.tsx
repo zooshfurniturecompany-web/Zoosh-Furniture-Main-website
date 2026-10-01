@@ -3,7 +3,7 @@
 import { useState, useEffect } from "react";
 import Link from "next/link";
 import { Send, Truck, ShieldCheck, Check, CornerDownLeft, Sparkles, Ruler, Calendar, CheckCircle2 } from "lucide-react";
-import { Product } from "@/lib/products-utils";
+import { Product, extractWoodFromDescriptionOrMaterial } from "@/lib/products-utils";
 import { useCart } from "@/components/cart/cart-context";
 import ShareButton from "@/components/product/share-button";
 
@@ -23,6 +23,12 @@ export default function ProductDetailView({
   const { addItem } = useCart();
   const [quantity, setQuantity] = useState(1);
   const [addedNotice, setAddedNotice] = useState(false);
+
+  // Accurately identify single wood from description or data
+  const specificMaterial = extractWoodFromDescriptionOrMaterial(
+    product.description,
+    product.material
+  );
 
   // Dynamic 30-45 days estimated delivery calculation based on today's live date
   const [deliveryInfo, setDeliveryInfo] = useState({
@@ -206,24 +212,27 @@ Thank you.`;
           <div className="flex justify-between py-1.5">
             <span className="text-neutral-500 font-light">Primary Material</span>
             <span className="text-neutral-900 font-medium text-right">
-              {product.material || product.specs?.material || "Solid Hardwood"}
+              {specificMaterial}
             </span>
           </div>
 
           <div className="flex justify-between py-1.5">
             <span className="text-neutral-500 font-light">Finish / Polish</span>
             <span className="text-neutral-900 font-medium text-right">
-              {product.finish || product.specs?.finish || "Natural Matte Finish"}
+              {product.finish || product.specs?.finish || "Melamine Matt Polish"}
             </span>
           </div>
 
-          {/* Only render fabric if defined in product data */}
-          {product.fabric && (
-            <div className="flex justify-between py-1.5">
-              <span className="text-neutral-500 font-light">Fabric Upholstery</span>
-              <span className="text-neutral-900 font-medium text-right">{product.fabric}</span>
-            </div>
-          )}
+          {/* Only render fabric if explicitly specified in product data */}
+          {product.fabric &&
+            product.fabric.trim().length > 0 &&
+            product.fabric.toLowerCase() !== "n/a" &&
+            product.fabric.toLowerCase() !== "none" && (
+              <div className="flex justify-between py-1.5">
+                <span className="text-neutral-500 font-light">Fabric Upholstery</span>
+                <span className="text-neutral-900 font-medium text-right">{product.fabric}</span>
+              </div>
+            )}
 
           {/* Only render rattan if defined in product data */}
           {product.rattan && (
