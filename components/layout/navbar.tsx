@@ -107,16 +107,6 @@ export default function Navbar() {
         className="fixed top-0 left-0 right-0 z-50 bg-white text-black"
         onMouseLeave={() => setHoveredRoom(null)}
       >
-        {/* Top Announcement Bar */}
-        <div className="bg-black text-white text-[9px] sm:text-[10.5px] font-sans tracking-[0.18em] uppercase py-2 px-4 text-center border-b border-neutral-800">
-          <div className="max-w-7xl mx-auto flex items-center justify-center gap-2 sm:gap-4 truncate">
-            <span className="truncate">Bespoke Hardwood Furniture • Pattambi Workshop • Pan-India Delivery</span>
-            <Link href="/custom" className="underline hover:opacity-80 transition-opacity hidden md:inline font-medium">
-              Custom Blueprints
-            </Link>
-          </div>
-        </div>
-
         {/* =====================================================
             ROW 1 — LOGO + MAIN NAVIGATION (DESKTOP GRID / MOBILE FLEX)
             ===================================================== */}

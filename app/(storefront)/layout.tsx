@@ -13,7 +13,7 @@ export default function StorefrontLayout({
     <CartProvider>
       <div className="flex flex-col min-h-screen">
         <Navbar />
-        <main className="flex-grow pt-[94px] md:pt-[102px]">{children}</main>
+        <main className="flex-grow pt-[84px]">{children}</main>
         <FloatingContact />
         <Footer />
         <CartDrawer />
