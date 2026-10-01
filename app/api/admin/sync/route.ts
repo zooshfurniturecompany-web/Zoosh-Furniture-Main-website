@@ -52,9 +52,64 @@ export async function POST(request: Request) {
         console.warn("Could not write reordered products to disk:", fsErr);
       }
     } else if (action === "save_product" && product) {
-      await adminDb.saveProduct(product);
+      const savedItem = await adminDb.saveProduct(product);
+      try {
+        const fs = await import("fs/promises");
+        const path = await import("path");
+        const filePath = path.join(process.cwd(), "data", "products.json");
+        const raw = await fs.readFile(filePath, "utf-8");
+        const jsonList = JSON.parse(raw);
+
+        const existingIdx = jsonList.findIndex((p: any) =>
+          (p.id && savedItem.id && p.id.toLowerCase() === savedItem.id.toLowerCase()) ||
+          (p.sku && savedItem.sku && p.sku.toLowerCase() === savedItem.sku.toLowerCase())
+        );
+
+        const newEntry = {
+          id: savedItem.id,
+          sku: savedItem.sku,
+          name: savedItem.name,
+          category: savedItem.category_name,
+          material: savedItem.material,
+          dimensions: savedItem.dimensions,
+          price: savedItem.price,
+          finish: savedItem.finish,
+          fabric: (savedItem.fabric_options && savedItem.fabric_options[0]) || (savedItem as any).fabric || "",
+          rattan: (savedItem.specs?.["Rattan"] as string) || (savedItem as any).rattan || "",
+          dimensionBreakdown: savedItem.dimension_breakdown || (savedItem as any).dimensionBreakdown || [],
+          images: savedItem.images,
+          description: savedItem.full_description || savedItem.short_description || (savedItem as any).description || "",
+          featured: savedItem.featured ?? true,
+          display_order: savedItem.display_order,
+        };
+
+        if (existingIdx !== -1) {
+          jsonList[existingIdx] = { ...jsonList[existingIdx], ...newEntry };
+        } else {
+          jsonList.unshift(newEntry);
+        }
+
+        await fs.writeFile(filePath, JSON.stringify(jsonList, null, 2), "utf-8");
+      } catch (fsErr) {
+        console.warn("Could not write saved product to data/products.json:", fsErr);
+      }
     } else if (action === "delete_product" && product?.id) {
       await adminDb.deleteProduct(product.id);
+      try {
+        const fs = await import("fs/promises");
+        const path = await import("path");
+        const filePath = path.join(process.cwd(), "data", "products.json");
+        const raw = await fs.readFile(filePath, "utf-8");
+        const jsonList = JSON.parse(raw);
+        const filtered = jsonList.filter((p: any) =>
+          p.id !== product.id &&
+          p.sku !== product.id &&
+          `zsh-${(p.sku || "").toLowerCase()}` !== product.id
+        );
+        await fs.writeFile(filePath, JSON.stringify(filtered, null, 2), "utf-8");
+      } catch (fsErr) {
+        console.warn("Could not write deleted product to data/products.json:", fsErr);
+      }
     } else if (action === "toggle_publish" && product?.id) {
       await adminDb.togglePublish(product.id);
     } else if (action === "archive_product" && product?.id) {

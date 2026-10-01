@@ -275,13 +275,11 @@ export default function ProductForm({ initialData, isEdit = false }: ProductForm
     try {
       const kwArray = keywords.split(",").map(k => k.trim()).filter(Boolean);
       
-      const finalWoodOptions = selectedWoods.length > 0
-        ? selectedWoods
-        : (material ? [material] : ["Solid Teak Wood"]);
+      const finalMaterial = (material && material.trim().length > 0)
+        ? material.trim()
+        : (selectedWoods.length > 0 ? selectedWoods[0] : "Solid Teak Wood");
 
-      const finalMaterial = (material && material !== "Treated Solid Teakwood" && material !== "Solid Wood" && material.trim().length > 0)
-        ? material
-        : finalWoodOptions.join(", ");
+      const finalWoodOptions = [finalMaterial];
 
       const payload: Partial<AdminProduct> = {
         id: initialData?.id,
@@ -317,10 +315,11 @@ export default function ProductForm({ initialData, isEdit = false }: ProductForm
         keywords: kwArray,
         specs: {
           "Wood Type": finalMaterial,
+          ...(selectedFabrics.length > 0 ? { "Fabric Upholstery": selectedFabrics[0] } : {}),
           "Finish": finish,
           "Dimensions": dimensions,
           "Customizable": customisationAvailable ? "Yes - Made to order" : "No",
-          "Warranty": "5-Year Frame Structural Warranty",
+          "Warranty": "5 Years Warranty",
           "Assembly": "Delivered Fully Assembled"
         }
       };
