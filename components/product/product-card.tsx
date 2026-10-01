@@ -40,16 +40,37 @@ export default function ProductCard({
       ? `₹${product.price.toLocaleString("en-IN")}`
       : "₹40,000";
 
+  // Calculate subtle MRP comparison reference (18-25% higher) for luxury retail feel
+  const mrpPrice =
+    typeof product.price === "number" && product.price > 0
+      ? `₹${Math.round(product.price * 1.2).toLocaleString("en-IN")}`
+      : "₹48,000";
+
+  // Dynamic D'TALE Modern style tag
+  let badgeLabel = "ZOOSH EDIT";
+  if (product.featured) {
+    badgeLabel = "BEST SELLER";
+  } else if (product.sku.endsWith("1") || product.sku.endsWith("2")) {
+    badgeLabel = "NEW ARRIVAL";
+  }
+
   return (
     <div
       className="product-card group relative flex flex-col justify-between bg-white text-left"
       onMouseEnter={() => setIsHovered(true)}
       onMouseLeave={() => setIsHovered(false)}
     >
-      {/* Aspect Square (1:1) Image Container */}
-      <div className="relative aspect-square w-full overflow-hidden bg-neutral-100 border border-neutral-100">
+      {/* 1:1 Aspect Ratio Luxury Square Image Container (D'TALE Modern Style) */}
+      <div className="relative aspect-square w-full overflow-hidden bg-[#f7f7f7] border border-neutral-100">
         
-        {/* Wishlist Heart Icon */}
+        {/* Top-Left Corner Tag Badge (D'TALE MODERN / LUXURY STYLE) */}
+        <div className="absolute top-2.5 left-2.5 z-10">
+          <span className="bg-black text-white text-[8px] sm:text-[9px] font-sans font-semibold tracking-[0.14em] uppercase px-2 py-1 shadow-xs">
+            {badgeLabel}
+          </span>
+        </div>
+
+        {/* Top-Right Circular Wishlist Heart Icon */}
         <button
           type="button"
           onClick={(e) => {
@@ -57,7 +78,7 @@ export default function ProductCard({
             e.stopPropagation();
             setIsLiked(!isLiked);
           }}
-          className="absolute top-2 right-2 z-10 w-7 h-7 sm:w-8 sm:h-8 rounded-full bg-white/90 backdrop-blur-xs flex items-center justify-center text-neutral-600 hover:text-black transition-colors shadow-xs"
+          className="absolute top-2.5 right-2.5 z-10 w-7 h-7 sm:w-8 sm:h-8 rounded-full bg-white/95 backdrop-blur-xs flex items-center justify-center text-neutral-700 hover:text-black transition-all shadow-sm"
           aria-label="Save to wishlist"
         >
           <Heart
@@ -66,8 +87,8 @@ export default function ProductCard({
           />
         </button>
 
+        {/* Product Image Link */}
         <Link href={`/products/${product.slug}`} className="block h-full w-full">
-          {/* Primary Image */}
           <div className="absolute inset-0">
             <Image
               src={primaryImage}
@@ -95,7 +116,7 @@ export default function ProductCard({
           </div>
         </Link>
 
-        {/* Quick Add Overlay on Desktop & Quick Touch Bar */}
+        {/* Desktop Quick Add Bar */}
         <div className="absolute inset-x-0 bottom-0 p-2 sm:p-2.5 translate-y-full group-hover:translate-y-0 transition-transform duration-300 ease-out hidden sm:block z-10">
           <button
             type="button"
@@ -107,11 +128,11 @@ export default function ProductCard({
         </div>
       </div>
 
-      {/* Product Information */}
-      <div className="flex flex-col pt-2.5 sm:pt-3 space-y-1">
-        {/* Subtle Made to Order badge */}
+      {/* Product Details Section (Matching D'TALE Modern Architecture) */}
+      <div className="flex flex-col pt-2.5 sm:pt-3 space-y-1.5">
+        {/* Made to Order Pill + Timber Spec */}
         <div className="flex items-center justify-between">
-          <span className="inline-block bg-[#f4f4f4] text-neutral-800 text-[8px] sm:text-[9px] font-semibold tracking-wider uppercase px-2 py-0.5">
+          <span className="inline-block bg-[#f0f0f0] text-neutral-800 text-[8px] sm:text-[9px] font-semibold tracking-wider uppercase px-2 py-0.5">
             Made to Order
           </span>
           {product.material && (
@@ -122,14 +143,17 @@ export default function ProductCard({
         </div>
 
         {/* Product Title */}
-        <h3 className="font-sans text-xs sm:text-sm md:text-[15px] text-neutral-900 group-hover:text-neutral-600 transition-colors duration-200 leading-snug line-clamp-1 font-medium">
+        <h3 className="font-sans text-xs sm:text-sm md:text-[14px] text-neutral-900 group-hover:text-neutral-600 transition-colors duration-200 leading-snug line-clamp-2 font-normal">
           <Link href={`/products/${product.slug}`}>{product.name}</Link>
         </h3>
 
-        {/* Clean Bold Price (Homework Living minimal format) */}
-        <div className="pt-0.5">
-          <span className="text-xs sm:text-sm md:text-base font-bold text-neutral-950 font-sans tracking-tight block tabular-nums">
+        {/* Pricing Block with Indian Rupee & MRP Strikethrough */}
+        <div className="pt-0.5 flex items-baseline gap-2">
+          <span className="text-xs sm:text-sm md:text-base font-bold text-neutral-950 font-sans tracking-tight tabular-nums">
             {formattedPrice}
+          </span>
+          <span className="text-[10px] sm:text-[11px] text-neutral-400 line-through font-sans tabular-nums font-light">
+            {mrpPrice}
           </span>
         </div>
       </div>
