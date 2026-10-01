@@ -36,6 +36,7 @@ interface ProductFormProps {
 export default function ProductForm({ initialData, isEdit = false }: ProductFormProps) {
   const router = useRouter();
   const fileInputRef = useRef<HTMLInputElement>(null);
+  const coverFileInputRef = useRef<HTMLInputElement>(null);
 
   // Active form tab
   const [activeTab, setActiveTab] = useState<"basic" | "images" | "specs" | "pricing" | "seo">("basic");
@@ -195,6 +196,29 @@ export default function ProductForm({ initialData, isEdit = false }: ProductForm
       setImages((prev) => [...prev, ...addedUrls]);
       const updatedMedia = await adminDb.getMediaItems();
       setMediaList(updatedMedia);
+    }
+    setIsUploading(false);
+  };
+
+  // Direct 1-click replacement of the main front cover photo
+  const handleReplaceCover = async (files: FileList | null) => {
+    if (!files || files.length === 0) return;
+    setIsUploading(true);
+    const file = files[0];
+    if (file.type.startsWith("image/")) {
+      try {
+        const dataUrl = await compressImage(file);
+        setImages((prev) => [dataUrl, ...prev.slice(1)]);
+        await adminDb.addMediaItem({
+          url: dataUrl,
+          name: file.name,
+          size: `${Math.round(file.size / 1024)} KB`
+        });
+        const updatedMedia = await adminDb.getMediaItems();
+        setMediaList(updatedMedia);
+      } catch (err) {
+        console.error("Error replacing front cover photo:", err);
+      }
     }
     setIsUploading(false);
   };
@@ -570,41 +594,58 @@ export default function ProductForm({ initialData, isEdit = false }: ProductForm
             ======================================================== */}
         {activeTab === "images" && (
           <div className="bg-white p-6 rounded-xl border border-neutral-200 shadow-sm space-y-6 text-xs">
-            <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-2">
+            <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-3 pb-4 border-b border-neutral-100">
               <div>
                 <h3 className="text-sm font-semibold text-neutral-900">Product Photography Gallery</h3>
                 <p className="text-neutral-500 mt-0.5">
-                  Upload photos directly from your device or select from the Media Library. The first image is the main cover photo.
+                  The <strong className="text-neutral-800">1st photo</strong> is the primary front cover shown on catalog cards and PDP hero.
                 </p>
               </div>
-              <div className="flex items-center gap-2">
+              <div className="flex flex-wrap items-center gap-2">
                 <button
                   type="button"
                   onClick={() => setMediaLibraryOpen(true)}
-                  className="px-3.5 py-2 bg-neutral-100 hover:bg-neutral-200 text-neutral-800 font-semibold rounded-lg transition-colors flex items-center gap-1.5"
+                  className="px-3 py-2 bg-neutral-100 hover:bg-neutral-200 text-neutral-800 font-semibold rounded-lg transition-colors flex items-center gap-1.5"
                 >
                   <FolderOpen className="w-3.5 h-3.5" />
-                  <span>Browse Media Library ({mediaList.length})</span>
+                  <span>Media Library ({mediaList.length})</span>
+                </button>
+                <button
+                  type="button"
+                  onClick={() => coverFileInputRef.current?.click()}
+                  disabled={isUploading}
+                  className="px-3 py-2 bg-amber-50 hover:bg-amber-100 text-amber-900 border border-amber-300 font-semibold rounded-lg transition-colors flex items-center gap-1.5 disabled:opacity-60"
+                  title="Upload and set as front cover image directly"
+                >
+                  <Sparkles className="w-3.5 h-3.5 text-amber-600" />
+                  <span>Replace Front Photo</span>
                 </button>
                 <button
                   type="button"
                   onClick={() => fileInputRef.current?.click()}
                   disabled={isUploading}
-                  className="px-4 py-2 bg-black hover:bg-neutral-800 text-white font-semibold rounded-lg transition-colors flex items-center gap-1.5 shadow-xs disabled:opacity-60"
+                  className="px-3.5 py-2 bg-black hover:bg-neutral-800 text-white font-semibold rounded-lg transition-colors flex items-center gap-1.5 shadow-xs disabled:opacity-60"
                 >
                   {isUploading ? <Loader2 className="w-3.5 h-3.5 animate-spin" /> : <Upload className="w-3.5 h-3.5" />}
-                  <span>Upload Photos</span>
+                  <span>+ Add More Photos</span>
                 </button>
               </div>
             </div>
 
-            {/* Hidden Native File Input */}
+            {/* Hidden Native File Inputs */}
             <input
               ref={fileInputRef}
               type="file"
               multiple
               accept="image/*"
               onChange={(e) => handleFilesSelected(e.target.files)}
+              className="hidden"
+            />
+            <input
+              ref={coverFileInputRef}
+              type="file"
+              accept="image/*"
+              onChange={(e) => handleReplaceCover(e.target.files)}
               className="hidden"
             />
 
@@ -614,26 +655,26 @@ export default function ProductForm({ initialData, isEdit = false }: ProductForm
               onDragLeave={handleDragLeave}
               onDrop={handleDrop}
               onClick={() => fileInputRef.current?.click()}
-              className={`border-2 border-dashed rounded-xl p-8 text-center cursor-pointer transition-all ${
+              className={`border-2 border-dashed rounded-xl p-6 text-center cursor-pointer transition-all ${
                 isDragging
                   ? "border-black bg-neutral-100 scale-[0.99]"
                   : "border-neutral-300 hover:border-black bg-neutral-50/60 hover:bg-neutral-50"
               }`}
             >
-              <div className="max-w-xs mx-auto space-y-2">
-                <div className="w-12 h-12 bg-white rounded-full border border-neutral-200 flex items-center justify-center mx-auto shadow-xs">
+              <div className="max-w-md mx-auto space-y-2">
+                <div className="w-10 h-10 bg-white rounded-full border border-neutral-200 flex items-center justify-center mx-auto shadow-xs">
                   {isUploading ? (
-                    <Loader2 className="w-6 h-6 text-neutral-900 animate-spin" />
+                    <Loader2 className="w-5 h-5 text-neutral-900 animate-spin" />
                   ) : (
-                    <Upload className="w-6 h-6 text-neutral-600" />
+                    <Upload className="w-5 h-5 text-neutral-600" />
                   )}
                 </div>
                 <div>
                   <p className="font-semibold text-neutral-900 text-xs">
-                    {isUploading ? "Uploading & Optimizing..." : "Click to upload or drag photos here"}
+                    {isUploading ? "Uploading & Optimizing image..." : "Click to select or drag & drop photos here"}
                   </p>
                   <p className="text-[11px] text-neutral-500 mt-0.5">
-                    Supports JPG, PNG, WEBP, HEIC from phone or desktop
+                    Supports JPG, PNG, WEBP from your phone or computer. Auto-compressed for rapid live loading.
                   </p>
                 </div>
               </div>
@@ -641,7 +682,7 @@ export default function ProductForm({ initialData, isEdit = false }: ProductForm
 
             {/* Manual Image URL Input fallback */}
             <div className="pt-2 border-t border-neutral-100">
-              <label className="block text-neutral-500 font-medium mb-1 text-[11px]">Or add via image URL / path:</label>
+              <label className="block text-neutral-500 font-medium mb-1 text-[11px]">Or paste direct image URL / asset path:</label>
               <div className="flex gap-2">
                 <div className="relative flex-1">
                   <input
@@ -649,13 +690,13 @@ export default function ProductForm({ initialData, isEdit = false }: ProductForm
                     value={newImageUrl}
                     onChange={(e) => setNewImageUrl(e.target.value)}
                     placeholder="Enter image URL or path (e.g. /images/products/sf021-1.jpg or https://...)"
-                    className="w-full px-3 py-2 bg-neutral-50 border border-neutral-200 rounded-lg focus:outline-none focus:ring-1 focus:ring-black focus:bg-white text-neutral-900"
+                    className="w-full px-3 py-2 bg-neutral-50 border border-neutral-200 rounded-lg focus:outline-none focus:ring-1 focus:ring-black focus:bg-white text-neutral-900 text-xs"
                   />
                 </div>
                 <button
                   type="button"
                   onClick={handleAddImage}
-                  className="px-4 py-2 bg-neutral-900 text-white font-semibold rounded-lg hover:bg-black transition-colors flex items-center gap-1.5 shrink-0"
+                  className="px-3.5 py-2 bg-neutral-900 text-white font-semibold rounded-lg hover:bg-black transition-colors flex items-center gap-1.5 shrink-0 text-xs"
                 >
                   <Plus className="w-3.5 h-3.5" /> Add URL
                 </button>
@@ -666,49 +707,80 @@ export default function ProductForm({ initialData, isEdit = false }: ProductForm
             <div className="space-y-3 pt-2 border-t border-neutral-100">
               <div className="flex items-center justify-between">
                 <span className="font-semibold text-neutral-900">
-                  Uploaded Photos ({images.length})
+                  Current Photos ({images.length})
                 </span>
-                <span className="text-[10px] text-neutral-400">
-                  First photo is the primary storefront cover
+                <span className="text-[11px] text-neutral-500">
+                  Click <strong className="text-neutral-800">Make Cover</strong> to set any photo as the main front image
                 </span>
               </div>
 
               {images.length === 0 ? (
                 <div className="p-8 text-center border border-dashed border-neutral-200 rounded-lg bg-neutral-50 text-neutral-400">
                   <ImageIcon className="w-8 h-8 mx-auto mb-1 stroke-1 text-neutral-300" />
-                  <p>No photos added yet. Upload from your device or browse the media library.</p>
+                  <p className="font-medium">No photos added yet</p>
+                  <p className="text-[11px] text-neutral-400 mt-1">Use the upload buttons above or browse the media library to add product photos.</p>
                 </div>
               ) : (
-                <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 gap-4">
+                <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 gap-3.5">
                   {images.map((imgUrl, idx) => (
                     <div
                       key={idx}
-                      className={`relative group border rounded-xl overflow-hidden bg-neutral-50 shadow-xs aspect-[4/5] flex flex-col transition-all ${
-                        idx === 0 ? "border-black ring-2 ring-black/10" : "border-neutral-200"
+                      className={`relative group border rounded-xl overflow-hidden bg-neutral-50 shadow-xs flex flex-col transition-all ${
+                        idx === 0 ? "border-amber-500 ring-2 ring-amber-400/40" : "border-neutral-200 hover:border-neutral-400"
                       }`}
                     >
-                      <img
-                        src={imgUrl}
-                        alt={`Product image ${idx + 1}`}
-                        className="w-full h-full object-cover"
-                      />
+                      {/* Image Preview */}
+                      <div className="aspect-[4/5] w-full relative bg-neutral-100">
+                        <img
+                          src={imgUrl}
+                          alt={`Product image ${idx + 1}`}
+                          className="w-full h-full object-cover"
+                        />
 
-                      {/* Cover Badge */}
-                      <div className="absolute top-2 left-2 flex gap-1">
-                        {idx === 0 ? (
-                          <span className="bg-black text-white text-[9px] font-bold uppercase tracking-wider px-2 py-0.5 rounded shadow-xs">
-                            Cover
-                          </span>
-                        ) : (
-                          <span className="bg-black/60 text-white text-[9px] font-medium px-1.5 py-0.5 rounded backdrop-blur-xs">
-                            #{idx + 1}
-                          </span>
-                        )}
+                        {/* Top Left: Cover Badge / Make Cover Button */}
+                        <div className="absolute top-1.5 left-1.5 z-10">
+                          {idx === 0 ? (
+                            <span className="bg-black text-amber-300 text-[9px] font-bold uppercase tracking-wider px-2 py-0.5 rounded shadow flex items-center gap-1 border border-amber-400/30">
+                              <span>★</span> Front Cover
+                            </span>
+                          ) : (
+                            <button
+                              type="button"
+                              onClick={(e) => {
+                                e.stopPropagation();
+                                handleSetCoverImage(idx);
+                              }}
+                              className="bg-white/95 hover:bg-black hover:text-white text-neutral-800 text-[9px] font-bold px-2 py-0.5 rounded shadow transition-all border border-neutral-200 flex items-center gap-1"
+                              title="Set as front cover photo"
+                            >
+                              <span>★</span> Set Cover
+                            </button>
+                          )}
+                        </div>
+
+                        {/* Top Right: Prominent Always-Visible Delete Button */}
+                        <div className="absolute top-1.5 right-1.5 z-10">
+                          <button
+                            type="button"
+                            onClick={(e) => {
+                              e.stopPropagation();
+                              handleRemoveImage(idx);
+                            }}
+                            className="p-1.5 bg-red-600 hover:bg-red-700 text-white rounded-md shadow-md transition-all flex items-center justify-center"
+                            title="Delete this photo"
+                          >
+                            <Trash2 className="w-3.5 h-3.5" />
+                          </button>
+                        </div>
                       </div>
 
-                      {/* Reorder Arrows on Card */}
-                      <div className="absolute bottom-2 left-2 right-2 flex items-center justify-between opacity-0 group-hover:opacity-100 transition-opacity">
-                        <div className="flex gap-1 bg-black/70 p-1 rounded-md backdrop-blur-xs">
+                      {/* Card Footer: Reorder Controls */}
+                      <div className="p-1.5 bg-neutral-50 border-t border-neutral-100 flex items-center justify-between text-[10px]">
+                        <span className="text-neutral-500 font-mono font-medium px-1">
+                          #{idx + 1}
+                        </span>
+
+                        <div className="flex items-center gap-1">
                           <button
                             type="button"
                             disabled={idx === 0}
@@ -716,10 +788,10 @@ export default function ProductForm({ initialData, isEdit = false }: ProductForm
                               e.stopPropagation();
                               handleMoveImage(idx, "left");
                             }}
-                            className="p-1 text-white hover:text-neutral-200 disabled:opacity-30"
-                            title="Move Left"
+                            className="p-1 text-neutral-600 hover:text-black bg-white hover:bg-neutral-100 border border-neutral-200 rounded disabled:opacity-30 disabled:pointer-events-none transition-colors"
+                            title="Move photo left"
                           >
-                            <ChevronLeft className="w-3.5 h-3.5" />
+                            <ChevronLeft className="w-3 h-3" />
                           </button>
                           <button
                             type="button"
@@ -728,31 +800,10 @@ export default function ProductForm({ initialData, isEdit = false }: ProductForm
                               e.stopPropagation();
                               handleMoveImage(idx, "right");
                             }}
-                            className="p-1 text-white hover:text-neutral-200 disabled:opacity-30"
-                            title="Move Right"
+                            className="p-1 text-neutral-600 hover:text-black bg-white hover:bg-neutral-100 border border-neutral-200 rounded disabled:opacity-30 disabled:pointer-events-none transition-colors"
+                            title="Move photo right"
                           >
-                            <ChevronRight className="w-3.5 h-3.5" />
-                          </button>
-                        </div>
-
-                        <div className="flex gap-1">
-                          {idx !== 0 && (
-                            <button
-                              type="button"
-                              onClick={() => handleSetCoverImage(idx)}
-                              className="px-2 py-1 bg-white text-black text-[10px] font-bold rounded shadow hover:bg-neutral-100 transition-colors"
-                              title="Set as Main Cover Photo"
-                            >
-                              Make Cover
-                            </button>
-                          )}
-                          <button
-                            type="button"
-                            onClick={() => handleRemoveImage(idx)}
-                            className="p-1.5 bg-red-600 text-white rounded shadow hover:bg-red-700 transition-colors"
-                            title="Delete Image"
-                          >
-                            <Trash2 className="w-3.5 h-3.5" />
+                            <ChevronRight className="w-3 h-3" />
                           </button>
                         </div>
                       </div>

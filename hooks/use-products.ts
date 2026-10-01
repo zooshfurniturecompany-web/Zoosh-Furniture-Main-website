@@ -50,13 +50,36 @@ export function useProducts(): Product[] {
     window.addEventListener("zoosh_store_updated", handleUpdate);
     window.addEventListener("storage", handleUpdate);
 
-    // Initial server fetch to synchronize any changes from server/Supabase
+    // Synchronize changes without overwriting local admin edits
     fetch("/api/products", { cache: "no-store" })
       .then((res) => res.json())
       .then((data) => {
         if (Array.isArray(data)) {
-          adminDb.syncStore({ products: data });
-          setProducts(data.map(transformAdminProductToProduct));
+          const currentStore = adminDb.getStore();
+          const localMap = new Map((currentStore.products || []).map((p) => [p.id, p]));
+          
+          const mergedProducts = data.map((serverProd: any) => {
+            const local = localMap.get(serverProd.id) || localMap.get(serverProd.sku);
+            // If locally modified and newer than server, keep local product
+            if (
+              local &&
+              local.updated_at &&
+              (!serverProd.updated_at || new Date(local.updated_at).getTime() >= new Date(serverProd.updated_at).getTime())
+            ) {
+              return local;
+            }
+            return serverProd;
+          });
+
+          // Also include any local-only products that aren't on the server yet
+          (currentStore.products || []).forEach((lp) => {
+            if (!mergedProducts.find((p: any) => p.id === lp.id || p.sku === lp.sku)) {
+              mergedProducts.unshift(lp);
+            }
+          });
+
+          adminDb.syncStore({ products: mergedProducts });
+          setProducts(mergedProducts.map(transformAdminProductToProduct));
         }
       })
       .catch(() => {});
