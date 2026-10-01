@@ -14,6 +14,7 @@ export interface AdminProduct {
   full_description: string;
   status: "published" | "draft" | "archived";
   featured: boolean;
+  display_order?: number;
   
   // Pricing
   pricing_type: "fixed" | "starting_from" | "on_request";
@@ -225,6 +226,7 @@ function seedAllFallbackProducts(): AdminProduct[] {
       full_description: p.description || "",
       status: "published" as const,
       featured: p.featured ?? true,
+      display_order: typeof p.display_order === "number" ? p.display_order : idx + 1,
       pricing_type: "fixed" as const,
       price: p.price || 45000,
       starting_price: p.price || 45000,
@@ -387,13 +389,25 @@ export const adminDb = {
     }
 
     if (filters?.sort) {
-      if (filters.sort === "price-low") list.sort((a, b) => (a.price || 0) - (b.price || 0));
-      else if (filters.sort === "price-high") list.sort((a, b) => (b.price || 0) - (a.price || 0));
-      else if (filters.sort === "name-asc") list.sort((a, b) => a.name.localeCompare(b.name));
-      else if (filters.sort === "sku-asc") list.sort((a, b) => a.sku.localeCompare(b.sku));
-      else list.sort((a, b) => new Date(b.created_at).getTime() - new Date(a.created_at).getTime());
+      if (filters.sort === "order" || filters.sort === "custom") {
+        list.sort((a, b) => (a.display_order ?? 9999) - (b.display_order ?? 9999));
+      } else if (filters.sort === "newest") {
+        list.sort((a, b) => new Date(b.created_at).getTime() - new Date(a.created_at).getTime());
+      } else if (filters.sort === "oldest") {
+        list.sort((a, b) => new Date(a.created_at).getTime() - new Date(b.created_at).getTime());
+      } else if (filters.sort === "price-low") {
+        list.sort((a, b) => (a.price || 0) - (b.price || 0));
+      } else if (filters.sort === "price-high") {
+        list.sort((a, b) => (b.price || 0) - (a.price || 0));
+      } else if (filters.sort === "name-asc") {
+        list.sort((a, b) => a.name.localeCompare(b.name));
+      } else if (filters.sort === "sku-asc") {
+        list.sort((a, b) => a.sku.localeCompare(b.sku));
+      } else {
+        list.sort((a, b) => (a.display_order ?? 9999) - (b.display_order ?? 9999));
+      }
     } else {
-      list.sort((a, b) => new Date(b.created_at).getTime() - new Date(a.created_at).getTime());
+      list.sort((a, b) => (a.display_order ?? 9999) - (b.display_order ?? 9999));
     }
 
     return list;
@@ -414,6 +428,12 @@ export const adminDb = {
     const sku = product.sku || `SF${String(store.products.length + 1).padStart(3, "0")}`;
     const slug = product.slug || sku.toLowerCase();
     
+    // Determine existing order or fallback
+    const existing = store.products.find(p => p.id === id || p.sku === sku);
+    const resolvedOrder = typeof product.display_order === "number"
+      ? product.display_order
+      : (existing?.display_order ?? (store.products.length + 1));
+
     const savedItem: AdminProduct = {
       id,
       sku,
@@ -427,6 +447,7 @@ export const adminDb = {
       full_description: product.full_description || "",
       status: product.status || "published",
       featured: product.featured ?? false,
+      display_order: resolvedOrder,
       pricing_type: product.pricing_type || "fixed",
       price: product.price ?? 0,
       starting_price: product.starting_price ?? product.price,
@@ -597,6 +618,64 @@ export const adminDb = {
       status: "draft",
       created_at: new Date().toISOString()
     });
+  },
+
+  async reorderProducts(orderedIds: string[]): Promise<boolean> {
+    if (!orderedIds || orderedIds.length === 0) return false;
+
+    // 1. Assign display_order based on the ordered IDs array
+    orderedIds.forEach((id, index) => {
+      const p = store.products.find(item => item.id === id || item.sku === id);
+      if (p) {
+        p.display_order = index + 1;
+        p.updated_at = new Date().toISOString();
+      }
+    });
+
+    // 2. Sort in-memory store
+    store.products.sort((a, b) => (a.display_order ?? 9999) - (b.display_order ?? 9999));
+    persistStore();
+
+    // 3. Supabase sync if enabled
+    if (isSupabaseConfigured && supabase) {
+      try {
+        const payload = store.products.map(p => ({
+          id: p.id,
+          sku: p.sku,
+          display_order: p.display_order,
+          updated_at: p.updated_at
+        }));
+        await supabase.from("products").upsert(payload, { onConflict: "id" });
+      } catch (err) {
+        console.error("Supabase reorder sync notice:", err);
+      }
+    }
+
+    // 4. Client-side trigger server sync
+    if (typeof window !== "undefined") {
+      try {
+        await fetch("/api/admin/sync", {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify({ action: "reorder_products", orderedIds }),
+        });
+      } catch (e) {}
+    }
+
+    return true;
+  },
+
+  async updateProductOrder(id: string, newPosition: number): Promise<boolean> {
+    const currentList = [...store.products].sort((a, b) => (a.display_order ?? 9999) - (b.display_order ?? 9999));
+    const targetIdx = currentList.findIndex(p => p.id === id || p.sku === id);
+    if (targetIdx === -1) return false;
+
+    const [item] = currentList.splice(targetIdx, 1);
+    const clampedPos = Math.max(0, Math.min(newPosition - 1, currentList.length));
+    currentList.splice(clampedPos, 0, item);
+
+    const orderedIds = currentList.map(p => p.id);
+    return this.reorderProducts(orderedIds);
   },
 
   // CATEGORIES

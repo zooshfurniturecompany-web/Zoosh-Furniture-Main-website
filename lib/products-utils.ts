@@ -23,6 +23,7 @@ export interface Product {
   finish: string;
   sku: string;
   featured?: boolean;
+  display_order?: number;
   price?: number;
   startingPrice?: number;
   displayPrice?: boolean;
@@ -170,6 +171,7 @@ export function transformAdminProductToProduct(p: AdminProduct): Product {
     finish: p.finish || "Melamine Matt Polish",
     sku: p.sku,
     featured: p.featured ?? false,
+    display_order: typeof p.display_order === "number" ? p.display_order : 9999,
     price: p.price,
     startingPrice: p.starting_price ?? p.price,
     displayPrice: p.display_price ?? true,
@@ -208,6 +210,15 @@ export function transformAdminProductToProduct(p: AdminProduct): Product {
 export function getAllProducts(): Product[] {
   const store = adminDb.getStore();
   const published = store.products.filter(p => p.status === "published");
+  
+  // Sort published products by display_order ascending, then created_at descending
+  published.sort((a, b) => {
+    const orderA = typeof a.display_order === "number" ? a.display_order : 9999;
+    const orderB = typeof b.display_order === "number" ? b.display_order : 9999;
+    if (orderA !== orderB) return orderA - orderB;
+    return new Date(b.created_at || 0).getTime() - new Date(a.created_at || 0).getTime();
+  });
+
   return published.map(transformAdminProductToProduct);
 }
 

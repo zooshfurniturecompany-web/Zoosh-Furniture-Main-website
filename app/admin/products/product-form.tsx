@@ -63,6 +63,7 @@ export default function ProductForm({ initialData, isEdit = false }: ProductForm
   const [collectionName, setCollectionName] = useState(initialData?.collection_name || "Solid Teakwood Heritage");
   const [status, setStatus] = useState<"published" | "draft" | "archived">(initialData?.status || "published");
   const [featured, setFeatured] = useState(initialData?.featured ?? false);
+  const [displayOrder, setDisplayOrder] = useState<number>(initialData?.display_order ?? 1);
   const [shortDesc, setShortDesc] = useState(initialData?.short_description || "");
   const [fullDesc, setFullDesc] = useState(initialData?.full_description || "");
 
@@ -293,6 +294,7 @@ export default function ProductForm({ initialData, isEdit = false }: ProductForm
         collection_name: collectionName,
         status,
         featured,
+        display_order: Number(displayOrder) || 1,
         short_description: shortDesc,
         full_description: fullDesc,
         pricing_type: pricingType,
@@ -508,17 +510,36 @@ export default function ProductForm({ initialData, isEdit = false }: ProductForm
               </div>
             </div>
 
-            <div className="flex items-center gap-3 p-3 bg-neutral-50 rounded-lg border border-neutral-200">
-              <input
-                type="checkbox"
-                id="featuredCheck"
-                checked={featured}
-                onChange={(e) => setFeatured(e.target.checked)}
-                className="w-4 h-4 rounded text-black focus:ring-black"
-              />
-              <label htmlFor="featuredCheck" className="text-neutral-800 font-medium cursor-pointer">
-                Mark as Featured Product (Highlights on Homepage & Primary Collections)
-              </label>
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+              <div className="flex items-center gap-3 p-3 bg-neutral-50 rounded-lg border border-neutral-200">
+                <input
+                  type="checkbox"
+                  id="featuredCheck"
+                  checked={featured}
+                  onChange={(e) => setFeatured(e.target.checked)}
+                  className="w-4 h-4 rounded text-black focus:ring-black"
+                />
+                <label htmlFor="featuredCheck" className="text-neutral-800 font-medium cursor-pointer">
+                  Mark as Featured Product
+                </label>
+              </div>
+
+              <div className="flex items-center gap-3 p-3 bg-neutral-50 rounded-lg border border-neutral-200">
+                <div className="flex-1">
+                  <label htmlFor="displayOrderInput" className="block text-neutral-800 font-medium cursor-pointer">
+                    Catalog Display Rank / Order #
+                  </label>
+                  <p className="text-[10px] text-neutral-400">Position on homepage and catalog (1 = top first)</p>
+                </div>
+                <input
+                  type="number"
+                  id="displayOrderInput"
+                  min={1}
+                  value={displayOrder}
+                  onChange={(e) => setDisplayOrder(parseInt(e.target.value, 10) || 1)}
+                  className="w-16 px-2.5 py-1 text-center font-mono font-bold bg-white border border-neutral-300 rounded-md focus:outline-none focus:border-black text-xs"
+                />
+              </div>
             </div>
 
             <div>

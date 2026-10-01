@@ -21,7 +21,7 @@ export async function GET() {
 export async function POST(request: Request) {
   try {
     const body = await request.json();
-    const { store, action, product, category, collection, woodType, fabricType, otherMaterial, settings } = body;
+    const { store, action, product, category, collection, woodType, fabricType, otherMaterial, settings, orderedIds } = body;
 
     // 1. If full store is synced
     if (store) {
@@ -29,7 +29,29 @@ export async function POST(request: Request) {
     }
 
     // 2. Direct single-entity mutations
-    if (action === "save_product" && product) {
+    if (action === "reorder_products" && Array.isArray(orderedIds)) {
+      await adminDb.reorderProducts(orderedIds);
+      try {
+        const fs = await import("fs/promises");
+        const path = await import("path");
+        const filePath = path.join(process.cwd(), "data", "products.json");
+        const raw = await fs.readFile(filePath, "utf-8");
+        const jsonList = JSON.parse(raw);
+        const reorderedJson = [...jsonList].sort((a: any, b: any) => {
+          const idxA = orderedIds.indexOf(a.id) !== -1 ? orderedIds.indexOf(a.id) : orderedIds.indexOf(a.sku);
+          const idxB = orderedIds.indexOf(b.id) !== -1 ? orderedIds.indexOf(b.id) : orderedIds.indexOf(b.sku);
+          const posA = idxA !== -1 ? idxA : 9999;
+          const posB = idxB !== -1 ? idxB : 9999;
+          return posA - posB;
+        });
+        reorderedJson.forEach((item: any, idx: number) => {
+          item.display_order = idx + 1;
+        });
+        await fs.writeFile(filePath, JSON.stringify(reorderedJson, null, 2), "utf-8");
+      } catch (fsErr) {
+        console.warn("Could not write reordered products to disk:", fsErr);
+      }
+    } else if (action === "save_product" && product) {
       await adminDb.saveProduct(product);
     } else if (action === "delete_product" && product?.id) {
       await adminDb.deleteProduct(product.id);

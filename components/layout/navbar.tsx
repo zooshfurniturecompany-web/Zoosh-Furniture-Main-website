@@ -5,18 +5,17 @@ import Image from "next/image";
 import { usePathname, useRouter } from "next/navigation";
 import { useState, useEffect } from "react";
 import { motion, AnimatePresence } from "framer-motion";
-import { Menu, X, ChevronDown, ChevronRight, Search, Send, ShoppingBag, Phone } from "lucide-react";
+import { Menu, X, ChevronDown, ChevronRight, Search, Send, ShoppingBag } from "lucide-react";
 import { getGeneralWhatsAppLink } from "@/hooks/use-products";
 import { useCart } from "@/components/cart/cart-context";
 
-// Defined room categories matching ZOOSH catalog
+// Configured mega-menu structure matching ZOOSH categories
 const rooms = [
   {
     name: "Living",
     slug: "living",
     image: "/images/catalog/page_14_img_00.webp",
     subcategories: [
-      { name: "All Living", slug: "" },
       { name: "Sofas", slug: "sofas" },
       { name: "Lounge Chairs", slug: "lounge-chairs" },
       { name: "Arm Chairs", slug: "arm-chairs" },
@@ -30,7 +29,6 @@ const rooms = [
     slug: "dining",
     image: "/images/catalog/page_21_img_00.webp",
     subcategories: [
-      { name: "All Dining", slug: "" },
       { name: "Dining Tables", slug: "dining-tables" },
       { name: "Dining Chairs", slug: "dining-chairs" },
       { name: "Dining Benches", slug: "dining-benches" },
@@ -42,7 +40,6 @@ const rooms = [
     slug: "bedroom",
     image: "/images/catalog/page_22_img_00.webp",
     subcategories: [
-      { name: "All Bedroom", slug: "" },
       { name: "Bed Cots", slug: "bed-cots" },
       { name: "Bedside Tables", slug: "bedside-tables" },
       { name: "Bedroom Chairs", slug: "bedroom-chairs" },
@@ -54,7 +51,6 @@ const rooms = [
     slug: "entryway",
     image: "/images/catalog/page_27_img_00.webp",
     subcategories: [
-      { name: "All Entryway", slug: "" },
       { name: "Console Tables", slug: "console-tables" },
       { name: "Mirror Units", slug: "mirror-units" },
       { name: "Benches", slug: "benches" }
@@ -66,9 +62,8 @@ export default function Navbar() {
   const router = useRouter();
   const { openCart, totalCount } = useCart();
   const [isOpen, setIsOpen] = useState(false);
-  const [expandedRoom, setExpandedRoom] = useState<string | null>(null);
-  const [isShopExpanded, setIsShopExpanded] = useState(true);
   const [hoveredRoom, setHoveredRoom] = useState<string | null>(null);
+  const [expandedRoom, setExpandedRoom] = useState<string | null>(null);
   const [searchOpen, setSearchOpen] = useState(false);
   const [searchQuery, setSearchQuery] = useState("");
   const pathname = usePathname();
@@ -109,10 +104,10 @@ export default function Navbar() {
   return (
     <>
       <header 
-        className="fixed top-0 left-0 right-0 z-40 bg-white/95 backdrop-blur-md text-black border-b border-neutral-100 transition-all duration-300"
+        className="fixed top-0 left-0 right-0 z-50 bg-white text-black"
         onMouseLeave={() => setHoveredRoom(null)}
       >
-        {/* Announcement Ticker */}
+        {/* Top Announcement Bar */}
         <div className="bg-black text-white text-[9px] sm:text-[10.5px] font-sans tracking-[0.18em] uppercase py-2 px-4 text-center border-b border-neutral-800">
           <div className="max-w-7xl mx-auto flex items-center justify-center gap-2 sm:gap-4 truncate">
             <span className="truncate">Bespoke Hardwood Furniture • Pattambi Workshop • Pan-India Delivery</span>
@@ -123,194 +118,281 @@ export default function Navbar() {
         </div>
 
         {/* =====================================================
-            TOP BAR: DESKTOP & MOBILE HEADER
+            ROW 1 — LOGO + MAIN NAVIGATION (DESKTOP GRID / MOBILE FLEX)
             ===================================================== */}
-        <div className="h-[60px] md:h-[68px] max-w-7xl mx-auto px-4 sm:px-6 md:px-12 flex items-center justify-between">
-          
-          {/* LEFT: MOBILE HAMBURGER / DESKTOP LOGO */}
-          <div className="flex items-center gap-4">
-            {/* Mobile Hamburger (Min 44px touch target) */}
+        <div className="h-[50px] border-b border-neutral-100">
+          {/* Desktop Grid Layout */}
+          <div className="hidden md:grid grid-cols-[1fr_auto_1fr] items-center w-full h-full px-[5%]">
+            
+            {/* LEFT: LOGO */}
+            <div className="flex justify-start items-center">
+              <Link href="/" className="flex items-center shrink-0">
+                <span className="font-serif text-[28px] md:text-[30px] font-light tracking-[-0.02em] leading-none text-black">
+                  ZOOSH
+                </span>
+              </Link>
+            </div>
+
+            {/* CENTER: MAIN NAVIGATION */}
+            <nav className="flex justify-center items-center h-full">
+              <div className="flex items-center gap-[32px] lg:gap-[38px] h-full">
+                <Link
+                  href="/gallery"
+                  className={`text-[11px] uppercase tracking-[0.16em] font-light transition-colors duration-200 whitespace-nowrap ${
+                    pathname === "/gallery" ? "text-black font-normal" : "text-neutral-500 hover:text-black"
+                  }`}
+                >
+                  Projects
+                </Link>
+
+                <Link
+                  href="/custom"
+                  className={`text-[11px] uppercase tracking-[0.16em] font-light transition-colors duration-200 whitespace-nowrap ${
+                    pathname === "/custom" ? "text-black font-normal" : "text-neutral-500 hover:text-black"
+                  }`}
+                >
+                  Custom Furniture
+                </Link>
+
+                <Link
+                  href="/about"
+                  className={`text-[11px] uppercase tracking-[0.16em] font-light transition-colors duration-200 whitespace-nowrap ${
+                    pathname === "/about" ? "text-black font-normal" : "text-neutral-500 hover:text-black"
+                  }`}
+                >
+                  Our Story
+                </Link>
+
+                <Link
+                  href="/contact"
+                  className={`text-[11px] uppercase tracking-[0.16em] font-light transition-colors duration-200 whitespace-nowrap ${
+                    pathname === "/contact" ? "text-black font-normal" : "text-neutral-500 hover:text-black"
+                  }`}
+                >
+                  Contact
+                </Link>
+
+                {/* SEARCH */}
+                <button
+                  type="button"
+                  onClick={() => setSearchOpen(!searchOpen)}
+                  aria-label="Search"
+                  className="flex items-center justify-center text-neutral-500 hover:text-black transition-colors duration-200"
+                >
+                  <Search size={18} strokeWidth={1.5} />
+                </button>
+              </div>
+            </nav>
+
+            {/* RIGHT: WHATSAPP + CART */}
+            <div className="flex justify-end items-center gap-3">
+              <a
+                href={customEnquiryLink}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="h-[34px] px-[18px] border border-neutral-800 flex items-center justify-center text-[10px] uppercase tracking-[0.16em] text-neutral-700 hover:bg-black hover:text-white transition-all duration-200 whitespace-nowrap"
+              >
+                WhatsApp
+              </a>
+
+              {/* Shopping Bag Button */}
+              <button
+                type="button"
+                onClick={openCart}
+                className="relative h-[34px] px-2.5 flex items-center justify-center text-black hover:opacity-75 transition-opacity"
+                aria-label="View Shopping Cart"
+              >
+                <ShoppingBag size={19} strokeWidth={1.5} />
+                {totalCount > 0 && (
+                  <span className="absolute -top-1 -right-1 bg-black text-white text-[9px] font-sans font-medium w-4 h-4 rounded-full flex items-center justify-center">
+                    {totalCount}
+                  </span>
+                )}
+              </button>
+            </div>
+          </div>
+
+          {/* Mobile Flex Layout (3-Zone Header) */}
+          <div className="flex md:hidden items-center justify-between w-full h-full px-4">
+            {/* Hamburger */}
             <button
               type="button"
               onClick={() => setIsOpen(true)}
-              className="flex md:hidden items-center justify-center w-11 h-11 -ml-2 text-neutral-900 active:scale-95 transition-transform"
-              aria-label="Open Navigation Menu"
+              className="flex items-center justify-center w-10 h-10 -ml-1 text-black active:scale-95 transition-transform"
+              aria-label="Toggle menu"
             >
               <Menu size={22} strokeWidth={1.5} />
             </button>
 
-            {/* Desktop Brand Logo */}
-            <Link href="/" className="hidden md:flex items-center shrink-0">
-              <span className="font-serif text-[28px] lg:text-[30px] font-light tracking-[-0.02em] leading-none text-black">
+            {/* Centered Brand Logo */}
+            <Link href="/" className="flex items-center">
+              <span className="font-serif text-[24px] font-light tracking-[-0.02em] leading-none text-black">
                 ZOOSH
               </span>
             </Link>
-          </div>
 
-          {/* CENTER: MOBILE LOGO / DESKTOP NAVIGATION */}
-          {/* Mobile Center Logo */}
-          <Link href="/" className="flex md:hidden items-center justify-center">
-            <span className="font-serif text-[24px] font-light tracking-[-0.02em] leading-none text-black">
-              ZOOSH
-            </span>
-          </Link>
-
-          {/* Desktop Navigation Links */}
-          <nav className="hidden md:flex items-center gap-6 lg:gap-8 h-full">
-            <Link
-              href="/collection"
-              className={`text-[11px] uppercase tracking-[0.18em] font-medium transition-colors ${
-                pathname === "/collection" ? "text-black border-b border-black pb-0.5" : "text-neutral-600 hover:text-black"
-              }`}
-            >
-              Catalog
-            </Link>
-
-            {/* Spaces with Dropdowns */}
-            {rooms.map((room) => (
-              <div
-                key={room.slug}
-                className="relative h-full flex items-center"
-                onMouseEnter={() => setHoveredRoom(room.slug)}
+            {/* Search + Cart */}
+            <div className="flex items-center gap-1">
+              <button
+                type="button"
+                onClick={() => setSearchOpen(true)}
+                aria-label="Search"
+                className="flex items-center justify-center w-9 h-9 text-black active:scale-95"
               >
-                <Link
-                  href={`/${room.slug}`}
-                  className={`text-[11px] uppercase tracking-[0.18em] font-medium transition-colors flex items-center gap-1 ${
-                    pathname.startsWith(`/${room.slug}`) ? "text-black border-b border-black pb-0.5" : "text-neutral-600 hover:text-black"
-                  }`}
-                >
-                  <span>{room.name}</span>
-                  <ChevronDown size={12} className="text-neutral-400 mt-[-1px]" />
-                </Link>
-              </div>
-            ))}
+                <Search size={20} strokeWidth={1.5} />
+              </button>
 
-            <Link
-              href="/custom"
-              className={`text-[11px] uppercase tracking-[0.18em] font-medium transition-colors ${
-                pathname === "/custom" ? "text-black border-b border-black pb-0.5" : "text-neutral-600 hover:text-black"
-              }`}
-            >
-              Custom
-            </Link>
-
-            <Link
-              href="/gallery"
-              className={`text-[11px] uppercase tracking-[0.18em] font-medium transition-colors ${
-                pathname === "/gallery" ? "text-black border-b border-black pb-0.5" : "text-neutral-600 hover:text-black"
-              }`}
-            >
-              Projects
-            </Link>
-
-            <Link
-              href="/about"
-              className={`text-[11px] uppercase tracking-[0.18em] font-medium transition-colors ${
-                pathname === "/about" ? "text-black border-b border-black pb-0.5" : "text-neutral-600 hover:text-black"
-              }`}
-            >
-              Our Story
-            </Link>
-
-            <Link
-              href="/contact"
-              className={`text-[11px] uppercase tracking-[0.18em] font-medium transition-colors ${
-                pathname === "/contact" ? "text-black border-b border-black pb-0.5" : "text-neutral-600 hover:text-black"
-              }`}
-            >
-              Contact
-            </Link>
-          </nav>
-
-          {/* RIGHT: SEARCH, WHATSAPP, SHOPPING BAG */}
-          <div className="flex items-center gap-1 sm:gap-3">
-            {/* Search Button (44px touch target) */}
-            <button
-              type="button"
-              onClick={() => setSearchOpen(true)}
-              aria-label="Search Catalog"
-              className="flex items-center justify-center w-11 h-11 text-neutral-800 hover:text-black active:scale-95 transition-all"
-            >
-              <Search size={20} strokeWidth={1.5} />
-            </button>
-
-            {/* Desktop WhatsApp Concierge Button */}
-            <a
-              href={customEnquiryLink}
-              target="_blank"
-              rel="noopener noreferrer"
-              className="hidden lg:inline-flex items-center gap-1.5 text-[10px] uppercase tracking-[0.18em] font-medium py-2 px-3.5 border border-neutral-900 text-neutral-900 hover:bg-black hover:text-white transition-all"
-            >
-              <Send size={11} />
-              <span>WhatsApp</span>
-            </a>
-
-            {/* Shopping Bag Button (44px touch target) */}
-            <button
-              type="button"
-              onClick={openCart}
-              aria-label="Shopping Bag"
-              className="relative flex items-center justify-center w-11 h-11 -mr-2 text-neutral-800 hover:text-black active:scale-95 transition-all"
-            >
-              <ShoppingBag size={21} strokeWidth={1.5} />
-              {totalCount > 0 && (
-                <span className="absolute top-1.5 right-1.5 bg-black text-white text-[9px] font-mono font-bold w-4 h-4 rounded-full flex items-center justify-center shadow-xs">
-                  {totalCount}
-                </span>
-              )}
-            </button>
+              <button
+                type="button"
+                onClick={openCart}
+                aria-label="Shopping Cart"
+                className="relative flex items-center justify-center w-9 h-9 text-black active:scale-95"
+              >
+                <ShoppingBag size={20} strokeWidth={1.5} />
+                {totalCount > 0 && (
+                  <span className="absolute 1 top-0.5 right-0.5 bg-black text-white text-[8px] font-medium w-3.5 h-3.5 rounded-full flex items-center justify-center">
+                    {totalCount}
+                  </span>
+                )}
+              </button>
+            </div>
           </div>
         </div>
 
         {/* =====================================================
-            DESKTOP MEGA-MENU DROPDOWN PANEL
+            ROW 2 — SECONDARY CATEGORY SUB-NAV (BLACK BAR)
             ===================================================== */}
+        <div className="h-[34px] bg-black text-white overflow-x-auto no-scrollbar">
+          <nav className="max-w-[1280px] h-full mx-auto px-4 md:px-8 flex items-center justify-start md:justify-center">
+            <div className="flex items-center gap-4 sm:gap-6 md:gap-[38px] lg:gap-[50px] h-full whitespace-nowrap text-[10.5px] sm:text-[11px] uppercase tracking-[0.16em] font-light">
+              
+              {/* New / Collection */}
+              <div className="relative h-full flex items-center shrink-0">
+                <Link
+                  href="/collection"
+                  className={`transition-colors duration-200 ${
+                    pathname === "/collection" ? "text-white font-normal" : "text-neutral-300 hover:text-white"
+                  }`}
+                >
+                  New
+                </Link>
+                <span className="text-neutral-600 ml-4 hidden sm:inline">•</span>
+              </div>
+
+              {/* Rooms with Hover Dropdown */}
+              {rooms.map((room, idx) => (
+                <div
+                  key={room.slug}
+                  className="relative h-full flex items-center shrink-0"
+                  onMouseEnter={() => setHoveredRoom(room.slug)}
+                >
+                  <Link
+                    href={`/${room.slug}`}
+                    className={`group flex items-center gap-[4px] transition-colors duration-200 ${
+                      pathname.startsWith(`/${room.slug}`) ? "text-white font-normal" : "text-neutral-200 hover:text-white"
+                    }`}
+                  >
+                    <span>{room.name === "Bedroom" ? "Bed" : room.name}</span>
+                    <ChevronDown size={10} className="mt-[1px] text-neutral-400 group-hover:text-white transition-colors" />
+                  </Link>
+                  <span className="text-neutral-600 ml-4 hidden sm:inline">•</span>
+                </div>
+              ))}
+
+              {/* Custom */}
+              <div className="relative h-full flex items-center shrink-0">
+                <Link
+                  href="/custom"
+                  className={`transition-colors duration-200 ${
+                    pathname === "/custom" ? "text-white font-normal" : "text-neutral-300 hover:text-white"
+                  }`}
+                >
+                  Custom
+                </Link>
+                <span className="text-neutral-600 ml-4 hidden sm:inline">•</span>
+              </div>
+
+              {/* Projects */}
+              <div className="relative h-full flex items-center shrink-0">
+                <Link
+                  href="/gallery"
+                  className={`transition-colors duration-200 ${
+                    pathname === "/gallery" ? "text-white font-normal" : "text-neutral-300 hover:text-white"
+                  }`}
+                >
+                  Projects
+                </Link>
+              </div>
+
+            </div>
+          </nav>
+        </div>
+
+        {/* SEARCH OVERLAY PANEL */}
+        <AnimatePresence>
+          {searchOpen && (
+            <motion.div
+              initial={{ opacity: 0, y: -10 }}
+              animate={{ opacity: 1, y: 0 }}
+              exit={{ opacity: 0, y: -10 }}
+              className="absolute left-0 right-0 top-full bg-white border-b border-neutral-200 py-4 px-4 sm:px-[5%] shadow-md z-40"
+            >
+              <form onSubmit={handleSearchSubmit} className="max-w-3xl mx-auto flex items-center gap-3 sm:gap-4">
+                <Search size={18} className="text-neutral-400 shrink-0" />
+                <input
+                  type="text"
+                  placeholder="Search products by name, SKU, wood, or category..."
+                  value={searchQuery}
+                  onChange={(e) => setSearchQuery(e.target.value)}
+                  className="flex-grow border-b border-neutral-300 py-2 focus:outline-none focus:border-black text-sm font-sans font-light"
+                  autoFocus
+                />
+                <button type="submit" className="text-xs uppercase tracking-wider font-medium text-neutral-700 hover:text-black shrink-0 px-2 py-1">
+                  Search
+                </button>
+                <button type="button" onClick={() => setSearchOpen(false)} className="text-neutral-400 hover:text-black p-1">
+                  <X size={18} />
+                </button>
+              </form>
+            </motion.div>
+          )}
+        </AnimatePresence>
+
+        {/* Mega-menu Dropdown Panel (Desktop) */}
         <AnimatePresence>
           {hoveredRoom && (
             <motion.div
-              initial={{ opacity: 0, y: -4 }}
+              initial={{ opacity: 0, y: -5 }}
               animate={{ opacity: 1, y: 0 }}
-              exit={{ opacity: 0, y: -4 }}
-              transition={{ duration: 0.15, ease: "easeOut" }}
+              exit={{ opacity: 0, y: -5 }}
+              transition={{ duration: 0.18, ease: "easeOut" }}
               className="absolute left-0 right-0 top-full bg-white border-b border-neutral-200 shadow-xl overflow-hidden hidden md:block z-40"
               onMouseEnter={() => setHoveredRoom(hoveredRoom)}
               onMouseLeave={() => setHoveredRoom(null)}
             >
-              <div className="max-w-7xl mx-auto px-12 py-8 grid grid-cols-12 gap-10">
-                {/* Left: Subcategories List */}
+              <div className="max-w-[1280px] mx-auto px-8 py-8 grid grid-cols-12 gap-8">
+                {/* Left Column: Subcategories */}
                 <div className="col-span-8">
-                  <div className="flex items-center justify-between border-b border-neutral-100 pb-3 mb-4">
-                    <span className="text-[10px] tracking-[0.25em] uppercase text-neutral-400 font-medium">
-                      Shop {rooms.find(r => r.slug === hoveredRoom)?.name} Category
-                    </span>
-                    <Link
-                      href={`/${hoveredRoom}`}
-                      className="text-[10px] uppercase tracking-widest font-semibold text-black hover:opacity-70 border-b border-black pb-0.5"
-                      onClick={() => setHoveredRoom(null)}
-                    >
-                      View All {rooms.find(r => r.slug === hoveredRoom)?.name} &rarr;
-                    </Link>
-                  </div>
-                  <div className="grid grid-cols-3 gap-y-3 gap-x-6">
-                    {rooms
-                      .find(r => r.slug === hoveredRoom)
-                      ?.subcategories.filter(s => s.slug !== "")
-                      .map((sub) => (
-                        <Link
-                          key={sub.slug}
-                          href={`/${hoveredRoom}/${sub.slug}`}
-                          className="text-xs text-neutral-700 hover:text-black hover:translate-x-1 transition-all py-1 font-light"
-                          onClick={() => setHoveredRoom(null)}
-                        >
-                          {sub.name}
-                        </Link>
-                      ))}
+                  <span className="text-[10px] tracking-wider uppercase text-neutral-400 font-semibold block mb-4">
+                    Shop by Category
+                  </span>
+                  <div className="grid grid-cols-3 gap-6">
+                    {rooms.find(r => r.slug === hoveredRoom)?.subcategories.map((sub) => (
+                      <Link
+                        key={sub.slug}
+                        href={`/${hoveredRoom}/${sub.slug}`}
+                        className="text-xs text-neutral-600 hover:text-black transition-colors py-1 block font-light"
+                        onClick={() => setHoveredRoom(null)}
+                      >
+                        {sub.name}
+                      </Link>
+                    ))}
                   </div>
                 </div>
 
-                {/* Right: Featured Room Space Card */}
+                {/* Right Column: Room image card */}
                 <div className="col-span-4 border-l border-neutral-100 pl-8 flex flex-col justify-between">
-                  <div className="relative aspect-[16/10] w-full bg-neutral-100 overflow-hidden">
+                  <div className="relative aspect-[16/9] w-full bg-neutral-100 overflow-hidden">
                     <Image
                       src={rooms.find(r => r.slug === hoveredRoom)?.image || "/images/catalog/page_14_img_00.webp"}
                       alt={hoveredRoom}
@@ -318,294 +400,168 @@ export default function Navbar() {
                       className="object-cover hover:scale-105 transition-transform duration-700"
                     />
                   </div>
-                  <div className="pt-3">
-                    <span className="text-[10px] uppercase tracking-widest text-neutral-400 block font-medium">
-                      Bespoke Hardwood
+                  <div className="pt-3 flex justify-between items-center">
+                    <span className="text-xs font-serif text-neutral-900 capitalize">
+                      Explore {hoveredRoom} Collection
                     </span>
-                    <h4 className="font-serif text-sm text-neutral-900">
-                      Handcrafted {rooms.find(r => r.slug === hoveredRoom)?.name} Designs
-                    </h4>
+                    <Link
+                      href={`/${hoveredRoom}`}
+                      className="text-[10px] uppercase tracking-wider font-semibold text-black border-b border-black pb-0.5"
+                      onClick={() => setHoveredRoom(null)}
+                    >
+                      View All
+                    </Link>
                   </div>
                 </div>
               </div>
             </motion.div>
           )}
         </AnimatePresence>
-      </header>
 
-      {/* =====================================================
-          MOBILE FULL-HEIGHT NAVIGATION DRAWER (HOMEWORK LIVING UX)
-          ===================================================== */}
-      <AnimatePresence>
-        {isOpen && (
-          <div className="fixed inset-0 z-50 flex md:hidden">
-            {/* Backdrop */}
+        {/* Mobile Slide-Out Drawer Navigation */}
+        <AnimatePresence>
+          {isOpen && (
             <motion.div
               initial={{ opacity: 0 }}
               animate={{ opacity: 1 }}
               exit={{ opacity: 0 }}
-              transition={{ duration: 0.2 }}
-              className="absolute inset-0 bg-black/60 backdrop-blur-xs cursor-pointer"
+              className="fixed inset-0 z-50 bg-black/50 backdrop-blur-xs md:hidden"
               onClick={() => setIsOpen(false)}
-            />
-
-            {/* Slide-in Drawer from Left */}
-            <motion.div
-              initial={{ x: "-100%" }}
-              animate={{ x: 0 }}
-              exit={{ x: "-100%" }}
-              transition={{ type: "spring", damping: 28, stiffness: 280 }}
-              className="relative w-[85%] max-w-[360px] bg-white h-full shadow-2xl z-10 flex flex-col justify-between"
             >
-              {/* Drawer Top Header */}
-              <div className="h-[60px] px-5 border-b border-neutral-100 flex items-center justify-between">
-                <span className="font-serif text-[22px] font-light tracking-[-0.02em] text-black">
-                  ZOOSH
-                </span>
-                <button
-                  type="button"
-                  onClick={() => setIsOpen(false)}
-                  className="w-10 h-10 -mr-2 flex items-center justify-center text-neutral-600 hover:text-black rounded-full active:bg-neutral-100"
-                  aria-label="Close menu"
-                >
-                  <X size={20} strokeWidth={1.5} />
-                </button>
-              </div>
-
-              {/* Scrollable Navigation Links Tree */}
-              <div className="flex-1 overflow-y-auto px-5 py-4 space-y-6">
-                
-                {/* Search Shortcut in Mobile Menu */}
-                <div className="pt-1 pb-2">
+              <motion.div
+                initial={{ x: "-100%" }}
+                animate={{ x: 0 }}
+                exit={{ x: "-100%" }}
+                transition={{ type: "tween", duration: 0.28 }}
+                className="absolute top-0 left-0 bottom-0 w-[85%] max-w-[340px] bg-white flex flex-col justify-between shadow-2xl overflow-y-auto"
+                onClick={(e) => e.stopPropagation()}
+              >
+                {/* Drawer Header */}
+                <div className="p-5 border-b border-neutral-100 flex items-center justify-between">
+                  <span className="font-serif text-xl font-light tracking-tight text-neutral-900">
+                    ZOOSH
+                  </span>
                   <button
                     type="button"
-                    onClick={() => {
-                      setIsOpen(false);
-                      setSearchOpen(true);
-                    }}
-                    className="w-full flex items-center gap-3 py-3 px-3.5 bg-neutral-50 border border-neutral-200 text-neutral-400 text-xs font-light font-sans rounded-xs"
+                    onClick={() => setIsOpen(false)}
+                    className="p-1.5 text-neutral-500 hover:text-black"
+                    aria-label="Close menu"
                   >
-                    <Search size={15} />
-                    <span>Search furniture, teakwood...</span>
+                    <X size={20} />
                   </button>
                 </div>
 
-                {/* Categories / Room Trees */}
-                <div className="space-y-1">
-                  <div className="text-[10px] tracking-[0.25em] uppercase text-neutral-400 font-medium px-1 mb-2">
-                    Shop by Space
-                  </div>
+                {/* Drawer Navigation Links */}
+                <div className="p-5 space-y-6 flex-1 overflow-y-auto">
+                  <div className="space-y-1">
+                    <span className="text-[9px] tracking-[0.25em] uppercase text-neutral-400 font-sans font-semibold block mb-2">
+                      Furniture Collections
+                    </span>
+                    
+                    <Link
+                      href="/collection"
+                      onClick={() => setIsOpen(false)}
+                      className="block py-2 text-sm font-sans font-medium text-neutral-900 hover:text-black"
+                    >
+                      All Collections (New)
+                    </Link>
 
-                  {/* All Catalog Link */}
-                  <Link
-                    href="/collection"
-                    onClick={() => setIsOpen(false)}
-                    className="flex items-center justify-between py-3 px-2 text-sm font-sans font-medium text-neutral-900 border-b border-neutral-100 hover:text-neutral-600"
-                  >
-                    <span>All Collections</span>
-                    <ChevronRight size={14} className="text-neutral-400" />
-                  </Link>
+                    {/* Room Accordions */}
+                    {rooms.map((room) => {
+                      const isExp = expandedRoom === room.slug;
+                      return (
+                        <div key={room.slug} className="border-b border-neutral-50 py-1.5">
+                          <button
+                            type="button"
+                            onClick={() => toggleRoomAccordion(room.slug)}
+                            className="w-full flex items-center justify-between py-2 text-sm font-sans text-neutral-800 hover:text-black text-left"
+                          >
+                            <span>{room.name}</span>
+                            <ChevronDown
+                              size={14}
+                              className={`text-neutral-400 transition-transform ${isExp ? "rotate-180" : ""}`}
+                            />
+                          </button>
 
-                  {/* Accordion Spaces */}
-                  {rooms.map((room) => {
-                    const isExpanded = expandedRoom === room.slug;
-                    return (
-                      <div key={room.slug} className="border-b border-neutral-100">
-                        <button
-                          type="button"
-                          onClick={() => toggleRoomAccordion(room.slug)}
-                          className="w-full flex items-center justify-between py-3.5 px-2 text-sm font-sans font-medium text-neutral-900 text-left"
-                        >
-                          <span>{room.name}</span>
-                          <ChevronDown
-                            size={16}
-                            className={`text-neutral-400 transition-transform duration-200 ${
-                              isExpanded ? "rotate-180 text-black" : ""
-                            }`}
-                          />
-                        </button>
-
-                        <AnimatePresence>
-                          {isExpanded && (
-                            <motion.div
-                              initial={{ height: 0, opacity: 0 }}
-                              animate={{ height: "auto", opacity: 1 }}
-                              exit={{ height: 0, opacity: 0 }}
-                              transition={{ duration: 0.2 }}
-                              className="overflow-hidden bg-neutral-50/80 px-4 py-2 space-y-2 mb-2 rounded-xs"
-                            >
+                          {isExp && (
+                            <div className="pl-3 py-1.5 space-y-1.5 border-l border-neutral-200 ml-1">
                               <Link
                                 href={`/${room.slug}`}
                                 onClick={() => setIsOpen(false)}
-                                className="block py-1.5 text-xs font-semibold text-black uppercase tracking-wider"
+                                className="block text-xs font-sans text-neutral-500 hover:text-black py-1 font-medium"
                               >
-                                View All {room.name} &rarr;
+                                All {room.name}
                               </Link>
-                              {room.subcategories
-                                .filter((s) => s.slug !== "")
-                                .map((sub) => (
-                                  <Link
-                                    key={sub.slug}
-                                    href={`/${room.slug}/${sub.slug}`}
-                                    onClick={() => setIsOpen(false)}
-                                    className="block py-1 text-xs text-neutral-600 hover:text-black font-light"
-                                  >
-                                    {sub.name}
-                                  </Link>
-                                ))}
-                            </motion.div>
+                              {room.subcategories.map((sub) => (
+                                <Link
+                                  key={sub.slug}
+                                  href={`/${room.slug}/${sub.slug}`}
+                                  onClick={() => setIsOpen(false)}
+                                  className="block text-xs font-sans text-neutral-500 hover:text-black py-1"
+                                >
+                                  {sub.name}
+                                </Link>
+                              ))}
+                            </div>
                           )}
-                        </AnimatePresence>
-                      </div>
-                    );
-                  })}
-                </div>
-
-                {/* Secondary Navigation */}
-                <div className="space-y-3 pt-2">
-                  <div className="text-[10px] tracking-[0.25em] uppercase text-neutral-400 font-medium px-1">
-                    Company
+                        </div>
+                      );
+                    })}
                   </div>
-                  <div className="space-y-1">
+
+                  <div className="pt-4 border-t border-neutral-100 space-y-2.5">
+                    <span className="text-[9px] tracking-[0.25em] uppercase text-neutral-400 font-sans font-semibold block mb-1">
+                      Company
+                    </span>
+                    <Link
+                      href="/custom"
+                      onClick={() => setIsOpen(false)}
+                      className="block text-xs font-sans text-neutral-700 hover:text-black py-1"
+                    >
+                      Custom Blueprints & Sizing
+                    </Link>
                     <Link
                       href="/gallery"
                       onClick={() => setIsOpen(false)}
-                      className="block py-2.5 px-2 text-xs uppercase tracking-wider text-neutral-800 hover:text-black font-medium"
+                      className="block text-xs font-sans text-neutral-700 hover:text-black py-1"
                     >
                       Completed Projects
                     </Link>
                     <Link
-                      href="/custom"
-                      onClick={() => setIsOpen(false)}
-                      className="block py-2.5 px-2 text-xs uppercase tracking-wider text-neutral-800 hover:text-black font-medium"
-                    >
-                      Custom Furniture Blueprint
-                    </Link>
-                    <Link
                       href="/about"
                       onClick={() => setIsOpen(false)}
-                      className="block py-2.5 px-2 text-xs uppercase tracking-wider text-neutral-800 hover:text-black font-medium"
+                      className="block text-xs font-sans text-neutral-700 hover:text-black py-1"
                     >
-                      Our Story & Workshop
+                      Our Story & Factory
                     </Link>
                     <Link
                       href="/contact"
                       onClick={() => setIsOpen(false)}
-                      className="block py-2.5 px-2 text-xs uppercase tracking-wider text-neutral-800 hover:text-black font-medium"
+                      className="block text-xs font-sans text-neutral-700 hover:text-black py-1"
                     >
-                      Contact & Factory HQ
+                      Contact & Workshop
                     </Link>
                   </div>
                 </div>
-              </div>
 
-              {/* Bottom Sticky Action CTAs */}
-              <div className="p-4 border-t border-neutral-100 bg-neutral-50 space-y-2">
-                <a
-                  href={customEnquiryLink}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="w-full flex items-center justify-center gap-2 bg-black hover:bg-neutral-900 text-white text-xs tracking-[0.2em] uppercase py-3.5 font-medium transition-colors"
-                >
-                  <Send size={13} />
-                  <span>WhatsApp Concierge</span>
-                </a>
-                <a
-                  href="tel:9544571992"
-                  className="w-full flex items-center justify-center gap-2 border border-neutral-300 text-neutral-800 text-xs tracking-wider uppercase py-2.5 font-light"
-                >
-                  <Phone size={12} />
-                  <span>Call: +91 9544571992</span>
-                </a>
-              </div>
-            </motion.div>
-          </div>
-        )}
-      </AnimatePresence>
-
-      {/* =====================================================
-          MOBILE & DESKTOP SEARCH OVERLAY MODAL
-          ===================================================== */}
-      <AnimatePresence>
-        {searchOpen && (
-          <div className="fixed inset-0 z-50 flex items-start justify-center">
-            {/* Backdrop */}
-            <motion.div
-              initial={{ opacity: 0 }}
-              animate={{ opacity: 1 }}
-              exit={{ opacity: 0 }}
-              onClick={() => setSearchOpen(false)}
-              className="absolute inset-0 bg-black/60 backdrop-blur-xs cursor-pointer"
-            />
-
-            {/* Search Container */}
-            <motion.div
-              initial={{ opacity: 0, y: -20 }}
-              animate={{ opacity: 1, y: 0 }}
-              exit={{ opacity: 0, y: -20 }}
-              transition={{ duration: 0.2 }}
-              className="relative w-full max-w-2xl bg-white shadow-2xl z-10 mt-4 md:mt-20 mx-4 overflow-hidden border border-neutral-100"
-            >
-              {/* Search Form Header */}
-              <form onSubmit={handleSearchSubmit} className="p-4 sm:p-6 border-b border-neutral-100 flex items-center gap-3">
-                <Search size={20} className="text-neutral-400 shrink-0" />
-                <input
-                  type="text"
-                  placeholder="Search by product name, teakwood, sofas, dining..."
-                  value={searchQuery}
-                  onChange={(e) => setSearchQuery(e.target.value)}
-                  className="flex-1 text-sm sm:text-base font-sans font-light focus:outline-none placeholder:text-neutral-400"
-                  autoFocus
-                />
-                {searchQuery && (
-                  <button
-                    type="button"
-                    onClick={() => setSearchQuery("")}
-                    className="p-1 text-neutral-400 hover:text-black"
+                {/* Drawer Footer WhatsApp CTA */}
+                <div className="p-5 border-t border-neutral-100 bg-neutral-50">
+                  <a
+                    href={customEnquiryLink}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="w-full inline-flex items-center justify-center space-x-2 bg-black text-white text-xs tracking-[0.2em] uppercase py-3.5 font-medium shadow-xs"
                   >
-                    <X size={16} />
-                  </button>
-                )}
-                <button
-                  type="submit"
-                  className="bg-black text-white text-[10px] uppercase tracking-[0.2em] font-medium px-4 py-2.5 hover:bg-neutral-800"
-                >
-                  Search
-                </button>
-                <button
-                  type="button"
-                  onClick={() => setSearchOpen(false)}
-                  className="p-2 text-neutral-400 hover:text-black -mr-2"
-                >
-                  <X size={20} />
-                </button>
-              </form>
-
-              {/* Quick Suggestion Tags */}
-              <div className="p-4 sm:p-6 bg-neutral-50/50 space-y-3">
-                <span className="text-[10px] uppercase tracking-[0.25em] text-neutral-400 font-medium block">
-                  Popular Searches
-                </span>
-                <div className="flex flex-wrap gap-2">
-                  {["Three Seater Sofa", "Teak Wood", "Dining Tables", "Sectional", "Bed Cots", "Solid Ash"].map((tag) => (
-                    <button
-                      key={tag}
-                      type="button"
-                      onClick={() => {
-                        setSearchOpen(false);
-                        router.push(`/search?q=${encodeURIComponent(tag)}`);
-                      }}
-                      className="text-xs bg-white border border-neutral-200 px-3 py-1.5 hover:border-black text-neutral-700 hover:text-black transition-colors"
-                    >
-                      {tag}
-                    </button>
-                  ))}
+                    <Send size={12} />
+                    <span>WhatsApp Concierge</span>
+                  </a>
                 </div>
-              </div>
+              </motion.div>
             </motion.div>
-          </div>
-        )}
-      </AnimatePresence>
+          )}
+        </AnimatePresence>
+
+      </header>
     </>
   );
 }

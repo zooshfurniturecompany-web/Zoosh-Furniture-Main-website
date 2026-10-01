@@ -18,7 +18,8 @@ import {
   Search,
   Menu,
   X,
-  Globe
+  Globe,
+  ArrowUpDown
 } from "lucide-react";
 
 export default function AdminLayout({
@@ -78,6 +79,7 @@ export default function AdminLayout({
       group: "Catalog",
       items: [
         { href: "/admin/products", label: "All Products", icon: <Package className="w-4 h-4" /> },
+        { href: "/admin/products?mode=reorder", label: "Reorder Products", icon: <ArrowUpDown className="w-4 h-4" /> },
         { href: "/admin/products/new", label: "Add Product", icon: <PlusCircle className="w-4 h-4" /> },
         { href: "/admin/variants", label: "Product Variants", icon: <Sliders className="w-4 h-4" /> }
       ]
