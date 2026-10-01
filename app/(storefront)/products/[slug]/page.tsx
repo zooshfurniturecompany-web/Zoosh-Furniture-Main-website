@@ -5,9 +5,8 @@ import { notFound } from "next/navigation";
 export const dynamic = "force-dynamic";
 
 import { ChevronRight } from "lucide-react";
-import ProductGallery from "@/components/product/product-gallery";
+import ProductDetailContainer from "@/components/product/product-detail-container";
 import ProductCard from "@/components/product/product-card";
-import ProductDetailView from "@/components/product/product-detail-view";
 import RecentlyViewed from "@/components/product/recently-viewed";
 import CustomSizeForm from "@/components/product/custom-size-form";
 import {
@@ -187,24 +186,13 @@ export default async function ProductDetailPage({ params }: PageProps) {
           </span>
         </div>
 
-        {/* Main Product Layout (Homework Living Style: Gallery on Left, Sticky Details on Right) */}
-        <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-16 items-start">
-          
-          {/* Left Column: Product Image Gallery */}
-          <div className="lg:col-span-7 w-full">
-            <ProductGallery images={product.images} />
-          </div>
-
-          {/* Right Column: Sticky Product Form & Un-collapsed Details */}
-          <div className="lg:col-span-5 w-full">
-            <ProductDetailView
-              product={product}
-              subcategoryName={subcategoryName}
-              roomSlug={mapped.room}
-              subcategorySlug={mapped.subcategory}
-            />
-          </div>
-        </div>
+        {/* Main Product Layout (Gallery on Left, Details on Right - Real-time reactive) */}
+        <ProductDetailContainer
+          initialProduct={product}
+          subcategoryName={subcategoryName}
+          roomSlug={mapped.room}
+          subcategorySlug={mapped.subcategory}
+        />
 
         {/* "You May Also Like" Curated Recommendations Grid */}
         {recommendations.length > 0 && (

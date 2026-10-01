@@ -141,7 +141,7 @@ export default function ProductForm({ initialData, isEdit = false }: ProductForm
       reader.onload = (e) => {
         const img = new Image();
         img.onload = () => {
-          const maxDim = 1920;
+          const maxDim = 1200;
           let w = img.width;
           let h = img.height;
           if (w > maxDim || h > maxDim) {
@@ -159,7 +159,7 @@ export default function ProductForm({ initialData, isEdit = false }: ProductForm
           const ctx = canvas.getContext("2d");
           if (ctx) {
             ctx.drawImage(img, 0, 0, w, h);
-            resolve(canvas.toDataURL("image/jpeg", 0.88));
+            resolve(canvas.toDataURL("image/jpeg", 0.82));
           } else {
             resolve(e.target?.result as string);
           }
