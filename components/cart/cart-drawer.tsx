@@ -77,7 +77,7 @@ Thank you.`;
             <div className="px-4 sm:px-5 py-2.5 bg-neutral-50 border-b border-neutral-100 text-xs font-sans text-neutral-600">
               <p className="mb-1 font-light text-[11px] sm:text-xs">
                 {subtotal >= freeShippingThreshold ? (
-                  <span className="text-emerald-700 font-medium">✓ You qualify for Free White-Glove Transit</span>
+                  <span className="text-emerald-700 font-medium">✓ You qualify for Free PAN India Shipping</span>
                 ) : (
                   <span>Add <strong>₹{(freeShippingThreshold - subtotal).toLocaleString("en-IN")}</strong> more for Free Shipping</span>
                 )}
@@ -191,7 +191,7 @@ Thank you.`;
                   </span>
                 </div>
                 <p className="text-[10px] text-neutral-400 font-sans font-light">
-                  Tax included. Pan-India white-glove transport calculated at dispatch.
+                  Tax included • Free PAN India Shipping
                 </p>
 
                 <div className="space-y-2">

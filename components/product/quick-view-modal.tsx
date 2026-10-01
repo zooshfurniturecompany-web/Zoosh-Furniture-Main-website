@@ -74,8 +74,8 @@ export default function QuickViewModal({ product, onClose }: QuickViewModalProps
                     <span className="font-serif text-2xl md:text-3xl font-bold text-neutral-950 block tabular-nums">
                       {product.pricingType === "starting_from" ? "Starting from " : ""}₹{product.price.toLocaleString("en-IN")}
                     </span>
-                    <span className="text-[9px] text-neutral-400 font-sans block mt-0.5">
-                      Excl. GST & Taxes | Made to Order
+                    <span className="text-[10px] text-emerald-800 font-medium font-sans block mt-1">
+                      Inclusive of all taxes • Free PAN India Shipping
                     </span>
                   </div>
                 ) : (

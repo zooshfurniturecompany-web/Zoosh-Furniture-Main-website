@@ -20,13 +20,13 @@ import { useProducts, getCategories, Product, getGeneralWhatsAppLink } from "@/h
 const valueProps = [
   {
     icon: <Truck size={22} className="stroke-[1.3] text-neutral-900" />,
-    title: "White-Glove Insured Delivery",
-    desc: "Direct door-to-door transit from our Pattambi factory to homes across all Indian states.",
+    title: "PAN India Insured Delivery",
+    desc: "Safe door-to-door transit to homes and commercial spaces across all Indian states.",
   },
   {
     icon: <Layers size={22} className="stroke-[1.3] text-neutral-900" />,
     title: "100% Solid Hardwoods",
-    desc: "Seasoned Kerala Teak, imported Ash, and rich Mahogany with zero particle boards.",
+    desc: "Seasoned Teak, premium Ash, and rich Mahogany with zero particle boards.",
   },
   {
     icon: <Ruler size={22} className="stroke-[1.3] text-neutral-900" />,
@@ -35,8 +35,8 @@ const valueProps = [
   },
   {
     icon: <ShieldCheck size={22} className="stroke-[1.3] text-neutral-900" />,
-    title: "5-Year Structural Frame Warranty",
-    desc: "Engineered with reinforced mortise-and-tenon structural joints built to last generations.",
+    title: "5-Year Warranty",
+    desc: "Engineered with reinforced joinery and backed by a comprehensive 5-year warranty.",
   },
 ];
 

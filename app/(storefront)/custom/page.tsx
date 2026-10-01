@@ -47,7 +47,7 @@ export default function CustomFurniturePage() {
     },
     {
       number: "05",
-      title: "Insured White-Glove Transit",
+      title: "PAN India Insured Delivery",
       description: "Safely crated and shipped directly to your residence across any state in India.",
     },
   ];
@@ -91,7 +91,7 @@ Thank you.`;
 
         <div className="relative z-10 text-center text-white max-w-3xl mx-auto px-4 sm:px-6 space-y-3">
           <span className="text-[9px] sm:text-[10px] tracking-[0.35em] uppercase text-neutral-300 font-sans font-semibold block">
-            Atelier Fabrication
+            Bespoke Craftsmanship
           </span>
           <h1 className="font-serif text-3xl sm:text-5xl md:text-6xl font-light tracking-wide leading-tight">
             Custom Furniture Blueprint

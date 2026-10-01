@@ -98,7 +98,7 @@ function CollectionContent() {
       <div className="border-b border-neutral-100 bg-neutral-50/50 py-8 sm:py-14 text-center">
         <div className="max-w-3xl mx-auto px-4 sm:px-6 space-y-2">
           <span className="text-[9px] sm:text-[10px] tracking-[0.3em] uppercase text-neutral-400 font-sans font-semibold block">
-            Pattambi Workshop Atelier
+            Signature Collection
           </span>
           <h1 className="font-serif text-2xl sm:text-4xl md:text-5xl font-light tracking-wide text-neutral-950">
             Solid Hardwood Catalog

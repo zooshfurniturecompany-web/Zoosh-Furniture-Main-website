@@ -158,7 +158,7 @@ export default function SubcategoryPage({ params }: SubcategoryPageProps) {
           </div>
 
           <p className="text-neutral-500 font-sans text-xs sm:text-sm font-light max-w-lg">
-            Custom made-to-order {subcategoryName.toLowerCase()} handcrafted in our Pattambi factory workshop.
+            Custom made-to-order {subcategoryName.toLowerCase()} handcrafted in solid hardwood with precision joinery.
           </p>
         </div>
       </div>
